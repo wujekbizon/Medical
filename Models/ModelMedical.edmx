@@ -1,0 +1,2441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MedicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CzlonekZespolu">
+          <Key>
+            <PropertyRef Name="IdCzlonka" />
+          </Key>
+          <Property Name="IdCzlonka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPracownika" Type="int" Nullable="false" />
+          <Property Name="IdZespolu" Type="int" Nullable="false" />
+          <Property Name="DataDolaczenia" Type="date" Nullable="false" />
+          <Property Name="DataOpuszczenia" Type="date" />
+          <Property Name="RolaWZespole" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataWystawienia" Type="date" Nullable="false" />
+          <Property Name="TerminPlatnosci" Type="date" />
+          <Property Name="Waluta" Type="nvarchar" MaxLength="10" />
+          <Property Name="StatusPlatnosci" Type="nvarchar" MaxLength="20" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="255" />
+          <Property Name="KategoriaKosztu" Type="nvarchar" MaxLength="50" />
+          <Property Name="OkresKsiegowy" Type="nvarchar" MaxLength="20" />
+          <Property Name="CzyZatwierdzona" Type="bit" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="int" Nullable="false" />
+          <Property Name="IdSposobuPlatnosci" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoriaNapraw">
+          <Key>
+            <PropertyRef Name="IdNaprawy" />
+          </Key>
+          <Property Name="IdNaprawy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RodzajNaprawy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OpisNaprawy" Type="nvarchar(max)" />
+          <Property Name="DataRozpoczecia" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DataZakonczenia" Type="datetime2" Precision="7" />
+          <Property Name="KosztNaprawy" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CzasTrwaniaNaprawy" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="GwarancjaMiesiecy" Type="int" />
+          <Property Name="StanKaretkiPrzedNaprawa" Type="nvarchar" MaxLength="100" />
+          <Property Name="StanKaretkiPoNaprawie" Type="nvarchar" MaxLength="100" />
+          <Property Name="CzyZatwierdzona" Type="bit" Nullable="false" />
+          <Property Name="IdKaretki" Type="int" Nullable="false" />
+          <Property Name="IdFaktury" Type="int" />
+          <Property Name="IdKontrahenta" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Karetka">
+          <Key>
+            <PropertyRef Name="IdKaretki" />
+          </Key>
+          <Property Name="IdKaretki" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumerRejestracyjny" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TypKaretki" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RokProdukcji" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PrzebiegKm" Type="int" Nullable="false" />
+          <Property Name="DataOstatniegoPrzegladu" Type="date" />
+          <Property Name="DataWaznosciUbezpieczenia" Type="date" />
+          <Property Name="PojemnoscSilnika" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="MocSilnikaKM" Type="int" />
+          <Property Name="NumerVIN" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypPaliwa" Type="nvarchar" MaxLength="20" />
+          <Property Name="Kolor" Type="nvarchar" MaxLength="20" />
+          <Property Name="LiczbaMiejsc" Type="int" />
+          <Property Name="DataNabycia" Type="date" />
+          <Property Name="SzacowanaZywotnoscLat" Type="int" />
+          <Property Name="IdPlacowki" Type="int" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kontrahent">
+          <Key>
+            <PropertyRef Name="IdKontrahenta" />
+          </Key>
+          <Property Name="IdKontrahenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="50" />
+          <Property Name="OsobaKontaktowa" Type="nvarchar" MaxLength="100" />
+          <Property Name="TelefonKontaktowy" Type="nvarchar" MaxLength="15" />
+          <Property Name="AdresEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="AdresSiedziby" Type="nvarchar" MaxLength="255" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="100" />
+          <Property Name="KodPocztowy" Type="nvarchar" MaxLength="10" />
+          <Property Name="NIP" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumerKontaBankowego" Type="nvarchar" MaxLength="30" />
+          <Property Name="KategoriaBiznesowa" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataRozpoczeciaWspolpracy" Type="date" />
+          <Property Name="DataZakonczeniaUmowy" Type="date" />
+          <Property Name="WarunkiPlatnosci" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyPreferowany" Type="bit" Nullable="false" />
+          <Property Name="LacznaWartoscTransakcji" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StatusWspolpracy" Type="nvarchar" MaxLength="20" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KosztUtrzymania">
+          <Key>
+            <PropertyRef Name="IdKosztu" />
+          </Key>
+          <Property Name="IdKosztu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RodzajKosztu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kwota" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DataKosztu" Type="date" Nullable="false" />
+          <Property Name="OpisSzczegolowy" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataKsiegowania" Type="date" />
+          <Property Name="CzyZaksiegowany" Type="bit" Nullable="false" />
+          <Property Name="OkresRozliczeniowy" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumerDowoduZakupu" Type="nvarchar" MaxLength="50" />
+          <Property Name="CentrumKosztowe" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyJestCyklczny" Type="bit" />
+          <Property Name="KwotaBudzetowa" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UwagiKsięgowe" Type="nvarchar" MaxLength="255" />
+          <Property Name="IdKaretki" Type="int" Nullable="false" />
+          <Property Name="IdFaktury" Type="int" />
+          <Property Name="IdKontrahenta" Type="int" />
+          <Property Name="IdSposobuPlatnosci" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OcenaZespolu">
+          <Key>
+            <PropertyRef Name="IdOceny" />
+          </Key>
+          <Property Name="IdOceny" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ocena" Type="int" Nullable="false" />
+          <Property Name="DataOceny" Type="date" Nullable="false" />
+          <Property Name="Komentarz" Type="nvarchar(max)" />
+          <Property Name="KryteriumOceny" Type="nvarchar" MaxLength="100" />
+          <Property Name="WagaOceny" Type="int" />
+          <Property Name="OcenaCzasuReakcji" Type="int" />
+          <Property Name="OcenaProfesjonalizmu" Type="int" />
+          <Property Name="OcenaSkutecznosci" Type="int" />
+          <Property Name="CzyOtrzymanoFeedbackOdPacjenta" Type="bit" />
+          <Property Name="SugerowaneUlepszenia" Type="nvarchar" MaxLength="255" />
+          <Property Name="OcenaStosowaniaStandardow" Type="int" />
+          <Property Name="IdZespolu" Type="int" Nullable="false" />
+          <Property Name="IdOceniajacego" Type="int" Nullable="false" />
+          <Property Name="IdWyjazdu" Type="int" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacjent">
+          <Key>
+            <PropertyRef Name="IdPacjenta" />
+          </Key>
+          <Property Name="IdPacjenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DataUrodzenia" Type="date" Nullable="false" />
+          <Property Name="AdresZamieszkania" Type="nvarchar" MaxLength="255" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="100" />
+          <Property Name="KodPocztowy" Type="nvarchar" MaxLength="10" />
+          <Property Name="TelefonKontaktowy" Type="nvarchar" MaxLength="15" />
+          <Property Name="AdresEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pesel" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Plec" Type="nvarchar" MaxLength="10" />
+          <Property Name="NumerKartyPacjenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="GrupaKrwi" Type="nvarchar" MaxLength="5" />
+          <Property Name="InformacjeAlergie" Type="nvarchar" MaxLength="255" />
+          <Property Name="UbezpieczenieZdrowotne" Type="nvarchar" MaxLength="100" />
+          <Property Name="UwagiDodatkowe" Type="nvarchar(max)" />
+          <Property Name="KontaktAwaryjnyImieNazwisko" Type="nvarchar" MaxLength="100" />
+          <Property Name="KontaktAwaryjnyTelefon" Type="nvarchar" MaxLength="15" />
+          <Property Name="ChorobyPrzewlekle" Type="nvarchar" MaxLength="255" />
+          <Property Name="RodzajNiepełnosprawności" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Placowka">
+          <Key>
+            <PropertyRef Name="IdPlacowki" />
+          </Key>
+          <Property Name="IdPlacowki" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaPlacowki" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="255" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="100" />
+          <Property Name="KodPocztowy" Type="nvarchar" MaxLength="10" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="15" />
+          <Property Name="AdresEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="TypPlacowki" Type="nvarchar" MaxLength="50" />
+          <Property Name="GodzinyPracy" Type="nvarchar" MaxLength="100" />
+          <Property Name="LiczbaKaretek" Type="int" />
+          <Property Name="LiczbaZespolow" Type="int" />
+          <Property Name="PojemnoscGarazu" Type="int" />
+          <Property Name="DataOtwarcia" Type="date" />
+          <Property Name="DataOstatniejInspekcji" Type="date" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="Budzet" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ObszarZasieguRatunkowego" Type="nvarchar" MaxLength="255" />
+          <Property Name="CzyMaAkredytacje" Type="bit" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PozycjaFaktury">
+          <Key>
+            <PropertyRef Name="IdPozycji" />
+          </Key>
+          <Property Name="IdPozycji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFaktury" Type="int" Nullable="false" />
+          <Property Name="NazwaUslugi" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ilosc" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="CenaJednostkowaNetto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StawkaVAT" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="KwotaNetto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="KwotaVAT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="KwotaBrutto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="JednostkaMiary" Type="nvarchar" MaxLength="20" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategoriaPozycji" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="55" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pesel" Type="nvarchar" MaxLength="11" />
+          <Property Name="DataUrodzenia" Type="date" />
+          <Property Name="AdresZamieszkania" Type="nvarchar" MaxLength="255" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="100" />
+          <Property Name="KodPocztowy" Type="nvarchar" MaxLength="10" />
+          <Property Name="TelefonSluzbowy" Type="nvarchar" MaxLength="15" />
+          <Property Name="AdresEmailSluzbowy" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumerKontaBankowego" Type="nvarchar" MaxLength="30" />
+          <Property Name="DataZatrudnienia" Type="date" Nullable="false" />
+          <Property Name="StatusZatrudnienia" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumerPrawaWykonywaniaZawodu" Type="nvarchar" MaxLength="50" />
+          <Property Name="KwalifikacjeDodatkowe" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataWaznosciBadanLekarskich" Type="date" />
+          <Property Name="StawkaGodzinowa" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TypUmowy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LiczbaDniUrlopu" Type="int" />
+          <Property Name="PreferowanaZmiana" Type="nvarchar" MaxLength="20" />
+          <Property Name="DataOstatniegoSzkolenia" Type="date" />
+          <Property Name="IdRoli" Type="int" Nullable="false" />
+          <Property Name="IdPlacowki" Type="int" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolaPracownika">
+          <Key>
+            <PropertyRef Name="IdRoli" />
+          </Key>
+          <Property Name="IdRoli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaRoli" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PoziomUprawnien" Type="int" Nullable="false" />
+          <Property Name="OpisObowiazkow" Type="nvarchar(max)" />
+          <Property Name="MinimalneWyksztalcenie" Type="nvarchar" MaxLength="100" />
+          <Property Name="WymaganeSzkolenia" Type="nvarchar" MaxLength="255" />
+          <Property Name="CzyWymagaLicencji" Type="bit" Nullable="false" />
+          <Property Name="MaksymalnaLiczbaGodzinTygodniowo" Type="int" />
+          <Property Name="SredniaPlaca" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Benefity" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataOstatniejAktualizacji" Type="date" />
+          <Property Name="NazwaDzialu" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyJestLideremZespolu" Type="bit" Nullable="false" />
+          <Property Name="LimitZatrudnienia" Type="int" />
+          <Property Name="WymaganeUmiejetnosci" Type="nvarchar" MaxLength="255" />
+          <Property Name="RolaNastepnegoEtapuKariery" Type="nvarchar" MaxLength="100" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="IdSposobuPlatnosci" />
+          </Key>
+          <Property Name="IdSposobuPlatnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="255" />
+          <Property Name="CzyWymagaPotwierdzenia" Type="bit" Nullable="false" />
+          <Property Name="RodzajTransakcji" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UdzielonaPomoc">
+          <Key>
+            <PropertyRef Name="IdPomocy" />
+          </Key>
+          <Property Name="IdPomocy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataPomocy" Type="date" Nullable="false" />
+          <Property Name="CzasRozpoczecia" Type="time" Precision="7" />
+          <Property Name="CzasZakonczenia" Type="time" Precision="7" />
+          <Property Name="OpisPomocy" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProceduryMedyczne" Type="nvarchar(max)" />
+          <Property Name="WynikInterwencji" Type="nvarchar" MaxLength="50" />
+          <Property Name="CzasTrwaniaMinuty" Type="int" Nullable="false" />
+          <Property Name="LokalizacjaInterwencji" Type="nvarchar" MaxLength="255" />
+          <Property Name="WymaganySprzet" Type="nvarchar" MaxLength="100" />
+          <Property Name="CzyWymagalTransportu" Type="bit" />
+          <Property Name="PriorytetInterwencji" Type="nvarchar" MaxLength="10" />
+          <Property Name="KodDiagnozyICD10" Type="nvarchar" MaxLength="50" />
+          <Property Name="SzpitalTransportu" Type="nvarchar" MaxLength="100" />
+          <Property Name="StanPacjentaPrzyPrzekazaniu" Type="nvarchar" MaxLength="100" />
+          <Property Name="CzyBylWymaganyUdziałPolicji" Type="bit" />
+          <Property Name="IdPacjenta" Type="int" Nullable="false" />
+          <Property Name="IdZespolu" Type="int" Nullable="false" />
+          <Property Name="IdKaretki" Type="int" />
+          <Property Name="IdWyjazdu" Type="int" Nullable="false" />
+          <Property Name="IdAutoraRaportu" Type="int" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZespolRatunkowy">
+          <Key>
+            <PropertyRef Name="IdZespolu" />
+          </Key>
+          <Property Name="IdZespolu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaZespolu" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LiczbaCzlonkow" Type="int" Nullable="false" />
+          <Property Name="Specjalizacja" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="date" Nullable="false" />
+          <Property Name="StatusZespolu" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TelefonKontaktowy" Type="nvarchar" MaxLength="15" />
+          <Property Name="Zmiana" Type="nvarchar" MaxLength="20" />
+          <Property Name="DataOstatniegoSzkolenia" Type="date" />
+          <Property Name="SredniaOcena" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="DataOstatniegoWyjazdu" Type="datetime2" Precision="7" />
+          <Property Name="LiczbaWszystkichWyjazdow" Type="int" />
+          <Property Name="Certyfikaty" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdKaretki" Type="int" />
+          <Property Name="IdPlacowki" Type="int" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZlecenieWyjazdu">
+          <Key>
+            <PropertyRef Name="IdWyjazdu" />
+          </Key>
+          <Property Name="IdWyjazdu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataCzasZgloszenia" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="AdresZdarzenia" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TypZdarzenia" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Priorytet" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="StatusZlecenia" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OpisZdarzenia" Type="nvarchar(max)" />
+          <Property Name="CzasWyjazdu" Type="datetime2" Precision="7" />
+          <Property Name="CzasPrzyjazduNaMiejsce" Type="datetime2" Precision="7" />
+          <Property Name="CzasPowrotuDoBazy" Type="datetime2" Precision="7" />
+          <Property Name="TelefonDzwoniacego" Type="nvarchar" MaxLength="15" />
+          <Property Name="CzasReakcjiSekundy" Type="int" />
+          <Property Name="DystansKm" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="LiczbaPacjentow" Type="int" />
+          <Property Name="WarunkiPogodowe" Type="nvarchar" MaxLength="50" />
+          <Property Name="WymaganeDodatkoweWsparcie" Type="nvarchar" MaxLength="100" />
+          <Property Name="IdDyspozytora" Type="int" Nullable="false" />
+          <Property Name="IdZespolu" Type="int" Nullable="false" />
+          <Property Name="IdKaretki" Type="int" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CzlonekZespolu_Pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="CzlonekZespolu">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CzlonekZespolu_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="CzlonekZespolu">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_SposobPlatnosci">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Karetka_Placowka">
+          <End Role="Placowka" Type="Self.Placowka" Multiplicity="1" />
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Placowka">
+              <PropertyRef Name="IdPlacowki" />
+            </Principal>
+            <Dependent Role="Karetka">
+              <PropertyRef Name="IdPlacowki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_Faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_SposobPlatnosci">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="0..1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Naprawy_Faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="HistoriaNapraw" Type="Self.HistoriaNapraw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="HistoriaNapraw">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Naprawy_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="1" />
+          <End Role="HistoriaNapraw" Type="Self.HistoriaNapraw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="HistoriaNapraw">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Naprawy_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="HistoriaNapraw" Type="Self.HistoriaNapraw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="HistoriaNapraw">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocena_Oceniajacy">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="OcenaZespolu" Type="Self.OcenaZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="OcenaZespolu">
+              <PropertyRef Name="IdOceniajacego" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocena_Wyjazd">
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="1" />
+          <End Role="OcenaZespolu" Type="Self.OcenaZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdWyjazdu" />
+            </Principal>
+            <Dependent Role="OcenaZespolu">
+              <PropertyRef Name="IdWyjazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocena_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="OcenaZespolu" Type="Self.OcenaZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="OcenaZespolu">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_AutorRaportu">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdAutoraRaportu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="0..1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Pacjent">
+          <End Role="Pacjent" Type="Self.Pacjent" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjent">
+              <PropertyRef Name="IdPacjenta" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdPacjenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Wyjazd">
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdWyjazdu" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdWyjazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PozycjaFaktury_Faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="PozycjaFaktury" Type="Self.PozycjaFaktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="PozycjaFaktury">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownik_Placowka">
+          <End Role="Placowka" Type="Self.Placowka" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Placowka">
+              <PropertyRef Name="IdPlacowki" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="IdPlacowki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownik_Rola">
+          <End Role="RolaPracownika" Type="Self.RolaPracownika" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolaPracownika">
+              <PropertyRef Name="IdRoli" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="IdRoli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyjazd_Dyspozytor">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdDyspozytora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyjazd_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="0..1" />
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyjazd_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zespol_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="0..1" />
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="ZespolRatunkowy">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zespol_Placowka">
+          <End Role="Placowka" Type="Self.Placowka" Multiplicity="1" />
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Placowka">
+              <PropertyRef Name="IdPlacowki" />
+            </Principal>
+            <Dependent Role="ZespolRatunkowy">
+              <PropertyRef Name="IdPlacowki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MedicalModelStoreContainer">
+          <EntitySet Name="CzlonekZespolu" EntityType="Self.CzlonekZespolu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoriaNapraw" EntityType="Self.HistoriaNapraw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Karetka" EntityType="Self.Karetka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KosztUtrzymania" EntityType="Self.KosztUtrzymania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OcenaZespolu" EntityType="Self.OcenaZespolu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacjent" EntityType="Self.Pacjent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Placowka" EntityType="Self.Placowka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PozycjaFaktury" EntityType="Self.PozycjaFaktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolaPracownika" EntityType="Self.RolaPracownika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UdzielonaPomoc" EntityType="Self.UdzielonaPomoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZespolRatunkowy" EntityType="Self.ZespolRatunkowy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZlecenieWyjazdu" EntityType="Self.ZlecenieWyjazdu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CzlonekZespolu_Pracownik" Association="Self.FK_CzlonekZespolu_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CzlonekZespolu_Zespol" Association="Self.FK_CzlonekZespolu_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_SposobPlatnosci" Association="Self.FK_Faktura_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Karetka_Placowka" Association="Self.FK_Karetka_Placowka">
+            <End Role="Placowka" EntitySet="Placowka" />
+            <End Role="Karetka" EntitySet="Karetka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_Faktura" Association="Self.FK_Koszt_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_Karetka" Association="Self.FK_Koszt_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_Kontrahent" Association="Self.FK_Koszt_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_SposobPlatnosci" Association="Self.FK_Koszt_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Naprawy_Faktura" Association="Self.FK_Naprawy_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="HistoriaNapraw" EntitySet="HistoriaNapraw" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Naprawy_Karetka" Association="Self.FK_Naprawy_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="HistoriaNapraw" EntitySet="HistoriaNapraw" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Naprawy_Kontrahent" Association="Self.FK_Naprawy_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="HistoriaNapraw" EntitySet="HistoriaNapraw" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocena_Oceniajacy" Association="Self.FK_Ocena_Oceniajacy">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="OcenaZespolu" EntitySet="OcenaZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocena_Wyjazd" Association="Self.FK_Ocena_Wyjazd">
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+            <End Role="OcenaZespolu" EntitySet="OcenaZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocena_Zespol" Association="Self.FK_Ocena_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="OcenaZespolu" EntitySet="OcenaZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_AutorRaportu" Association="Self.FK_Pomoc_AutorRaportu">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Karetka" Association="Self.FK_Pomoc_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Pacjent" Association="Self.FK_Pomoc_Pacjent">
+            <End Role="Pacjent" EntitySet="Pacjent" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Wyjazd" Association="Self.FK_Pomoc_Wyjazd">
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Zespol" Association="Self.FK_Pomoc_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaFaktury_Faktura" Association="Self.FK_PozycjaFaktury_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownik_Placowka" Association="Self.FK_Pracownik_Placowka">
+            <End Role="Placowka" EntitySet="Placowka" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownik_Rola" Association="Self.FK_Pracownik_Rola">
+            <End Role="RolaPracownika" EntitySet="RolaPracownika" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyjazd_Dyspozytor" Association="Self.FK_Wyjazd_Dyspozytor">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyjazd_Karetka" Association="Self.FK_Wyjazd_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyjazd_Zespol" Association="Self.FK_Wyjazd_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zespol_Karetka" Association="Self.FK_Zespol_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zespol_Placowka" Association="Self.FK_Zespol_Placowka">
+            <End Role="Placowka" EntitySet="Placowka" />
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MedicalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CzlonekZespolu">
+          <Key>
+            <PropertyRef Name="IdCzlonka" />
+          </Key>
+          <Property Name="IdCzlonka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPracownika" Type="Int32" Nullable="false" />
+          <Property Name="IdZespolu" Type="Int32" Nullable="false" />
+          <Property Name="DataDolaczenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataOpuszczenia" Type="DateTime" Precision="0" />
+          <Property Name="RolaWZespole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_CzlonekZespolu_Pracownik" FromRole="CzlonekZespolu" ToRole="Pracownik" />
+          <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_CzlonekZespolu_Zespol" FromRole="CzlonekZespolu" ToRole="ZespolRatunkowy" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataWystawienia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TerminPlatnosci" Type="DateTime" Precision="0" />
+          <Property Name="Waluta" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StatusPlatnosci" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriaKosztu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OkresKsiegowy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CzyZatwierdzona" Type="Boolean" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="Int32" Nullable="false" />
+          <Property Name="IdSposobuPlatnosci" Type="Int32" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kontrahent" Relationship="Self.FK_Faktura_Kontrahent" FromRole="Faktura" ToRole="Kontrahent" />
+          <NavigationProperty Name="SposobPlatnosci" Relationship="Self.FK_Faktura_SposobPlatnosci" FromRole="Faktura" ToRole="SposobPlatnosci" />
+          <NavigationProperty Name="KosztUtrzymania" Relationship="Self.FK_Koszt_Faktura" FromRole="Faktura" ToRole="KosztUtrzymania" />
+          <NavigationProperty Name="HistoriaNapraw" Relationship="Self.FK_Naprawy_Faktura" FromRole="Faktura" ToRole="HistoriaNapraw" />
+          <NavigationProperty Name="PozycjaFaktury" Relationship="Self.FK_PozycjaFaktury_Faktura" FromRole="Faktura" ToRole="PozycjaFaktury" />
+        </EntityType>
+        <EntityType Name="HistoriaNapraw">
+          <Key>
+            <PropertyRef Name="IdNaprawy" />
+          </Key>
+          <Property Name="IdNaprawy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RodzajNaprawy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OpisNaprawy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataRozpoczecia" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DataZakonczenia" Type="DateTime" Precision="7" />
+          <Property Name="KosztNaprawy" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CzasTrwaniaNaprawy" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="GwarancjaMiesiecy" Type="Int32" />
+          <Property Name="StanKaretkiPrzedNaprawa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StanKaretkiPoNaprawie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CzyZatwierdzona" Type="Boolean" Nullable="false" />
+          <Property Name="IdKaretki" Type="Int32" Nullable="false" />
+          <Property Name="IdFaktury" Type="Int32" />
+          <Property Name="IdKontrahenta" Type="Int32" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_Naprawy_Faktura" FromRole="HistoriaNapraw" ToRole="Faktura" />
+          <NavigationProperty Name="Karetka" Relationship="Self.FK_Naprawy_Karetka" FromRole="HistoriaNapraw" ToRole="Karetka" />
+          <NavigationProperty Name="Kontrahent" Relationship="Self.FK_Naprawy_Kontrahent" FromRole="HistoriaNapraw" ToRole="Kontrahent" />
+        </EntityType>
+        <EntityType Name="Karetka">
+          <Key>
+            <PropertyRef Name="IdKaretki" />
+          </Key>
+          <Property Name="IdKaretki" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumerRejestracyjny" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypKaretki" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RokProdukcji" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrzebiegKm" Type="Int32" Nullable="false" />
+          <Property Name="DataOstatniegoPrzegladu" Type="DateTime" Precision="0" />
+          <Property Name="DataWaznosciUbezpieczenia" Type="DateTime" Precision="0" />
+          <Property Name="PojemnoscSilnika" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="MocSilnikaKM" Type="Int32" />
+          <Property Name="NumerVIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypPaliwa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Kolor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LiczbaMiejsc" Type="Int32" />
+          <Property Name="DataNabycia" Type="DateTime" Precision="0" />
+          <Property Name="SzacowanaZywotnoscLat" Type="Int32" />
+          <Property Name="IdPlacowki" Type="Int32" Nullable="false" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HistoriaNapraw" Relationship="Self.FK_Naprawy_Karetka" FromRole="Karetka" ToRole="HistoriaNapraw" />
+          <NavigationProperty Name="Placowka" Relationship="Self.FK_Karetka_Placowka" FromRole="Karetka" ToRole="Placowka" />
+          <NavigationProperty Name="KosztUtrzymania" Relationship="Self.FK_Koszt_Karetka" FromRole="Karetka" ToRole="KosztUtrzymania" />
+          <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_Karetka" FromRole="Karetka" ToRole="UdzielonaPomoc" />
+          <NavigationProperty Name="ZlecenieWyjazdu" Relationship="Self.FK_Wyjazd_Karetka" FromRole="Karetka" ToRole="ZlecenieWyjazdu" />
+          <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_Zespol_Karetka" FromRole="Karetka" ToRole="ZespolRatunkowy" />
+        </EntityType>
+        <EntityType Name="Kontrahent">
+          <Key>
+            <PropertyRef Name="IdKontrahenta" />
+          </Key>
+          <Property Name="IdKontrahenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Typ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OsobaKontaktowa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonKontaktowy" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="AdresEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdresSiedziby" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Miasto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NIP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumerKontaBankowego" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriaBiznesowa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataRozpoczeciaWspolpracy" Type="DateTime" Precision="0" />
+          <Property Name="DataZakonczeniaUmowy" Type="DateTime" Precision="0" />
+          <Property Name="WarunkiPlatnosci" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyPreferowany" Type="Boolean" Nullable="false" />
+          <Property Name="LacznaWartoscTransakcji" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StatusWspolpracy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_Faktura_Kontrahent" FromRole="Kontrahent" ToRole="Faktura" />
+          <NavigationProperty Name="HistoriaNapraw" Relationship="Self.FK_Naprawy_Kontrahent" FromRole="Kontrahent" ToRole="HistoriaNapraw" />
+          <NavigationProperty Name="KosztUtrzymania" Relationship="Self.FK_Koszt_Kontrahent" FromRole="Kontrahent" ToRole="KosztUtrzymania" />
+        </EntityType>
+        <EntityType Name="KosztUtrzymania">
+          <Key>
+            <PropertyRef Name="IdKosztu" />
+          </Key>
+          <Property Name="IdKosztu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RodzajKosztu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kwota" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DataKosztu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OpisSzczegolowy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DataKsiegowania" Type="DateTime" Precision="0" />
+          <Property Name="CzyZaksiegowany" Type="Boolean" Nullable="false" />
+          <Property Name="OkresRozliczeniowy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumerDowoduZakupu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CentrumKosztowe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyJestCyklczny" Type="Boolean" />
+          <Property Name="KwotaBudzetowa" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UwagiKsięgowe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IdKaretki" Type="Int32" Nullable="false" />
+          <Property Name="IdFaktury" Type="Int32" />
+          <Property Name="IdKontrahenta" Type="Int32" />
+          <Property Name="IdSposobuPlatnosci" Type="Int32" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_Koszt_Faktura" FromRole="KosztUtrzymania" ToRole="Faktura" />
+          <NavigationProperty Name="Karetka" Relationship="Self.FK_Koszt_Karetka" FromRole="KosztUtrzymania" ToRole="Karetka" />
+          <NavigationProperty Name="Kontrahent" Relationship="Self.FK_Koszt_Kontrahent" FromRole="KosztUtrzymania" ToRole="Kontrahent" />
+          <NavigationProperty Name="SposobPlatnosci" Relationship="Self.FK_Koszt_SposobPlatnosci" FromRole="KosztUtrzymania" ToRole="SposobPlatnosci" />
+        </EntityType>
+        <EntityType Name="OcenaZespolu">
+          <Key>
+            <PropertyRef Name="IdOceny" />
+          </Key>
+          <Property Name="IdOceny" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ocena" Type="Int32" Nullable="false" />
+          <Property Name="DataOceny" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Komentarz" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KryteriumOceny" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WagaOceny" Type="Int32" />
+          <Property Name="OcenaCzasuReakcji" Type="Int32" />
+          <Property Name="OcenaProfesjonalizmu" Type="Int32" />
+          <Property Name="OcenaSkutecznosci" Type="Int32" />
+          <Property Name="CzyOtrzymanoFeedbackOdPacjenta" Type="Boolean" />
+          <Property Name="SugerowaneUlepszenia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OcenaStosowaniaStandardow" Type="Int32" />
+          <Property Name="IdZespolu" Type="Int32" Nullable="false" />
+          <Property Name="IdOceniajacego" Type="Int32" Nullable="false" />
+          <Property Name="IdWyjazdu" Type="Int32" Nullable="false" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_Ocena_Oceniajacy" FromRole="OcenaZespolu" ToRole="Pracownik" />
+          <NavigationProperty Name="ZlecenieWyjazdu" Relationship="Self.FK_Ocena_Wyjazd" FromRole="OcenaZespolu" ToRole="ZlecenieWyjazdu" />
+          <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_Ocena_Zespol" FromRole="OcenaZespolu" ToRole="ZespolRatunkowy" />
+        </EntityType>
+        <EntityType Name="Pacjent">
+          <Key>
+            <PropertyRef Name="IdPacjenta" />
+          </Key>
+          <Property Name="IdPacjenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataUrodzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AdresZamieszkania" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Miasto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonKontaktowy" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="AdresEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plec" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NumerKartyPacjenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GrupaKrwi" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="InformacjeAlergie" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UbezpieczenieZdrowotne" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UwagiDodatkowe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KontaktAwaryjnyImieNazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KontaktAwaryjnyTelefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ChorobyPrzewlekle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RodzajNiepełnosprawności" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_Pacjent" FromRole="Pacjent" ToRole="UdzielonaPomoc" />
+        </EntityType>
+        <EntityType Name="Placowka">
+          <Key>
+            <PropertyRef Name="IdPlacowki" />
+          </Key>
+          <Property Name="IdPlacowki" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaPlacowki" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Miasto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="AdresEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TypPlacowki" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GodzinyPracy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LiczbaKaretek" Type="Int32" />
+          <Property Name="LiczbaZespolow" Type="Int32" />
+          <Property Name="PojemnoscGarazu" Type="Int32" />
+          <Property Name="DataOtwarcia" Type="DateTime" Precision="0" />
+          <Property Name="DataOstatniejInspekcji" Type="DateTime" Precision="0" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Budzet" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ObszarZasieguRatunkowego" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CzyMaAkredytacje" Type="Boolean" Nullable="false" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Karetka" Relationship="Self.FK_Karetka_Placowka" FromRole="Placowka" ToRole="Karetka" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_Pracownik_Placowka" FromRole="Placowka" ToRole="Pracownik" />
+          <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_Zespol_Placowka" FromRole="Placowka" ToRole="ZespolRatunkowy" />
+        </EntityType>
+        <EntityType Name="PozycjaFaktury">
+          <Key>
+            <PropertyRef Name="IdPozycji" />
+          </Key>
+          <Property Name="IdPozycji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFaktury" Type="Int32" Nullable="false" />
+          <Property Name="NazwaUslugi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ilosc" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="CenaJednostkowaNetto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="StawkaVAT" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="KwotaNetto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="KwotaVAT" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="KwotaBrutto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="JednostkaMiary" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriaPozycji" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_PozycjaFaktury_Faktura" FromRole="PozycjaFaktury" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="55" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="DataUrodzenia" Type="DateTime" Precision="0" />
+          <Property Name="AdresZamieszkania" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Miasto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonSluzbowy" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="AdresEmailSluzbowy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumerKontaBankowego" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DataZatrudnienia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StatusZatrudnienia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumerPrawaWykonywaniaZawodu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KwalifikacjeDodatkowe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DataWaznosciBadanLekarskich" Type="DateTime" Precision="0" />
+          <Property Name="StawkaGodzinowa" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TypUmowy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LiczbaDniUrlopu" Type="Int32" />
+          <Property Name="PreferowanaZmiana" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DataOstatniegoSzkolenia" Type="DateTime" Precision="0" />
+          <Property Name="IdRoli" Type="Int32" Nullable="false" />
+          <Property Name="IdPlacowki" Type="Int32" Nullable="false" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CzlonekZespolu" Relationship="Self.FK_CzlonekZespolu_Pracownik" FromRole="Pracownik" ToRole="CzlonekZespolu" />
+          <NavigationProperty Name="OcenaZespolu" Relationship="Self.FK_Ocena_Oceniajacy" FromRole="Pracownik" ToRole="OcenaZespolu" />
+          <NavigationProperty Name="Placowka" Relationship="Self.FK_Pracownik_Placowka" FromRole="Pracownik" ToRole="Placowka" />
+          <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_AutorRaportu" FromRole="Pracownik" ToRole="UdzielonaPomoc" />
+          <NavigationProperty Name="RolaPracownika" Relationship="Self.FK_Pracownik_Rola" FromRole="Pracownik" ToRole="RolaPracownika" />
+          <NavigationProperty Name="ZlecenieWyjazdu" Relationship="Self.FK_Wyjazd_Dyspozytor" FromRole="Pracownik" ToRole="ZlecenieWyjazdu" />
+        </EntityType>
+        <EntityType Name="RolaPracownika">
+          <Key>
+            <PropertyRef Name="IdRoli" />
+          </Key>
+          <Property Name="IdRoli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaRoli" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PoziomUprawnien" Type="Int32" Nullable="false" />
+          <Property Name="OpisObowiazkow" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MinimalneWyksztalcenie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WymaganeSzkolenia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CzyWymagaLicencji" Type="Boolean" Nullable="false" />
+          <Property Name="MaksymalnaLiczbaGodzinTygodniowo" Type="Int32" />
+          <Property Name="SredniaPlaca" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Benefity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DataOstatniejAktualizacji" Type="DateTime" Precision="0" />
+          <Property Name="NazwaDzialu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyJestLideremZespolu" Type="Boolean" Nullable="false" />
+          <Property Name="LimitZatrudnienia" Type="Int32" />
+          <Property Name="WymaganeUmiejetnosci" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RolaNastepnegoEtapuKariery" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_Pracownik_Rola" FromRole="RolaPracownika" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="IdSposobuPlatnosci" />
+          </Key>
+          <Property Name="IdSposobuPlatnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CzyWymagaPotwierdzenia" Type="Boolean" Nullable="false" />
+          <Property Name="RodzajTransakcji" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK_Faktura_SposobPlatnosci" FromRole="SposobPlatnosci" ToRole="Faktura" />
+          <NavigationProperty Name="KosztUtrzymania" Relationship="Self.FK_Koszt_SposobPlatnosci" FromRole="SposobPlatnosci" ToRole="KosztUtrzymania" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UdzielonaPomoc">
+          <Key>
+            <PropertyRef Name="IdPomocy" />
+          </Key>
+          <Property Name="IdPomocy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataPomocy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CzasRozpoczecia" Type="Time" Precision="7" />
+          <Property Name="CzasZakonczenia" Type="Time" Precision="7" />
+          <Property Name="OpisPomocy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProceduryMedyczne" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WynikInterwencji" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CzasTrwaniaMinuty" Type="Int32" Nullable="false" />
+          <Property Name="LokalizacjaInterwencji" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WymaganySprzet" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CzyWymagalTransportu" Type="Boolean" />
+          <Property Name="PriorytetInterwencji" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="KodDiagnozyICD10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SzpitalTransportu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StanPacjentaPrzyPrzekazaniu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CzyBylWymaganyUdziałPolicji" Type="Boolean" />
+          <Property Name="IdPacjenta" Type="Int32" Nullable="false" />
+          <Property Name="IdZespolu" Type="Int32" Nullable="false" />
+          <Property Name="IdKaretki" Type="Int32" />
+          <Property Name="IdWyjazdu" Type="Int32" Nullable="false" />
+          <Property Name="IdAutoraRaportu" Type="Int32" Nullable="false" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Karetka" Relationship="Self.FK_Pomoc_Karetka" FromRole="UdzielonaPomoc" ToRole="Karetka" />
+          <NavigationProperty Name="Pacjent" Relationship="Self.FK_Pomoc_Pacjent" FromRole="UdzielonaPomoc" ToRole="Pacjent" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_Pomoc_AutorRaportu" FromRole="UdzielonaPomoc" ToRole="Pracownik" />
+          <NavigationProperty Name="ZlecenieWyjazdu" Relationship="Self.FK_Pomoc_Wyjazd" FromRole="UdzielonaPomoc" ToRole="ZlecenieWyjazdu" />
+          <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_Pomoc_Zespol" FromRole="UdzielonaPomoc" ToRole="ZespolRatunkowy" />
+        </EntityType>
+        <EntityType Name="ZespolRatunkowy">
+          <Key>
+            <PropertyRef Name="IdZespolu" />
+          </Key>
+          <Property Name="IdZespolu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaZespolu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LiczbaCzlonkow" Type="Int32" Nullable="false" />
+          <Property Name="Specjalizacja" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="StatusZespolu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TelefonKontaktowy" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Zmiana" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DataOstatniegoSzkolenia" Type="DateTime" Precision="0" />
+          <Property Name="SredniaOcena" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="DataOstatniegoWyjazdu" Type="DateTime" Precision="7" />
+          <Property Name="LiczbaWszystkichWyjazdow" Type="Int32" />
+          <Property Name="Certyfikaty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdKaretki" Type="Int32" />
+          <Property Name="IdPlacowki" Type="Int32" Nullable="false" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CzlonekZespolu" Relationship="Self.FK_CzlonekZespolu_Zespol" FromRole="ZespolRatunkowy" ToRole="CzlonekZespolu" />
+          <NavigationProperty Name="Karetka" Relationship="Self.FK_Zespol_Karetka" FromRole="ZespolRatunkowy" ToRole="Karetka" />
+          <NavigationProperty Name="OcenaZespolu" Relationship="Self.FK_Ocena_Zespol" FromRole="ZespolRatunkowy" ToRole="OcenaZespolu" />
+          <NavigationProperty Name="Placowka" Relationship="Self.FK_Zespol_Placowka" FromRole="ZespolRatunkowy" ToRole="Placowka" />
+          <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_Zespol" FromRole="ZespolRatunkowy" ToRole="UdzielonaPomoc" />
+          <NavigationProperty Name="ZlecenieWyjazdu" Relationship="Self.FK_Wyjazd_Zespol" FromRole="ZespolRatunkowy" ToRole="ZlecenieWyjazdu" />
+        </EntityType>
+        <EntityType Name="ZlecenieWyjazdu">
+          <Key>
+            <PropertyRef Name="IdWyjazdu" />
+          </Key>
+          <Property Name="IdWyjazdu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCzasZgloszenia" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="AdresZdarzenia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TypZdarzenia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Priorytet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusZlecenia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OpisZdarzenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CzasWyjazdu" Type="DateTime" Precision="7" />
+          <Property Name="CzasPrzyjazduNaMiejsce" Type="DateTime" Precision="7" />
+          <Property Name="CzasPowrotuDoBazy" Type="DateTime" Precision="7" />
+          <Property Name="TelefonDzwoniacego" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CzasReakcjiSekundy" Type="Int32" />
+          <Property Name="DystansKm" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="LiczbaPacjentow" Type="Int32" />
+          <Property Name="WarunkiPogodowe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WymaganeDodatkoweWsparcie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdDyspozytora" Type="Int32" Nullable="false" />
+          <Property Name="IdZespolu" Type="Int32" Nullable="false" />
+          <Property Name="IdKaretki" Type="Int32" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Karetka" Relationship="Self.FK_Wyjazd_Karetka" FromRole="ZlecenieWyjazdu" ToRole="Karetka" />
+          <NavigationProperty Name="OcenaZespolu" Relationship="Self.FK_Ocena_Wyjazd" FromRole="ZlecenieWyjazdu" ToRole="OcenaZespolu" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_Wyjazd_Dyspozytor" FromRole="ZlecenieWyjazdu" ToRole="Pracownik" />
+          <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_Wyjazd" FromRole="ZlecenieWyjazdu" ToRole="UdzielonaPomoc" />
+          <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_Wyjazd_Zespol" FromRole="ZlecenieWyjazdu" ToRole="ZespolRatunkowy" />
+        </EntityType>
+        <Association Name="FK_CzlonekZespolu_Pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="CzlonekZespolu">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CzlonekZespolu_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="CzlonekZespolu">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_SposobPlatnosci">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_Faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Naprawy_Faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="HistoriaNapraw" Type="Self.HistoriaNapraw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="HistoriaNapraw">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PozycjaFaktury_Faktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="PozycjaFaktury" Type="Self.PozycjaFaktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="PozycjaFaktury">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Naprawy_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="1" />
+          <End Role="HistoriaNapraw" Type="Self.HistoriaNapraw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="HistoriaNapraw">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Naprawy_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="HistoriaNapraw" Type="Self.HistoriaNapraw" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="HistoriaNapraw">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Karetka_Placowka">
+          <End Role="Placowka" Type="Self.Placowka" Multiplicity="1" />
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Placowka">
+              <PropertyRef Name="IdPlacowki" />
+            </Principal>
+            <Dependent Role="Karetka">
+              <PropertyRef Name="IdPlacowki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="0..1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyjazd_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="0..1" />
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zespol_Karetka">
+          <End Role="Karetka" Type="Self.Karetka" Multiplicity="0..1" />
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karetka">
+              <PropertyRef Name="IdKaretki" />
+            </Principal>
+            <Dependent Role="ZespolRatunkowy">
+              <PropertyRef Name="IdKaretki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Koszt_SposobPlatnosci">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="0..1" />
+          <End Role="KosztUtrzymania" Type="Self.KosztUtrzymania" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="KosztUtrzymania">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocena_Oceniajacy">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="OcenaZespolu" Type="Self.OcenaZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="OcenaZespolu">
+              <PropertyRef Name="IdOceniajacego" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocena_Wyjazd">
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="1" />
+          <End Role="OcenaZespolu" Type="Self.OcenaZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdWyjazdu" />
+            </Principal>
+            <Dependent Role="OcenaZespolu">
+              <PropertyRef Name="IdWyjazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocena_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="OcenaZespolu" Type="Self.OcenaZespolu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="OcenaZespolu">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Pacjent">
+          <End Role="Pacjent" Type="Self.Pacjent" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjent">
+              <PropertyRef Name="IdPacjenta" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdPacjenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownik_Placowka">
+          <End Role="Placowka" Type="Self.Placowka" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Placowka">
+              <PropertyRef Name="IdPlacowki" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="IdPlacowki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zespol_Placowka">
+          <End Role="Placowka" Type="Self.Placowka" Multiplicity="1" />
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Placowka">
+              <PropertyRef Name="IdPlacowki" />
+            </Principal>
+            <Dependent Role="ZespolRatunkowy">
+              <PropertyRef Name="IdPlacowki" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_AutorRaportu">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdAutoraRaportu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pracownik_Rola">
+          <End Role="RolaPracownika" Type="Self.RolaPracownika" Multiplicity="1" />
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolaPracownika">
+              <PropertyRef Name="IdRoli" />
+            </Principal>
+            <Dependent Role="Pracownik">
+              <PropertyRef Name="IdRoli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyjazd_Dyspozytor">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdDyspozytora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Wyjazd">
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdWyjazdu" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdWyjazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pomoc_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="UdzielonaPomoc" Type="Self.UdzielonaPomoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="UdzielonaPomoc">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wyjazd_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="ZlecenieWyjazdu" Type="Self.ZlecenieWyjazdu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="ZlecenieWyjazdu">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MedicalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CzlonekZespolu" EntityType="Self.CzlonekZespolu" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" />
+          <EntitySet Name="HistoriaNapraw" EntityType="Self.HistoriaNapraw" />
+          <EntitySet Name="Karetka" EntityType="Self.Karetka" />
+          <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" />
+          <EntitySet Name="KosztUtrzymania" EntityType="Self.KosztUtrzymania" />
+          <EntitySet Name="OcenaZespolu" EntityType="Self.OcenaZespolu" />
+          <EntitySet Name="Pacjent" EntityType="Self.Pacjent" />
+          <EntitySet Name="Placowka" EntityType="Self.Placowka" />
+          <EntitySet Name="PozycjaFaktury" EntityType="Self.PozycjaFaktury" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" />
+          <EntitySet Name="RolaPracownika" EntityType="Self.RolaPracownika" />
+          <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UdzielonaPomoc" EntityType="Self.UdzielonaPomoc" />
+          <EntitySet Name="ZespolRatunkowy" EntityType="Self.ZespolRatunkowy" />
+          <EntitySet Name="ZlecenieWyjazdu" EntityType="Self.ZlecenieWyjazdu" />
+          <AssociationSet Name="FK_CzlonekZespolu_Pracownik" Association="Self.FK_CzlonekZespolu_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CzlonekZespolu_Zespol" Association="Self.FK_CzlonekZespolu_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_SposobPlatnosci" Association="Self.FK_Faktura_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_Faktura" Association="Self.FK_Koszt_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Naprawy_Faktura" Association="Self.FK_Naprawy_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="HistoriaNapraw" EntitySet="HistoriaNapraw" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PozycjaFaktury_Faktura" Association="Self.FK_PozycjaFaktury_Faktura">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Naprawy_Karetka" Association="Self.FK_Naprawy_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="HistoriaNapraw" EntitySet="HistoriaNapraw" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Naprawy_Kontrahent" Association="Self.FK_Naprawy_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="HistoriaNapraw" EntitySet="HistoriaNapraw" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Karetka_Placowka" Association="Self.FK_Karetka_Placowka">
+            <End Role="Placowka" EntitySet="Placowka" />
+            <End Role="Karetka" EntitySet="Karetka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_Karetka" Association="Self.FK_Koszt_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Karetka" Association="Self.FK_Pomoc_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyjazd_Karetka" Association="Self.FK_Wyjazd_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zespol_Karetka" Association="Self.FK_Zespol_Karetka">
+            <End Role="Karetka" EntitySet="Karetka" />
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_Kontrahent" Association="Self.FK_Koszt_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Koszt_SposobPlatnosci" Association="Self.FK_Koszt_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="KosztUtrzymania" EntitySet="KosztUtrzymania" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocena_Oceniajacy" Association="Self.FK_Ocena_Oceniajacy">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="OcenaZespolu" EntitySet="OcenaZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocena_Wyjazd" Association="Self.FK_Ocena_Wyjazd">
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+            <End Role="OcenaZespolu" EntitySet="OcenaZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocena_Zespol" Association="Self.FK_Ocena_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="OcenaZespolu" EntitySet="OcenaZespolu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Pacjent" Association="Self.FK_Pomoc_Pacjent">
+            <End Role="Pacjent" EntitySet="Pacjent" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownik_Placowka" Association="Self.FK_Pracownik_Placowka">
+            <End Role="Placowka" EntitySet="Placowka" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zespol_Placowka" Association="Self.FK_Zespol_Placowka">
+            <End Role="Placowka" EntitySet="Placowka" />
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_AutorRaportu" Association="Self.FK_Pomoc_AutorRaportu">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pracownik_Rola" Association="Self.FK_Pracownik_Rola">
+            <End Role="RolaPracownika" EntitySet="RolaPracownika" />
+            <End Role="Pracownik" EntitySet="Pracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyjazd_Dyspozytor" Association="Self.FK_Wyjazd_Dyspozytor">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Wyjazd" Association="Self.FK_Pomoc_Wyjazd">
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pomoc_Zespol" Association="Self.FK_Pomoc_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="UdzielonaPomoc" EntitySet="UdzielonaPomoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wyjazd_Zespol" Association="Self.FK_Wyjazd_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MedicalModelStoreContainer" CdmEntityContainer="MedicalEntities">
+          <EntitySetMapping Name="CzlonekZespolu">
+            <EntityTypeMapping TypeName="MedicalModel.CzlonekZespolu">
+              <MappingFragment StoreEntitySet="CzlonekZespolu">
+                <ScalarProperty Name="IdCzlonka" ColumnName="IdCzlonka" />
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
+                <ScalarProperty Name="DataDolaczenia" ColumnName="DataDolaczenia" />
+                <ScalarProperty Name="DataOpuszczenia" ColumnName="DataOpuszczenia" />
+                <ScalarProperty Name="RolaWZespole" ColumnName="RolaWZespole" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faktura">
+            <EntityTypeMapping TypeName="MedicalModel.Faktura">
+              <MappingFragment StoreEntitySet="Faktura">
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="Numer" ColumnName="Numer" />
+                <ScalarProperty Name="DataWystawienia" ColumnName="DataWystawienia" />
+                <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
+                <ScalarProperty Name="Waluta" ColumnName="Waluta" />
+                <ScalarProperty Name="StatusPlatnosci" ColumnName="StatusPlatnosci" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="KategoriaKosztu" ColumnName="KategoriaKosztu" />
+                <ScalarProperty Name="OkresKsiegowy" ColumnName="OkresKsiegowy" />
+                <ScalarProperty Name="CzyZatwierdzona" ColumnName="CzyZatwierdzona" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoriaNapraw">
+            <EntityTypeMapping TypeName="MedicalModel.HistoriaNapraw">
+              <MappingFragment StoreEntitySet="HistoriaNapraw">
+                <ScalarProperty Name="IdNaprawy" ColumnName="IdNaprawy" />
+                <ScalarProperty Name="RodzajNaprawy" ColumnName="RodzajNaprawy" />
+                <ScalarProperty Name="OpisNaprawy" ColumnName="OpisNaprawy" />
+                <ScalarProperty Name="DataRozpoczecia" ColumnName="DataRozpoczecia" />
+                <ScalarProperty Name="DataZakonczenia" ColumnName="DataZakonczenia" />
+                <ScalarProperty Name="KosztNaprawy" ColumnName="KosztNaprawy" />
+                <ScalarProperty Name="CzasTrwaniaNaprawy" ColumnName="CzasTrwaniaNaprawy" />
+                <ScalarProperty Name="GwarancjaMiesiecy" ColumnName="GwarancjaMiesiecy" />
+                <ScalarProperty Name="StanKaretkiPrzedNaprawa" ColumnName="StanKaretkiPrzedNaprawa" />
+                <ScalarProperty Name="StanKaretkiPoNaprawie" ColumnName="StanKaretkiPoNaprawie" />
+                <ScalarProperty Name="CzyZatwierdzona" ColumnName="CzyZatwierdzona" />
+                <ScalarProperty Name="IdKaretki" ColumnName="IdKaretki" />
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Karetka">
+            <EntityTypeMapping TypeName="MedicalModel.Karetka">
+              <MappingFragment StoreEntitySet="Karetka">
+                <ScalarProperty Name="IdKaretki" ColumnName="IdKaretki" />
+                <ScalarProperty Name="NumerRejestracyjny" ColumnName="NumerRejestracyjny" />
+                <ScalarProperty Name="TypKaretki" ColumnName="TypKaretki" />
+                <ScalarProperty Name="RokProdukcji" ColumnName="RokProdukcji" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PrzebiegKm" ColumnName="PrzebiegKm" />
+                <ScalarProperty Name="DataOstatniegoPrzegladu" ColumnName="DataOstatniegoPrzegladu" />
+                <ScalarProperty Name="DataWaznosciUbezpieczenia" ColumnName="DataWaznosciUbezpieczenia" />
+                <ScalarProperty Name="PojemnoscSilnika" ColumnName="PojemnoscSilnika" />
+                <ScalarProperty Name="MocSilnikaKM" ColumnName="MocSilnikaKM" />
+                <ScalarProperty Name="NumerVIN" ColumnName="NumerVIN" />
+                <ScalarProperty Name="TypPaliwa" ColumnName="TypPaliwa" />
+                <ScalarProperty Name="Kolor" ColumnName="Kolor" />
+                <ScalarProperty Name="LiczbaMiejsc" ColumnName="LiczbaMiejsc" />
+                <ScalarProperty Name="DataNabycia" ColumnName="DataNabycia" />
+                <ScalarProperty Name="SzacowanaZywotnoscLat" ColumnName="SzacowanaZywotnoscLat" />
+                <ScalarProperty Name="IdPlacowki" ColumnName="IdPlacowki" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kontrahent">
+            <EntityTypeMapping TypeName="MedicalModel.Kontrahent">
+              <MappingFragment StoreEntitySet="Kontrahent">
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="OsobaKontaktowa" ColumnName="OsobaKontaktowa" />
+                <ScalarProperty Name="TelefonKontaktowy" ColumnName="TelefonKontaktowy" />
+                <ScalarProperty Name="AdresEmail" ColumnName="AdresEmail" />
+                <ScalarProperty Name="AdresSiedziby" ColumnName="AdresSiedziby" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="NumerKontaBankowego" ColumnName="NumerKontaBankowego" />
+                <ScalarProperty Name="KategoriaBiznesowa" ColumnName="KategoriaBiznesowa" />
+                <ScalarProperty Name="DataRozpoczeciaWspolpracy" ColumnName="DataRozpoczeciaWspolpracy" />
+                <ScalarProperty Name="DataZakonczeniaUmowy" ColumnName="DataZakonczeniaUmowy" />
+                <ScalarProperty Name="WarunkiPlatnosci" ColumnName="WarunkiPlatnosci" />
+                <ScalarProperty Name="CzyPreferowany" ColumnName="CzyPreferowany" />
+                <ScalarProperty Name="LacznaWartoscTransakcji" ColumnName="LacznaWartoscTransakcji" />
+                <ScalarProperty Name="StatusWspolpracy" ColumnName="StatusWspolpracy" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KosztUtrzymania">
+            <EntityTypeMapping TypeName="MedicalModel.KosztUtrzymania">
+              <MappingFragment StoreEntitySet="KosztUtrzymania">
+                <ScalarProperty Name="IdKosztu" ColumnName="IdKosztu" />
+                <ScalarProperty Name="RodzajKosztu" ColumnName="RodzajKosztu" />
+                <ScalarProperty Name="Kwota" ColumnName="Kwota" />
+                <ScalarProperty Name="DataKosztu" ColumnName="DataKosztu" />
+                <ScalarProperty Name="OpisSzczegolowy" ColumnName="OpisSzczegolowy" />
+                <ScalarProperty Name="DataKsiegowania" ColumnName="DataKsiegowania" />
+                <ScalarProperty Name="CzyZaksiegowany" ColumnName="CzyZaksiegowany" />
+                <ScalarProperty Name="OkresRozliczeniowy" ColumnName="OkresRozliczeniowy" />
+                <ScalarProperty Name="NumerDowoduZakupu" ColumnName="NumerDowoduZakupu" />
+                <ScalarProperty Name="CentrumKosztowe" ColumnName="CentrumKosztowe" />
+                <ScalarProperty Name="CzyJestCyklczny" ColumnName="CzyJestCyklczny" />
+                <ScalarProperty Name="KwotaBudzetowa" ColumnName="KwotaBudzetowa" />
+                <ScalarProperty Name="UwagiKsięgowe" ColumnName="UwagiKsięgowe" />
+                <ScalarProperty Name="IdKaretki" ColumnName="IdKaretki" />
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OcenaZespolu">
+            <EntityTypeMapping TypeName="MedicalModel.OcenaZespolu">
+              <MappingFragment StoreEntitySet="OcenaZespolu">
+                <ScalarProperty Name="IdOceny" ColumnName="IdOceny" />
+                <ScalarProperty Name="Ocena" ColumnName="Ocena" />
+                <ScalarProperty Name="DataOceny" ColumnName="DataOceny" />
+                <ScalarProperty Name="Komentarz" ColumnName="Komentarz" />
+                <ScalarProperty Name="KryteriumOceny" ColumnName="KryteriumOceny" />
+                <ScalarProperty Name="WagaOceny" ColumnName="WagaOceny" />
+                <ScalarProperty Name="OcenaCzasuReakcji" ColumnName="OcenaCzasuReakcji" />
+                <ScalarProperty Name="OcenaProfesjonalizmu" ColumnName="OcenaProfesjonalizmu" />
+                <ScalarProperty Name="OcenaSkutecznosci" ColumnName="OcenaSkutecznosci" />
+                <ScalarProperty Name="CzyOtrzymanoFeedbackOdPacjenta" ColumnName="CzyOtrzymanoFeedbackOdPacjenta" />
+                <ScalarProperty Name="SugerowaneUlepszenia" ColumnName="SugerowaneUlepszenia" />
+                <ScalarProperty Name="OcenaStosowaniaStandardow" ColumnName="OcenaStosowaniaStandardow" />
+                <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
+                <ScalarProperty Name="IdOceniajacego" ColumnName="IdOceniajacego" />
+                <ScalarProperty Name="IdWyjazdu" ColumnName="IdWyjazdu" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacjent">
+            <EntityTypeMapping TypeName="MedicalModel.Pacjent">
+              <MappingFragment StoreEntitySet="Pacjent">
+                <ScalarProperty Name="IdPacjenta" ColumnName="IdPacjenta" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="DataUrodzenia" ColumnName="DataUrodzenia" />
+                <ScalarProperty Name="AdresZamieszkania" ColumnName="AdresZamieszkania" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="TelefonKontaktowy" ColumnName="TelefonKontaktowy" />
+                <ScalarProperty Name="AdresEmail" ColumnName="AdresEmail" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+                <ScalarProperty Name="Plec" ColumnName="Plec" />
+                <ScalarProperty Name="NumerKartyPacjenta" ColumnName="NumerKartyPacjenta" />
+                <ScalarProperty Name="GrupaKrwi" ColumnName="GrupaKrwi" />
+                <ScalarProperty Name="InformacjeAlergie" ColumnName="InformacjeAlergie" />
+                <ScalarProperty Name="UbezpieczenieZdrowotne" ColumnName="UbezpieczenieZdrowotne" />
+                <ScalarProperty Name="UwagiDodatkowe" ColumnName="UwagiDodatkowe" />
+                <ScalarProperty Name="KontaktAwaryjnyImieNazwisko" ColumnName="KontaktAwaryjnyImieNazwisko" />
+                <ScalarProperty Name="KontaktAwaryjnyTelefon" ColumnName="KontaktAwaryjnyTelefon" />
+                <ScalarProperty Name="ChorobyPrzewlekle" ColumnName="ChorobyPrzewlekle" />
+                <ScalarProperty Name="RodzajNiepełnosprawności" ColumnName="RodzajNiepełnosprawności" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Placowka">
+            <EntityTypeMapping TypeName="MedicalModel.Placowka">
+              <MappingFragment StoreEntitySet="Placowka">
+                <ScalarProperty Name="IdPlacowki" ColumnName="IdPlacowki" />
+                <ScalarProperty Name="NazwaPlacowki" ColumnName="NazwaPlacowki" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="AdresEmail" ColumnName="AdresEmail" />
+                <ScalarProperty Name="TypPlacowki" ColumnName="TypPlacowki" />
+                <ScalarProperty Name="GodzinyPracy" ColumnName="GodzinyPracy" />
+                <ScalarProperty Name="LiczbaKaretek" ColumnName="LiczbaKaretek" />
+                <ScalarProperty Name="LiczbaZespolow" ColumnName="LiczbaZespolow" />
+                <ScalarProperty Name="PojemnoscGarazu" ColumnName="PojemnoscGarazu" />
+                <ScalarProperty Name="DataOtwarcia" ColumnName="DataOtwarcia" />
+                <ScalarProperty Name="DataOstatniejInspekcji" ColumnName="DataOstatniejInspekcji" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Budzet" ColumnName="Budzet" />
+                <ScalarProperty Name="ObszarZasieguRatunkowego" ColumnName="ObszarZasieguRatunkowego" />
+                <ScalarProperty Name="CzyMaAkredytacje" ColumnName="CzyMaAkredytacje" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PozycjaFaktury">
+            <EntityTypeMapping TypeName="MedicalModel.PozycjaFaktury">
+              <MappingFragment StoreEntitySet="PozycjaFaktury">
+                <ScalarProperty Name="IdPozycji" ColumnName="IdPozycji" />
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="NazwaUslugi" ColumnName="NazwaUslugi" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="CenaJednostkowaNetto" ColumnName="CenaJednostkowaNetto" />
+                <ScalarProperty Name="StawkaVAT" ColumnName="StawkaVAT" />
+                <ScalarProperty Name="KwotaNetto" ColumnName="KwotaNetto" />
+                <ScalarProperty Name="KwotaVAT" ColumnName="KwotaVAT" />
+                <ScalarProperty Name="KwotaBrutto" ColumnName="KwotaBrutto" />
+                <ScalarProperty Name="JednostkaMiary" ColumnName="JednostkaMiary" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="KategoriaPozycji" ColumnName="KategoriaPozycji" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracownik">
+            <EntityTypeMapping TypeName="MedicalModel.Pracownik">
+              <MappingFragment StoreEntitySet="Pracownik">
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+                <ScalarProperty Name="DataUrodzenia" ColumnName="DataUrodzenia" />
+                <ScalarProperty Name="AdresZamieszkania" ColumnName="AdresZamieszkania" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="TelefonSluzbowy" ColumnName="TelefonSluzbowy" />
+                <ScalarProperty Name="AdresEmailSluzbowy" ColumnName="AdresEmailSluzbowy" />
+                <ScalarProperty Name="NumerKontaBankowego" ColumnName="NumerKontaBankowego" />
+                <ScalarProperty Name="DataZatrudnienia" ColumnName="DataZatrudnienia" />
+                <ScalarProperty Name="StatusZatrudnienia" ColumnName="StatusZatrudnienia" />
+                <ScalarProperty Name="NumerPrawaWykonywaniaZawodu" ColumnName="NumerPrawaWykonywaniaZawodu" />
+                <ScalarProperty Name="KwalifikacjeDodatkowe" ColumnName="KwalifikacjeDodatkowe" />
+                <ScalarProperty Name="DataWaznosciBadanLekarskich" ColumnName="DataWaznosciBadanLekarskich" />
+                <ScalarProperty Name="StawkaGodzinowa" ColumnName="StawkaGodzinowa" />
+                <ScalarProperty Name="TypUmowy" ColumnName="TypUmowy" />
+                <ScalarProperty Name="LiczbaDniUrlopu" ColumnName="LiczbaDniUrlopu" />
+                <ScalarProperty Name="PreferowanaZmiana" ColumnName="PreferowanaZmiana" />
+                <ScalarProperty Name="DataOstatniegoSzkolenia" ColumnName="DataOstatniegoSzkolenia" />
+                <ScalarProperty Name="IdRoli" ColumnName="IdRoli" />
+                <ScalarProperty Name="IdPlacowki" ColumnName="IdPlacowki" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolaPracownika">
+            <EntityTypeMapping TypeName="MedicalModel.RolaPracownika">
+              <MappingFragment StoreEntitySet="RolaPracownika">
+                <ScalarProperty Name="IdRoli" ColumnName="IdRoli" />
+                <ScalarProperty Name="NazwaRoli" ColumnName="NazwaRoli" />
+                <ScalarProperty Name="PoziomUprawnien" ColumnName="PoziomUprawnien" />
+                <ScalarProperty Name="OpisObowiazkow" ColumnName="OpisObowiazkow" />
+                <ScalarProperty Name="MinimalneWyksztalcenie" ColumnName="MinimalneWyksztalcenie" />
+                <ScalarProperty Name="WymaganeSzkolenia" ColumnName="WymaganeSzkolenia" />
+                <ScalarProperty Name="CzyWymagaLicencji" ColumnName="CzyWymagaLicencji" />
+                <ScalarProperty Name="MaksymalnaLiczbaGodzinTygodniowo" ColumnName="MaksymalnaLiczbaGodzinTygodniowo" />
+                <ScalarProperty Name="SredniaPlaca" ColumnName="SredniaPlaca" />
+                <ScalarProperty Name="Benefity" ColumnName="Benefity" />
+                <ScalarProperty Name="DataOstatniejAktualizacji" ColumnName="DataOstatniejAktualizacji" />
+                <ScalarProperty Name="NazwaDzialu" ColumnName="NazwaDzialu" />
+                <ScalarProperty Name="CzyJestLideremZespolu" ColumnName="CzyJestLideremZespolu" />
+                <ScalarProperty Name="LimitZatrudnienia" ColumnName="LimitZatrudnienia" />
+                <ScalarProperty Name="WymaganeUmiejetnosci" ColumnName="WymaganeUmiejetnosci" />
+                <ScalarProperty Name="RolaNastepnegoEtapuKariery" ColumnName="RolaNastepnegoEtapuKariery" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SposobPlatnosci">
+            <EntityTypeMapping TypeName="MedicalModel.SposobPlatnosci">
+              <MappingFragment StoreEntitySet="SposobPlatnosci">
+                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyWymagaPotwierdzenia" ColumnName="CzyWymagaPotwierdzenia" />
+                <ScalarProperty Name="RodzajTransakcji" ColumnName="RodzajTransakcji" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MedicalModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UdzielonaPomoc">
+            <EntityTypeMapping TypeName="MedicalModel.UdzielonaPomoc">
+              <MappingFragment StoreEntitySet="UdzielonaPomoc">
+                <ScalarProperty Name="IdPomocy" ColumnName="IdPomocy" />
+                <ScalarProperty Name="DataPomocy" ColumnName="DataPomocy" />
+                <ScalarProperty Name="CzasRozpoczecia" ColumnName="CzasRozpoczecia" />
+                <ScalarProperty Name="CzasZakonczenia" ColumnName="CzasZakonczenia" />
+                <ScalarProperty Name="OpisPomocy" ColumnName="OpisPomocy" />
+                <ScalarProperty Name="ProceduryMedyczne" ColumnName="ProceduryMedyczne" />
+                <ScalarProperty Name="WynikInterwencji" ColumnName="WynikInterwencji" />
+                <ScalarProperty Name="CzasTrwaniaMinuty" ColumnName="CzasTrwaniaMinuty" />
+                <ScalarProperty Name="LokalizacjaInterwencji" ColumnName="LokalizacjaInterwencji" />
+                <ScalarProperty Name="WymaganySprzet" ColumnName="WymaganySprzet" />
+                <ScalarProperty Name="CzyWymagalTransportu" ColumnName="CzyWymagalTransportu" />
+                <ScalarProperty Name="PriorytetInterwencji" ColumnName="PriorytetInterwencji" />
+                <ScalarProperty Name="KodDiagnozyICD10" ColumnName="KodDiagnozyICD10" />
+                <ScalarProperty Name="SzpitalTransportu" ColumnName="SzpitalTransportu" />
+                <ScalarProperty Name="StanPacjentaPrzyPrzekazaniu" ColumnName="StanPacjentaPrzyPrzekazaniu" />
+                <ScalarProperty Name="CzyBylWymaganyUdziałPolicji" ColumnName="CzyBylWymaganyUdziałPolicji" />
+                <ScalarProperty Name="IdPacjenta" ColumnName="IdPacjenta" />
+                <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
+                <ScalarProperty Name="IdKaretki" ColumnName="IdKaretki" />
+                <ScalarProperty Name="IdWyjazdu" ColumnName="IdWyjazdu" />
+                <ScalarProperty Name="IdAutoraRaportu" ColumnName="IdAutoraRaportu" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZespolRatunkowy">
+            <EntityTypeMapping TypeName="MedicalModel.ZespolRatunkowy">
+              <MappingFragment StoreEntitySet="ZespolRatunkowy">
+                <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
+                <ScalarProperty Name="NazwaZespolu" ColumnName="NazwaZespolu" />
+                <ScalarProperty Name="LiczbaCzlonkow" ColumnName="LiczbaCzlonkow" />
+                <ScalarProperty Name="Specjalizacja" ColumnName="Specjalizacja" />
+                <ScalarProperty Name="DataUtworzenia" ColumnName="DataUtworzenia" />
+                <ScalarProperty Name="StatusZespolu" ColumnName="StatusZespolu" />
+                <ScalarProperty Name="TelefonKontaktowy" ColumnName="TelefonKontaktowy" />
+                <ScalarProperty Name="Zmiana" ColumnName="Zmiana" />
+                <ScalarProperty Name="DataOstatniegoSzkolenia" ColumnName="DataOstatniegoSzkolenia" />
+                <ScalarProperty Name="SredniaOcena" ColumnName="SredniaOcena" />
+                <ScalarProperty Name="DataOstatniegoWyjazdu" ColumnName="DataOstatniegoWyjazdu" />
+                <ScalarProperty Name="LiczbaWszystkichWyjazdow" ColumnName="LiczbaWszystkichWyjazdow" />
+                <ScalarProperty Name="Certyfikaty" ColumnName="Certyfikaty" />
+                <ScalarProperty Name="IdKaretki" ColumnName="IdKaretki" />
+                <ScalarProperty Name="IdPlacowki" ColumnName="IdPlacowki" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZlecenieWyjazdu">
+            <EntityTypeMapping TypeName="MedicalModel.ZlecenieWyjazdu">
+              <MappingFragment StoreEntitySet="ZlecenieWyjazdu">
+                <ScalarProperty Name="IdWyjazdu" ColumnName="IdWyjazdu" />
+                <ScalarProperty Name="DataCzasZgloszenia" ColumnName="DataCzasZgloszenia" />
+                <ScalarProperty Name="AdresZdarzenia" ColumnName="AdresZdarzenia" />
+                <ScalarProperty Name="TypZdarzenia" ColumnName="TypZdarzenia" />
+                <ScalarProperty Name="Priorytet" ColumnName="Priorytet" />
+                <ScalarProperty Name="StatusZlecenia" ColumnName="StatusZlecenia" />
+                <ScalarProperty Name="OpisZdarzenia" ColumnName="OpisZdarzenia" />
+                <ScalarProperty Name="CzasWyjazdu" ColumnName="CzasWyjazdu" />
+                <ScalarProperty Name="CzasPrzyjazduNaMiejsce" ColumnName="CzasPrzyjazduNaMiejsce" />
+                <ScalarProperty Name="CzasPowrotuDoBazy" ColumnName="CzasPowrotuDoBazy" />
+                <ScalarProperty Name="TelefonDzwoniacego" ColumnName="TelefonDzwoniacego" />
+                <ScalarProperty Name="CzasReakcjiSekundy" ColumnName="CzasReakcjiSekundy" />
+                <ScalarProperty Name="DystansKm" ColumnName="DystansKm" />
+                <ScalarProperty Name="LiczbaPacjentow" ColumnName="LiczbaPacjentow" />
+                <ScalarProperty Name="WarunkiPogodowe" ColumnName="WarunkiPogodowe" />
+                <ScalarProperty Name="WymaganeDodatkoweWsparcie" ColumnName="WymaganeDodatkoweWsparcie" />
+                <ScalarProperty Name="IdDyspozytora" ColumnName="IdDyspozytora" />
+                <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
+                <ScalarProperty Name="IdKaretki" ColumnName="IdKaretki" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
