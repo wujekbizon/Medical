@@ -7,13 +7,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- Material Design Themes -->
-                <materialDesign:BundledTheme BaseTheme="Dark"
-                                            PrimaryColor="DeepPurple"
-                                            SecondaryColor="Lime"
-                                            ColorAdjustment="{materialDesign:ColorAdjustment}"/>
-
-                <!-- Material Design Default Styles -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
 
                 <!-- Material Icons -->
                 <ResourceDictionary Source="pack://application:,,,/Material.Icons.WPF;component/Themes/MaterialIcons.xaml"/>
