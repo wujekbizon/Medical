@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0379250c15864412b490f979967b4757" Name="Diagram1" ZoomLevel="230">
+      <Diagram DiagramId="0379250c15864412b490f979967b4757" Name="Diagram1" ZoomLevel="150">
         <EntityTypeShape EntityType="MedicalModel.CzlonekZespolu" Width="1.5" PointX="17" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.Faktura" Width="1.5" PointX="8.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.HistoriaNapraw" Width="1.5" PointX="11.375" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.HistoriaNapraw" Width="1.5" PointX="12.5" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.Karetka" Width="1.5" PointX="6.375" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.Kontrahent" Width="1.5" PointX="6.375" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.KosztUtrzymania" Width="1.5" PointX="8.5" PointY="8.625" IsExpanded="true" />
