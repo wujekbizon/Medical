@@ -1,0 +1,211 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Medical.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF">
+
+    <!-- ==================== WszystkieViewBase (List All) Template ==================== -->
+    <Style TargetType="{x:Type local:WszystkieViewBase}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:WszystkieViewBase}">
+                    <Grid Background="{DynamicResource MaterialDesignPaper}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- Toolbar -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Search/Filters -->
+                            <RowDefinition Height="*"/>
+                            <!-- Content (DataGrid) -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Toolbar with Actions -->
+                        <Border Grid.Row="0"
+                                Background="{DynamicResource DarkSurfaceVariant}"
+                                BorderBrush="{DynamicResource BorderDark}"
+                                BorderThickness="0,0,0,1"
+                                Padding="16,12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Left side - Title -->
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding DisplayName}"
+                                           FontSize="18"
+                                           FontWeight="Medium"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource TextPrimary}"/>
+
+                                <!-- Right side - Action Buttons -->
+                                <StackPanel Grid.Column="1"
+                                            Orientation="Horizontal">
+                                    <Button Command="{Binding LoadCommand}"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            ToolTip="Odśwież listę"
+                                            Margin="4,0"
+                                            Padding="12,6">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialIcons:MaterialIcon Kind="Refresh"
+                                                                        Width="18"
+                                                                        Height="18"
+                                                                        Margin="0,0,8,0"/>
+                                            <TextBlock Text="Odśwież"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Command="{Binding AddCommand}"
+                                            Style="{StaticResource MaterialDesignRaisedButton}"
+                                            ToolTip="Dodaj nowy"
+                                            Margin="4,0"
+                                            Padding="12,6">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialIcons:MaterialIcon Kind="Plus"
+                                                                        Width="18"
+                                                                        Height="18"
+                                                                        Margin="0,0,8,0"/>
+                                            <TextBlock Text="Dodaj"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Search/Filter Section -->
+                        <Border Grid.Row="1"
+                                Background="{DynamicResource DarkSurface}"
+                                BorderBrush="{DynamicResource BorderDark}"
+                                BorderThickness="0,0,0,1"
+                                Padding="16,12">
+                            <Expander Header="Filtry wyszukiwania"
+                                      IsExpanded="False"
+                                      Style="{StaticResource MaterialDesignExpander}">
+                                <StackPanel Margin="0,12,0,0">
+                                    <TextBox materialDesign:HintAssist.Hint="Szukaj..."
+                                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                             Margin="0,0,0,8">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Enter" Command="{Binding SearchCommand}"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+
+                        <!-- Content Area (where DataGrid will be placed) -->
+                        <ContentPresenter Grid.Row="2"
+                                          Margin="8"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ==================== JedenViewBase (Add/Edit One) Template ==================== -->
+    <Style TargetType="{x:Type local:JedenViewBase}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:JedenViewBase}">
+                    <Grid Background="{DynamicResource MaterialDesignPaper}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!-- Header -->
+                            <RowDefinition Height="*"/>
+                            <!-- Content (Form) -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Action Buttons -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Header -->
+                        <Border Grid.Row="0"
+                                Background="{DynamicResource DarkSurfaceVariant}"
+                                BorderBrush="{DynamicResource BorderDark}"
+                                BorderThickness="0,0,0,1"
+                                Padding="16,12">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <materialIcons:MaterialIcon Kind="FileDocumentEdit"
+                                                            Width="24"
+                                                            Height="24"
+                                                            Grid.Column="0"
+                                                            VerticalAlignment="Center"
+                                                            Margin="0,0,12,0"
+                                                            Foreground="{DynamicResource AccentPurple}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding DisplayName}"
+                                           FontSize="18"
+                                           FontWeight="Medium"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource TextPrimary}"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Form Content Area -->
+                        <ScrollViewer Grid.Row="1"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Padding="24,16">
+                            <ContentPresenter/>
+                        </ScrollViewer>
+
+                        <!-- Action Buttons -->
+                        <Border Grid.Row="2"
+                                Background="{DynamicResource DarkSurfaceVariant}"
+                                BorderBrush="{DynamicResource BorderDark}"
+                                BorderThickness="0,1,0,0"
+                                Padding="16,12">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <Button Command="{Binding CancelCommand}"
+                                        Style="{StaticResource MaterialDesignFlatButton}"
+                                        Content="Anuluj"
+                                        Margin="0,0,8,0"
+                                        Padding="24,8"
+                                        ToolTip="Anuluj zmiany"/>
+
+                                <Button Command="{Binding SaveCommand}"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        Margin="0,0,8,0"
+                                        Padding="24,8"
+                                        ToolTip="Zapisz zmiany">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialIcons:MaterialIcon Kind="ContentSave"
+                                                                    Width="18"
+                                                                    Height="18"
+                                                                    Margin="0,0,8,0"/>
+                                        <TextBlock Text="Zapisz"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Command="{Binding SaveAndCloseCommand}"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        ToolTip="Zapisz i zamknij">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialIcons:MaterialIcon Kind="ContentSaveCheck"
+                                                                    Width="18"
+                                                                    Height="18"
+                                                                    Margin="0,0,8,0"/>
+                                        <TextBlock Text="Zapisz i Zamknij"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

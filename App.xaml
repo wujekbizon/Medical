@@ -3,6 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Medical">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Material Design Themes -->
+                <materialDesign:BundledTheme BaseTheme="Dark"
+                                            PrimaryColor="DeepPurple"
+                                            SecondaryColor="Lime"
+                                            ColorAdjustment="{materialDesign:ColorAdjustment}"
+                                            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"/>
+
+                <!-- Material Design Default Styles -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+
+                <!-- Material Icons -->
+                <ResourceDictionary Source="pack://application:,,,/Material.Icons.WPF;component/Themes/MaterialIcons.xaml"/>
+
+                <!-- Base View Templates -->
+                <ResourceDictionary Source="Views/Themes/Generic.xaml"/>
+
+                <!-- Custom Application Resources -->
+                <ResourceDictionary Source="Views/MainWindowResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Custom Dark Theme Colors -->
+            <SolidColorBrush x:Key="DarkBackground" Color="#1E1E1E"/>
+            <SolidColorBrush x:Key="DarkSurface" Color="#252526"/>
+            <SolidColorBrush x:Key="DarkSurfaceVariant" Color="#2D2D30"/>
+            <SolidColorBrush x:Key="AccentPurple" Color="#7B68EE"/>
+            <SolidColorBrush x:Key="AccentBlue" Color="#569CD6"/>
+            <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="TextSecondary" Color="#CCCCCC"/>
+            <SolidColorBrush x:Key="BorderDark" Color="#3F3F46"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

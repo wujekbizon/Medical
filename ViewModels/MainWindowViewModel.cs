@@ -36,7 +36,13 @@ namespace Medical.ViewModels
         {
             return new List<CommandViewModel>
             {
-               
+                // Pacjent (Patient) Commands
+                new CommandViewModel(
+                    "Wszyscy Pacjenci",
+                    new BaseCommand(ShowWszyscyPacjenci)),
+                new CommandViewModel(
+                    "Nowy Pacjent",
+                    new BaseCommand(ShowNowyPacjent))
             };
         }
         #endregion
@@ -75,7 +81,30 @@ namespace Medical.ViewModels
 
         #region Private Helpers
 
-    
+        /// <summary>
+        /// Show all patients view
+        /// </summary>
+        private void ShowWszyscyPacjenci()
+        {
+            var workspace = this.Workspaces.FirstOrDefault(vm => vm is WszyscyPacjenciViewModel);
+            if (workspace == null)
+            {
+                workspace = new WszyscyPacjenciViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+
+        /// <summary>
+        /// Show add new patient view
+        /// </summary>
+        private void ShowNowyPacjent()
+        {
+            var workspace = new NowyPacjentViewModel();
+            this.Workspaces.Add(workspace);
+            this.SetActiveWorkspace(workspace);
+        }
+
         private void SetActiveWorkspace(WorkspaceViewModel workspace)
         {
             Debug.Assert(this.Workspaces.Contains(workspace));

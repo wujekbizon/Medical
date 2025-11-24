@@ -1,0 +1,266 @@
+<local:JedenViewBase x:Class="Medical.Views.NowyPacjentView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:local="clr-namespace:Medical.Views"
+                   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                   mc:Ignorable="d"
+                   d:DesignHeight="800"
+                   d:DesignWidth="900">
+
+    <Grid>
+        <StackPanel MaxWidth="800">
+            <!-- Personal Information Section -->
+            <TextBlock Text="Informacje osobiste"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource AccentPurple}"
+                       Margin="0,0,0,16"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- First Name -->
+                <TextBox Grid.Row="0"
+                         Grid.Column="0"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Imię *"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding Imie, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Last Name -->
+                <TextBox Grid.Row="0"
+                         Grid.Column="2"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Nazwisko *"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- PESEL -->
+                <TextBox Grid.Row="1"
+                         Grid.Column="0"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="PESEL *"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         MaxLength="11"
+                         Text="{Binding Pesel, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Date of Birth -->
+                <DatePicker Grid.Row="1"
+                            Grid.Column="2"
+                            Margin="0,0,0,16"
+                            materialDesign:HintAssist.Hint="Data urodzenia"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                            SelectedDate="{Binding DataUrodzenia, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Gender -->
+                <ComboBox Grid.Row="2"
+                          Grid.Column="0"
+                          Margin="0,0,0,16"
+                          materialDesign:HintAssist.Hint="Płeć"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          Text="{Binding Plec, UpdateSourceTrigger=PropertyChanged}"
+                          IsEditable="True">
+                    <ComboBoxItem Content="Mężczyzna"/>
+                    <ComboBoxItem Content="Kobieta"/>
+                    <ComboBoxItem Content="Inne"/>
+                </ComboBox>
+
+                <!-- Blood Type -->
+                <ComboBox Grid.Row="2"
+                          Grid.Column="2"
+                          Margin="0,0,0,16"
+                          materialDesign:HintAssist.Hint="Grupa krwi"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          Text="{Binding GrupaKrwi, UpdateSourceTrigger=PropertyChanged}"
+                          IsEditable="True">
+                    <ComboBoxItem Content="A+"/>
+                    <ComboBoxItem Content="A-"/>
+                    <ComboBoxItem Content="B+"/>
+                    <ComboBoxItem Content="B-"/>
+                    <ComboBoxItem Content="AB+"/>
+                    <ComboBoxItem Content="AB-"/>
+                    <ComboBoxItem Content="0+"/>
+                    <ComboBoxItem Content="0-"/>
+                </ComboBox>
+
+                <!-- Patient Card Number -->
+                <TextBox Grid.Row="3"
+                         Grid.Column="0"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Numer karty pacjenta"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding NumerKartyPacjenta, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Health Insurance -->
+                <TextBox Grid.Row="3"
+                         Grid.Column="2"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Ubezpieczenie zdrowotne"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding UbezpieczenieZdrowotne, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <!-- Contact Information Section -->
+            <Separator Background="{DynamicResource BorderDark}"
+                       Margin="0,16,0,24"/>
+
+            <TextBlock Text="Dane kontaktowe"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource AccentPurple}"
+                       Margin="0,0,0,16"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Phone -->
+                <TextBox Grid.Row="0"
+                         Grid.Column="0"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Telefon kontaktowy"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding TelefonKontaktowy, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Email -->
+                <TextBox Grid.Row="0"
+                         Grid.Column="2"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Adres e-mail"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding AdresEmail, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Address -->
+                <TextBox Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="3"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Adres zamieszkania"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding AdresZamieszkania, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- City -->
+                <TextBox Grid.Row="2"
+                         Grid.Column="0"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Miasto"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding Miasto, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Postal Code -->
+                <TextBox Grid.Row="2"
+                         Grid.Column="2"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Kod pocztowy"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         MaxLength="6"
+                         Text="{Binding KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <!-- Emergency Contact Section -->
+            <Separator Background="{DynamicResource BorderDark}"
+                       Margin="0,16,0,24"/>
+
+            <TextBlock Text="Kontakt awaryjny"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource AccentPurple}"
+                       Margin="0,0,0,16"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Emergency Contact Name -->
+                <TextBox Grid.Column="0"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Imię i nazwisko"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding KontaktAwaryjnyImieNazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Emergency Contact Phone -->
+                <TextBox Grid.Column="2"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Telefon"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding KontaktAwaryjnyTelefon, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <!-- Medical Information Section -->
+            <Separator Background="{DynamicResource BorderDark}"
+                       Margin="0,16,0,24"/>
+
+            <TextBlock Text="Informacje medyczne"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource AccentPurple}"
+                       Margin="0,0,0,16"/>
+
+            <!-- Allergies -->
+            <TextBox Margin="0,0,0,16"
+                     materialDesign:HintAssist.Hint="Alergie (rozdziel przecinkami)"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     MinHeight="80"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding InformacjeAlergie, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!-- Chronic Diseases -->
+            <TextBox Margin="0,0,0,16"
+                     materialDesign:HintAssist.Hint="Choroby przewlekłe"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     MinHeight="80"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding ChorobyPrzewlekle, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!-- Disability Type -->
+            <TextBox Margin="0,0,0,16"
+                     materialDesign:HintAssist.Hint="Rodzaj niepełnosprawności"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding RodzajNiepełnosprawności, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!-- Additional Notes -->
+            <TextBox Margin="0,0,0,16"
+                     materialDesign:HintAssist.Hint="Uwagi dodatkowe"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     MinHeight="100"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding UwagiDodatkowe, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!-- Required Fields Notice -->
+            <TextBlock Text="* Pola wymagane"
+                       FontSize="11"
+                       FontStyle="Italic"
+                       Foreground="{DynamicResource TextSecondary}"
+                       Margin="0,8,0,0"/>
+        </StackPanel>
+    </Grid>
+</local:JedenViewBase>

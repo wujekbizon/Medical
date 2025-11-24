@@ -1,0 +1,124 @@
+<local:WszystkieViewBase x:Class="Medical.Views.WszyscyPacjenciView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:local="clr-namespace:Medical.Views"
+                       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                       mc:Ignorable="d"
+                       d:DesignHeight="600"
+                       d:DesignWidth="1000">
+
+    <!-- DataGrid for displaying all patients -->
+    <DataGrid ItemsSource="{Binding List}"
+              AutoGenerateColumns="False"
+              IsReadOnly="True"
+              CanUserAddRows="False"
+              CanUserDeleteRows="False"
+              CanUserSortColumns="True"
+              SelectionMode="Single"
+              SelectionUnit="FullRow"
+              AlternatingRowBackground="{DynamicResource DarkSurfaceVariant}"
+              Background="{DynamicResource DarkSurface}"
+              RowBackground="{DynamicResource DarkSurface}"
+              Foreground="{DynamicResource TextPrimary}"
+              BorderBrush="{DynamicResource BorderDark}"
+              GridLinesVisibility="Horizontal"
+              HorizontalGridLinesBrush="{DynamicResource BorderDark}"
+              Style="{StaticResource MaterialDesignDataGrid}"
+              Margin="8">
+
+        <DataGrid.Columns>
+            <!-- ID Column -->
+            <DataGridTextColumn Header="ID"
+                                Binding="{Binding IdPacjenta}"
+                                Width="60"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Full Name Column -->
+            <DataGridTextColumn Header="Imię i Nazwisko"
+                                Binding="{Binding ImieNazwisko}"
+                                Width="200"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- PESEL Column -->
+            <DataGridTextColumn Header="PESEL"
+                                Binding="{Binding Pesel}"
+                                Width="120"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Birth Date Column -->
+            <DataGridTextColumn Header="Data Urodzenia"
+                                Binding="{Binding DataUrodzenia, StringFormat={}{0:dd.MM.yyyy}}"
+                                Width="120"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Age Column -->
+            <DataGridTextColumn Header="Wiek"
+                                Binding="{Binding Wiek}"
+                                Width="60"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Gender Column -->
+            <DataGridTextColumn Header="Płeć"
+                                Binding="{Binding Plec}"
+                                Width="80"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Phone Column -->
+            <DataGridTextColumn Header="Telefon"
+                                Binding="{Binding TelefonKontaktowy}"
+                                Width="130"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- City Column -->
+            <DataGridTextColumn Header="Miasto"
+                                Binding="{Binding Miasto}"
+                                Width="150"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Blood Type Column -->
+            <DataGridTextColumn Header="Grupa Krwi"
+                                Binding="{Binding GrupaKrwi}"
+                                Width="100"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Insurance Column -->
+            <DataGridTextColumn Header="Ubezpieczenie"
+                                Binding="{Binding UbezpieczenieZdrowotne}"
+                                Width="150"
+                                HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+
+            <!-- Active Status Column -->
+            <DataGridCheckBoxColumn Header="Aktywny"
+                                    Binding="{Binding CzyAktywny}"
+                                    Width="80"
+                                    HeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"/>
+        </DataGrid.Columns>
+
+        <DataGrid.RowStyle>
+            <Style TargetType="DataGridRow" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource AccentPurple}"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource DarkSurfaceVariant}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </DataGrid.RowStyle>
+
+        <DataGrid.ColumnHeaderStyle>
+            <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                <Setter Property="Background" Value="{DynamicResource DarkSurfaceVariant}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimary}"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Padding" Value="12,8"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderDark}"/>
+                <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            </Style>
+        </DataGrid.ColumnHeaderStyle>
+    </DataGrid>
+</local:WszystkieViewBase>
