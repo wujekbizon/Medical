@@ -2,28 +2,125 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:Medical.ViewModels"
                     xmlns:vw="clr-namespace:Medical.Views"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
                     >
-   
+
+    <DataTemplate DataType="{x:Type vm:NowaFakturaViewModel}">
+        <vw:NowaFakturaView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaHistoriaNaprawViewModel}">
+        <vw:NowaHistoraNaprawView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaKaretkaViewModel}">
+        <vw:NowaKaretkaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaOceanZespoluViewModel}">
+        <vw:NowaOcenaZespoluView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaPlacowkaViewModel}">
+        <vw:NowaPlacowkaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaPozycjaFakturyViewModel}">
+        <vw:NowaPozycjaFakturyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaRolaPracownikaViewModel}">
+        <vw:NowaRolaPracownikaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaUdzielonaPomocViewModel}">
+        <vw:NowaUdzielonaPomocView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NoweKosztyUtrzymaniaViewModel}">
+        <vw:NowyKosztUtrzymaniaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NoweZlecenieWyjazduViewModel}">
+        <vw:NoweZlecenieWyjazduView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyKontrahentViewModel}">
+        <vw:NowyKontrahentView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyPacjentViewModel}">
+        <vw:NowyPacjentView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">
+        <vw:NowyPracownikView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowySposbobPlatnosciViewModel}">
+        <vw:NowySposobPlatnosciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyZespolPracownikViewModel}">
+        <vw:NowyZespolPracownikView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyZespolRatunkowyViewModel}">
+        <vw:NowyZespolRatunkowyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszyscyKontrahenciViewModel}">
+        <vw:WszyscyKontrahenciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszyscyPacjenciViewModel}">
+        <vw:WszyscyPacjenciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszyscyPracownicyViewModel}">
+        <vw:WszyscyPracownicyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieFakturyViewModel}">
+        <vw:WszystkieFakturyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieHistorieNaprawViewModel}">
+        <vw:WszystkieHistorieNaprawView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieKaretkiViewModel}">
+        <vw:WszystkieKaretkiView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieKosztyUtrzymaniaViewModel}">
+        <vw:WszystkieKosztyUtrzymaniaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieOcenyZespoluViewModel}">
+        <vw:WszystkieOcenyZespoluView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkiePlacowkiViewModel}">
+        <vw:WszystkiePlacowkiView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkiePozycjeFakturyViewModel}">
+        <vw:WszystkiePozycjeFakturyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieRolePracownikaViewModel}">
+        <vw:WszystkieRolePracownikaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieSposobyPlatnosciViewModel}">
+        <vw:WszystkieSposobuPlatnosciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieUdzielonePomoceViewModel}">
+        <vw:WszystkieUdzielonePomoceView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieZespolPracownikViewModel}">
+        <vw:WszystkieZespolPracownikView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieZespolyRatunkoweViewModel}">
+        <vw:WszystkieZespolyRatunkoweView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieZleceniaWyjazduViewModel}">
+        <vw:WszystkieZleceniaWyjazduView/>
+    </DataTemplate>
+
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Border 
-            Background="Blue" 
-            BorderBrush="LightGray" 
-            BorderThickness="1" 
-            CornerRadius="5" 
-            Margin="4" 
-            Padding="4" 
-            SnapsToDevicePixels="True" 
-            >
-                        <TextBlock 
-              FontSize="14"
-              FontWeight="Bold"
-              Foreground="White" 
-              HorizontalAlignment="Center"  
-              Text="{TemplateBinding Content}" 
-              />
+                    <Border
+                        Background="{DynamicResource MaterialDesignPaper}"
+                        BorderBrush="{DynamicResource BorderDark}"
+                        BorderThickness="0,0,0,2"
+                        CornerRadius="0"
+                        Margin="0"
+                        Padding="16,12"
+                        SnapsToDevicePixels="True">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Medium"
+                            Foreground="{DynamicResource MaterialDesignBody}"
+                            Text="{TemplateBinding Content}"
+                            VerticalAlignment="Center"/>
                     </Border>
                 </DataTemplate>
             </Setter.Value>
@@ -31,92 +128,117 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <!-- 
-        This template ensures that content of a HeaderedContentControl 
-        fills the available vertical space. 
-        -->
                 <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
                     <DockPanel>
-                        <ContentPresenter 
-              DockPanel.Dock="Top"
-              ContentSource="Header" 
-              ContentTemplate="{TemplateBinding HeaderTemplate}" 
-              />
-                        <ContentPresenter 
-              ContentSource="Content" 
-              ContentTemplate="{TemplateBinding ContentTemplate}" 
-              />
+                        <ContentPresenter
+                            DockPanel.Dock="Top"
+                            ContentSource="Header"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        <ContentPresenter
+                            ContentSource="Content"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <!--
-  This style ensures that the borders in the main window are consistent.
-  -->
     <Style x:Key="MainBorderStyle" TargetType="{x:Type Border}">
-        <Setter Property="Background" Value="WhiteSmoke" />
-        <Setter Property="BorderBrush" Value="LightGray" />
+        <Setter Property="Background" Value="{DynamicResource DarkSurface}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderDark}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
-
-    <!--
-  This template explains how to render the list of commands on the left
-  side in the main window (the 'Control Panel' area).
-  -->
     <DataTemplate x:Key="CommandsTemplate">
-        <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Margin="2,6">
-            <Hyperlink Command="{Binding Path=Command}">
-              <TextBlock Text="{Binding Path=DisplayName}" />
-            </Hyperlink>
-          </TextBlock>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </DataTemplate>
-
-    <!-- 
-  This template explains how to render 
-  a tab item with a close button.
-  -->
+    <ItemsControl ItemsSource="{Binding}" Margin="0">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Button
+                    Command="{Binding Command}"
+                    Margin="4,2"
+                    Padding="12,10"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    FontSize="14"
+                    FontWeight="Normal"
+                    Foreground="{DynamicResource TextPrimary}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border 
+                                            x:Name="border"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="4"
+                                            Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter 
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="Center"
+                                                TextBlock.Foreground="{TemplateBinding Foreground}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="{DynamicResource DarkSurfaceVariant}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter TargetName="border" Property="Background" Value="{DynamicResource AccentPurple}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                    <TextBlock 
+                        Text="{Binding DisplayName}" 
+                        TextTrimming="None"
+                        TextWrapping="NoWrap"
+                        VerticalAlignment="Center"/>
+                </Button>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</DataTemplate>
     <DataTemplate x:Key="ClosableTabItemTemplate">
-        <DockPanel Width="120">
-            <Button 
-        Command="{Binding Path=CloseCommand}"
-        Content="X"
-        Cursor="Hand"
-        DockPanel.Dock="Right"
-        Focusable="False"
-        FontFamily="Courier" 
-        FontSize="9"
-        FontWeight="Bold"  
-        Margin="0,1,0,0"
-        Padding="0"
-        VerticalContentAlignment="Bottom"
-        Width="16" Height="16" 
-        />
-            <ContentPresenter 
-        Content="{Binding Path=DisplayName}" 
-        VerticalAlignment="Center" 
-        />
+        <DockPanel MinWidth="120" Background="Transparent">
+            <Button
+                Command="{Binding Path=CloseCommand}"
+                DockPanel.Dock="Right"
+                Margin="8,0,0,0"
+                Padding="0"
+                Width="20"
+                Height="20"
+                Style="{DynamicResource MaterialDesignToolButton}"
+                ToolTip="Zamknij zakładkę">
+                <materialIcons:MaterialIcon
+                    Kind="Close"
+                    Width="16"
+                    Height="16"/>
+            </Button>
+            <TextBlock
+                Text="{Binding Path=DisplayName}"
+                VerticalAlignment="Center"
+                Margin="8,0,0,0"
+                FontSize="13"
+                FontWeight="Normal"
+                Foreground="{DynamicResource MaterialDesignBody}"/>
         </DockPanel>
     </DataTemplate>
-
-    <!--
-  This template explains how to render the 'Workspace' content area in the main window.
-  -->
     <DataTemplate x:Key="WorkspacesTemplate">
-        <TabControl 
-      IsSynchronizedWithCurrentItem="True" 
-      ItemsSource="{Binding}" 
-      ItemTemplate="{StaticResource ClosableTabItemTemplate}"
-      Margin="4"
-      />
+        <TabControl
+            IsSynchronizedWithCurrentItem="True"
+            ItemsSource="{Binding}"
+            ItemTemplate="{StaticResource ClosableTabItemTemplate}"
+            Margin="0"
+            Background="{DynamicResource MaterialDesignPaper}"
+            Style="{DynamicResource MaterialDesignTabControl}">
+        </TabControl>
     </DataTemplate>
 </ResourceDictionary>

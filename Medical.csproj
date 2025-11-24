@@ -44,6 +44,21 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Material.Icons, Version=2.4.1.0, Culture=neutral, PublicKeyToken=34ed5903a64b4509, processorArchitecture=MSIL">
+      <HintPath>packages\Material.Icons.2.4.1\lib\netstandard2.0\Material.Icons.dll</HintPath>
+    </Reference>
+    <Reference Include="Material.Icons.WPF, Version=2.4.1.0, Culture=neutral, PublicKeyToken=34ed5903a64b4509, processorArchitecture=MSIL">
+      <HintPath>packages\Material.Icons.WPF.2.4.1\lib\net461\Material.Icons.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=5.3.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.5.3.0\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=5.3.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.5.3.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.77\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -133,10 +148,145 @@
     <Compile Include="Models\ZlecenieWyjazdu.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Abstract\JedenViewModel.cs" />
+    <Compile Include="ViewModels\Abstract\WszystkieViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\NowaFakturaViewModel.cs" />
+    <Compile Include="ViewModels\NowaHistoriaNaprawViewModel.cs" />
+    <Compile Include="ViewModels\NowaKaretkaViewModel.cs" />
+    <Compile Include="ViewModels\NowaOceanZespoluViewModel.cs" />
+    <Compile Include="ViewModels\NowaPlacowkaViewModel.cs" />
+    <Compile Include="ViewModels\NowaPozycjaFakturyViewModel.cs" />
+    <Compile Include="ViewModels\NowaRolaPracownikaViewModel.cs" />
+    <Compile Include="ViewModels\NowaUdzielonaPomocViewModel.cs" />
+    <Compile Include="ViewModels\NoweKosztyUtrzymaniaViewModel.cs" />
+    <Compile Include="ViewModels\NoweZlecenieWyjazduViewModel.cs" />
+    <Compile Include="ViewModels\NowyKontrahentViewModel.cs" />
+    <Compile Include="ViewModels\NowyPacjentViewModel.cs" />
+    <Compile Include="ViewModels\NowyPracownikViewModel.cs" />
+    <Compile Include="ViewModels\NowySposbobPlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\NowyZespolPracownikViewModel.cs" />
+    <Compile Include="ViewModels\NowyZespolRatunkowyViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyKontrahenciViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyPacjenciViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyPracownicyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieFakturyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieHistorieNaprawViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieKaretkiViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieKosztyUtrzymaniaViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieOcenyZespoluViewModel.cs" />
+    <Compile Include="ViewModels\WszystkiePlacowkiViewModel.cs" />
+    <Compile Include="ViewModels\WszystkiePozycjeFakturyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieRolePracownikaViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieSposobyPlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieUdzielonePomoceViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieZespolPracownikViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieZespolyRatunkoweViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieZleceniaWyjazduViewModel.cs" />
+    <Compile Include="Views\NowaFakturaView.xaml.cs">
+      <DependentUpon>NowaFakturaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaHistoraNaprawView.xaml.cs">
+      <DependentUpon>NowaHistoraNaprawView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaKaretkaView.xaml.cs">
+      <DependentUpon>NowaKaretkaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaOcenaZespoluView.xaml.cs">
+      <DependentUpon>NowaOcenaZespoluView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaPlacowkaView.xaml.cs">
+      <DependentUpon>NowaPlacowkaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaPozycjaFakturyView.xaml.cs">
+      <DependentUpon>NowaPozycjaFakturyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaRolaPracownikaView.xaml.cs">
+      <DependentUpon>NowaRolaPracownikaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowaUdzielonaPomocView.xaml.cs">
+      <DependentUpon>NowaUdzielonaPomocView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoweZlecenieWyjazduView.xaml.cs">
+      <DependentUpon>NoweZlecenieWyjazduView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyKontrahentView.xaml.cs">
+      <DependentUpon>NowyKontrahentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyKosztUtrzymaniaView.xaml.cs">
+      <DependentUpon>NowyKosztUtrzymaniaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyPacjentView.xaml.cs">
+      <DependentUpon>NowyPacjentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyPracownikView.xaml.cs">
+      <DependentUpon>NowyPracownikView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowySposobPlatnosciView.xaml.cs">
+      <DependentUpon>NowySposobPlatnosciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyZespolPracownikView.xaml.cs">
+      <DependentUpon>NowyZespolPracownikView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyZespolRatunkowyView.xaml.cs">
+      <DependentUpon>NowyZespolRatunkowyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszyscyKontrahenciView.xaml.cs">
+      <DependentUpon>WszyscyKontrahenciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszyscyPacjenciView.xaml.cs">
+      <DependentUpon>WszyscyPacjenciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszyscyPracownicyView.xaml.cs">
+      <DependentUpon>WszyscyPracownicyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieFakturyView.xaml.cs">
+      <DependentUpon>WszystkieFakturyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieHistorieNaprawView.xaml.cs">
+      <DependentUpon>WszystkieHistorieNaprawView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieKaretkiView.xaml.cs">
+      <DependentUpon>WszystkieKaretkiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieKosztyUtrzymaniaView.xaml.cs">
+      <DependentUpon>WszystkieKosztyUtrzymaniaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieOcenyZespoluView.xaml.cs">
+      <DependentUpon>WszystkieOcenyZespoluView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkiePlacowkiView.xaml.cs">
+      <DependentUpon>WszystkiePlacowkiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkiePozycjeFakturyView.xaml.cs">
+      <DependentUpon>WszystkiePozycjeFakturyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieRolePracownikaView.xaml.cs">
+      <DependentUpon>WszystkieRolePracownikaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieSposobuPlatnosciView.xaml.cs">
+      <DependentUpon>WszystkieSposobuPlatnosciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieUdzielonePomoceView.xaml.cs">
+      <DependentUpon>WszystkieUdzielonePomoceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieViewBase.cs" />
+    <Compile Include="Views\WszystkieZespolPracownikView.xaml.cs">
+      <DependentUpon>WszystkieZespolPracownikView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieZespolyRatunkoweView.xaml.cs">
+      <DependentUpon>WszystkieZespolyRatunkoweView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieZleceniaWyjazduView.xaml.cs">
+      <DependentUpon>WszystkieZleceniaWyjazduView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +296,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
+    <Compile Include="Views\JedenViewBase.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -153,6 +304,134 @@
     <Page Include="Views\MainWindowResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NowaFakturaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaHistoraNaprawView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaKaretkaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaOcenaZespoluView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaPlacowkaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaPozycjaFakturyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaRolaPracownikaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowaUdzielonaPomocView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoweZlecenieWyjazduView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyKontrahentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyKosztUtrzymaniaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyPacjentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyPracownikView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowySposobPlatnosciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyZespolPracownikView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyZespolRatunkowyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyKontrahenciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyPacjenciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyPracownicyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieFakturyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieHistorieNaprawView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieKaretkiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieKosztyUtrzymaniaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieOcenyZespoluView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkiePlacowkiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkiePozycjeFakturyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieRolePracownikaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieSposobuPlatnosciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieUdzielonePomoceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieZespolPracownikView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieZespolyRatunkoweView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieZleceniaWyjazduView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +464,28 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Noto\NotoSans-Bold.ttf" />
+    <Resource Include="Resources\Noto\NotoSans-BoldItalic.ttf" />
+    <Resource Include="Resources\Noto\NotoSans-Italic.ttf" />
+    <Resource Include="Resources\Noto\NotoSans-Regular.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-Black.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-BlackItalic.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-Bold.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-BoldItalic.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-Italic.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-Light.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-LightItalic.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-Medium.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-MediumItalic.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-Regular.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-Thin.ttf" />
+    <Resource Include="Resources\Roboto\Roboto-ThinItalic.ttf" />
+    <Resource Include="Resources\Roboto\RobotoCondensed-Bold.ttf" />
+    <Resource Include="Resources\Roboto\RobotoCondensed-BoldItalic.ttf" />
+    <Resource Include="Resources\Roboto\RobotoCondensed-Italic.ttf" />
+    <Resource Include="Resources\Roboto\RobotoCondensed-Light.ttf" />
+    <Resource Include="Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
+    <Resource Include="Resources\Roboto\RobotoCondensed-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -212,6 +513,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets'))" />
   </Target>
   <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets')" />
 </Project>
