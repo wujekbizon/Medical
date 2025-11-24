@@ -14,7 +14,9 @@
                 <ResourceDictionary Source="Themes/Generic.xaml"/>
                 <ResourceDictionary Source="Views/MainWindowResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <CubicEase x:Key="EaseOut" EasingMode="EaseOut"/>
+            <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut"/>
             <SolidColorBrush x:Key="DarkBackground" Color="#1E1E1E"/>
             <SolidColorBrush x:Key="DarkSurface" Color="#252526"/>
             <SolidColorBrush x:Key="DarkSurfaceVariant" Color="#2D2D30"/>

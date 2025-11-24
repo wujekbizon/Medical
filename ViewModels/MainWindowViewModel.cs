@@ -1,4 +1,5 @@
-﻿using Medical.Helper;
+﻿using Material.Icons;
+using Medical.Helper;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,125 +16,193 @@ namespace Medical.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         #region Fields
-        private ReadOnlyCollection<CommandViewModel> _Commands;
+        private ReadOnlyCollection<CommandSection> _Commands;
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
         #endregion
 
         #region Commands
-        public ReadOnlyCollection<CommandViewModel> Commands
+        
+
+        public ReadOnlyCollection<CommandSection> Commands 
         {
             get
             {
                 if (_Commands == null)
                 {
-                    List<CommandViewModel> cmds = this.CreateCommands();
-                    _Commands = new ReadOnlyCollection<CommandViewModel>(cmds);
+                    List<CommandSection> cmds = this.CreateCommands();
+                    _Commands = new ReadOnlyCollection<CommandSection>(cmds);
                 }
                 return _Commands;
             }
         }
-        private List<CommandViewModel> CreateCommands()
+
+        private List<CommandSection> CreateCommands()
         {
-            return new List<CommandViewModel>
+            var sections = new List<CommandSection>();
+
+            var aktywneSection = new CommandSection
             {
-               new CommandViewModel(
-                   "Karetki",
-                   new BaseCommand(() => this.ShowAllView<WszystkieKaretkiViewModel>())),
-               new CommandViewModel(
-                   "Faktury",
-                   new BaseCommand(() => this.ShowAllView<WszystkieFakturyViewModel>())),
-               new CommandViewModel(
-                   "Kontrahenci",
-                   new BaseCommand(() => this.ShowAllView<WszyscyKontrahenciViewModel>())),
-               new CommandViewModel(
-                   "Pacjenci",
-                   new BaseCommand(() => this.ShowAllView<WszyscyPacjenciViewModel>())),
-               new CommandViewModel(
-                   "Pracownicy",
-                   new BaseCommand(() => this.ShowAllView<WszystkieHistorieNaprawViewModel>())),
-               new CommandViewModel(
-                   "Historie Napraw",
-                   new BaseCommand(() => this.ShowAllView<WszystkieKosztyUtrzymaniaViewModel>())),
-               new CommandViewModel(
-                   "Koszty Utrzymania",
-                   new BaseCommand(() => this.ShowAllView<WszystkieOcenyZespoluViewModel>())),
-               new CommandViewModel(
-                   "Oceny Zespolow",
-                   new BaseCommand(() => this.ShowAllView<WszystkiePlacowkiViewModel>())),
-               new CommandViewModel(
-                   "Placowki",
-                   new BaseCommand(() => this.ShowAllView<WszystkiePozycjeFakturyViewModel>())),
-               new CommandViewModel(
-                   "Pozycje Faktur",
-                   new BaseCommand(() => this.ShowAllView<WszystkieRolePracownikaViewModel>())),
-               new CommandViewModel(
-                   "Role",
-                   new BaseCommand(() => this.ShowAllView<WszystkieSposobyPlatnosciViewModel>())),
-               new CommandViewModel(
-                   "SposobyPlatnosci",
-                   new BaseCommand(() => this.ShowAllView<WszystkieUdzielonePomoceViewModel>())),
-               new CommandViewModel(
-                   "Udzielone Pomoce",
-                   new BaseCommand(() => this.ShowAllView<WszystkieZespolPracownikViewModel>())),
-               new CommandViewModel(
-                   "Zespoly-Pracownicy",
-                   new BaseCommand(() => this.ShowAllView<WszystkieZespolyRatunkoweViewModel>())),
-               new CommandViewModel(
-                   "Zespoly Ratunkowe",
-                   new BaseCommand(() => this.ShowAllView<WszystkieZleceniaWyjazduViewModel>())),
-               new CommandViewModel(
-                   "Wyjazdy",
-                   new BaseCommand(() => this.ShowAllView<WszystkieFakturyViewModel>())),
-               new CommandViewModel(
-                   "Karetka",
-                   new BaseCommand(() => this.CreateView(new NowaKaretkaViewModel()))),
-               new CommandViewModel(
-                   "Faktura",
-                   new BaseCommand(() => this.CreateView(new NowaFakturaViewModel()))),
-               new CommandViewModel(
-                   "Historia Napraw",
-                   new BaseCommand(() => this.CreateView(new NowaHistoriaNaprawViewModel()))),
-               new CommandViewModel(
-                   "Ocena Zespolu",
-                   new BaseCommand(() => this.CreateView(new NowaPlacowkaViewModel()))),
-               new CommandViewModel(
-                   "Placowka",
-                   new BaseCommand(() => this.CreateView(new NowaPozycjaFakturyViewModel()))),
-               new CommandViewModel(
-                   "Pozycja Faktury",
-                   new BaseCommand(() => this.CreateView(new NowaRolaPracownikaViewModel()))),
-               new CommandViewModel(
-                   "Rola",
-                   new BaseCommand(() => this.CreateView(new NowaUdzielonaPomocViewModel()))),
-               new CommandViewModel(
-                   "Udzielona Pomoc",
-                   new BaseCommand(() => this.CreateView(new NoweKosztyUtrzymaniaViewModel()))),
-               new CommandViewModel(
-                   "Koszt Utrzymania",
-                   new BaseCommand(() => this.CreateView(new NoweZlecenieWyjazduViewModel()))),
-               new CommandViewModel(
-                   "Zlecenie Wyjazdu",
-                   new BaseCommand(() => this.CreateView(new NowaOceanZespoluViewModel()))),
-               new CommandViewModel(
-                   "Kontrahent",
-                   new BaseCommand(() => this.CreateView(new NowyKontrahentViewModel()))),
-               new CommandViewModel(
-                   "Pacjent",
-                   new BaseCommand(() => this.CreateView(new NowyPacjentViewModel()))),
-               new CommandViewModel(
-                   "Placowka",
-                   new BaseCommand(() => this.CreateView(new NowaPlacowkaViewModel()))),
-               new CommandViewModel(
-                   "Sposob Platnosci",
-                   new BaseCommand(() => this.CreateView(new NowySposbobPlatnosciViewModel()))),
-               new CommandViewModel(
-                   "Zespol-Pracownik",
-                   new BaseCommand(() => this.CreateView(new NowyZespolPracownikViewModel()))),
-               new CommandViewModel(
-                   "Zespol Ratunkowy",
-                   new BaseCommand(() => this.CreateView(new NowyZespolRatunkowyViewModel()))),
-     
+                SectionName = "AKTYWNE",
+                ShowSectionHeader = true
             };
+            aktywneSection.Commands.Add(new CommandViewModel(
+                "Pacjenci",
+                new BaseCommand(() => this.ShowAllView<WszyscyPacjenciViewModel>()),
+                MaterialIconKind.AccountMultiple));
+            aktywneSection.Commands.Add(new CommandViewModel(
+                "Nowy Pacjent",
+                new BaseCommand(() => this.CreateView(new NowyPacjentViewModel())),
+                MaterialIconKind.AccountPlus));
+            aktywneSection.Commands.Add(new CommandViewModel(
+                "Zespoły Ratunkowe",
+                new BaseCommand(() => this.ShowAllView<WszystkieZespolyRatunkoweViewModel>()),
+                MaterialIconKind.AccountGroup));
+            aktywneSection.Commands.Add(new CommandViewModel(
+                "Zlecenie Wyjazdu",
+                new BaseCommand(() => this.CreateView(new NoweZlecenieWyjazduViewModel())),
+                MaterialIconKind.ClipboardText));
+            sections.Add(aktywneSection);
+
+            var ksiegoweSection = new CommandSection
+            {
+                SectionName = "KSIĘGOWE",
+                ShowSectionHeader = true
+            };
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Wszystkie Faktury",
+                new BaseCommand(() => this.ShowAllView<WszystkieFakturyViewModel>()),
+                MaterialIconKind.FileDocument));
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Nowa Faktura",
+                new BaseCommand(() => this.CreateView(new NowaFakturaViewModel())),
+                MaterialIconKind.FileDocumentPlus));
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Pozycje Faktur",
+                new BaseCommand(() => this.ShowAllView<WszystkiePozycjeFakturyViewModel>()),
+                MaterialIconKind.FormatListBulleted));
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Kontrahenci",
+                new BaseCommand(() => this.ShowAllView<WszyscyKontrahenciViewModel>()),
+                MaterialIconKind.Domain));
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Nowy Kontrahent",
+                new BaseCommand(() => this.CreateView(new NowyKontrahentViewModel())),
+                MaterialIconKind.DomainPlus));
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Sposoby Płatności",
+                new BaseCommand(() => this.ShowAllView<WszystkieSposobyPlatnosciViewModel>()),
+                MaterialIconKind.CreditCard));
+            sections.Add(ksiegoweSection);
+
+            var flotaSection = new CommandSection
+            {
+                SectionName = "UTRZYMANIE FLOTY",
+                ShowSectionHeader = true
+            };
+            flotaSection.Commands.Add(new CommandViewModel(
+                "Wszystkie Karetki",
+                new BaseCommand(() => this.ShowAllView<WszystkieKaretkiViewModel>()),
+                MaterialIconKind.Ambulance));
+            flotaSection.Commands.Add(new CommandViewModel(
+                "Nowa Karetka",
+                new BaseCommand(() => this.CreateView(new NowaKaretkaViewModel())),
+                MaterialIconKind.Car2Plus));
+            flotaSection.Commands.Add(new CommandViewModel(
+                "Historia Napraw",
+                new BaseCommand(() => this.ShowAllView<WszystkieHistorieNaprawViewModel>()),
+                MaterialIconKind.Tools));
+            flotaSection.Commands.Add(new CommandViewModel(
+                "Nowa Naprawa",
+                new BaseCommand(() => this.CreateView(new NowaHistoriaNaprawViewModel())),
+                MaterialIconKind.Wrench));
+            flotaSection.Commands.Add(new CommandViewModel(
+                "Koszty Utrzymania",
+                new BaseCommand(() => this.ShowAllView<WszystkieKosztyUtrzymaniaViewModel>()),
+                MaterialIconKind.CurrencyUsd));
+            flotaSection.Commands.Add(new CommandViewModel(
+                "Nowy Koszt",
+                new BaseCommand(() => this.CreateView(new NoweKosztyUtrzymaniaViewModel())),
+                MaterialIconKind.CashPlus));
+            sections.Add(flotaSection);
+
+            var zespolySection = new CommandSection
+            {
+                SectionName = "ZESPOŁY I PRACOWNICY",
+                ShowSectionHeader = true
+            };
+            zespolySection.Commands.Add(new CommandViewModel(
+                "Pracownicy",
+                new BaseCommand(() => this.ShowAllView<WszyscyPracownicyViewModel>()),
+                MaterialIconKind.PeopleGroup));
+            zespolySection.Commands.Add(new CommandViewModel(
+                "Nowy Pracownik",
+                new BaseCommand(() => this.CreateView(new NowyPracownikViewModel())),
+                MaterialIconKind.AccountPlus));
+            zespolySection.Commands.Add(new CommandViewModel(
+                "Zespoły-Pracownicy",
+                new BaseCommand(() => this.ShowAllView<WszystkieZespolPracownikViewModel>()),
+                MaterialIconKind.AccountMultiple));
+            zespolySection.Commands.Add(new CommandViewModel(
+                "Nowy Zespół-Pracownik",
+                new BaseCommand(() => this.CreateView(new NowyZespolPracownikViewModel())),
+                MaterialIconKind.AccountPlusOutline));
+            zespolySection.Commands.Add(new CommandViewModel(
+                "Nowy Zespół Ratunkowy",
+                new BaseCommand(() => this.CreateView(new NowyZespolRatunkowyViewModel())),
+                MaterialIconKind.AccountGroupOutline));
+            zespolySection.Commands.Add(new CommandViewModel(
+                "Role Pracowników",
+                new BaseCommand(() => this.ShowAllView<WszystkieRolePracownikaViewModel>()),
+                MaterialIconKind.AccountKey));
+            zespolySection.Commands.Add(new CommandViewModel(
+                "Nowa Rola",
+                new BaseCommand(() => this.CreateView(new NowaRolaPracownikaViewModel())),
+                MaterialIconKind.KeyPlus));
+            sections.Add(zespolySection);
+
+            var medyczneSection = new CommandSection
+            {
+                SectionName = "MEDYCZNE",
+                ShowSectionHeader = true
+            };
+            medyczneSection.Commands.Add(new CommandViewModel(
+                "Udzielone Pomoce",
+                new BaseCommand(() => this.ShowAllView<WszystkieUdzielonePomoceViewModel>()),
+                MaterialIconKind.MedicalBag));
+            medyczneSection.Commands.Add(new CommandViewModel(
+                "Nowa Pomoc",
+                new BaseCommand(() => this.CreateView(new NowaUdzielonaPomocViewModel())),
+                MaterialIconKind.PlusBox));
+            medyczneSection.Commands.Add(new CommandViewModel(
+                "Oceny Zespołów",
+                new BaseCommand(() => this.ShowAllView<WszystkieOcenyZespoluViewModel>()),
+                MaterialIconKind.StarCircle));
+            medyczneSection.Commands.Add(new CommandViewModel(
+                "Nowa Ocena",
+                new BaseCommand(() => this.CreateView(new NowaOceanZespoluViewModel())),
+                MaterialIconKind.StarPlus));
+            medyczneSection.Commands.Add(new CommandViewModel(
+                "Zlecenia Wyjazdu",
+                new BaseCommand(() => this.ShowAllView<WszystkieZleceniaWyjazduViewModel>()),
+                MaterialIconKind.ClipboardList));
+            sections.Add(medyczneSection);
+
+            var placowkiSection = new CommandSection
+            {
+                SectionName = "PLACÓWKI",
+                ShowSectionHeader = true
+            };
+            placowkiSection.Commands.Add(new CommandViewModel(
+                "Wszystkie Placówki",
+                new BaseCommand(() => this.ShowAllView<WszystkiePlacowkiViewModel>()),
+                MaterialIconKind.Hospital));
+            placowkiSection.Commands.Add(new CommandViewModel(
+                "Nowa Placówka",
+                new BaseCommand(() => this.CreateView(new NowaPlacowkaViewModel())),
+                MaterialIconKind.HospitalBuilding));
+            sections.Add(placowkiSection);
+
+            return sections;
         }
         #endregion
 

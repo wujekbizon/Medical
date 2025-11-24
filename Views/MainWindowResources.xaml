@@ -151,61 +151,139 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
     <DataTemplate x:Key="CommandsTemplate">
-    <ItemsControl ItemsSource="{Binding}" Margin="0">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <Button
-                    Command="{Binding Command}"
-                    Margin="4,2"
-                    Padding="12,10"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Left"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    FontSize="14"
-                    FontWeight="Normal"
-                    Foreground="{DynamicResource TextPrimary}">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
+        <ItemsControl ItemsSource="{Binding}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border Background="{DynamicResource DarkSurfaceVariant}"
+                            BorderBrush="{DynamicResource AccentPurple}"
+                            BorderThickness="0,0,0,2"
+                            Padding="12,8"
+                            Margin="0,12,0,8"
+                            CornerRadius="4,4,0,0"
+                            Visibility="{Binding ShowSectionHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock Text="{Binding SectionName}"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   Foreground="{DynamicResource AccentPurple}"/>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding Commands}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Card 
+                                    Margin="4,2"
+                                    UniformCornerRadius="6"
+                                    materialDesign:ElevationAssist.Elevation="Dp0">
+
                                         <Border 
-                                            x:Name="border"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="4"
-                                            Padding="{TemplateBinding Padding}">
-                                            <ContentPresenter 
-                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                VerticalAlignment="Center"
-                                                TextBlock.Foreground="{TemplateBinding Foreground}"/>
+                                        x:Name="CommandBorder"
+                                        Background="Transparent"
+                                        BorderBrush="{DynamicResource BorderDark}"
+                                        BorderThickness="1"
+                                        CornerRadius="6"
+                                        Cursor="Hand">
+                                            <materialDesign:Ripple
+                                            Feedback="{DynamicResource TextPrimary}"
+                                            Padding="12,10"
+                                            HorizontalContentAlignment="Stretch">
+                                                <materialDesign:Ripple.InputBindings>
+                                                    <MouseBinding MouseAction="LeftClick" Command="{Binding Command}"/>
+                                                </materialDesign:Ripple.InputBindings>
+
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <materialIcons:MaterialIcon 
+                                                    x:Name="CommandIcon"
+                                                    Kind="{Binding IconKind}"
+                                                    Width="20"
+                                                    Height="20"
+                                                    Grid.Column="0"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0,0,12,0"
+                                                    Foreground="{DynamicResource AccentPurple}">
+                                                        <materialIcons:MaterialIcon.RenderTransform>
+                                                            <ScaleTransform ScaleX="1" ScaleY="1" CenterX="10" CenterY="10"/>
+                                                        </materialIcons:MaterialIcon.RenderTransform>
+                                                    </materialIcons:MaterialIcon>
+                                                    <TextBlock 
+                                                    x:Name="CommandText"
+                                                    Grid.Column="1"
+                                                    Text="{Binding DisplayName}"
+                                                    Foreground="{DynamicResource TextPrimary}"
+                                                    FontSize="14"
+                                                    VerticalAlignment="Center"
+                                                    TextWrapping="NoWrap"/>
+                                                </Grid>
+                                            </materialDesign:Ripple>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="{DynamicResource DarkSurfaceVariant}"/>
+                                                            <Setter Property="BorderBrush" Value="{DynamicResource AccentPurple}"/>
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect 
+                                                                    Color="#7B68EE" 
+                                                                    BlurRadius="10" 
+                                                                    ShadowDepth="0" 
+                                                                    Opacity="0.5"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
                                         </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="border" Property="Background" Value="{DynamicResource DarkSurfaceVariant}"/>
-                                            </Trigger>
-                                            <Trigger Property="IsPressed" Value="True">
-                                                <Setter TargetName="border" Property="Background" Value="{DynamicResource AccentPurple}"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                    <TextBlock 
-                        Text="{Binding DisplayName}" 
-                        TextTrimming="None"
-                        TextWrapping="NoWrap"
-                        VerticalAlignment="Center"/>
-                </Button>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
-</DataTemplate>
+                                    </materialDesign:Card>
+                                    <DataTemplate.Triggers>
+                                        <Trigger SourceName="CommandBorder" Property="IsMouseOver" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation 
+                                                        Storyboard.TargetName="CommandIcon"
+                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                        To="1.2"
+                                                        Duration="0:0:0.15"/>
+                                                        <DoubleAnimation 
+                                                        Storyboard.TargetName="CommandIcon"
+                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                        To="1.2"
+                                                        Duration="0:0:0.15"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation 
+                                                        Storyboard.TargetName="CommandIcon"
+                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                                        To="1.0"
+                                                        Duration="0:0:0.15"/>
+                                                        <DoubleAnimation 
+                                                        Storyboard.TargetName="CommandIcon"
+                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                                        To="1.0"
+                                                        Duration="0:0:0.15"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </DataTemplate>
     <DataTemplate x:Key="ClosableTabItemTemplate">
         <DockPanel MinWidth="120" Background="Transparent">
             <Button
