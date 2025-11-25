@@ -4,9 +4,285 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Medical.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#252526">
-        <Label Content="Tu bedzie dodawanie faktury" Grid.ColumnSpan="2"></Label>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="800" Margin="0,0,0,24">
+                <TextBlock Text="Dane osobowe"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Imię *"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="55"
+                             Text="{Binding Imie, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Nazwisko *"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="100"
+                             Text="{Binding Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="PESEL *"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="11"
+                             Text="{Binding Pesel, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <DatePicker Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="0,0,0,16"
+                                materialDesign:HintAssist.Hint="Data urodzenia *"
+                                Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                SelectedDate="{Binding DataUrodzenia, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <ComboBox Grid.Row="2"
+                              Grid.Column="0"
+                              Margin="0,0,0,16"
+                              materialDesign:HintAssist.Hint="Płeć"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              SelectedValue="{Binding Plec, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="Content">
+                        <ComboBoxItem Content="M"/>
+                        <ComboBoxItem Content="K"/>
+                    </ComboBox>
+
+                    <TextBox Grid.Row="2"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Numer karty pacjenta"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="50"
+                             Text="{Binding NumerKartyPacjenta, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <ComboBox Grid.Row="3"
+                              Grid.Column="0"
+                              Margin="0,0,0,16"
+                              materialDesign:HintAssist.Hint="Grupa krwi"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              Text="{Binding GrupaKrwi, UpdateSourceTrigger=PropertyChanged}"
+                              IsEditable="True">
+                        <ComboBoxItem Content="0+"/>
+                        <ComboBoxItem Content="0-"/>
+                        <ComboBoxItem Content="A+"/>
+                        <ComboBoxItem Content="A-"/>
+                        <ComboBoxItem Content="B+"/>
+                        <ComboBoxItem Content="B-"/>
+                        <ComboBoxItem Content="AB+"/>
+                        <ComboBoxItem Content="AB-"/>
+                    </ComboBox>
+
+                    <TextBox Grid.Row="3"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Ubezpieczenie zdrowotne"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="100"
+                             Text="{Binding UbezpieczenieZdrowotne, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Separator Background="{DynamicResource BorderDark}"
+                           Margin="0,16,0,24"/>
+
+                <TextBlock Text="Adres zamieszkania"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Adres zamieszkania"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="255"
+                             Text="{Binding AdresZamieszkania, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Miasto"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="100"
+                             Text="{Binding Miasto, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Kod pocztowy"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="10"
+                             Text="{Binding KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Separator Background="{DynamicResource BorderDark}"
+                           Margin="0,16,0,24"/>
+
+                <TextBlock Text="Dane kontaktowe"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Telefon kontaktowy"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="15"
+                             Text="{Binding TelefonKontaktowy, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Adres e-mail"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="100"
+                             Text="{Binding AdresEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Separator Background="{DynamicResource BorderDark}"
+                           Margin="0,16,0,24"/>
+
+                <TextBlock Text="Kontakt awaryjny"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Imię i nazwisko kontaktu awaryjnego"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="100"
+                             Text="{Binding KontaktAwaryjnyImieNazwisko, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Telefon kontaktu awaryjnego"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="15"
+                             Text="{Binding KontaktAwaryjnyTelefon, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Separator Background="{DynamicResource BorderDark}"
+                           Margin="0,16,0,24"/>
+
+                <TextBlock Text="Informacje medyczne"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Alergie"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="255"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="60"
+                             Text="{Binding InformacjeAlergie, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Choroby przewlekłe"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="255"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="60"
+                             Text="{Binding ChorobyPrzewlekle, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Rodzaj niepełnosprawności"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="50"
+                             Text="{Binding RodzajNiepelnosprawnosci, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Uwagi dodatkowe"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             MinHeight="100"
+                             Text="{Binding UwagiDodatkowe, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <TextBlock Text="* Pola wymagane"
+                           FontSize="11"
+                           FontStyle="Italic"
+                           Foreground="{DynamicResource TextSecondary}"
+                           Margin="0,8,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </local:JedenViewBase>

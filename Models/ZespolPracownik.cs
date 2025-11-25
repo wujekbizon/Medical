@@ -12,19 +12,23 @@ namespace Medical.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CzlonekZespolu
+    public partial class ZespolPracownik
     {
-        public int IdCzlonka { get; set; }
-        public int IdPracownika { get; set; }
+        public int IdZespoluPracownika { get; set; }
         public int IdZespolu { get; set; }
+        public int IdPracownika { get; set; }
+        public string RolaWZespole { get; set; }
         public System.DateTime DataDolaczenia { get; set; }
         public Nullable<System.DateTime> DataOpuszczenia { get; set; }
-        public string RolaWZespole { get; set; }
+        public string PowodZmiany { get; set; }
+        public System.DateTime DataPrzypisania { get; set; }
         public bool CzyAktywny { get; set; }
         public System.DateTime KiedyDodal { get; set; }
         public string KtoDodal { get; set; }
         public Nullable<System.DateTime> KiedyModyfikowal { get; set; }
         public string KtoModyfikowal { get; set; }
+        public Nullable<System.DateTime> KiedyWykasowal { get; set; }
+        public string KtoWykasowal { get; set; }
         public int WersjaDanych { get; set; }
     
         public virtual Pracownik Pracownik { get; set; }

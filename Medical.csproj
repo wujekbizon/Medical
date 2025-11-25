@@ -82,9 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\CzlonekZespolu.cs">
-      <DependentUpon>ModelMedical.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\EntitiesForView\KaretkaForAllView.cs" />
     <Compile Include="Models\Faktura.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>
@@ -142,6 +140,9 @@
     <Compile Include="Models\UdzielonaPomoc.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ZespolPracownik.cs">
+      <DependentUpon>ModelMedical.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ZespolRatunkowy.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>
@@ -167,7 +168,7 @@
     <Compile Include="ViewModels\NowyKontrahentViewModel.cs" />
     <Compile Include="ViewModels\NowyPacjentViewModel.cs" />
     <Compile Include="ViewModels\NowyPracownikViewModel.cs" />
-    <Compile Include="ViewModels\NowySposbobPlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\NowySposobPlatnosciViewModel.cs" />
     <Compile Include="ViewModels\NowyZespolPracownikViewModel.cs" />
     <Compile Include="ViewModels\NowyZespolRatunkowyViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />

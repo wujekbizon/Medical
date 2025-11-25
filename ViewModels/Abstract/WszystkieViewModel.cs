@@ -23,7 +23,7 @@ namespace Medical.ViewModels.Abstract
         // to jest komenda do ladowania obiektow z bazy,zostaje podpieta pod przycisk odswiez.
         // _ oznacza ze dane pole bedzie mialo properties
         private BaseCommand _LoadCommand;
-        public ICommand LoadCmmand
+        public ICommand LoadCommand
         {
             get
             {

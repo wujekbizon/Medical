@@ -4,26 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0379250c15864412b490f979967b4757" Name="Diagram1" ZoomLevel="163">
-        <EntityTypeShape EntityType="MedicalModel.CzlonekZespolu" Width="1.5" PointX="17" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.Faktura" Width="1.5" PointX="8.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.HistoriaNapraw" Width="1.5" PointX="12.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.Karetka" Width="1.5" PointX="6.375" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.Kontrahent" Width="1.5" PointX="6.375" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.KosztUtrzymania" Width="1.5" PointX="8.5" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.OcenaZespolu" Width="1.5" PointX="14.875" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.Pacjent" Width="1.5" PointX="17.5" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.Placowka" Width="1.5" PointX="4.375" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.PozycjaFaktury" Width="1.5" PointX="10.875" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.Pracownik" Width="1.5" PointX="3.375" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.RolaPracownika" Width="1.5" PointX="4" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.SposobPlatnosci" Width="1.5" PointX="2.125" PointY="14.5" IsExpanded="true" />
+      <Diagram DiagramId="0379250c15864412b490f979967b4757" Name="Diagram1" ZoomLevel="134">
+        <EntityTypeShape EntityType="MedicalModel.Faktura" Width="1.5" PointX="7" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.HistoriaNapraw" Width="1.5" PointX="10.375" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Karetka" Width="1.5" PointX="5.375" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Kontrahent" Width="2.375" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.KosztUtrzymania" Width="1.5" PointX="0.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.OcenaZespolu" Width="1.5" PointX="12.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Pacjent" Width="2.375" PointX="9.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Placowka" Width="1.5" PointX="3.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.PozycjaFaktury" Width="1.5" PointX="17.125" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.Pracownik" Width="1.5" PointX="2.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.RolaPracownika" Width="1.5" PointX="5.125" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.SposobPlatnosci" Width="1.5" PointX="1.875" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.UdzielonaPomoc" Width="1.5" PointX="14" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.ZespolRatunkowy" Width="1.5" PointX="11.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.ZlecenieWyjazdu" Width="1.5" PointX="8.75" PointY="11.25" IsExpanded="true" />
-        <AssociationConnector Association="MedicalModel.FK_CzlonekZespolu_Pracownik" ManuallyRouted="false" />
-        <AssociationConnector Association="MedicalModel.FK_CzlonekZespolu_Zespol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MedicalModel.UdzielonaPomoc" Width="1.5" PointX="8.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.ZespolRatunkowy" Width="1.5" PointX="13.875" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.ZlecenieWyjazdu" Width="1.5" PointX="3.75" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="MedicalModel.FK_Faktura_Kontrahent" ManuallyRouted="false" />
         <AssociationConnector Association="MedicalModel.FK_Faktura_SposobPlatnosci" ManuallyRouted="false" />
         <AssociationConnector Association="MedicalModel.FK_Koszt_Faktura" ManuallyRouted="false" />
@@ -50,6 +47,9 @@
         <AssociationConnector Association="MedicalModel.FK_Pomoc_Wyjazd" ManuallyRouted="false" />
         <AssociationConnector Association="MedicalModel.FK_Pomoc_Zespol" ManuallyRouted="false" />
         <AssociationConnector Association="MedicalModel.FK_Wyjazd_Zespol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MedicalModel.ZespolPracownik" Width="1.5" PointX="15.5" PointY="4.375" />
+        <AssociationConnector Association="MedicalModel.FK_ZP_Pracownik" />
+        <AssociationConnector Association="MedicalModel.FK_ZP_Zespol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

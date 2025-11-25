@@ -7,6 +7,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}" />
+                <DataGridTextColumn Header="Typ" Binding="{Binding Typ}" />
+                <DataGridTextColumn Header="Osoba Kontaktowa" Binding="{Binding OsobaKontaktowa}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding TelefonKontaktowy}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding AdresEmail}" />
+                <DataGridTextColumn Header="Adres" Binding="{Binding AdresSiedziby}" />
+                <DataGridTextColumn Header="Miasto" Binding="{Binding Miasto}" />
+                <DataGridTextColumn Header="Kod Pocztowy" Binding="{Binding KodPocztowy}" />
+                <DataGridTextColumn Header="NIP" Binding="{Binding NIP}" />
+                <DataGridTextColumn Header="Numer Konta" Binding="{Binding NumerKontaBankowego}" />
+                <DataGridTextColumn Header="Kategoria" Binding="{Binding KategoriaBiznesowa}" />
+                <DataGridTextColumn Header="Data Rozpoczęcia Współpracy" Binding="{Binding DataRozpoczeciaWspolpracy}" />
+                <DataGridTextColumn Header="Data Zakończenia Umowy" Binding="{Binding DataZakonczeniaUmowy}" />
+                <DataGridTextColumn Header="Warunki Platności" Binding="{Binding WarunkiPlatnosci}" />
+                <DataGridTextColumn Header="Wartość Transakcji" Binding="{Binding LacznaWartoscTransakcji}" />
+                <DataGridTextColumn Header="Status Wspołpracy" Binding="{Binding StatusWspolpracy}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

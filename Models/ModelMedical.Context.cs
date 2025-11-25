@@ -25,7 +25,6 @@ namespace Medical.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CzlonekZespolu> CzlonekZespolu { get; set; }
         public virtual DbSet<Faktura> Faktura { get; set; }
         public virtual DbSet<HistoriaNapraw> HistoriaNapraw { get; set; }
         public virtual DbSet<Karetka> Karetka { get; set; }
@@ -42,5 +41,6 @@ namespace Medical.Models
         public virtual DbSet<UdzielonaPomoc> UdzielonaPomoc { get; set; }
         public virtual DbSet<ZespolRatunkowy> ZespolRatunkowy { get; set; }
         public virtual DbSet<ZlecenieWyjazdu> ZlecenieWyjazdu { get; set; }
+        public virtual DbSet<ZespolPracownik> ZespolPracownik { get; set; }
     }
 }

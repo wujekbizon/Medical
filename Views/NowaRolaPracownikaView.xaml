@@ -4,9 +4,237 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Medical.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#252526">
-        <Label Content="Tu bedzie dodawanie faktury" Grid.ColumnSpan="2"></Label>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel MaxWidth="800" Margin="0,0,0,24">
+                <TextBlock Text="Podstawowe informacje o roli"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Nazwa roli *"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="100"
+                             Text="{Binding NazwaRoli, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Poziom uprawnień (1-5) *"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Text="{Binding PoziomUprawnien, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <ComboBox Grid.Row="1"
+                              Grid.Column="0"
+                              Margin="0,0,0,16"
+                              materialDesign:HintAssist.Hint="Nazwa działu"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              Text="{Binding NazwaDzialu, UpdateSourceTrigger=PropertyChanged}"
+                              IsEditable="True">
+                        <ComboBoxItem Content="Medyczny"/>
+                        <ComboBoxItem Content="Administracja"/>
+                        <ComboBoxItem Content="Logistyka"/>
+                        <ComboBoxItem Content="Dyspozytornia"/>
+                        <ComboBoxItem Content="Ratownictwo"/>
+                        <ComboBoxItem Content="Transport Sanitarny"/>
+                    </ComboBox>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Limit zatrudnienia"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Text="{Binding LimitZatrudnienia, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <StackPanel Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Orientation="Horizontal"
+                                Margin="0,0,0,16">
+                        <CheckBox Content="Wymaga licencji"
+                                  IsChecked="{Binding CzyWymagaLicencji}"
+                                  Margin="0,0,24,0"
+                                  Style="{DynamicResource MaterialDesignCheckBox}"/>
+                        <CheckBox Content="Jest liderem zespołu"
+                                  IsChecked="{Binding CzyJestLideremZespolu}"
+                                  Style="{DynamicResource MaterialDesignCheckBox}"/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBox Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Opis obowiązków"
+                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         MinHeight="100"
+                         Text="{Binding OpisObowiazkow, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Separator Background="{DynamicResource BorderDark}"
+                           Margin="0,16,0,24"/>
+
+                <TextBlock Text="Wymagania i kwalifikacje"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ComboBox Grid.Row="0"
+                              Grid.Column="0"
+                              Margin="0,0,0,16"
+                              materialDesign:HintAssist.Hint="Minimalne wykształcenie"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              Text="{Binding MinimalneWyksztalcenie, UpdateSourceTrigger=PropertyChanged}"
+                              IsEditable="True">
+                        <ComboBoxItem Content="Podstawowe"/>
+                        <ComboBoxItem Content="Średnie"/>
+                        <ComboBoxItem Content="Wyższe licencjackie"/>
+                        <ComboBoxItem Content="Wyższe magisterskie"/>
+                        <ComboBoxItem Content="Studia medyczne"/>
+                        <ComboBoxItem Content="Szkoła ratownictwa medycznego"/>
+                    </ComboBox>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Wymagane szkolenia"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="255"
+                             Text="{Binding WymaganeSzkolenia, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Wymagane umiejętności"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="255"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="60"
+                             Text="{Binding WymaganeUmiejetnosci, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Separator Background="{DynamicResource BorderDark}"
+                           Margin="0,16,0,24"/>
+
+                <TextBlock Text="Warunki pracy i wynagrodzenie"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="0"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Maksymalna liczba godzin tygodniowo"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Text="{Binding MaksymalnaLiczbaGodzinTygodniowo, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="0"
+                             Grid.Column="2"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Średnia płaca (PLN)"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Text="{Binding SredniaPlaca, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Row="1"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="3"
+                             Margin="0,0,0,16"
+                             materialDesign:HintAssist.Hint="Benefity"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             MaxLength="255"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="60"
+                             Text="{Binding Benefity, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Separator Background="{DynamicResource BorderDark}"
+                           Margin="0,16,0,24"/>
+
+                <TextBlock Text="Rozwój kariery"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="{DynamicResource AccentPurple}"
+                           Margin="0,0,0,16"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0"
+                              Margin="0,0,0,16"
+                              materialDesign:HintAssist.Hint="Rola następnego etapu kariery"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              Text="{Binding RolaNastepnegoEtapuKariery, UpdateSourceTrigger=PropertyChanged}"
+                              IsEditable="True">
+                        <ComboBoxItem Content="Starszy Ratownik Medyczny"/>
+                        <ComboBoxItem Content="Kierownik Zespołu"/>
+                        <ComboBoxItem Content="Koordynator Medyczny"/>
+                        <ComboBoxItem Content="Dyrektor Stacji"/>
+                        <ComboBoxItem Content="Lekarz Specjalista"/>
+                        <ComboBoxItem Content="Dyspozytор Medyczny"/>
+                    </ComboBox>
+
+                    <DatePicker Grid.Column="2"
+                                Margin="0,0,0,16"
+                                materialDesign:HintAssist.Hint="Data ostatniej aktualizacji"
+                                Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                SelectedDate="{Binding DataOstatniejAktualizacji, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <TextBlock Text="* Pola wymagane"
+                           FontSize="11"
+                           FontStyle="Italic"
+                           Foreground="{DynamicResource TextSecondary}"
+                           Margin="0,8,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </local:JedenViewBase>

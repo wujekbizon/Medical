@@ -45,7 +45,7 @@
     <DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">
         <vw:NowyPracownikView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:NowySposbobPlatnosciViewModel}">
+    <DataTemplate DataType="{x:Type vm:NowySposobPlatnosciViewModel}">
         <vw:NowySposobPlatnosciView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:NowyZespolPracownikViewModel}">

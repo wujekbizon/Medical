@@ -7,6 +7,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding NazwaPlacowki}" />
+                <DataGridTextColumn Header="Adres" Binding="{Binding Adres}" />
+                <DataGridTextColumn Header="Miasto" Binding="{Binding Miasto}" />
+                <DataGridTextColumn Header="Kod Pocztowy" Binding="{Binding KodPocztowy}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding AdresEmail}" />
+                <DataGridTextColumn Header="Typ Placówki" Binding="{Binding TypPlacowki}" />
+                <DataGridTextColumn Header="Godziny Pracy" Binding="{Binding GodzinyPracy}" />
+                <DataGridTextColumn Header="Liczba Karetek" Binding="{Binding LiczbaKaretek}" />
+                <DataGridTextColumn Header="Liczba Zespołów" Binding="{Binding LiczbaZespolow}" />
+                <DataGridTextColumn Header="Pojemność Garażu" Binding="{Binding PojemnoscGarazu}" />
+                <DataGridTextColumn Header="Data Otwarcia" Binding="{Binding DataOtwarcia}" />
+                <DataGridTextColumn Header="Data Ostatniej Inspekcji" Binding="{Binding DataOstatniejInspekcji}" />
+                <DataGridTextColumn Header="Region" Binding="{Binding Region}" />
+                <DataGridTextColumn Header="Budżet" Binding="{Binding Budzet}" />
+                <DataGridTextColumn Header="Obszar Zasięgu Ratunkowego" Binding="{Binding ObszarZasieguRatunkowego}" />
+                <DataGridTextColumn Header="Akredytacja" Binding="{Binding CzyMaAkredytacje}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

@@ -4,9 +4,83 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Medical.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#252526">
-        <Label Content="Tu bedzie dodawanie faktury" Grid.ColumnSpan="2"></Label>
+    <Grid>
+        <StackPanel MaxWidth="800">
+            <TextBlock Text="Informacje o sposobie płatności"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource AccentPurple}"
+                       Margin="0,0,0,16"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0"
+                         Grid.Column="0"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Nazwa *"
+                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                         MaxLength="50"
+                         Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <ComboBox Grid.Row="0"
+                          Grid.Column="2"
+                          Margin="0,0,0,16"
+                          materialDesign:HintAssist.Hint="Rodzaj transakcji"
+                          Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                          Text="{Binding RodzajTransakcji, UpdateSourceTrigger=PropertyChanged}"
+                          IsEditable="True">
+                    <ComboBoxItem Content="Gotówka"/>
+                    <ComboBoxItem Content="Przelew bankowy"/>
+                    <ComboBoxItem Content="Karta płatnicza"/>
+                    <ComboBoxItem Content="Płatność online"/>
+                    <ComboBoxItem Content="Refundacja NFZ"/>
+                    <ComboBoxItem Content="Ubezpieczenie prywatne"/>
+                    <ComboBoxItem Content="Rozliczenie międzyplacówkowe"/>
+                </ComboBox>
+
+                <TextBox Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="3"
+                         Margin="0,0,0,16"
+                         materialDesign:HintAssist.Hint="Opis"
+                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                         MaxLength="255"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         MinHeight="80"
+                         Text="{Binding Opis, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <StackPanel Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Orientation="Horizontal"
+                            Margin="0,0,0,16">
+                    <CheckBox Content="Wymaga potwierdzenia"
+                              IsChecked="{Binding CzyWymagaPotwierdzenia}"
+                              Margin="0,0,24,0"
+                              Style="{DynamicResource MaterialDesignCheckBox}"/>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="* Pola wymagane"
+                       FontSize="11"
+                       FontStyle="Italic"
+                       Foreground="{DynamicResource TextSecondary}"
+                       Margin="0,8,0,0"/>
+        </StackPanel>
     </Grid>
 </local:JedenViewBase>

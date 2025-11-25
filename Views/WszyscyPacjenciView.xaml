@@ -7,6 +7,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imię" Binding="{Binding Imie}" />
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" />
+                <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia}" />
+                <DataGridTextColumn Header="Adres" Binding="{Binding AdresZamieszkania}" />
+                <DataGridTextColumn Header="Miasto" Binding="{Binding Miasto}" />
+                <DataGridTextColumn Header="Kod Pocztowy" Binding="{Binding KodPocztowy}" />
+                <DataGridTextColumn Header="Telefon" Binding="{Binding TelefonKontaktowy}" />
+                <DataGridTextColumn Header="Pesel" Binding="{Binding Pesel}" />
+                <DataGridTextColumn Header="Płeć" Binding="{Binding Plec}" />
+                <DataGridTextColumn Header="Numer Karty Pacjenta" Binding="{Binding NumerKartyPacjenta}" />
+                <DataGridTextColumn Header="Grupa Krwi" Binding="{Binding GrupaKrwi}" />
+                <DataGridTextColumn Header="Informacje" Binding="{Binding InformacjeAlergie}" />
+                <DataGridTextColumn Header="Ubezpieczenie Zdrowotne" Binding="{Binding UbezpieczenieZdrowotne}" />
+                <DataGridTextColumn Header="Kontakt awaryjny" Binding="{Binding KontaktAwaryjnyImieNazwisko}" />
+                <DataGridTextColumn Header="Telefon awaryjny" Binding="{Binding KontaktAwaryjnyTelefon}" />
+                <DataGridTextColumn Header="Choroby Przewlekłe" Binding="{Binding ChorobyPrzewlekle}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

@@ -92,6 +92,11 @@ namespace Medical.ViewModels
                 "Sposoby Płatności",
                 new BaseCommand(() => this.ShowAllView<WszystkieSposobyPlatnosciViewModel>()),
                 MaterialIconKind.CreditCard));
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Sposób Płatności",
+                new BaseCommand(() => this.CreateView(new NowySposobPlatnosciViewModel())),
+                MaterialIconKind.Money));
+
             sections.Add(ksiegoweSection);
 
             var flotaSection = new CommandSection

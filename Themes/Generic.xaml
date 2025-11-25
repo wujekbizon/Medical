@@ -11,14 +11,9 @@
                     <Grid Background="{DynamicResource MaterialDesignPaper}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <!-- Toolbar -->
                             <RowDefinition Height="Auto"/>
-                            <!-- Search/Filters -->
                             <RowDefinition Height="*"/>
-                            <!-- Content (DataGrid) -->
                         </Grid.RowDefinitions>
-
-                        <!-- Toolbar with Actions -->
                         <Border Grid.Row="0"
                                 Background="{DynamicResource DarkSurfaceVariant}"
                                 BorderBrush="{DynamicResource BorderDark}"
@@ -29,8 +24,6 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-
-                                <!-- Left side - Title -->
                                 <TextBlock Grid.Column="0"
                                            Text="{Binding DisplayName}"
                                            FontSize="18"
@@ -38,7 +31,6 @@
                                            VerticalAlignment="Center"
                                            Foreground="{DynamicResource TextPrimary}"/>
 
-                                <!-- Right side - Action Buttons -->
                                 <StackPanel Grid.Column="1"
                                             Orientation="Horizontal">
                                     <Button Command="{Binding LoadCommand}"
@@ -74,7 +66,6 @@
                             </Grid>
                         </Border>
 
-                        <!-- Search/Filter Section -->
                         <Border Grid.Row="1"
                                 Background="{DynamicResource DarkSurface}"
                                 BorderBrush="{DynamicResource BorderDark}"
@@ -95,8 +86,6 @@
                                 </StackPanel>
                             </Expander>
                         </Border>
-
-                        <!-- Content Area (where DataGrid will be placed) -->
                         <ContentPresenter Grid.Row="2"
                                           Margin="8"/>
                     </Grid>
@@ -105,7 +94,6 @@
         </Setter>
     </Style>
 
-    <!-- ==================== JedenViewBase (Add/Edit One) Template ==================== -->
     <Style TargetType="{x:Type local:JedenViewBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -113,14 +101,10 @@
                     <Grid Background="{DynamicResource MaterialDesignPaper}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <!-- Header -->
                             <RowDefinition Height="*"/>
-                            <!-- Content (Form) -->
                             <RowDefinition Height="Auto"/>
-                            <!-- Action Buttons -->
                         </Grid.RowDefinitions>
 
-                        <!-- Header -->
                         <Border Grid.Row="0"
                                 Background="{DynamicResource DarkSurfaceVariant}"
                                 BorderBrush="{DynamicResource BorderDark}"
@@ -148,15 +132,12 @@
                                            Foreground="{DynamicResource TextPrimary}"/>
                             </Grid>
                         </Border>
-
-                        <!-- Form Content Area -->
                         <ScrollViewer Grid.Row="1"
                                       VerticalScrollBarVisibility="Auto"
                                       Padding="24,16">
                             <ContentPresenter/>
                         </ScrollViewer>
 
-                        <!-- Action Buttons -->
                         <Border Grid.Row="2"
                                 Background="{DynamicResource DarkSurfaceVariant}"
                                 BorderBrush="{DynamicResource BorderDark}"
@@ -170,21 +151,6 @@
                                         Margin="0,0,8,0"
                                         Padding="24,8"
                                         ToolTip="Anuluj zmiany"/>
-
-                                <Button Command="{Binding SaveCommand}"
-                                        Style="{DynamicResource MaterialDesignRaisedButton}"
-                                        Margin="0,0,8,0"
-                                        Padding="24,8"
-                                        ToolTip="Zapisz zmiany">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialIcons:MaterialIcon Kind="ContentSave"
-                                                                    Width="18"
-                                                                    Height="18"
-                                                                    Margin="0,0,8,0"/>
-                                        <TextBlock Text="Zapisz"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </Button>
 
                                 <Button Command="{Binding SaveAndCloseCommand}"
                                         Style="{DynamicResource MaterialDesignRaisedButton}"

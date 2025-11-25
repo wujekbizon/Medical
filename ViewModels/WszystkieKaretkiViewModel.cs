@@ -1,4 +1,5 @@
-﻿using Medical.ViewModels.Abstract;
+﻿using Medical.Models.EntitiesForView;
+using Medical.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,14 +9,22 @@ using System.Threading.Tasks;
 
 namespace Medical.ViewModels
 {
-    public class WszystkieKaretkiViewModel: WszystkieViewModel<dynamic>
+    public class WszystkieKaretkiViewModel: WszystkieViewModel<KaretkaForAllView>
     {
         #region Lista
         public override void Load()
         {
-            List = new ObservableCollection<dynamic>
+            List = new ObservableCollection<KaretkaForAllView>
                 (
-                medicalEntities.Karetka.Where((k) => k.CzyAktywny == true).ToList()
+                   from karetka in medicalEntities.Karetka
+                   where karetka.CzyAktywny == true
+                   select new KaretkaForAllView
+                   {
+                       NumerRejestracyjny = karetka.NumerRejestracyjny,
+                       TypKaretki = karetka.TypKaretki,
+                       Status = karetka.Status,
+                       PlacowkaZarzadzajaca = karetka.Placowka.NazwaPlacowki
+                   }
                 );
         }
         #endregion

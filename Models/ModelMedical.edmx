@@ -4,24 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MedicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CzlonekZespolu">
-          <Key>
-            <PropertyRef Name="IdCzlonka" />
-          </Key>
-          <Property Name="IdCzlonka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdPracownika" Type="int" Nullable="false" />
-          <Property Name="IdZespolu" Type="int" Nullable="false" />
-          <Property Name="DataDolaczenia" Type="date" Nullable="false" />
-          <Property Name="DataOpuszczenia" Type="date" />
-          <Property Name="RolaWZespole" Type="nvarchar" MaxLength="50" />
-          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
-          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
-          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
-          <Property Name="WersjaDanych" Type="int" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="MedicalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Faktura">
           <Key>
             <PropertyRef Name="IdFaktury" />
@@ -409,6 +392,27 @@
           <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
           <Property Name="WersjaDanych" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ZespolPracownik">
+          <Key>
+            <PropertyRef Name="IdZespoluPracownika" />
+          </Key>
+          <Property Name="IdZespoluPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdZespolu" Type="int" Nullable="false" />
+          <Property Name="IdPracownika" Type="int" Nullable="false" />
+          <Property Name="RolaWZespole" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataDolaczenia" Type="date" Nullable="false" />
+          <Property Name="DataOpuszczenia" Type="date" />
+          <Property Name="PowodZmiany" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataPrzypisania" Type="date" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="KiedyDodal" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="KtoDodal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KiedyModyfikowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="KiedyWykasowal" Type="datetime2" Precision="7" />
+          <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
+          <Property Name="WersjaDanych" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ZespolRatunkowy">
           <Key>
             <PropertyRef Name="IdZespolu" />
@@ -469,30 +473,6 @@
           <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
           <Property Name="WersjaDanych" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_CzlonekZespolu_Pracownik">
-          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
-          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pracownik">
-              <PropertyRef Name="IdPracownika" />
-            </Principal>
-            <Dependent Role="CzlonekZespolu">
-              <PropertyRef Name="IdPracownika" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CzlonekZespolu_Zespol">
-          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
-          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ZespolRatunkowy">
-              <PropertyRef Name="IdZespolu" />
-            </Principal>
-            <Dependent Role="CzlonekZespolu">
-              <PropertyRef Name="IdZespolu" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Faktura_Kontrahent">
           <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
@@ -805,8 +785,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ZP_Pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="ZespolPracownik" Type="Self.ZespolPracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="ZespolPracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZP_Zespol">
+          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
+          <End Role="ZespolPracownik" Type="Self.ZespolPracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="ZespolPracownik">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MedicalModelStoreContainer">
-          <EntitySet Name="CzlonekZespolu" EntityType="Self.CzlonekZespolu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoriaNapraw" EntityType="Self.HistoriaNapraw" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Karetka" EntityType="Self.Karetka" Schema="dbo" store:Type="Tables" />
@@ -821,16 +824,9 @@
           <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UdzielonaPomoc" EntityType="Self.UdzielonaPomoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZespolPracownik" EntityType="Self.ZespolPracownik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZespolRatunkowy" EntityType="Self.ZespolRatunkowy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZlecenieWyjazdu" EntityType="Self.ZlecenieWyjazdu" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CzlonekZespolu_Pracownik" Association="Self.FK_CzlonekZespolu_Pracownik">
-            <End Role="Pracownik" EntitySet="Pracownik" />
-            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CzlonekZespolu_Zespol" Association="Self.FK_CzlonekZespolu_Zespol">
-            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
-            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
-          </AssociationSet>
           <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
             <End Role="Faktura" EntitySet="Faktura" />
@@ -935,31 +931,19 @@
             <End Role="Placowka" EntitySet="Placowka" />
             <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
           </AssociationSet>
+          <AssociationSet Name="FK_ZP_Pracownik" Association="Self.FK_ZP_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="ZespolPracownik" EntitySet="ZespolPracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZP_Zespol" Association="Self.FK_ZP_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="ZespolPracownik" EntitySet="ZespolPracownik" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MedicalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CzlonekZespolu">
-          <Key>
-            <PropertyRef Name="IdCzlonka" />
-          </Key>
-          <Property Name="IdCzlonka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdPracownika" Type="Int32" Nullable="false" />
-          <Property Name="IdZespolu" Type="Int32" Nullable="false" />
-          <Property Name="DataDolaczenia" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DataOpuszczenia" Type="DateTime" Precision="0" />
-          <Property Name="RolaWZespole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
-          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="KtoDodal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
-          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pracownik" Relationship="Self.FK_CzlonekZespolu_Pracownik" FromRole="CzlonekZespolu" ToRole="Pracownik" />
-          <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_CzlonekZespolu_Zespol" FromRole="CzlonekZespolu" ToRole="ZespolRatunkowy" />
-        </EntityType>
         <EntityType Name="Faktura">
           <Key>
             <PropertyRef Name="IdFaktury" />
@@ -1284,12 +1268,12 @@
           <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
           <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CzlonekZespolu" Relationship="Self.FK_CzlonekZespolu_Pracownik" FromRole="Pracownik" ToRole="CzlonekZespolu" />
           <NavigationProperty Name="OcenaZespolu" Relationship="Self.FK_Ocena_Oceniajacy" FromRole="Pracownik" ToRole="OcenaZespolu" />
           <NavigationProperty Name="Placowka" Relationship="Self.FK_Pracownik_Placowka" FromRole="Pracownik" ToRole="Placowka" />
           <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_AutorRaportu" FromRole="Pracownik" ToRole="UdzielonaPomoc" />
           <NavigationProperty Name="RolaPracownika" Relationship="Self.FK_Pracownik_Rola" FromRole="Pracownik" ToRole="RolaPracownika" />
           <NavigationProperty Name="ZlecenieWyjazdu" Relationship="Self.FK_Wyjazd_Dyspozytor" FromRole="Pracownik" ToRole="ZlecenieWyjazdu" />
+          <NavigationProperty Name="ZespolPracownik" Relationship="MedicalModel.FK_ZP_Pracownik" FromRole="Pracownik" ToRole="ZespolPracownik" />
         </EntityType>
         <EntityType Name="RolaPracownika">
           <Key>
@@ -1417,12 +1401,12 @@
           <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
           <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CzlonekZespolu" Relationship="Self.FK_CzlonekZespolu_Zespol" FromRole="ZespolRatunkowy" ToRole="CzlonekZespolu" />
           <NavigationProperty Name="Karetka" Relationship="Self.FK_Zespol_Karetka" FromRole="ZespolRatunkowy" ToRole="Karetka" />
           <NavigationProperty Name="OcenaZespolu" Relationship="Self.FK_Ocena_Zespol" FromRole="ZespolRatunkowy" ToRole="OcenaZespolu" />
           <NavigationProperty Name="Placowka" Relationship="Self.FK_Zespol_Placowka" FromRole="ZespolRatunkowy" ToRole="Placowka" />
           <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_Zespol" FromRole="ZespolRatunkowy" ToRole="UdzielonaPomoc" />
           <NavigationProperty Name="ZlecenieWyjazdu" Relationship="Self.FK_Wyjazd_Zespol" FromRole="ZespolRatunkowy" ToRole="ZlecenieWyjazdu" />
+          <NavigationProperty Name="ZespolPracownik" Relationship="MedicalModel.FK_ZP_Zespol" FromRole="ZespolRatunkowy" ToRole="ZespolPracownik" />
         </EntityType>
         <EntityType Name="ZlecenieWyjazdu">
           <Key>
@@ -1461,30 +1445,6 @@
           <NavigationProperty Name="UdzielonaPomoc" Relationship="Self.FK_Pomoc_Wyjazd" FromRole="ZlecenieWyjazdu" ToRole="UdzielonaPomoc" />
           <NavigationProperty Name="ZespolRatunkowy" Relationship="Self.FK_Wyjazd_Zespol" FromRole="ZlecenieWyjazdu" ToRole="ZespolRatunkowy" />
         </EntityType>
-        <Association Name="FK_CzlonekZespolu_Pracownik">
-          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
-          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pracownik">
-              <PropertyRef Name="IdPracownika" />
-            </Principal>
-            <Dependent Role="CzlonekZespolu">
-              <PropertyRef Name="IdPracownika" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CzlonekZespolu_Zespol">
-          <End Role="ZespolRatunkowy" Type="Self.ZespolRatunkowy" Multiplicity="1" />
-          <End Role="CzlonekZespolu" Type="Self.CzlonekZespolu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ZespolRatunkowy">
-              <PropertyRef Name="IdZespolu" />
-            </Principal>
-            <Dependent Role="CzlonekZespolu">
-              <PropertyRef Name="IdZespolu" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Faktura_Kontrahent">
           <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
@@ -1798,7 +1758,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MedicalEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CzlonekZespolu" EntityType="Self.CzlonekZespolu" />
           <EntitySet Name="Faktura" EntityType="Self.Faktura" />
           <EntitySet Name="HistoriaNapraw" EntityType="Self.HistoriaNapraw" />
           <EntitySet Name="Karetka" EntityType="Self.Karetka" />
@@ -1815,14 +1774,6 @@
           <EntitySet Name="UdzielonaPomoc" EntityType="Self.UdzielonaPomoc" />
           <EntitySet Name="ZespolRatunkowy" EntityType="Self.ZespolRatunkowy" />
           <EntitySet Name="ZlecenieWyjazdu" EntityType="Self.ZlecenieWyjazdu" />
-          <AssociationSet Name="FK_CzlonekZespolu_Pracownik" Association="Self.FK_CzlonekZespolu_Pracownik">
-            <End Role="Pracownik" EntitySet="Pracownik" />
-            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CzlonekZespolu_Zespol" Association="Self.FK_CzlonekZespolu_Zespol">
-            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
-            <End Role="CzlonekZespolu" EntitySet="CzlonekZespolu" />
-          </AssociationSet>
           <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
             <End Role="Faktura" EntitySet="Faktura" />
@@ -1927,31 +1878,69 @@
             <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
             <End Role="ZlecenieWyjazdu" EntitySet="ZlecenieWyjazdu" />
           </AssociationSet>
+          <EntitySet Name="ZespolPracownik" EntityType="MedicalModel.ZespolPracownik" />
+          <AssociationSet Name="FK_ZP_Pracownik" Association="MedicalModel.FK_ZP_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="ZespolPracownik" EntitySet="ZespolPracownik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZP_Zespol" Association="MedicalModel.FK_ZP_Zespol">
+            <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
+            <End Role="ZespolPracownik" EntitySet="ZespolPracownik" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ZespolPracownik">
+          <Key>
+            <PropertyRef Name="IdZespoluPracownika" />
+          </Key>
+          <Property Name="IdZespoluPracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdZespolu" Type="Int32" Nullable="false" />
+          <Property Name="IdPracownika" Type="Int32" Nullable="false" />
+          <Property Name="RolaWZespole" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataDolaczenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataOpuszczenia" Type="DateTime" Precision="0" />
+          <Property Name="PowodZmiany" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DataPrzypisania" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="KiedyDodal" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="KtoDodal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyModyfikowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoModyfikowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KiedyWykasowal" Type="DateTime" Precision="7" />
+          <Property Name="KtoWykasowal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WersjaDanych" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pracownik" Relationship="MedicalModel.FK_ZP_Pracownik" FromRole="ZespolPracownik" ToRole="Pracownik" />
+          <NavigationProperty Name="ZespolRatunkowy" Relationship="MedicalModel.FK_ZP_Zespol" FromRole="ZespolPracownik" ToRole="ZespolRatunkowy" />
+        </EntityType>
+        <Association Name="FK_ZP_Pracownik">
+          <End Type="MedicalModel.Pracownik" Role="Pracownik" Multiplicity="1" />
+          <End Type="MedicalModel.ZespolPracownik" Role="ZespolPracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="ZespolPracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZP_Zespol">
+          <End Type="MedicalModel.ZespolRatunkowy" Role="ZespolRatunkowy" Multiplicity="1" />
+          <End Type="MedicalModel.ZespolPracownik" Role="ZespolPracownik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZespolRatunkowy">
+              <PropertyRef Name="IdZespolu" />
+            </Principal>
+            <Dependent Role="ZespolPracownik">
+              <PropertyRef Name="IdZespolu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MedicalModelStoreContainer" CdmEntityContainer="MedicalEntities">
-          <EntitySetMapping Name="CzlonekZespolu">
-            <EntityTypeMapping TypeName="MedicalModel.CzlonekZespolu">
-              <MappingFragment StoreEntitySet="CzlonekZespolu">
-                <ScalarProperty Name="IdCzlonka" ColumnName="IdCzlonka" />
-                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
-                <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
-                <ScalarProperty Name="DataDolaczenia" ColumnName="DataDolaczenia" />
-                <ScalarProperty Name="DataOpuszczenia" ColumnName="DataOpuszczenia" />
-                <ScalarProperty Name="RolaWZespole" ColumnName="RolaWZespole" />
-                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
-                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
-                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
-                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
-                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
-                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Faktura">
             <EntityTypeMapping TypeName="MedicalModel.Faktura">
               <MappingFragment StoreEntitySet="Faktura">
@@ -2412,6 +2401,28 @@
                 <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
                 <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
                 <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZespolPracownik">
+            <EntityTypeMapping TypeName="MedicalModel.ZespolPracownik">
+              <MappingFragment StoreEntitySet="ZespolPracownik">
+                <ScalarProperty Name="WersjaDanych" ColumnName="WersjaDanych" />
+                <ScalarProperty Name="KtoWykasowal" ColumnName="KtoWykasowal" />
+                <ScalarProperty Name="KiedyWykasowal" ColumnName="KiedyWykasowal" />
+                <ScalarProperty Name="KtoModyfikowal" ColumnName="KtoModyfikowal" />
+                <ScalarProperty Name="KiedyModyfikowal" ColumnName="KiedyModyfikowal" />
+                <ScalarProperty Name="KtoDodal" ColumnName="KtoDodal" />
+                <ScalarProperty Name="KiedyDodal" ColumnName="KiedyDodal" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="DataPrzypisania" ColumnName="DataPrzypisania" />
+                <ScalarProperty Name="PowodZmiany" ColumnName="PowodZmiany" />
+                <ScalarProperty Name="DataOpuszczenia" ColumnName="DataOpuszczenia" />
+                <ScalarProperty Name="DataDolaczenia" ColumnName="DataDolaczenia" />
+                <ScalarProperty Name="RolaWZespole" ColumnName="RolaWZespole" />
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
+                <ScalarProperty Name="IdZespoluPracownika" ColumnName="IdZespoluPracownika" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

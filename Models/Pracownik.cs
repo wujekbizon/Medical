@@ -17,10 +17,10 @@ namespace Medical.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pracownik()
         {
-            this.CzlonekZespolu = new HashSet<CzlonekZespolu>();
             this.OcenaZespolu = new HashSet<OcenaZespolu>();
             this.UdzielonaPomoc = new HashSet<UdzielonaPomoc>();
             this.ZlecenieWyjazdu = new HashSet<ZlecenieWyjazdu>();
+            this.ZespolPracownik = new HashSet<ZespolPracownik>();
         }
     
         public int IdPracownika { get; set; }
@@ -56,8 +56,6 @@ namespace Medical.Models
         public int WersjaDanych { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CzlonekZespolu> CzlonekZespolu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OcenaZespolu> OcenaZespolu { get; set; }
         public virtual Placowka Placowka { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -65,5 +63,7 @@ namespace Medical.Models
         public virtual RolaPracownika RolaPracownika { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ZlecenieWyjazdu> ZlecenieWyjazdu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ZespolPracownik> ZespolPracownik { get; set; }
     }
 }

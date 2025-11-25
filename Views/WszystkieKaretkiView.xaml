@@ -13,22 +13,10 @@
         </Grid.RowDefinitions>
         <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding IdKaretki}" />
                 <DataGridTextColumn Header="Numer Rejestracyjny" Binding="{Binding NumerRejestracyjny}" />
                 <DataGridTextColumn Header="Typ" Binding="{Binding TypKaretki}" />
-                <DataGridTextColumn Header="Rok" Binding="{Binding RokProdukcji}" />
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                <DataGridTextColumn Header="Przebieg" Binding="{Binding PrzebiegKm}" />
-                <DataGridTextColumn Header="Data Ostatniego Przeglądu" Binding="{Binding DataOstatniegoPrzegladu}" />
-                <DataGridTextColumn Header="Ważność Ubezpieczenia" Binding="{Binding DataWaznosciUbezpieczenia}" />
-                <DataGridTextColumn Header="Pojemność silnika" Binding="{Binding PojemnoscSilnika}" />
-                <DataGridTextColumn Header="MocKM" Binding="{Binding MocSilnikaKM}" />
-                <DataGridTextColumn Header="VIN" Binding="{Binding NumerVIN}" />
-                <DataGridTextColumn Header="Rodzaj Paliwa" Binding="{Binding TypPaliwa}" />
-                <DataGridTextColumn Header="Kolor" Binding="{Binding Kolor}" />
-                <DataGridTextColumn Header="Liczba Miejsc" Binding="{Binding LiczbaMiejsc}" />
-                <DataGridTextColumn Header="Data Nabycia" Binding="{Binding DataNabycia}" />
-                <DataGridTextColumn Header="Żywotność" Binding="{Binding SzacowanaZywotnoscLat}" />
+                <DataGridTextColumn Header="Placówka Zarzadzająca" Binding="{Binding PlacowkaZarzadzajaca}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

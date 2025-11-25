@@ -7,6 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Rola" Binding="{Binding NazwaRoli}" />
+                <DataGridTextColumn Header="Poziom Uprawnień" Binding="{Binding PoziomUprawnien}" />
+                <DataGridTextColumn Header="Opis" Binding="{Binding OpisObowiazkow}" />
+                <DataGridTextColumn Header="Minimalne Wykształcenie" Binding="{Binding MinimalneWyksztalcenie}" />
+                <DataGridTextColumn Header="Wymagane Szkolenia" Binding="{Binding WymaganeSzkolenia}" />
+                <DataGridTextColumn Header="Liczba Godziń Tygodniowo" Binding="{Binding MaksymalnaLiczbaGodzinTygodniowo}" />
+                <DataGridTextColumn Header="Wymaga Licencji" Binding="{Binding CzyWymagaLicencji}" />
+                <DataGridTextColumn Header="Średnia Płaca" Binding="{Binding SredniaPlaca}" />
+                <DataGridTextColumn Header="Benefity" Binding="{Binding Benefity}" />
+                <DataGridTextColumn Header="Data Aktualizacji" Binding="{Binding DataOstatniejAktualizacji}" />
+                <DataGridTextColumn Header="Nazwa Działu" Binding="{Binding NazwaDzialu}" />
+                <DataGridTextColumn Header="Lider Zespołu" Binding="{Binding CzyJestLideremZespolu}" />
+                <DataGridTextColumn Header="Limit Zatrudnienia" Binding="{Binding LimitZatrudnienia}" />
+                <DataGridTextColumn Header="Wymagane Umiejetności" Binding="{Binding WymaganeUmiejetnosci}" />
+                <DataGridTextColumn Header="Następny Etapu Kariery" Binding="{Binding RolaNastepnegoEtapuKariery}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

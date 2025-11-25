@@ -9,6 +9,7 @@ namespace Medical.ViewModels
     public class WszystkieFakturyViewModel : WorkspaceViewModel
     {
         public WszystkieFakturyViewModel()
+            : base()
         {
             base.DisplayName = "Faktury";
         }
