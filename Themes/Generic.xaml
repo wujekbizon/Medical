@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:Medical.Views"
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF">
-    
+
     <Style TargetType="{x:Type local:WszystkieViewBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -14,9 +14,10 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+
                         <Border Grid.Row="0"
-                                Background="{DynamicResource DarkSurfaceVariant}"
-                                BorderBrush="{DynamicResource BorderDark}"
+                                Background="{DynamicResource MaterialDesignToolBarBackground}"
+                                BorderBrush="{DynamicResource MaterialDesignDivider}"
                                 BorderThickness="0,0,0,1"
                                 Padding="16,12">
                             <Grid>
@@ -29,7 +30,7 @@
                                            FontSize="18"
                                            FontWeight="Medium"
                                            VerticalAlignment="Center"
-                                           Foreground="{DynamicResource TextPrimary}"/>
+                                           Foreground="{DynamicResource MaterialDesignBody}"/>
 
                                 <StackPanel Grid.Column="1"
                                             Orientation="Horizontal">
@@ -42,9 +43,11 @@
                                             <materialIcons:MaterialIcon Kind="Refresh"
                                                                         Width="18"
                                                                         Height="18"
-                                                                        Margin="0,0,8,0"/>
+                                                                        Margin="0,0,8,0"
+                                                                        Foreground="{DynamicResource MaterialDesignBody}"/>
                                             <TextBlock Text="Odśwież"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center"
+                                                       Foreground="{DynamicResource MaterialDesignBody}"/>
                                         </StackPanel>
                                     </Button>
 
@@ -52,14 +55,17 @@
                                             Style="{DynamicResource MaterialDesignRaisedButton}"
                                             ToolTip="Dodaj nowy"
                                             Margin="4,0"
-                                            Padding="12,6">
+                                            Padding="12,6"
+                                            Background="{StaticResource AccentPurple}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialIcons:MaterialIcon Kind="Plus"
                                                                         Width="18"
                                                                         Height="18"
-                                                                        Margin="0,0,8,0"/>
+                                                                        Margin="0,0,8,0"
+                                                                        Foreground="White"/>
                                             <TextBlock Text="Dodaj"
-                                                       VerticalAlignment="Center"/>
+                                                       VerticalAlignment="Center"
+                                                       Foreground="White"/>
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
@@ -67,8 +73,8 @@
                         </Border>
 
                         <Border Grid.Row="1"
-                                Background="{DynamicResource DarkSurface}"
-                                BorderBrush="{DynamicResource BorderDark}"
+                                Background="{DynamicResource MaterialDesignCardBackground}"
+                                BorderBrush="{DynamicResource MaterialDesignDivider}"
                                 BorderThickness="0,0,0,1"
                                 Padding="16,12">
                             <Expander Header="Filtry wyszukiwania"
@@ -86,6 +92,7 @@
                                 </StackPanel>
                             </Expander>
                         </Border>
+
                         <ContentPresenter Grid.Row="2"
                                           Margin="8"/>
                     </Grid>
@@ -106,8 +113,8 @@
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0"
-                                Background="{DynamicResource DarkSurfaceVariant}"
-                                BorderBrush="{DynamicResource BorderDark}"
+                                Background="{DynamicResource MaterialDesignToolBarBackground}"
+                                BorderBrush="{DynamicResource MaterialDesignDivider}"
                                 BorderThickness="0,0,0,1"
                                 Padding="16,12">
                             <Grid>
@@ -122,16 +129,17 @@
                                                             Grid.Column="0"
                                                             VerticalAlignment="Center"
                                                             Margin="0,0,12,0"
-                                                            Foreground="{DynamicResource AccentPurple}"/>
+                                                            Foreground="{StaticResource AccentPurple}"/>
 
                                 <TextBlock Grid.Column="1"
                                            Text="{Binding DisplayName}"
                                            FontSize="18"
                                            FontWeight="Medium"
                                            VerticalAlignment="Center"
-                                           Foreground="{DynamicResource TextPrimary}"/>
+                                           Foreground="{DynamicResource MaterialDesignBody}"/>
                             </Grid>
                         </Border>
+
                         <ScrollViewer Grid.Row="1"
                                       VerticalScrollBarVisibility="Auto"
                                       Padding="24,16">
@@ -139,8 +147,8 @@
                         </ScrollViewer>
 
                         <Border Grid.Row="2"
-                                Background="{DynamicResource DarkSurfaceVariant}"
-                                BorderBrush="{DynamicResource BorderDark}"
+                                Background="{DynamicResource MaterialDesignToolBarBackground}"
+                                BorderBrush="{DynamicResource MaterialDesignDivider}"
                                 BorderThickness="0,1,0,0"
                                 Padding="16,12">
                             <StackPanel Orientation="Horizontal"
@@ -154,14 +162,17 @@
 
                                 <Button Command="{Binding SaveAndCloseCommand}"
                                         Style="{DynamicResource MaterialDesignRaisedButton}"
-                                        ToolTip="Zapisz i zamknij">
+                                        ToolTip="Zapisz i zamknij"
+                                        Background="{StaticResource AccentPurple}">
                                     <StackPanel Orientation="Horizontal">
                                         <materialIcons:MaterialIcon Kind="ContentSaveCheck"
                                                                     Width="18"
                                                                     Height="18"
-                                                                    Margin="0,0,8,0"/>
+                                                                    Margin="0,0,8,0"
+                                                                    Foreground="White"/>
                                         <TextBlock Text="Zapisz i Zamknij"
-                                                   VerticalAlignment="Center"/>
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White"/>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>

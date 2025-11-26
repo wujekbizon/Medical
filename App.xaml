@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="Themes/Generic.xaml"/>
                 <ResourceDictionary Source="Views/MainWindowResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <helper:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <helper:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
@@ -22,14 +23,12 @@
             
             <CubicEase x:Key="EaseOut" EasingMode="EaseOut"/>
             <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut"/>
-            <SolidColorBrush x:Key="DarkBackground" Color="#1E1E1E"/>
-            <SolidColorBrush x:Key="DarkSurface" Color="#252526"/>
-            <SolidColorBrush x:Key="DarkSurfaceVariant" Color="#2D2D30"/>
+
+            <Color x:Key="AccentPurpleColor">#7B68EE</Color>
             <SolidColorBrush x:Key="AccentPurple" Color="#7B68EE"/>
+            <SolidColorBrush x:Key="AccentPurpleLight" Color="#9D8FEF"/>
+            <SolidColorBrush x:Key="AccentPurpleDark" Color="#5A4FCF"/>
             <SolidColorBrush x:Key="AccentBlue" Color="#569CD6"/>
-            <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
-            <SolidColorBrush x:Key="TextSecondary" Color="#CCCCCC"/>
-            <SolidColorBrush x:Key="BorderDark" Color="#3F3F46"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

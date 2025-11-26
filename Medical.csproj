@@ -108,6 +108,7 @@
     </ApplicationDefinition>
     <Compile Include="Helper\Converters.cs" />
     <Compile Include="Helper\MenuCommands.cs" />
+    <Compile Include="Helper\ThemeHelper.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\HistoriaNaprawForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KaretkaForAllView.cs" />
