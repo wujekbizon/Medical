@@ -18,12 +18,13 @@ namespace Medical.ViewModels
         #region Fields
         private ReadOnlyCollection<CommandSection> _Commands;
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
+        private bool _isLoading;
+        private string _loadingMessage = "Ładowanie...";
         #endregion
 
         #region Commands
-        
 
-        public ReadOnlyCollection<CommandSection> Commands 
+        public ReadOnlyCollection<CommandSection> Commands
         {
             get
             {
@@ -212,6 +213,7 @@ namespace Medical.ViewModels
         #endregion
 
         #region Workspaces
+
         public ObservableCollection<WorkspaceViewModel> Workspaces
         {
             get
@@ -224,6 +226,7 @@ namespace Medical.ViewModels
                 return _Workspaces;
             }
         }
+
         private void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null && e.NewItems.Count != 0)
@@ -233,15 +236,105 @@ namespace Medical.ViewModels
             if (e.OldItems != null && e.OldItems.Count != 0)
                 foreach (WorkspaceViewModel workspace in e.OldItems)
                     workspace.RequestClose -= this.OnWorkspaceRequestClose;
+
+            // Notify that HasNoWorkspaces may have changed
+            OnPropertyChanged(() => HasNoWorkspaces);
         }
+
         private void OnWorkspaceRequestClose(object sender, EventArgs e)
         {
             WorkspaceViewModel workspace = sender as WorkspaceViewModel;
-            //workspace.Dispos();
+            //workspace.Dispose();
             this.Workspaces.Remove(workspace);
         }
 
         #endregion // Workspaces
+
+        #region Loading State Properties
+
+        /// <summary>
+        /// Indicates whether a loading operation is in progress.
+        /// Bind this to the LoadingOverlay's IsLoading property.
+        /// </summary>
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                if (_isLoading != value)
+                {
+                    _isLoading = value;
+                    OnPropertyChanged(() => IsLoading);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The message to display in the loading overlay.
+        /// </summary>
+        public string LoadingMessage
+        {
+            get { return _loadingMessage; }
+            set
+            {
+                if (_loadingMessage != value)
+                {
+                    _loadingMessage = value;
+                    OnPropertyChanged(() => LoadingMessage);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns true when there are no workspaces open.
+        /// Used to show the welcome/map view.
+        /// </summary>
+        public bool HasNoWorkspaces
+        {
+            get { return _Workspaces == null || _Workspaces.Count == 0; }
+        }
+
+        #endregion
+
+        #region Loading Helper Methods
+
+        /// <summary>
+        /// Shows the loading overlay with the specified message.
+        /// </summary>
+        /// <param name="message">The loading message to display.</param>
+        public void ShowLoading(string message = "Ładowanie...")
+        {
+            LoadingMessage = message;
+            IsLoading = true;
+        }
+
+        /// <summary>
+        /// Hides the loading overlay.
+        /// </summary>
+        public void HideLoading()
+        {
+            IsLoading = false;
+        }
+
+        /// <summary>
+        /// Executes an async operation while showing the loading overlay.
+        /// </summary>
+        /// <param name="action">The async action to execute.</param>
+        /// <param name="loadingMessage">The message to show during loading.</param>
+        public async Task ExecuteWithLoadingAsync(Func<Task> action, string loadingMessage = "Ładowanie...")
+        {
+            try
+            {
+                ShowLoading(loadingMessage);
+                await action();
+            }
+            finally
+            {
+                HideLoading();
+            }
+        }
+
+        #endregion
 
         #region Private Helpers
 
@@ -250,6 +343,7 @@ namespace Medical.ViewModels
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }
+
         private void ShowAllView<T>() where T : WorkspaceViewModel, new()
         {
             T workspace = this.Workspaces.OfType<T>().FirstOrDefault();
@@ -261,6 +355,7 @@ namespace Medical.ViewModels
 
             this.SetActiveWorkspace(workspace);
         }
+
         private void SetActiveWorkspace(WorkspaceViewModel workspace)
         {
             Debug.Assert(this.Workspaces.Contains(workspace));
@@ -269,6 +364,7 @@ namespace Medical.ViewModels
             if (collectionView != null)
                 collectionView.MoveCurrentTo(workspace);
         }
+
         #endregion
     }
 }

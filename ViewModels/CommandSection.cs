@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace Medical.ViewModels
 {
-    // <summary>
-    /// Represents a section of commands in the sidebar (e.g., "AKTYWNE", "KSIĘGOWE")
-    /// Each section has a header and a list of commands
-    /// </summary>
     public class CommandSection
     {
         public string SectionName { get; set; }
