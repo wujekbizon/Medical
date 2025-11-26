@@ -7,6 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa Zespołu" Binding="{Binding NazwaZespolu}" />
+                <DataGridTextColumn Header="Pracownik" Binding="{Binding Pracownik}" />
+                <DataGridTextColumn Header="Rola w Zespole" Binding="{Binding RolaWZespole}" />
+                <DataGridTextColumn Header="Data Dołączenia" Binding="{Binding DataDolaczenia, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Data Opuszczenia" Binding="{Binding DataOpuszczenia, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Powód Zmiany" Binding="{Binding PowodZmiany}" />
+                <DataGridTextColumn Header="Data Przypisania" Binding="{Binding DataPrzypisania, StringFormat={}{0:dd.MM.yyyy}}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

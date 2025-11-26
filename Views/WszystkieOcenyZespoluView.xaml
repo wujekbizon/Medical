@@ -7,6 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ocena" Binding="{Binding Ocena}" />
+                <DataGridTextColumn Header="Data Oceny" Binding="{Binding DataOceny, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Komentarz" Binding="{Binding Komentarz}" />
+                <DataGridTextColumn Header="Kryterium Oceny" Binding="{Binding KryteriumOceny}" />
+                <DataGridTextColumn Header="Waga Oceny" Binding="{Binding WagaOceny}" />
+                <DataGridTextColumn Header="Ocena Czasu Reakcji" Binding="{Binding OcenaCzasuReakcji}" />
+                <DataGridTextColumn Header="Ocena Profesjonalizmu" Binding="{Binding OcenaProfesjonalizmu}" />
+                <DataGridTextColumn Header="Ocena Skuteczności" Binding="{Binding OcenaSkutecznosci}" />
+                <DataGridTextColumn Header="Pacjent Dal Opinie" Binding="{Binding PacjentDalOpinie}" />
+                <DataGridTextColumn Header="Sugerowane Ulepszenia" Binding="{Binding SugerowaneUlepszenia}" />
+                <DataGridTextColumn Header="Ocena Stosowania Standardów" Binding="{Binding OcenaStosowaniaStandardow}" />
+                <DataGridTextColumn Header="Nazwa Zespołu" Binding="{Binding NazwaZespolu}" />
+                <DataGridTextColumn Header="Oceniający" Binding="{Binding Oceniajacy}" />
+                <DataGridTextColumn Header="Adres Zdarzenia" Binding="{Binding AdresZdarzenia}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

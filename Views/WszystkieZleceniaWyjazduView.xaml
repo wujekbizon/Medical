@@ -7,6 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Data i Czas Zgłoszenia" Binding="{Binding DataCzasZgloszenia, StringFormat={}{0:dd.MM.yyyy HH:mm:ss}}" />
+                <DataGridTextColumn Header="Adres Zdarzenia" Binding="{Binding AdresZdarzenia}" />
+                <DataGridTextColumn Header="Typ Zdarzenia" Binding="{Binding TypZdarzenia}" />
+                <DataGridTextColumn Header="Priorytet" Binding="{Binding Priorytet}" />
+                <DataGridTextColumn Header="Status Zlecenia" Binding="{Binding StatusZlecenia}" />
+                <DataGridTextColumn Header="Opis Zdarzenia" Binding="{Binding OpisZdarzenia}" />
+                <DataGridTextColumn Header="Czas Wyjazdu" Binding="{Binding CzasWyjazdu, StringFormat={}{0:dd.MM.yyyy HH:mm:ss}}" />
+                <DataGridTextColumn Header="Czas Przyjazdu Na Miejsce" Binding="{Binding CzasPrzyjazduNaMiejsce, StringFormat={}{0:dd.MM.yyyy HH:mm:ss}}" />
+                <DataGridTextColumn Header="Czas Powrotu Do Bazy" Binding="{Binding CzasPowrotuDoBazy, StringFormat={}{0:dd.MM.yyyy HH:mm:ss}}" />
+                <DataGridTextColumn Header="Telefon Dzwoniącego" Binding="{Binding TelefonDzwoniacego}" />
+                <DataGridTextColumn Header="Czas Reakcji (sekundy)" Binding="{Binding CzasReakcjiSekundy}" />
+                <DataGridTextColumn Header="Dystans (km)" Binding="{Binding Dystans, StringFormat={}{0:N2}}" />
+                <DataGridTextColumn Header="Liczba Pacjentów" Binding="{Binding LiczbaPacjentow}" />
+                <DataGridTextColumn Header="Warunki Pogodowe" Binding="{Binding WarunkiPogodowe}" />
+                <DataGridTextColumn Header="Wymagane Dodatkowe Wsparcie" Binding="{Binding WymaganeDodatkoweWsparcie}" />
+                <DataGridTextColumn Header="Dyspozytor" Binding="{Binding Dyspozytor}" />
+                <DataGridTextColumn Header="Zespół Ratunkowy" Binding="{Binding NazwaZespolu}" />
+                <DataGridTextColumn Header="Karetka" Binding="{Binding NumerRejestracyjnyKaretki}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

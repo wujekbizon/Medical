@@ -82,7 +82,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\HistoriaNaprawForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KaretkaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\KosztyUtrzymaniaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\OcenaZespoluForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PozycjaFakturyForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PracownikForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\UdzielonaPomocForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\ZespolPracownikForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\ZespolRatunkowyForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\ZleceniaWyjazduForAllView.cs" />
     <Compile Include="Models\Faktura.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>

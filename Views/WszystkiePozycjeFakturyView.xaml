@@ -7,6 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Numer Faktury" Binding="{Binding NumerFaktury}" />
+                <DataGridTextColumn Header="Nazwa Usługi" Binding="{Binding NazwaUslugi}" />
+                <DataGridTextColumn Header="Ilość" Binding="{Binding Ilosc, StringFormat={}{0:N3}}" />
+                <DataGridTextColumn Header="Cena Jednostkowa Netto" Binding="{Binding CenaJednostkowaNetto, StringFormat={}{0:N2} zł, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Stawka VAT" Binding="{Binding StawkaVAT, StringFormat={}{0:N2}}" />
+                <DataGridTextColumn Header="Kwota Netto" Binding="{Binding KwotaNetto, StringFormat={}{0:N2} zł, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Kwota VAT" Binding="{Binding KwotaVAT, StringFormat={}{0:N2} zł, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Kwota Brutto" Binding="{Binding KwotaBrutto, StringFormat={}{0:N2} zł, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Jednostka Miary" Binding="{Binding JednostkaMiary}" />
+                <DataGridTextColumn Header="Kod" Binding="{Binding Kod}" />
+                <DataGridTextColumn Header="Kategoria Pozycji" Binding="{Binding KategoriaPozycji}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

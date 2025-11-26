@@ -7,6 +7,35 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imię" Binding="{Binding Imie}" />
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}" />
+                <DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}" />
+                <DataGridTextColumn Header="Data Urodzenia" Binding="{Binding DataUrodzenia, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Ulica" Binding="{Binding AdresZamieszkania}" />
+                <DataGridTextColumn Header="Miasto" Binding="{Binding Miasto}" />
+                <DataGridTextColumn Header="Kod Pocztowy" Binding="{Binding KodPocztowy}" />
+                <DataGridTextColumn Header="Telefon Służbowy" Binding="{Binding TelefonSluzbowy}" />
+                <DataGridTextColumn Header="Email Służbowy" Binding="{Binding AdresEmailSluzbowy}" />
+                <DataGridTextColumn Header="Rola" Binding="{Binding NazwaRoli}" />
+                <DataGridTextColumn Header="Placówka" Binding="{Binding NazwaPlacowki}" />
+                <DataGridTextColumn Header="Numer Konta Bankowego" Binding="{Binding NumerKontaBankowego}" />
+                <DataGridTextColumn Header="Data Zatrudnienia" Binding="{Binding DataZatrudnienia, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Status Zatrudnienia" Binding="{Binding StatusZatrudnienia}" />
+                <DataGridTextColumn Header="Nr Prawa Wykonywania Zawodu" Binding="{Binding NumerPrawaWykonywaniaZawodu}" />
+                <DataGridTextColumn Header="Kwalifikacje Dodatkowe" Binding="{Binding KwalifikacjeDodatkowe}" />
+                <DataGridTextColumn Header="Data Ważności Badań Lekarskich" Binding="{Binding DataWaznosciBadanLekarskich, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Stawka Godzinowa" Binding="{Binding StawkaGodzinowa, StringFormat={}{0:N2} zł, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Typ Umowy" Binding="{Binding TypUmowy}" />
+                <DataGridTextColumn Header="Liczba Dni Urlopu" Binding="{Binding LiczbaDniUrlopu}" />
+                <DataGridTextColumn Header="Preferowana Zmiana" Binding="{Binding PreferowanaZmiana}" />
+                <DataGridTextColumn Header="Data Ostatniego Szkolenia" Binding="{Binding DataOstatniegoSzkolenia, StringFormat={}{0:dd.MM.yyyy}}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

@@ -7,6 +7,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Rodzaj Kosztu" Binding="{Binding RodzajKosztu}" />
+                <DataGridTextColumn Header="Kwota" Binding="{Binding Kwota, StringFormat={}{0:C2}, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Data Kosztu" Binding="{Binding DataKosztu, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Opis Szczegółowy" Binding="{Binding OpisSzczegolowy}" />
+                <DataGridTextColumn Header="Data Księgowania" Binding="{Binding DataKsiegowania, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Zaksięgowana" Binding="{Binding Zaksiegowana}" />
+                <DataGridTextColumn Header="Okres Rozliczeniowy" Binding="{Binding OkresRozliczeniowy}" />
+                <DataGridTextColumn Header="Nr Dowodu Zakupu" Binding="{Binding NumerDowoduZakupu}" />
+                <DataGridTextColumn Header="Centrum Kosztowe" Binding="{Binding CentrumKosztowe}" />
+                <DataGridTextColumn Header="Cykliczna" Binding="{Binding Cyklczna}" />
+                <DataGridTextColumn Header="Kwota Budżetowa" Binding="{Binding KwotaBudzetowa, StringFormat={}{0:C2}, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Uwagi Księgowe" Binding="{Binding UwagiKsięgowe}" />
+                <DataGridTextColumn Header="Karetka" Binding="{Binding Karetka}" />
+                <DataGridTextColumn Header="Numer Faktury" Binding="{Binding NumerFaktury}" />
+                <DataGridTextColumn Header="Kontrahent" Binding="{Binding NazwaFirmy}" />
+                <DataGridTextColumn Header="Sposób Płatności" Binding="{Binding NazwaSposobuPlatnosci}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

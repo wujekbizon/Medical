@@ -7,6 +7,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Data Pomocy" Binding="{Binding DataPomocy, StringFormat={}{0:dd.MM.yyyy}}" />
+                <DataGridTextColumn Header="Czas Rozpoczęcia" Binding="{Binding CzasRozpoczecia, StringFormat={}{0:hh\\:mm\\:ss}}" />
+                <DataGridTextColumn Header="Czas Zakończenia" Binding="{Binding CzasZakonczenia, StringFormat={}{0:hh\\:mm\\:ss}}" />
+                <DataGridTextColumn Header="Opis Pomocy" Binding="{Binding OpisPomocy}" />
+                <DataGridTextColumn Header="Procedury Medyczne" Binding="{Binding ProceduryMedyczne}" />
+                <DataGridTextColumn Header="Wynik Interwencji" Binding="{Binding WynikInterwencji}" />
+                <DataGridTextColumn Header="Czas Trwania (minuty)" Binding="{Binding CzasTrwaniaMinuty}" />
+                <DataGridTextColumn Header="Lokalizacja Interwencji" Binding="{Binding LokalizacjaInterwencji}" />
+                <DataGridTextColumn Header="Wymagany Sprzęt" Binding="{Binding WymaganySprzet}" />
+                <DataGridTextColumn Header="Wymagał Transportu" Binding="{Binding PacjentWymagalTransportu}" />
+                <DataGridTextColumn Header="Priorytet Interwencji" Binding="{Binding PriorytetInterwencji}" />
+                <DataGridTextColumn Header="Kod Diagnozy ICD-10" Binding="{Binding KodDiagnozyICD10}" />
+                <DataGridTextColumn Header="Szpital Transportu" Binding="{Binding SzpitalTransportu}" />
+                <DataGridTextColumn Header="Stan Pacjenta Przy Przekazaniu" Binding="{Binding StanPacjentaPrzyPrzekazaniu}" />
+                <DataGridTextColumn Header="Udział Policji" Binding="{Binding UdziałPolicji}" />
+                <DataGridTextColumn Header="Pacjent" Binding="{Binding Pacjent}" />
+                <DataGridTextColumn Header="Zespół Ratunkowy" Binding="{Binding NazwaZespolu}" />
+                <DataGridTextColumn Header="Karetka" Binding="{Binding Karetka}" />
+                <DataGridTextColumn Header="Adres Zdarzenia" Binding="{Binding AdresZdarzenia}" />
+                <DataGridTextColumn Header="Autor Raportu" Binding="{Binding AutorRaportu}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

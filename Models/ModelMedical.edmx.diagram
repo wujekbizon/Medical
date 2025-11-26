@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="MedicalModel.PozycjaFaktury" Width="1.5" PointX="17.125" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.Pracownik" Width="1.5" PointX="2.125" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.RolaPracownika" Width="1.5" PointX="5.125" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MedicalModel.SposobPlatnosci" Width="1.5" PointX="1.875" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalModel.SposobPlatnosci" Width="2" PointX="0.875" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.UdzielonaPomoc" Width="1.5" PointX="8.625" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MedicalModel.ZespolRatunkowy" Width="1.5" PointX="13.875" PointY="4.25" IsExpanded="true" />

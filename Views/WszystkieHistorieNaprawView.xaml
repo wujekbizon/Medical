@@ -7,6 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#252526">
-        <Label Content="To beda wyswietlanie wszystkich kontrahentow"></Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Rodzaj Naprawy" Binding="{Binding RodzajNaprawy}" />
+                <DataGridTextColumn Header="Opis Naprawy" Binding="{Binding OpisNaprawy}" />
+                <DataGridTextColumn Header="Data Rozpoczęcia" Binding="{Binding DataRozpoczecia, StringFormat={}{0:dd.MM.yyyy HH:mm}}" />
+                <DataGridTextColumn Header="Data Zakończenia" Binding="{Binding DataZakonczenia, StringFormat={}{0:dd.MM.yyyy HH:mm}}" />
+                <DataGridTextColumn Header="Koszt Naprawy" Binding="{Binding KosztNaprawy, StringFormat={}{0:N2} zł, ConverterCulture=pl-PL}" />
+                <DataGridTextColumn Header="Czas Trwania Naprawy" Binding="{Binding CzasTrwaniaNaprawy, StringFormat={}{0:N2}}" />
+                <DataGridTextColumn Header="Gwarancja" Binding="{Binding GwarancjaMiesiecy}" />
+                <DataGridTextColumn Header="Stan Karetki Przed Naprawą" Binding="{Binding StanKaretkiPrzedNaprawa}" />
+                <DataGridTextColumn Header="Stan Karetki Po Naprawie" Binding="{Binding StanKaretkiPoNaprawie}" />
+                <DataGridTextColumn Header="Zatwierdzona" Binding="{Binding CzyZatwierdzona}" />
+                <DataGridTextColumn Header="Karetka" Binding="{Binding Karetka}" />
+                <DataGridTextColumn Header="Numer Faktury" Binding="{Binding NumerFaktury}" />
+                <DataGridTextColumn Header="Nazwa Firmy" Binding="{Binding NazwaFirmy}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

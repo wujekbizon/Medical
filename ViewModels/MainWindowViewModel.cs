@@ -144,11 +144,11 @@ namespace Medical.ViewModels
                 new BaseCommand(() => this.CreateView(new NowyPracownikViewModel())),
                 MaterialIconKind.AccountPlus));
             zespolySection.Commands.Add(new CommandViewModel(
-                "Zespoły-Pracownicy",
+                "Skład Zespołów",
                 new BaseCommand(() => this.ShowAllView<WszystkieZespolPracownikViewModel>()),
                 MaterialIconKind.AccountMultiple));
             zespolySection.Commands.Add(new CommandViewModel(
-                "Nowy Zespół-Pracownik",
+                "Nowy Członek Zespołu",
                 new BaseCommand(() => this.CreateView(new NowyZespolPracownikViewModel())),
                 MaterialIconKind.AccountPlusOutline));
             zespolySection.Commands.Add(new CommandViewModel(
