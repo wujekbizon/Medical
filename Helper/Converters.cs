@@ -5,10 +5,6 @@ using System.Windows.Data;
 
 namespace Medical.Helper
 {
-    /// <summary>
-    /// Converts a boolean value to Visibility.
-    /// true = Visible, false = Collapsed
-    /// </summary>
     public class BoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -43,11 +39,6 @@ namespace Medical.Helper
         }
     }
 
-    /// <summary>
-    /// Converts a boolean to Visibility with inverse logic.
-    /// true = Collapsed, false = Visible
-    /// Useful for showing content when a condition is false.
-    /// </summary>
     public class InverseBoolToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -70,12 +61,6 @@ namespace Medical.Helper
             return true;
         }
     }
-
-    /// <summary>
-    /// Converts a collection count to Visibility.
-    /// Count > 0 = Visible, Count = 0 = Collapsed
-    /// Use parameter "inverse" to invert the logic.
-    /// </summary>
     public class CountToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

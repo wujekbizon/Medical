@@ -112,7 +112,7 @@
                 <MenuItem x:Name="MenuPlik" Style="{StaticResource AccentMenuItemStyle}">
                     <MenuItem.Header>
                         <TextBlock>
-                            <Run TextDecorations="Underline" Text="P" Foreground="{DynamicResource PrimaryHueMidBrush}" FontWeight="SemiBold"/><Run Text="lik" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <Run TextDecorations="Underline" Text="P" Foreground="{DynamicResource AccentPurple}" FontWeight="SemiBold"/><Run Text="lik" Foreground="{DynamicResource MaterialDesignBody}"/>
                         </TextBlock>
                     </MenuItem.Header>
                     <MenuItem Header="Nowy" InputGestureText="Ctrl+N">

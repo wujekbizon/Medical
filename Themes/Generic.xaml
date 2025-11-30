@@ -14,7 +14,6 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-
                         <Border Grid.Row="0"
                                 Background="{DynamicResource MaterialDesignToolBarBackground}"
                                 BorderBrush="{DynamicResource MaterialDesignDivider}"
@@ -56,7 +55,7 @@
                                             ToolTip="Dodaj nowy"
                                             Margin="4,0"
                                             Padding="12,6"
-                                            Background="{StaticResource AccentPurple}">
+                                            Background="{DynamicResource AccentPurple}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialIcons:MaterialIcon Kind="Plus"
                                                                         Width="18"
@@ -71,7 +70,6 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-
                         <Border Grid.Row="1"
                                 Background="{DynamicResource MaterialDesignCardBackground}"
                                 BorderBrush="{DynamicResource MaterialDesignDivider}"
@@ -92,7 +90,6 @@
                                 </StackPanel>
                             </Expander>
                         </Border>
-
                         <ContentPresenter Grid.Row="2"
                                           Margin="8"/>
                     </Grid>
@@ -129,7 +126,7 @@
                                                             Grid.Column="0"
                                                             VerticalAlignment="Center"
                                                             Margin="0,0,12,0"
-                                                            Foreground="{StaticResource AccentPurple}"/>
+                                                            Foreground="{DynamicResource AccentPurple}"/>
 
                                 <TextBlock Grid.Column="1"
                                            Text="{Binding DisplayName}"
@@ -139,13 +136,11 @@
                                            Foreground="{DynamicResource MaterialDesignBody}"/>
                             </Grid>
                         </Border>
-
                         <ScrollViewer Grid.Row="1"
                                       VerticalScrollBarVisibility="Auto"
                                       Padding="24,16">
                             <ContentPresenter/>
                         </ScrollViewer>
-
                         <Border Grid.Row="2"
                                 Background="{DynamicResource MaterialDesignToolBarBackground}"
                                 BorderBrush="{DynamicResource MaterialDesignDivider}"
@@ -163,7 +158,7 @@
                                 <Button Command="{Binding SaveAndCloseCommand}"
                                         Style="{DynamicResource MaterialDesignRaisedButton}"
                                         ToolTip="Zapisz i zamknij"
-                                        Background="{StaticResource AccentPurple}">
+                                        Background="{DynamicResource AccentPurple}">
                                     <StackPanel Orientation="Horizontal">
                                         <materialIcons:MaterialIcon Kind="ContentSaveCheck"
                                                                     Width="18"
@@ -182,5 +177,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>
