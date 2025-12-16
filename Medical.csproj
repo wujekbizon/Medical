@@ -109,13 +109,17 @@
     <Compile Include="Helper\Converters.cs" />
     <Compile Include="Helper\MenuCommands.cs" />
     <Compile Include="Helper\ThemeHelper.cs" />
+    <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\ZespolRatunkowyB.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\HistoriaNaprawForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KaretkaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
     <Compile Include="Models\EntitiesForView\KosztyUtrzymaniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\OcenaZespoluForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PozycjaFakturyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PracownikForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\RankingZespolowForAllView.cs" />
     <Compile Include="Models\EntitiesForView\UdzielonaPomocForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ZespolPracownikForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ZespolRatunkowyForAllView.cs" />
@@ -208,6 +212,7 @@
     <Compile Include="ViewModels\NowySposobPlatnosciViewModel.cs" />
     <Compile Include="ViewModels\NowyZespolPracownikViewModel.cs" />
     <Compile Include="ViewModels\NowyZespolRatunkowyViewModel.cs" />
+    <Compile Include="ViewModels\RankingEfektywnosciZespolowMedycznychViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\WszyscyKontrahenciViewModel.cs" />
     <Compile Include="ViewModels\WszyscyPacjenciViewModel.cs" />
@@ -278,6 +283,9 @@
     </Compile>
     <Compile Include="Views\NowyZespolRatunkowyView.xaml.cs">
       <DependentUpon>NowyZespolRatunkowyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RankingEfektywnosciZespolowMedycznychView.xaml.cs">
+      <DependentUpon>RankingEfektywnosciZespolowMedycznychView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszyscyKontrahenciView.xaml.cs">
       <DependentUpon>WszyscyKontrahenciView.xaml</DependentUpon>
@@ -419,6 +427,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowyZespolRatunkowyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RankingEfektywnosciZespolowMedycznychView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

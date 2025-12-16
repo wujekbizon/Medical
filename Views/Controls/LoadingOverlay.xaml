@@ -5,15 +5,12 @@
              >
 
     <UserControl.Resources>
-        <!-- Spinning Animation -->
         <Storyboard x:Key="SpinAnimation" RepeatBehavior="Forever">
             <DoubleAnimation 
                 Storyboard.TargetName="SpinnerIcon"
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
                 From="0" To="360" Duration="0:0:1"/>
         </Storyboard>
-
-        <!-- Pulsing Animation for the ring -->
         <Storyboard x:Key="PulseAnimation" RepeatBehavior="Forever">
             <DoubleAnimation 
                 Storyboard.TargetName="PulseRing"
@@ -31,22 +28,16 @@
                 From="0.9" To="1.1" Duration="0:0:0.8"
                 AutoReverse="True"/>
         </Storyboard>
-
-        <!-- Fade in animation -->
         <Storyboard x:Key="FadeInAnimation">
             <DoubleAnimation 
                 Storyboard.TargetProperty="Opacity"
                 From="0" To="1" Duration="0:0:0.3"/>
         </Storyboard>
-
-        <!-- Fade out animation -->
         <Storyboard x:Key="FadeOutAnimation">
             <DoubleAnimation 
                 Storyboard.TargetProperty="Opacity"
                 From="1" To="0" Duration="0:0:0.3"/>
         </Storyboard>
-
-        <!-- Dot bounce animation for loading dots -->
         <Storyboard x:Key="DotsAnimation" RepeatBehavior="Forever">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Dot1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                 <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
@@ -98,7 +89,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         
             <Grid Width="120" Height="120" Margin="0,0,0,24">
-                <!-- Pulsing outer ring -->
+         
                 <Ellipse x:Name="PulseRing"
                          Width="100" Height="100"
                          Stroke="{DynamicResource AccentPurple}"
@@ -110,12 +101,10 @@
                     </Ellipse.RenderTransform>
                 </Ellipse>
 
-                <!-- Inner circle background -->
                 <Ellipse Width="80" Height="80"
                          Fill="{DynamicResource DarkSurface}"
                          Opacity="0.9"/>
 
-                <!-- Spinning medical icon -->
                 <materialIcons:MaterialIcon 
                     x:Name="SpinnerIcon"
                     Kind="HospitalBox"
@@ -130,7 +119,6 @@
                 </materialIcons:MaterialIcon>
             </Grid>
 
-            <!-- Loading text -->
             <TextBlock Text="Ładowanie"
                        FontSize="18"
                        FontWeight="SemiBold"
@@ -138,7 +126,6 @@
                        HorizontalAlignment="Center"
                        Margin="0,0,0,8"/>
 
-            <!-- Animated dots -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20">
                 <Ellipse x:Name="Dot1" Width="8" Height="8" Fill="{DynamicResource AccentPurple}" Margin="4,0">
                     <Ellipse.RenderTransform>
@@ -157,7 +144,6 @@
                 </Ellipse>
             </StackPanel>
 
-            <!-- Optional status text -->
             <TextBlock x:Name="StatusText"
                        Text="Przygotowywanie danych..."
                        FontSize="12"

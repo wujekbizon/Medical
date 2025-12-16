@@ -41,6 +41,18 @@ namespace Medical.ViewModels
         {
             var sections = new List<CommandSection>();
 
+            var bussinesLogic = new CommandSection
+            {
+                SectionName = "Logika Biznesowa",
+                ShowSectionHeader = true
+            };
+
+            bussinesLogic.Commands.Add(new CommandViewModel(
+                "Ranking Efektywności",
+                new BaseCommand(() => this.CreateView(new RankingEfektywnosciZespolowMedycznychViewModel())),
+                MaterialIconKind.Rank));
+            sections.Add(bussinesLogic);
+
             var aktywneSection = new CommandSection
             {
                 SectionName = "AKTYWNE",

@@ -40,7 +40,6 @@ namespace Medical.Helper
             typeof(MenuCommands),
             new InputGestureCollection { new KeyGesture(Key.Q, ModifierKeys.Control) });
 
-        // Patients Menu Commands
         public static readonly RoutedUICommand OpenPatientsMenu = new RoutedUICommand(
             "Otwórz menu Pacjenci",
             "OpenPatientsMenu",

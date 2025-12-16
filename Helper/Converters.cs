@@ -11,7 +11,7 @@ namespace Medical.Helper
         {
             if (value is bool boolValue)
             {
-                // Check for inverse parameter
+              
                 bool inverse = parameter?.ToString()?.ToLower() == "inverse";
 
                 if (inverse)
