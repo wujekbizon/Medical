@@ -1,14 +1,14 @@
-﻿<UserControl x:Class="Medical.Views.RankingEfektywnosciZespolowMedycznychView"
+﻿<UserControl x:Class="Medical.Views.KosztyKaretekView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
-             xmlns:local="clr-namespace:Medical.Views" xmlns:viewmodels="clr-namespace:Medical.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RankingEfektywnosciZespolowMedycznychViewModel}"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:viewmodels="clr-namespace:Medical.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:KosztyKaretekViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
-
     <UserControl.Resources>
         <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
@@ -16,13 +16,11 @@
             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
             <Setter Property="Margin" Value="0,0,0,12"/>
         </Style>
-
         <Style x:Key="LabelStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
         </Style>
-
         <Style x:Key="ResultCardStyle" TargetType="materialDesign:Card">
             <Setter Property="Padding" Value="16"/>
             <Setter Property="Margin" Value="0,8,0,0"/>
@@ -32,7 +30,7 @@
 
     <Grid Background="{DynamicResource MaterialDesignPaper}">
         <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="24">
-            <StackPanel Margin="24" >
+            <StackPanel Margin="24">
                 <materialDesign:Card UniformCornerRadius="8" Padding="20" Margin="0,0,0,20">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -40,22 +38,22 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Border BorderThickness="2"
-                                    BorderBrush="#9D8FEF"
-                            />
-                            <TextBlock Text="Ranking Efektywności Zespołów Ratunkowych" 
+                            <Border BorderThickness="2" BorderBrush="#9D8FEF"/>
+                            <TextBlock Text="Koszty Utrzymania Karetek wg Placówek" 
                                        FontSize="28" 
                                        FontWeight="SemiBold"
                                        Foreground="{DynamicResource MaterialDesignBody}"
-                                       Padding="0,4,0,4"
-                                       />
+                                       Padding="0,4,0,4"/>
                         </StackPanel>
                     </Grid>
                 </materialDesign:Card>
-
                 <materialDesign:Card UniformCornerRadius="8" Padding="20" Margin="0,0,0,20">
                     <StackPanel>
-                        <TextBlock Margin="0,0,0,20" FontSize="16" FontWeight="SemiBold" Text="Filtry i Kryteria" Foreground="{DynamicResource AccentPurple}"/>
+                        <TextBlock Margin="0,0,0,20" 
+                                   FontSize="16" 
+                                   FontWeight="SemiBold" 
+                                   Text="Filtry i Kryteria" 
+                                   Foreground="{DynamicResource AccentPurple}"/>
 
                         <Grid>
                             <Grid.RowDefinitions>
@@ -68,7 +66,6 @@
                                 <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            
                             <DatePicker Grid.Row="0" Grid.Column="0" 
                                         Margin="0,0,0,16"
                                         SelectedDate="{Binding DataOd, UpdateSourceTrigger=PropertyChanged}"
@@ -81,36 +78,29 @@
                                         materialDesign:HintAssist.Hint="Data do"
                                         Style="{DynamicResource MaterialDesignOutlinedDatePicker}"/>
 
-                            <TextBox Grid.Row="1" Grid.Column="0" 
-                                     Margin="0,0,0,16"
-                                     Text="{Binding MinSredniaOcena, StringFormat=N1, UpdateSourceTrigger=PropertyChanged}"
-                                     materialDesign:HintAssist.Hint="Min. średnia ocena (np. 7.0)"
-                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"/>
-
-                            <ComboBox Grid.Row="1" Grid.Column="2" 
+                            <ComboBox Grid.Row="1" Grid.Column="0" 
                                       Margin="0,0,0,16"
-                                      ItemsSource="{Binding ZespolyComboBoxItems}" 
+                                      ItemsSource="{Binding PlacowkiComboBoxItems}" 
                                       DisplayMemberPath="Value"
                                       SelectedValuePath="Key"
-                                      SelectedValue="{Binding IdZespolu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      materialDesign:HintAssist.Hint="Filtruj zespół"
+                                      SelectedValue="{Binding IdPlacowki, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      materialDesign:HintAssist.Hint="Wybierz placówkę"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
-                            
-                            <ComboBox Grid.Row="2" Grid.Column="0"
-                                      Grid.ColumnSpan="3"
+
+                            <ComboBox Grid.Row="1" Grid.Column="2"
                                       Margin="0,0,0,16"
                                       SelectedIndex="{Binding SortOrder, UpdateSourceTrigger=PropertyChanged}"
                                       materialDesign:HintAssist.Hint="Sortowanie"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}">
-                                <ComboBoxItem Content="Średnia ocena (malejąco)"/>
-                                <ComboBoxItem Content="Średnia ocena (rosnąco)"/>
-                                <ComboBoxItem Content="Liczba ocen (malejąco)"/>
-                                <ComboBoxItem Content="Nazwa zespołu (A-Z)"/>
+                                <ComboBoxItem Content="Łączne koszty (malejąco)"/>
+                                <ComboBoxItem Content="Łączne koszty (rosnąco)"/>
+                                <ComboBoxItem Content="Liczba kosztów (malejąco)"/>
                             </ComboBox>
                         </Grid>
 
                         <Separator Background="{DynamicResource MaterialDesignDivider}"
                                    Margin="0,8,0,24"/>
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -119,7 +109,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="1"
-                                    Command="{Binding GenerujRankingCommand}"
+                                    Command="{Binding GenerujRaportCommand}"
                                     Style="{StaticResource MaterialDesignRaisedButton}"
                                     Height="40"
                                     Padding="24,0"
@@ -128,7 +118,7 @@
                                     <materialIcons:MaterialIcon Kind="PlayCircle" 
                                                                Width="20" Height="20" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="GENERUJ RANKING" VerticalAlignment="Center"/>
+                                    <TextBlock Text="GENERUJ RAPORT" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
 
@@ -147,89 +137,46 @@
                         </Grid>
                     </StackPanel>
                 </materialDesign:Card>
-                <Grid Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <materialDesign:Card Grid.Column="0" 
-                                         Style="{StaticResource ResultCardStyle}"
-                                         Margin="0,0,4,0">
-                        <StackPanel>
-                            <TextBlock Text="Zespołów w rankingu" 
-                                       VerticalAlignment="Top" 
-                                       HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
-                            <TextBlock Text="{Binding LiczbaZespolow}" 
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
-                        </StackPanel>
-                    </materialDesign:Card>
-                    <materialDesign:Card Grid.Column="1" 
-                                         Style="{StaticResource ResultCardStyle}"
-                                         Margin="4,0,4,0">
-                        <StackPanel>
-                            <TextBlock Text="Średnia ocena" 
-                                       VerticalAlignment="Top" 
-                                       HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
-                            <TextBlock Text="{Binding OgolnaSredniaOcena, StringFormat=N2}" 
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
-                        </StackPanel>
-                    </materialDesign:Card>
+                <materialDesign:Card UniformCornerRadius="8" 
+                                     Padding="20" 
+                                     Margin="0,0,0,20"
+                                     Visibility="{Binding PokazWykres, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel>
+                        <TextBlock Text="Wykres Kosztów" 
+                                   Style="{StaticResource SectionHeaderStyle}"
+                                   Margin="0,0,0,16"/>
 
-                    <materialDesign:Card Grid.Column="2" 
-                                         Style="{StaticResource ResultCardStyle}"
-                                         Margin="4,0,4,0">
-                        <StackPanel>
-                            <TextBlock Text="Łączna liczba ocen" 
-                                       VerticalAlignment="Top" 
-                                       HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
-                            <TextBlock Text="{Binding LacznaLiczbaOcen}" 
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
-                        
-                        </StackPanel>
-                    </materialDesign:Card>
-                    <materialDesign:Card Grid.Column="3" 
-                                         Style="{StaticResource ResultCardStyle}"
-                                         Margin="4,0,0,0">
-                        <StackPanel>
-                            <TextBlock Text="Najwyższa średnia"
-                                       VerticalAlignment="Top" 
-                                       HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
-                            <TextBlock Text="{Binding NajlepszyWynik, StringFormat=N2}" 
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
-                        </StackPanel>
-                    </materialDesign:Card>
-                </Grid>
+                        <lvc:CartesianChart Height="350" 
+                                           Series="{Binding ChartSeries}"
+                                           LegendLocation="Right"
+                                           Margin="0,0,0,16">
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Title="Placówki" 
+                                         Labels="{Binding ChartLabels}"
+                                         LabelsRotation="45"
+                                         FontSize="11"
+                                         Foreground="{DynamicResource MaterialDesignBody}">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Step="1"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="Koszty (PLN)" 
+                                         LabelFormatter="{Binding ChartFormatter}"
+                                         FontSize="11"
+                                         Foreground="{DynamicResource MaterialDesignBody}"/>
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+
+                        <TextBlock HorizontalAlignment="Center" 
+                                  FontSize="11"
+                                  Foreground="{DynamicResource MaterialDesignBodyLight}">
+                            <Run Text="Wykres przedstawia TOP 10 placówek według łącznych kosztów"/>
+                        </TextBlock>
+                    </StackPanel>
+                </materialDesign:Card>
                 <materialDesign:Card UniformCornerRadius="8" Padding="20">
                     <StackPanel>
                         <Grid Margin="0,0,0,16">
@@ -238,24 +185,24 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Wyniki Rankingu" 
+                            <TextBlock Text="Wyniki Raportu" 
                                        Style="{StaticResource SectionHeaderStyle}"
                                        Margin="0"/>
 
                             <Button Grid.Column="1"
                                     Style="{StaticResource MaterialDesignFlatButton}"
                                     Command="{Binding EksportujCommand}"
-                                    ToolTip="Eksportuj do Excel">
+                                    ToolTip="Eksportuj do Excel"
+                                    Visibility="{Binding PokazWykres, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <StackPanel Orientation="Horizontal">
                                     <materialIcons:MaterialIcon Kind="FileExcel" 
                                                                Width="16" Height="16" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="Eksportuj" FontSize="17"/>
+                                    <TextBlock Text="Eksportuj" FontSize="13"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
-
-                        <DataGrid ItemsSource="{Binding RankingZespolow}"
+                        <DataGrid ItemsSource="{Binding KosztyPlacowek}"
                                   AutoGenerateColumns="False"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False"
@@ -264,7 +211,8 @@
                                   HeadersVisibility="All"
                                   GridLinesVisibility="Horizontal"
                                   materialDesign:DataGridAssist.CellPadding="12,8"
-                                  materialDesign:DataGridAssist.ColumnHeaderPadding="12,10">
+                                  materialDesign:DataGridAssist.ColumnHeaderPadding="12,10"
+                                  Visibility="{Binding PokazWykres, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" 
@@ -274,52 +222,63 @@
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
                                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-
-                                <DataGridTextColumn Header="Nazwa Zespołu" 
-                                                    Binding="{Binding NazwaZespolu}" 
-                                                    Width="*" MinWidth="200">
+                                <DataGridTextColumn Header="Placówka" 
+                                                    Binding="{Binding NazwaPlacowki}" 
+                                                    Width="*" 
+                                                    MinWidth="200">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Medium"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Liczba Karetek" 
+                                                    Binding="{Binding LiczbaKaretek}" 
+                                                    Width="120">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Liczba Kosztów" 
+                                                    Binding="{Binding LiczbaKosztow}" 
+                                                    Width="120">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Średnia Ocena" 
-                                                    Binding="{Binding SredniaOcena, StringFormat=N2}" 
-                                                    Width="130">
+                                <DataGridTextColumn Header="Łączne Koszty" 
+                                                    Binding="{Binding LaczneKoszty, StringFormat='{}{0:C2}'}" 
+                                                    Width="150">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                                            <Setter Property="Foreground" Value="#2E7D32"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Liczba Ocen" 
-                                                    Binding="{Binding LiczbaOcen}" 
-                                                    Width="110">
+                                <DataGridTextColumn Header="Średni Koszt/Karetka" 
+                                                    Binding="{Binding SredniKosztNaKaretke, StringFormat='{}{0:C2}'}" 
+                                                    Width="160">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="HorizontalAlignment" Value="Right"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Suma Ocen" 
-                                                    Binding="{Binding SumaOcen, StringFormat=N0}" 
-                                                    Width="110">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-
-                                <DataGridTemplateColumn Header="Status" Width="120">
+                                <DataGridTemplateColumn Header="Kategoria" Width="120">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Border CornerRadius="12" 
@@ -328,37 +287,31 @@
                                                 <Border.Style>
                                                     <Style TargetType="Border">
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding StatusKolor}" Value="Gold">
-                                                                <Setter Property="Background" Value="#AE8625"/>
-                                                            </DataTrigger>
-                                                            <DataTrigger Binding="{Binding StatusKolor}" Value="Green">
+                                                            <DataTrigger Binding="{Binding KolorKategorii}" Value="Green">
                                                                 <Setter Property="Background" Value="#E8F5E9"/>
                                                             </DataTrigger>
-                                                            <DataTrigger Binding="{Binding StatusKolor}" Value="Orange">
+                                                            <DataTrigger Binding="{Binding KolorKategorii}" Value="Orange">
                                                                 <Setter Property="Background" Value="#FFF3E0"/>
                                                             </DataTrigger>
-                                                            <DataTrigger Binding="{Binding StatusKolor}" Value="Red">
+                                                            <DataTrigger Binding="{Binding KolorKategorii}" Value="Red">
                                                                 <Setter Property="Background" Value="#FFEBEE"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
-                                                <TextBlock Text="{Binding Status}" 
+                                                <TextBlock Text="{Binding KategoriaKosztow}" 
                                                           FontSize="11" 
                                                           FontWeight="SemiBold">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock">
                                                             <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Gold">
-                                                                    <Setter Property="Foreground" Value="#F7EF8A"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Green">
+                                                                <DataTrigger Binding="{Binding KolorKategorii}" Value="Green">
                                                                     <Setter Property="Foreground" Value="#2E7D32"/>
                                                                 </DataTrigger>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Orange">
+                                                                <DataTrigger Binding="{Binding KolorKategorii}" Value="Orange">
                                                                     <Setter Property="Foreground" Value="#EF6C00"/>
                                                                 </DataTrigger>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Red">
+                                                                <DataTrigger Binding="{Binding KolorKategorii}" Value="Red">
                                                                     <Setter Property="Foreground" Value="#C62828"/>
                                                                 </DataTrigger>
                                                             </Style.Triggers>
@@ -384,7 +337,7 @@
                                       Foreground="{DynamicResource MaterialDesignBodyLight}"
                                       HorizontalAlignment="Center"
                                       Margin="0,16,0,8"/>
-                            <TextBlock Text="Wygeneruj ranking, aby zobaczyć wyniki" 
+                            <TextBlock Text="Wygeneruj raport, aby zobaczyć wyniki" 
                                       FontSize="13"
                                       Foreground="{DynamicResource MaterialDesignBodyLight}"
                                       HorizontalAlignment="Center"/>

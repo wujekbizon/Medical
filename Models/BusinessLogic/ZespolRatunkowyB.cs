@@ -34,7 +34,7 @@ namespace Medical.Models.BusinessLogic
                               Key = zespol.IdZespolu,
                               Value = zespol.NazwaZespolu
                           };
-
+ 
             lista.AddRange(zespoly.ToList());
 
             return lista.AsQueryable();

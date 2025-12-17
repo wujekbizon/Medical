@@ -34,10 +34,11 @@ namespace Medical.ViewModels
             OgolnaSredniaOcena = 0;
             LacznaLiczbaOcen = 0;
             NajlepszyWynik = 0;
+
         }
         #endregion
 
-        #region Właściwości - Filtry
+        #region Właściwości - Pola
 
         private DateTime _DataOd;
         public DateTime DataOd
@@ -315,10 +316,9 @@ namespace Medical.ViewModels
                 return _ResetujCommand;
             }
         }
-
         private void ResetujClick()
         {
-            DataOd = DateTime.Now.AddMonths(-6);
+            DataOd = DateTime.Now.AddMonths(-24);
             DataDo = DateTime.Now;
             MinSredniaOcena = 7.0m;
             IdZespolu = 0;
@@ -389,7 +389,7 @@ namespace Medical.ViewModels
         private string OkreslStatusKolor(decimal sredniaOcena)
         {
             if (sredniaOcena >= 9.0m)
-                return "Green";
+                return "Gold";
             else if (sredniaOcena >= 8.0m)
                 return "Green";
             else if (sredniaOcena >= 7.0m)

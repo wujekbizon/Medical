@@ -41,17 +41,25 @@ namespace Medical.ViewModels
         {
             var sections = new List<CommandSection>();
 
-            var bussinesLogic = new CommandSection
+            var businessLogic = new CommandSection
             {
-                SectionName = "Logika Biznesowa",
+                SectionName = "LOGIKA BIZNESOWA",
                 ShowSectionHeader = true
             };
 
-            bussinesLogic.Commands.Add(new CommandViewModel(
+            businessLogic.Commands.Add(new CommandViewModel(
                 "Ranking Efektywności",
                 new BaseCommand(() => this.CreateView(new RankingEfektywnosciZespolowMedycznychViewModel())),
                 MaterialIconKind.Rank));
-            sections.Add(bussinesLogic);
+            businessLogic.Commands.Add(new CommandViewModel(
+                "Koszty Utrzymania Karetek",
+                new BaseCommand(() => this.CreateView(new KosztyKaretekViewModel())),
+                MaterialIconKind.ChartDonut));
+            businessLogic.Commands.Add(new CommandViewModel(
+                "Akredtacja Placówek",
+                new BaseCommand(() => this.CreateView(new AkredytacjaPlacowekViewModel())),
+                MaterialIconKind.Certificate));
+            sections.Add(businessLogic);
 
             var aktywneSection = new CommandSection
             {

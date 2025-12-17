@@ -50,6 +50,12 @@
     <Reference Include="GMap.NET.WindowsPresentation, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>packages\GMap.NET.WinPresentation.2.1.7\lib\net48\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Material.Icons, Version=2.4.1.0, Culture=neutral, PublicKeyToken=34ed5903a64b4509, processorArchitecture=MSIL">
       <HintPath>packages\Material.Icons.2.4.1\lib\netstandard2.0\Material.Icons.dll</HintPath>
     </Reference>
@@ -110,11 +116,14 @@
     <Compile Include="Helper\MenuCommands.cs" />
     <Compile Include="Helper\ThemeHelper.cs" />
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\PlacowkaB.cs" />
     <Compile Include="Models\BusinessLogic\ZespolRatunkowyB.cs" />
+    <Compile Include="Models\EntitiesForView\AkredytacjaPlacowkiForView.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\HistoriaNaprawForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KaretkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
+    <Compile Include="Models\EntitiesForView\KosztyKaretkiForView.cs" />
     <Compile Include="Models\EntitiesForView\KosztyUtrzymaniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\OcenaZespoluForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PozycjaFakturyForAllView.cs" />
@@ -192,9 +201,11 @@
     </Compile>
     <Compile Include="ViewModels\Abstract\JedenViewModel.cs" />
     <Compile Include="ViewModels\Abstract\WszystkieViewModel.cs" />
+    <Compile Include="ViewModels\AkredytacjaPlacowekViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandSection.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
+    <Compile Include="ViewModels\KosztyKaretekViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NowaFakturaViewModel.cs" />
     <Compile Include="ViewModels\NowaHistoriaNaprawViewModel.cs" />
@@ -230,11 +241,17 @@
     <Compile Include="ViewModels\WszystkieZespolPracownikViewModel.cs" />
     <Compile Include="ViewModels\WszystkieZespolyRatunkoweViewModel.cs" />
     <Compile Include="ViewModels\WszystkieZleceniaWyjazduViewModel.cs" />
+    <Compile Include="Views\AkredytacjaPlacowekView.xaml.cs">
+      <DependentUpon>AkredytacjaPlacowekView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\LoadingOverlay.xaml.cs">
       <DependentUpon>LoadingOverlay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\WelcomeMapView.xaml.cs">
       <DependentUpon>WelcomeMapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KosztyKaretekView.xaml.cs">
+      <DependentUpon>KosztyKaretekView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NowaFakturaView.xaml.cs">
       <DependentUpon>NowaFakturaView.xaml</DependentUpon>
@@ -340,11 +357,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AkredytacjaPlacowekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\LoadingOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\WelcomeMapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KosztyKaretekView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

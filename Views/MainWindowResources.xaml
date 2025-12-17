@@ -105,6 +105,12 @@
     <DataTemplate DataType="{x:Type vm:RankingEfektywnosciZespolowMedycznychViewModel}">
         <vw:RankingEfektywnosciZespolowMedycznychView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:KosztyKaretekViewModel}">
+        <vw:KosztyKaretekView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AkredytacjaPlacowekViewModel}">
+        <vw:AkredytacjaPlacowekView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
