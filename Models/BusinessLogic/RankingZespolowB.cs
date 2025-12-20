@@ -1,4 +1,5 @@
 ﻿using Medical.Models.EntitiesForView;
+using Medical.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -22,7 +23,7 @@ namespace Medical.Models.BusinessLogic
            DateTime dataDo,
            decimal minSredniaOcena,
            int? idZespolu,
-           int sortOrder)
+           SortOrderEnum sortOrder)
         {
             var query = from zespol in medicalEntities.ZespolRatunkowy
                         where zespol.CzyAktywny == true
@@ -79,17 +80,17 @@ namespace Medical.Models.BusinessLogic
 
         #region Funkcje Pomocnicze
 
-        private IEnumerable<dynamic> SortujWyniki(IEnumerable<dynamic> wyniki, int sortOrder)
+        private IEnumerable<dynamic> SortujWyniki(IEnumerable<dynamic> wyniki, SortOrderEnum sortOrder)
         {
             switch (sortOrder)
             {
-                case 0:
+                case SortOrderEnum.SredniaOcenaMalejaco:
                     return wyniki.OrderByDescending(x => x.SredniaOcena);
-                case 1:
+                case SortOrderEnum.SredniaOcenaRosnaco:
                     return wyniki.OrderBy(x => x.SredniaOcena);
-                case 2:
+                case SortOrderEnum.LiczbaOcenMalejaco:
                     return wyniki.OrderByDescending(x => x.LiczbaOcen);
-                case 3:
+                case SortOrderEnum.NazwaZespoluAZ:
                     return wyniki.OrderBy(x => x.NazwaZespolu);
                 default:
                     return wyniki.OrderByDescending(x => x.SredniaOcena);

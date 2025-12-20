@@ -20,7 +20,8 @@
             <helper:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <helper:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
             <helper:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
-            
+            <helper:IntToEnumConverter x:Key="IntToEnumConverter"/>
+
             <CubicEase x:Key="EaseOut" EasingMode="EaseOut"/>
             <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut"/>
 

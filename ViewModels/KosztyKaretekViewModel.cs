@@ -4,6 +4,7 @@ using Medical.Helper;
 using Medical.Models;
 using Medical.Models.BusinessLogic;
 using Medical.Models.EntitiesForView;
+using Medical.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,6 +30,7 @@ namespace Medical.ViewModels
 
             DataOd = DateTime.Now.AddMonths(-24);
             DataDo = DateTime.Now;
+            SortOrder = SortCostEnum.LaczneKosztyMalejaco;
         }
 
         #endregion
@@ -75,8 +77,8 @@ namespace Medical.ViewModels
             }
         }
 
-        private int _SortOrder;
-        public int SortOrder
+        private SortCostEnum _SortOrder;
+        public SortCostEnum SortOrder
         {
             get => _SortOrder;
             set
@@ -86,6 +88,14 @@ namespace Medical.ViewModels
                     _SortOrder = value;
                     OnPropertyChanged(() => SortOrder);
                 }
+            }
+        }
+
+        public IEnumerable<KeyAndValue> SortOrderItems
+        {
+            get
+            {
+                return EnumHelper.GetEnumKeyAndValues<SortCostEnum>();
             }
         }
 
@@ -253,7 +263,7 @@ namespace Medical.ViewModels
                 return;
             }
 
-            var topPlacowki = KosztyPlacowek.Take(10).ToList();
+            var topPlacowki = KosztyPlacowek.Take(15).ToList();
 
             ChartSeries = new SeriesCollection();
 
@@ -275,7 +285,7 @@ namespace Medical.ViewModels
             DataOd = DateTime.Now.AddMonths(-24);
             DataDo = DateTime.Now;
             IdPlacowki = 0;
-            SortOrder = 0;
+            SortOrder = SortCostEnum.LaczneKosztyMalejaco;
             KosztyPlacowek = new ObservableCollection<KosztyKaretkiForView>();
             ChartSeries = null;
             ChartLabels = null;

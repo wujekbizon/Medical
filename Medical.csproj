@@ -113,6 +113,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\Converters.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
     <Compile Include="Helper\MenuCommands.cs" />
     <Compile Include="Helper\ThemeHelper.cs" />
     <Compile Include="Models\BusinessLogic\AkredytacjaPlacowekB.cs" />
@@ -136,6 +137,8 @@
     <Compile Include="Models\EntitiesForView\ZespolPracownikForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ZespolRatunkowyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ZleceniaWyjazduForAllView.cs" />
+    <Compile Include="Models\Enums\SortCostEnum.cs" />
+    <Compile Include="Models\Enums\SortOrderEnum.cs" />
     <Compile Include="Models\Faktura.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>

@@ -31,6 +31,18 @@ namespace Medical.ViewModels.Abstract
                 return _LoadCommand;
             }
         }
+
+        //private BaseCommand _AddCommand;
+        //public ICommand AddCommand
+        //{
+        //    get
+        //    {
+        //        if (_AddCommand == null) _AddCommand = new BaseCommand(Add);
+        //        return _AddCommand;
+        //    }
+        //}
+
+        //protected abstract void Add();
         #endregion
         #region Lista
         //tu beda przechowywane wszystkie towary

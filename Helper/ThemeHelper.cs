@@ -36,10 +36,6 @@ namespace Medical.Helper
             SetTheme(!IsDarkTheme);
         }
 
-        /// <summary>
-        /// Sets the primary color of the theme.
-        /// </summary>
-        /// <param name="primaryColor">The primary color to set.</param>
         public static void SetPrimaryColor(System.Windows.Media.Color primaryColor)
         {
             Theme theme = _paletteHelper.GetTheme();
@@ -47,10 +43,6 @@ namespace Medical.Helper
             _paletteHelper.SetTheme(theme);
         }
 
-        /// <summary>
-        /// Sets the secondary/accent color of the theme.
-        /// </summary>
-        /// <param name="accentColor">The accent color to set.</param>
         public static void SetAccentColor(System.Windows.Media.Color accentColor)
         {
             Theme theme = _paletteHelper.GetTheme();

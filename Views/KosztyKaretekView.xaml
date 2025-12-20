@@ -89,13 +89,12 @@
 
                             <ComboBox Grid.Row="1" Grid.Column="2"
                                       Margin="0,0,0,16"
-                                      SelectedIndex="{Binding SortOrder, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding SortOrderItems}"
+                                      DisplayMemberPath="Value"
+                                      SelectedValuePath="Key"
+                                      SelectedValue="{Binding SortOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToEnumConverter}}"
                                       materialDesign:HintAssist.Hint="Sortowanie"
-                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}">
-                                <ComboBoxItem Content="Łączne koszty (malejąco)"/>
-                                <ComboBoxItem Content="Łączne koszty (rosnąco)"/>
-                                <ComboBoxItem Content="Liczba kosztów (malejąco)"/>
-                            </ComboBox>
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                         </Grid>
 
                         <Separator Background="{DynamicResource MaterialDesignDivider}"
@@ -118,7 +117,7 @@
                                     <materialIcons:MaterialIcon Kind="PlayCircle" 
                                                                Width="20" Height="20" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="GENERUJ RAPORT" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Generuj Raport" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
 
@@ -131,7 +130,7 @@
                                     <materialIcons:MaterialIcon Kind="Refresh" 
                                                                Width="20" Height="20" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="RESETUJ" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Resetuj" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Grid>

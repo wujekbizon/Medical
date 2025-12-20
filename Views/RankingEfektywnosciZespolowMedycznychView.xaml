@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:helper="clr-namespace:Medical.Helper"
              xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
              xmlns:local="clr-namespace:Medical.Views" xmlns:viewmodels="clr-namespace:Medical.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RankingEfektywnosciZespolowMedycznychViewModel}"
              mc:Ignorable="d" 
@@ -92,21 +93,19 @@
                                       ItemsSource="{Binding ZespolyComboBoxItems}" 
                                       DisplayMemberPath="Value"
                                       SelectedValuePath="Key"
-                                      SelectedValue="{Binding IdZespolu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValue="{Binding IdZespolu, UpdateSourceTrigger=PropertyChanged}"
                                       materialDesign:HintAssist.Hint="Filtruj zespół"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
-                            
+
                             <ComboBox Grid.Row="2" Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,0,0,16"
-                                      SelectedIndex="{Binding SortOrder, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding SortOrderItems}"
+                                      DisplayMemberPath="Value"
+                                      SelectedValuePath="Key"
+                                      SelectedValue="{Binding SortOrder, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToEnumConverter}}"
                                       materialDesign:HintAssist.Hint="Sortowanie"
-                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}">
-                                <ComboBoxItem Content="Średnia ocena (malejąco)"/>
-                                <ComboBoxItem Content="Średnia ocena (rosnąco)"/>
-                                <ComboBoxItem Content="Liczba ocen (malejąco)"/>
-                                <ComboBoxItem Content="Nazwa zespołu (A-Z)"/>
-                            </ComboBox>
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                         </Grid>
 
                         <Separator Background="{DynamicResource MaterialDesignDivider}"
@@ -128,7 +127,7 @@
                                     <materialIcons:MaterialIcon Kind="PlayCircle" 
                                                                Width="20" Height="20" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="GENERUJ RANKING" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Generuj Ranking" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
 
@@ -141,7 +140,7 @@
                                     <materialIcons:MaterialIcon Kind="Refresh" 
                                                                Width="20" Height="20" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="RESETUJ" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Resetuj" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Grid>

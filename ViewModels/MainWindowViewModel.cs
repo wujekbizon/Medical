@@ -15,14 +15,14 @@ namespace Medical.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        #region Fields
+        #region Pola
         private ReadOnlyCollection<CommandSection> _Commands;
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
         private bool _isLoading;
         private string _loadingMessage = "Ładowanie...";
         #endregion
 
-        #region Commands
+        #region Komendy
 
         public ReadOnlyCollection<CommandSection> Commands
         {
@@ -257,7 +257,6 @@ namespace Medical.ViewModels
                 foreach (WorkspaceViewModel workspace in e.OldItems)
                     workspace.RequestClose -= this.OnWorkspaceRequestClose;
 
-            // Notify that HasNoWorkspaces may have changed
             OnPropertyChanged(() => HasNoWorkspaces);
         }
 
@@ -268,14 +267,10 @@ namespace Medical.ViewModels
             this.Workspaces.Remove(workspace);
         }
 
-        #endregion // Workspaces
+        #endregion 
 
         #region Loading State Properties
 
-        /// <summary>
-        /// Indicates whether a loading operation is in progress.
-        /// Bind this to the LoadingOverlay's IsLoading property.
-        /// </summary>
         public bool IsLoading
         {
             get { return _isLoading; }
@@ -289,9 +284,6 @@ namespace Medical.ViewModels
             }
         }
 
-        /// <summary>
-        /// The message to display in the loading overlay.
-        /// </summary>
         public string LoadingMessage
         {
             get { return _loadingMessage; }
@@ -305,10 +297,6 @@ namespace Medical.ViewModels
             }
         }
 
-        /// <summary>
-        /// Returns true when there are no workspaces open.
-        /// Used to show the welcome/map view.
-        /// </summary>
         public bool HasNoWorkspaces
         {
             get { return _Workspaces == null || _Workspaces.Count == 0; }
@@ -318,10 +306,6 @@ namespace Medical.ViewModels
 
         #region Loading Helper Methods
 
-        /// <summary>
-        /// Shows the loading overlay with the specified message.
-        /// </summary>
-        /// <param name="message">The loading message to display.</param>
         public void ShowLoading(string message = "Ładowanie...")
         {
             LoadingMessage = message;

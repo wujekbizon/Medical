@@ -112,7 +112,7 @@
                 <MenuItem x:Name="MenuPlik" Style="{StaticResource AccentMenuItemStyle}">
                     <MenuItem.Header>
                         <TextBlock>
-                            <Run TextDecorations="Underline" Text="P" Foreground="{DynamicResource AccentPurple}" FontWeight="SemiBold"/><Run Text="lik" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <Run TextDecorations="Underline" Text="P" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="lik" Foreground="{DynamicResource MaterialDesignBody}"/>
                         </TextBlock>
                     </MenuItem.Header>
                     <MenuItem Header="Nowy" InputGestureText="Ctrl+N">
@@ -142,7 +142,7 @@
                 <MenuItem x:Name="MenuPacjenci" Style="{StaticResource AccentMenuItemStyle}">
                     <MenuItem.Header>
                         <TextBlock>
-                            <Run Text="P" Foreground="{DynamicResource MaterialDesignBody}"/><Run TextDecorations="Underline" Text="a" Foreground="{DynamicResource AccentPurple}" FontWeight="SemiBold"/><Run Text="cjenci" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <Run Text="P" Foreground="{DynamicResource MaterialDesignBody}"/><Run TextDecorations="Underline" Text="a" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="cjenci" Foreground="{DynamicResource MaterialDesignBody}"/>
                         </TextBlock>
                     </MenuItem.Header>
                     <MenuItem Header="Wszyscy Pacjenci" InputGestureText="Ctrl+Shift+A">
@@ -160,7 +160,7 @@
                 <MenuItem x:Name="MenuZespoly" Style="{StaticResource AccentMenuItemStyle}">
                     <MenuItem.Header>
                         <TextBlock>
-                            <Run TextDecorations="Underline" Text="Z" Foreground="{DynamicResource AccentPurple}" FontWeight="SemiBold"/><Run Text="espoły" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <Run TextDecorations="Underline" Text="Z" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="espoły" Foreground="{DynamicResource MaterialDesignBody}"/>
                         </TextBlock>
                     </MenuItem.Header>
                     <MenuItem Header="Zespoły Ratunkowe" InputGestureText="Ctrl+Shift+T">
@@ -184,7 +184,7 @@
                 <MenuItem x:Name="MenuPomoc" Style="{StaticResource AccentMenuItemStyle}">
                     <MenuItem.Header>
                         <TextBlock>
-                            <Run TextDecorations="Underline" Text="H" Foreground="{DynamicResource AccentPurple}" FontWeight="SemiBold"/><Run Text="elp" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            <Run TextDecorations="Underline" Text="H" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="elp" Foreground="{DynamicResource MaterialDesignBody}"/>
                         </TextBlock>
                     </MenuItem.Header>
                     <MenuItem Header="Dokumentacja" InputGestureText="F1">
@@ -290,7 +290,7 @@
                                 Kind="HospitalBox"
                                 Width="48" Height="48"
                                 HorizontalAlignment="Center"
-                                Foreground="{DynamicResource AccentPurple}"/>
+                                Foreground="{DynamicResource AccentPurpleLight}"/>
                             <TextBlock Text="Medical System"
                                        FontSize="18"
                                        FontWeight="Bold"
@@ -330,7 +330,7 @@
                                 Width="32" Height="32"
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
-                                Foreground="{DynamicResource SecondaryHueMidBrush}"/>
+                                Foreground="{DynamicResource AccentPurpleLight}"/>
 
                             <StackPanel Grid.Column="1"
                                         Margin="12,0,0,0"

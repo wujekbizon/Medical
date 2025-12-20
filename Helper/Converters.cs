@@ -92,4 +92,29 @@ namespace Medical.Helper
             throw new NotImplementedException();
         }
     }
+
+    public class IntToEnumConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return null;
+
+            if (value is Enum)
+                return (int)value;
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return null;
+
+            if (targetType.IsEnum && value is int intValue)
+                return Enum.ToObject(targetType, intValue);
+
+            return value;
+        }
+    }
 }

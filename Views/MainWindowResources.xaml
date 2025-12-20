@@ -166,7 +166,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <Border Background="{DynamicResource MaterialDesignToolBarBackground}"
-                            BorderBrush="{DynamicResource AccentPurple}"
+                            BorderBrush="{DynamicResource AccentPurpleLight}"
                             BorderThickness="0,0,0,2"
                             Padding="12,8"
                             Margin="0,12,0,8"
@@ -175,7 +175,7 @@
                             <TextBlock Text="{Binding SectionName}"
                                    FontSize="11"
                                    FontWeight="Bold"
-                                   Foreground="{DynamicResource AccentPurple}"/>
+                                   Foreground="{DynamicResource AccentPurpleLight}"/>
                         </Border>
                         <ItemsControl ItemsSource="{Binding Commands}">
                             <ItemsControl.ItemTemplate>

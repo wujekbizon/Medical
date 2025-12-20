@@ -2,6 +2,7 @@
 using Medical.Models;
 using Medical.Models.BusinessLogic;
 using Medical.Models.EntitiesForView;
+using Medical.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,7 +29,7 @@ namespace Medical.ViewModels
             DataDo = DateTime.Now;
             MinSredniaOcena = 7.0m;
             IdZespolu = 0;
-            SortOrder = 0;
+            SortOrder = SortOrderEnum.SredniaOcenaMalejaco;
             RankingZespolow = new ObservableCollection<RankingZespolowForView>();
             LiczbaZespolow = 0;
             OgolnaSredniaOcena = 0;
@@ -96,8 +97,8 @@ namespace Medical.ViewModels
             }
         }
 
-        private int _SortOrder;
-        public int SortOrder
+        private SortOrderEnum _SortOrder;
+        public SortOrderEnum SortOrder
         {
             get { return _SortOrder; }
             set
@@ -107,6 +108,13 @@ namespace Medical.ViewModels
                     _SortOrder = value;
                     OnPropertyChanged(() => SortOrder);
                 }
+            }
+        }
+        public IEnumerable<KeyAndValue> SortOrderItems
+        {
+            get
+            {
+                return EnumHelper.GetEnumKeyAndValues<SortOrderEnum>();
             }
         }
 
@@ -264,7 +272,7 @@ namespace Medical.ViewModels
             DataDo = DateTime.Now;
             MinSredniaOcena = 7.0m;
             IdZespolu = 0;
-            SortOrder = 0;
+            SortOrder = SortOrderEnum.SredniaOcenaMalejaco;
             RankingZespolow = new ObservableCollection<RankingZespolowForView>();
             LiczbaZespolow = 0;
             OgolnaSredniaOcena = 0;

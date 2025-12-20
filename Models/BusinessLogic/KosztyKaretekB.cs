@@ -1,4 +1,5 @@
 ﻿using Medical.Models.EntitiesForView;
+using Medical.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Medical.Models.BusinessLogic
             DateTime dataOd,
             DateTime dataDo,
             int idPlacowki,
-            int sortOrder)
+            SortCostEnum sortOrder)
         {
             var query = from karetka in medicalEntities.Karetka
                         where karetka.CzyAktywny == true
@@ -80,15 +81,15 @@ namespace Medical.Models.BusinessLogic
 
             return kosztyWyniki;
         }
-        private IEnumerable<dynamic> SortujWyniki(IEnumerable<dynamic> wyniki, int sortOrder)
+        private IEnumerable<dynamic> SortujWyniki(IEnumerable<dynamic> wyniki, SortCostEnum sortOrder)
         {
             switch (sortOrder)
             {
-                case 0:
+                case SortCostEnum.LaczneKosztyMalejaco:
                     return wyniki.OrderByDescending(x => x.LaczneKoszty);
-                case 1:
+                case SortCostEnum.LaczneKosztyRosnaco:
                     return wyniki.OrderBy(x => x.LaczneKoszty);
-                case 2:
+                case SortCostEnum.LaczneLiczbaKosztowMalejaco:
                     return wyniki.OrderByDescending(x => x.LiczbaKosztow);
                 default:
                     return wyniki.OrderByDescending(x => x.LaczneKoszty);
