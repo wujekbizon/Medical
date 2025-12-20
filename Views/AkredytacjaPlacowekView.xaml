@@ -104,13 +104,12 @@
                             <ComboBox Grid.Row="2" Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,0,0,16"
-                                      SelectedIndex="{Binding SortOrder, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding SortPointsItems}"
+                                      DisplayMemberPath="Value"
+                                      SelectedValuePath="Key"
+                                      SelectedValue="{Binding SortPoints, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToEnumConverter}}"
                                       materialDesign:HintAssist.Hint="Sortowanie"
-                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}">
-                                <ComboBoxItem Content="Suma punktów (malejąco)"/>
-                                <ComboBoxItem Content="Suma punktów (rosnąco)"/>
-                                <ComboBoxItem Content="Akredytowane na początku"/>
-                            </ComboBox>
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                         </Grid>
 
                         <Separator Background="{DynamicResource MaterialDesignDivider}" Margin="0,8,0,24"/>

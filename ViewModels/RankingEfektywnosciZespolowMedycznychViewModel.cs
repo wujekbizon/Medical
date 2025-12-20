@@ -243,6 +243,15 @@ namespace Medical.ViewModels
                 RankingZespolow = new ObservableCollection<RankingZespolowForView>(wyniki);
 
                 ObliczStatystyki(RankingZespolow);
+
+                if (BrakDanych)
+                {
+                    System.Windows.MessageBox.Show(
+                        "Brak danych dla wybranych kryteriów.",
+                        "Informacja",
+                        System.Windows.MessageBoxButton.OK,
+                        System.Windows.MessageBoxImage.Information);
+                }
             }
             catch (Exception ex)
             {

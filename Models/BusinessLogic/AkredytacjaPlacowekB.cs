@@ -1,4 +1,5 @@
 ﻿using Medical.Models.EntitiesForView;
+using Medical.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Medical.Models.BusinessLogic
             DateTime dataDo,
             int minimalnaLiczbaOcen,
             int? idPlacowki,
-            int sortOrder)
+            SortPointsEnum sortOrder)
         {
             var placowki = medicalEntities.Placowka
                 .Where(p => p.CzyAktywny == true)
@@ -105,15 +106,15 @@ namespace Medical.Models.BusinessLogic
         #region Metody pomocnicze
         private IEnumerable<AkredytacjaPlacowkiForView> SortujWyniki(
             List<AkredytacjaPlacowkiForView> wyniki,
-            int sortOrder)
+            SortPointsEnum sortOrder)
         {
             switch (sortOrder)
             {
-                case 0:
+                case SortPointsEnum.LacznePunktyMalejaco:
                     return wyniki.OrderByDescending(x => x.LacznePunkty);
-                case 1:
+                case SortPointsEnum.LacznePunktyRosnaco:
                     return wyniki.OrderBy(x => x.LacznePunkty);
-                case 2:
+                case SortPointsEnum.CzyAkredytowana:
                     return wyniki.OrderByDescending(x => x.CzyAkredytowana)
                                  .ThenByDescending(x => x.LacznePunkty);
                 default:

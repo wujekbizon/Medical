@@ -139,6 +139,7 @@
     <Compile Include="Models\EntitiesForView\ZleceniaWyjazduForAllView.cs" />
     <Compile Include="Models\Enums\SortCostEnum.cs" />
     <Compile Include="Models\Enums\SortOrderEnum.cs" />
+    <Compile Include="Models\Enums\SortPointsEnum.cs" />
     <Compile Include="Models\Faktura.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>

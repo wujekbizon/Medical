@@ -2,12 +2,11 @@
 using Medical.Models;
 using Medical.Models.BusinessLogic;
 using Medical.Models.EntitiesForView;
+using Medical.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Medical.ViewModels
@@ -28,7 +27,7 @@ namespace Medical.ViewModels
             DataDo = DateTime.Now;
             MinimalnaLiczbaOcen = 10;
             IdPlacowki = 0;
-            SortOrder = 0;
+            SortPoints = SortPointsEnum.LacznePunktyMalejaco;
             WynikiAkredytacji = new ObservableCollection<AkredytacjaPlacowkiForView>();
             LiczbaPlacowek = 0;
             LiczbaAkredytowanych = 0;
@@ -95,17 +94,25 @@ namespace Medical.ViewModels
             }
         }
 
-        private int _SortOrder;
-        public int SortOrder
+        private SortPointsEnum _SortPoints;
+        public SortPointsEnum SortPoints
         {
-            get { return _SortOrder; }
+            get { return _SortPoints; }
             set
             {
-                if (_SortOrder != value)
+                if (_SortPoints != value)
                 {
-                    _SortOrder = value;
-                    OnPropertyChanged(() => SortOrder);
+                    _SortPoints = value;
+                    OnPropertyChanged(() => SortPoints);
                 }
+            }
+        }
+
+        public IEnumerable<KeyAndValue> SortPointsItems
+        {
+            get
+            {
+                return EnumHelper.GetEnumKeyAndValues<SortPointsEnum>();
             }
         }
 
@@ -200,7 +207,6 @@ namespace Medical.ViewModels
                 }
             }
         }
-
         #endregion
 
         #region Komendy
@@ -228,10 +234,19 @@ namespace Medical.ViewModels
                     DataDo,
                     MinimalnaLiczbaOcen,
                     IdPlacowki,
-                    SortOrder);
+                    SortPoints);
 
                 WynikiAkredytacji = new ObservableCollection<AkredytacjaPlacowkiForView>(wyniki);
                 ObliczStatystykiOgolne(WynikiAkredytacji);
+
+                if (BrakDanych)
+                {
+                    System.Windows.MessageBox.Show(
+                        "Brak danych dla wybranych kryteriów.",
+                        "Informacja",
+                        System.Windows.MessageBoxButton.OK,
+                        System.Windows.MessageBoxImage.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -262,7 +277,7 @@ namespace Medical.ViewModels
             DataDo = DateTime.Now;
             IdPlacowki = 0;
             MinimalnaLiczbaOcen = 10;
-            SortOrder = 0;
+            SortPoints = SortPointsEnum.LacznePunktyMalejaco;
             WynikiAkredytacji = new ObservableCollection<AkredytacjaPlacowkiForView>();
             LiczbaPlacowek = 0;
             LiczbaAkredytowanych = 0;

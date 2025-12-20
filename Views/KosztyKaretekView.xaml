@@ -89,10 +89,10 @@
 
                             <ComboBox Grid.Row="1" Grid.Column="2"
                                       Margin="0,0,0,16"
-                                      ItemsSource="{Binding SortOrderItems}"
+                                      ItemsSource="{Binding SortCostItems}"
                                       DisplayMemberPath="Value"
                                       SelectedValuePath="Key"
-                                      SelectedValue="{Binding SortOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToEnumConverter}}"
+                                      SelectedValue="{Binding SortCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToEnumConverter}}"
                                       materialDesign:HintAssist.Hint="Sortowanie"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                         </Grid>

@@ -9,8 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Medical.ViewModels
@@ -30,7 +28,7 @@ namespace Medical.ViewModels
 
             DataOd = DateTime.Now.AddMonths(-24);
             DataDo = DateTime.Now;
-            SortOrder = SortCostEnum.LaczneKosztyMalejaco;
+            SortCost = SortCostEnum.LaczneKosztyMalejaco;
         }
 
         #endregion
@@ -77,21 +75,21 @@ namespace Medical.ViewModels
             }
         }
 
-        private SortCostEnum _SortOrder;
-        public SortCostEnum SortOrder
+        private SortCostEnum _SortCost;
+        public SortCostEnum SortCost
         {
-            get => _SortOrder;
+            get => _SortCost;
             set
             {
-                if (_SortOrder != value)
+                if (_SortCost != value)
                 {
-                    _SortOrder = value;
-                    OnPropertyChanged(() => SortOrder);
+                    _SortCost = value;
+                    OnPropertyChanged(() => SortCost);
                 }
             }
         }
 
-        public IEnumerable<KeyAndValue> SortOrderItems
+        public IEnumerable<KeyAndValue> SortCostItems
         {
             get
             {
@@ -224,7 +222,7 @@ namespace Medical.ViewModels
             try
             {
                 var kosztyB = new KosztyKaretekB(medicalEntities);
-                var wyniki = kosztyB.GenerujRaportKosztow(DataOd, DataDo, IdPlacowki, SortOrder);
+                var wyniki = kosztyB.GenerujRaportKosztow(DataOd, DataDo, IdPlacowki, SortCost);
 
                 KosztyPlacowek = new ObservableCollection<KosztyKaretkiForView>(wyniki);
 
@@ -285,7 +283,7 @@ namespace Medical.ViewModels
             DataOd = DateTime.Now.AddMonths(-24);
             DataDo = DateTime.Now;
             IdPlacowki = 0;
-            SortOrder = SortCostEnum.LaczneKosztyMalejaco;
+            SortCost = SortCostEnum.LaczneKosztyMalejaco;
             KosztyPlacowek = new ObservableCollection<KosztyKaretkiForView>();
             ChartSeries = null;
             ChartLabels = null;
