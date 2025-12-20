@@ -132,7 +132,7 @@
                                     <materialIcons:MaterialIcon Kind="CheckDecagram" 
                                                                Width="20" Height="20" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="OCEŃ AKREDYTACJĘ" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Oceń Akredytację" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
 
@@ -145,7 +145,7 @@
                                     <materialIcons:MaterialIcon Kind="Refresh" 
                                                                Width="20" Height="20" 
                                                                Margin="0,0,8,0"/>
-                                    <TextBlock Text="RESETUJ" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Resetuj" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
@@ -274,18 +274,21 @@
                                   IsReadOnly="True"
                                   SelectionMode="Single"
                                   HeadersVisibility="All"
-                                  GridLinesVisibility="Horizontal"
+                                  GridLinesVisibility="All"
                                   materialDesign:DataGridAssist.CellPadding="12,8"
                                   materialDesign:DataGridAssist.ColumnHeaderPadding="12,10">
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" 
                                                     Binding="{Binding Pozycja}" 
-                                                    Width="50">
+                                                    Width="50"
+                                                    >
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
                                             <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -296,6 +299,8 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Medium"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="HorizontalAlignment" Value="Left"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -304,19 +309,19 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Vertical">
-                                                <TextBlock HorizontalAlignment="Center">
-                                                    <Run Text="Średnia: " FontSize="10" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                                <TextBlock HorizontalAlignment="Left">
+                                                    <Run Text="Średnia: " FontSize="12" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                                                     <Run Text="{Binding SredniaOcenaZespolow, StringFormat=N2}" FontWeight="SemiBold"/>
                                                 </TextBlock>
-                                                <TextBlock HorizontalAlignment="Center">
-                                                    <Run Text="Liczba: " FontSize="10" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                                <TextBlock HorizontalAlignment="Left">
+                                                    <Run Text="Liczba: " FontSize="12" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                                                     <Run Text="{Binding LiczbaOcen}"/>
                                                 </TextBlock>
                                                 <TextBlock Text="{Binding PunktyZaOceny, StringFormat='Punkty: {0}/40'}" 
-                                                          FontSize="11" 
+                                                          FontSize="12" 
                                                           FontWeight="Bold"
                                                           Foreground="#1976D2"
-                                                          HorizontalAlignment="Center"/>
+                                                          HorizontalAlignment="Left"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -326,15 +331,15 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Vertical">
-                                                <TextBlock HorizontalAlignment="Center">
-                                                    <Run Text="Liczba: " FontSize="10" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                                <TextBlock HorizontalAlignment="Left">
+                                                    <Run Text="Liczba: " FontSize="12" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                                                     <Run Text="{Binding LiczbaInterwencji}" FontWeight="SemiBold"/>
                                                 </TextBlock>
                                                 <TextBlock Text="{Binding PunktyZaInterwencje, StringFormat='Punkty: {0}/40'}" 
-                                                          FontSize="11" 
+                                                          FontSize="12" 
                                                           FontWeight="Bold"
                                                           Foreground="#388E3C"
-                                                          HorizontalAlignment="Center"/>
+                                                          HorizontalAlignment="Left"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -344,19 +349,19 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Vertical">
-                                                <TextBlock HorizontalAlignment="Center">
-                                                    <Run Text="Zespoły: " FontSize="10" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                                <TextBlock HorizontalAlignment="Left">
+                                                    <Run Text="Zespoły: " FontSize="12" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                                                     <Run Text="{Binding LiczbaAktywnychZespolow}"/>
                                                 </TextBlock>
-                                                <TextBlock HorizontalAlignment="Center">
-                                                    <Run Text="Karetki: " FontSize="10" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                                <TextBlock HorizontalAlignment="Left">
+                                                    <Run Text="Karetki: " FontSize="12" Foreground="{DynamicResource MaterialDesignBodyLight}"/>
                                                     <Run Text="{Binding LiczbaAktywnychKaretek}"/>
                                                 </TextBlock>
                                                 <TextBlock Text="{Binding PunktyZaKaretki, StringFormat='Punkty: {0}/20'}" 
-                                                          FontSize="11" 
+                                                          FontSize="12" 
                                                           FontWeight="Bold"
                                                           Foreground="#F57C00"
-                                                          HorizontalAlignment="Center"/>
+                                                          HorizontalAlignment="Left"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -364,17 +369,18 @@
 
                                 <DataGridTextColumn Header="Suma Punktów" 
                                                     Binding="{Binding LacznePunkty, StringFormat='{}{0}/100'}" 
-                                                    Width="110">
+                                                    Width="140">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
                                             <Setter Property="FontSize" Value="16"/>
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
 
-                                <DataGridTemplateColumn Header="Status" Width="130">
+                                <DataGridTemplateColumn Header="Status" Width="180">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Border CornerRadius="12" 
@@ -392,8 +398,10 @@
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
-                                                <TextBlock Text="{Binding StatusAkredytacji}" 
-                                                          FontSize="11" 
+                                                <TextBlock Text="{Binding StatusAkredytacji}"
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          FontSize="12" 
                                                           FontWeight="SemiBold">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock">
@@ -419,8 +427,9 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextWrapping" Value="Wrap"/>
-                                            <Setter Property="FontSize" Value="11"/>
+                                            <Setter Property="FontSize" Value="12"/>
                                             <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -464,23 +473,23 @@
                             <Border Grid.Row="0" Background="#E3F2FD" Padding="16" Margin="0,0,0,8" CornerRadius="4">
                                 <StackPanel>
                                     <TextBlock Text="✓ Oceny Zespołów (max 40 pkt)" FontWeight="SemiBold" FontSize="14" Foreground="#1976D2"/>
-                                    <TextBlock Text="• Średnia ocena zespołów (0-25 pkt)" FontSize="12" Margin="16,4,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
-                                    <TextBlock Text="• Liczba zebranych ocen (0-15 pkt)" FontSize="12" Margin="16,2,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Text="• Średnia ocena zespołów (0-25 pkt)" FontSize="12" Margin="16,4,0,0" Foreground="Black"/>
+                                    <TextBlock Text="• Liczba zebranych ocen (0-15 pkt)" FontSize="12" Margin="16,2,0,0" Foreground="Black"/>
                                 </StackPanel>
                             </Border>
 
                             <Border Grid.Row="1" Background="#E8F5E9" Padding="16" Margin="0,0,0,8" CornerRadius="4">
                                 <StackPanel>
                                     <TextBlock Text="✓ Interwencje Medyczne (max 40 pkt)" FontWeight="SemiBold" FontSize="14" Foreground="#388E3C"/>
-                                    <TextBlock Text="• Liczba udzielonych pomocy w okresie (0-40 pkt)" FontSize="12" Margin="16,4,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Text="• Liczba udzielonych pomocy w okresie (0-40 pkt)" FontSize="12" Margin="16,4,0,0" Foreground="Black"/>
                                 </StackPanel>
                             </Border>
 
                             <Border Grid.Row="2" Background="#FFF3E0" Padding="16" Margin="0,0,0,8" CornerRadius="4">
                                 <StackPanel>
                                     <TextBlock Text="✓ Zasoby Operacyjne (max 20 pkt)" FontWeight="SemiBold" FontSize="14" Foreground="#F57C00"/>
-                                    <TextBlock Text="• Liczba aktywnych zespołów (0-10 pkt)" FontSize="12" Margin="16,4,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
-                                    <TextBlock Text="• Liczba sprawnych karetek (0-10 pkt)" FontSize="12" Margin="16,2,0,0" Foreground="{DynamicResource MaterialDesignBody}"/>
+                                    <TextBlock Text="• Liczba aktywnych zespołów (0-10 pkt)" FontSize="12" Margin="16,4,0,0" Foreground="Black"/>
+                                    <TextBlock Text="• Liczba sprawnych karetek (0-10 pkt)" FontSize="12" Margin="16,2,0,0" Foreground="Black"/>
                                 </StackPanel>
                             </Border>
 

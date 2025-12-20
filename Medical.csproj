@@ -115,8 +115,11 @@
     <Compile Include="Helper\Converters.cs" />
     <Compile Include="Helper\MenuCommands.cs" />
     <Compile Include="Helper\ThemeHelper.cs" />
+    <Compile Include="Models\BusinessLogic\AkredytacjaPlacowekB.cs" />
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\KosztyKaretekB.cs" />
     <Compile Include="Models\BusinessLogic\PlacowkaB.cs" />
+    <Compile Include="Models\BusinessLogic\RankingZespolowB.cs" />
     <Compile Include="Models\BusinessLogic\ZespolRatunkowyB.cs" />
     <Compile Include="Models\EntitiesForView\AkredytacjaPlacowkiForView.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />

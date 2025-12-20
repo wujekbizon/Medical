@@ -213,76 +213,10 @@ namespace Medical.ViewModels
         {
             try
             {
-                var query = from karetka in medicalEntities.Karetka
-                            where karetka.CzyAktywny == true
-                            select new
-                            {
-                                Karetka = karetka,
-                                Koszty = karetka.KosztUtrzymania
-                                    .Where(k => k.CzyAktywny == true
-                                            && k.DataKosztu >= DataOd
-                                            && k.DataKosztu <= DataDo)
-                            };
+                var kosztyB = new KosztyKaretekB(medicalEntities);
+                var wyniki = kosztyB.GenerujRaportKosztow(DataOd, DataDo, IdPlacowki, SortOrder);
 
-                if (IdPlacowki > 0)
-                {
-                    query = query.Where(x => x.Karetka.IdPlacowki == IdPlacowki);
-                }
-                var wyniki = query.ToList()
-                    .GroupBy(x => x.Karetka.IdPlacowki)
-                    .Select(g => new
-                    {
-                        IdPlacowki = g.Key,
-                        NazwaPlacowki = g.First().Karetka.Placowka.NazwaPlacowki,
-                        LiczbaKaretek = g.Count(),
-                        LaczneKoszty = g.SelectMany(x => x.Koszty).Sum(k => k.Kwota),
-                        LiczbaKosztow = g.SelectMany(x => x.Koszty).Count(),
-                        SredniKosztNaKaretke = g.Count() > 0
-                            ? g.SelectMany(x => x.Koszty).Sum(k => k.Kwota) / g.Count()
-                            : 0
-                    })
-                    .Where(x => x.LiczbaKosztow > 0)
-                    .ToList();
-
-                IEnumerable<dynamic> sortedQuery = null;
-                switch (SortOrder)
-                {
-                    case 0:
-                        sortedQuery = wyniki.OrderByDescending(x => x.LaczneKoszty);
-                        break;
-                    case 1:
-                        sortedQuery = wyniki.OrderBy(x => x.LaczneKoszty);
-                        break;
-                    case 2:
-                        sortedQuery = wyniki.OrderByDescending(x => x.LiczbaKosztow);
-                        break;
-                    default:
-                        sortedQuery = wyniki.OrderByDescending(x => x.LaczneKoszty);
-                        break;
-                }
-
-                var kosztyWyniki = new ObservableCollection<KosztyKaretkiForView>();
-                int pozycja = 1;
-
-                foreach (var item in sortedQuery)
-                {
-                    var kategoria = OkreslKategorieKosztow(item.LaczneKoszty);
-
-                    kosztyWyniki.Add(new KosztyKaretkiForView
-                    {
-                        Pozycja = pozycja++,
-                        IdPlacowki = item.IdPlacowki,
-                        NazwaPlacowki = item.NazwaPlacowki,
-                        LiczbaKaretek = item.LiczbaKaretek,
-                        LaczneKoszty = item.LaczneKoszty,
-                        LiczbaKosztow = item.LiczbaKosztow,
-                        SredniKosztNaKaretke = item.SredniKosztNaKaretke,
-                        KategoriaKosztow = kategoria,
-                        KolorKategorii = OkreslKolorKategorii(kategoria)
-                    });
-                }
-
-                KosztyPlacowek = kosztyWyniki;
+                KosztyPlacowek = new ObservableCollection<KosztyKaretkiForView>(wyniki);
 
                 PrzygotujDaneDoWykresu();
 
@@ -335,37 +269,6 @@ namespace Medical.ViewModels
 
             PokazWykres = true;
         }
-
-        
-        private string OkreslKategorieKosztow(decimal laczneKoszty)
-        {
-            if (laczneKoszty >= 100000)
-                return "Wysokie";
-            else if (laczneKoszty >= 50000)
-                return "Średnie";
-            else
-                return "Niskie";
-        }
-
-        private string OkreslKolorKategorii(string kategoria)
-        {
-            switch (kategoria)
-            {
-                case "Wysokie":
-                    return "Red";
-
-                case "Średnie":
-                    return "Orange";
-
-                case "Niskie":
-                    return "Green";
-
-                default:
-                    return "Gray";
-            };
-        }
-
-
 
         private void ResetujClick()
         {

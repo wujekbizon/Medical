@@ -22,7 +22,6 @@ namespace Medical.Models.BusinessLogic
                 new KeyAndValue { Key = 0, Value = "Wszystkie placówki" }
             };
 
-        
             var activePlacowki = medicalEntities.Placowka
                 .Where(p => p.CzyAktywny == true)
                 .OrderBy(p => p.NazwaPlacowki)

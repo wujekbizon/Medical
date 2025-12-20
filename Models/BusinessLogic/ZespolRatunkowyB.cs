@@ -32,7 +32,7 @@ namespace Medical.Models.BusinessLogic
                           select new KeyAndValue
                           {
                               Key = zespol.IdZespolu,
-                              Value = zespol.NazwaZespolu
+                              Value = zespol.Placowka.NazwaPlacowki + " - " + zespol.NazwaZespolu
                           };
  
             lista.AddRange(zespoly.ToList());

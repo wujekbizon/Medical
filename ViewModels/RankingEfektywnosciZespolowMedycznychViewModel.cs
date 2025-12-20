@@ -223,76 +223,18 @@ namespace Medical.ViewModels
         {
             try
             {
-                var query = from zespol in medicalEntities.ZespolRatunkowy
-                            where zespol.CzyAktywny == true
-                            select new
-                            {
-                                Zespol = zespol,
-                                Oceny = zespol.OcenaZespolu
-                                    .Where(o => o.CzyAktywny == true
-                                            && o.DataOceny >= DataOd
-                                            && o.DataOceny <= DataDo)
-                            };
+                var rankingB = new RankingZespolowB(medicalEntities);
+                var wyniki = rankingB.GenerujRanking(
+                    DataOd, 
+                    DataDo, 
+                    MinSredniaOcena, 
+                    IdZespolu, 
+                    SortOrder
+                );
 
-                if (IdZespolu.HasValue && IdZespolu.Value > 0)
-                {
-                    query = query.Where(x => x.Zespol.IdZespolu == IdZespolu.Value);
-                }
+                RankingZespolow = new ObservableCollection<RankingZespolowForView>(wyniki);
 
-                var wyniki = query.ToList()
-                    .Where(x => x.Oceny.Any())
-                    .Select(x => new
-                    {
-                        IDZespolu = x.Zespol.IdZespolu,
-                        NazwaZespolu = x.Zespol.NazwaZespolu,
-                        SredniaOcena = (decimal)x.Oceny.Average(o => o.Ocena),
-                        LiczbaOcen = x.Oceny.Count(),
-                        SumaOcen = (decimal)x.Oceny.Sum(o => o.Ocena)
-                    })
-                    .Where(x => x.SredniaOcena >= MinSredniaOcena)
-                    .ToList();
-
-                IEnumerable<dynamic> sortedQuery = null;
-                switch (SortOrder)
-                {
-                    case 0:
-                        sortedQuery = wyniki.OrderByDescending(x => x.SredniaOcena);
-                        break;
-                    case 1:
-                        sortedQuery = wyniki.OrderBy(x => x.SredniaOcena);
-                        break;
-                    case 2:
-                        sortedQuery = wyniki.OrderByDescending(x => x.LiczbaOcen);
-                        break;
-                    case 3:
-                        sortedQuery = wyniki.OrderBy(x => x.NazwaZespolu);
-                        break;
-                    default:
-                        sortedQuery = wyniki.OrderByDescending(x => x.SredniaOcena);
-                        break;
-                }
-
-                var rankingWyniki = new ObservableCollection<RankingZespolowForView>();
-                int pozycja = 1;
-
-                foreach (var item in sortedQuery)
-                {
-                    rankingWyniki.Add(new RankingZespolowForView
-                    {
-                        Pozycja = pozycja++,
-                        IDZespolu = item.IDZespolu,
-                        NazwaZespolu = item.NazwaZespolu,
-                        SredniaOcena = item.SredniaOcena,
-                        LiczbaOcen = item.LiczbaOcen,
-                        SumaOcen = item.SumaOcen,
-                        Status = OkreslStatus(item.SredniaOcena),
-                        StatusKolor = OkreslStatusKolor(item.SredniaOcena)
-                    });
-                }
-
-                RankingZespolow = rankingWyniki;
-
-                ObliczStatystyki(rankingWyniki);
+                ObliczStatystyki(RankingZespolow);
             }
             catch (Exception ex)
             {
@@ -372,30 +314,6 @@ namespace Medical.ViewModels
             OgolnaSredniaOcena = wyniki.Average(x => x.SredniaOcena);
             LacznaLiczbaOcen = wyniki.Sum(x => x.LiczbaOcen);
             NajlepszyWynik = wyniki.Max(x => x.SredniaOcena);
-        }
-
-        private string OkreslStatus(decimal sredniaOcena)
-        {
-            if (sredniaOcena >= 9.0m)
-                return "Wybitny";
-            else if (sredniaOcena >= 8.0m)
-                return "Bardzo dobry";
-            else if (sredniaOcena >= 7.0m)
-                return "Dobry";
-            else
-                return "Zadowalający";
-        }
-
-        private string OkreslStatusKolor(decimal sredniaOcena)
-        {
-            if (sredniaOcena >= 9.0m)
-                return "Gold";
-            else if (sredniaOcena >= 8.0m)
-                return "Green";
-            else if (sredniaOcena >= 7.0m)
-                return "Orange";
-            else
-                return "Red";
         }
 
         #endregion
