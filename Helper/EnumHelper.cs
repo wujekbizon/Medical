@@ -23,7 +23,7 @@ namespace Medical.Helper
                        .Select(e => new KeyAndValue
                        {
                            Key = Convert.ToInt32(e),
-                           Value = e.GetDescription()
+                           Value = EnumHelper.GetDescription(e)
                        })
                        .ToList();
         }

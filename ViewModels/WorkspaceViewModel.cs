@@ -12,6 +12,7 @@ namespace Medical.ViewModels
     {
         #region Fields
         private BaseCommand _CloseCommand;
+        private BaseCommand _MinimizeCommand;
         #endregion 
 
         #region Constructor
@@ -20,7 +21,7 @@ namespace Medical.ViewModels
         }
         #endregion 
 
-        #region CloseCommand
+        #region Commands
         public ICommand CloseCommand
         {
             get
@@ -30,7 +31,28 @@ namespace Medical.ViewModels
                 return _CloseCommand;
             }
         }
-        #endregion 
+
+        public ICommand MinimizeCommand
+        {
+            get
+            {
+                if (_MinimizeCommand == null)
+                    _MinimizeCommand = new BaseCommand(() => this.OnRequestMinimize());
+                return _MinimizeCommand;
+            }
+        }
+
+        #endregion
+
+        #region RequestMinimize [event]
+        public event EventHandler RequestMinimize;
+        protected void OnRequestMinimize()
+        {
+            EventHandler handler = this.RequestMinimize;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+        #endregion
 
         #region RequestClose [event]
         public event EventHandler RequestClose;

@@ -15,10 +15,14 @@ namespace Medical
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            MainWindow window = new MainWindow();
-            var viewModel = new MainWindowViewModel();
-            window.DataContext = viewModel;
-            window.Show();
+            //MainWindow window = new MainWindow();
+            //var viewModel = new MainWindowViewModel();
+            //window.DataContext = viewModel;
+            //window.Show();
+            var loginWindow = new Medical.Views.LoginView();
+            var loginViewModel = new Medical.ViewModels.LoginViewModel();
+            loginWindow.DataContext = loginViewModel;
+            loginWindow.Show();
         }
     }
 }

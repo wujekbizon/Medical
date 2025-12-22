@@ -53,8 +53,7 @@ namespace Medical.Models.BusinessLogic
                         ? g.SelectMany(x => x.Koszty).Sum(k => k.Kwota) / g.Count()
                         : 0
                 })
-                .Where(x => x.LiczbaKosztow > 0)
-                .ToList();
+                .Where(x => x.LiczbaKosztow > 0);
 
             var sortedQuery = SortujWyniki(wyniki, sortOrder);
 

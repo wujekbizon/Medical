@@ -142,7 +142,6 @@ namespace Medical.ViewModels
                 }
             }
         }
-
         public bool BrakDanych
         {
             get { return WynikiAkredytacji == null || WynikiAkredytacji.Count == 0; }

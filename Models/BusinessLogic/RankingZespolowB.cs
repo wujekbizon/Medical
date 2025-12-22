@@ -51,8 +51,7 @@ namespace Medical.Models.BusinessLogic
                     LiczbaOcen = x.Oceny.Count(),
                     SumaOcen = (decimal)x.Oceny.Sum(o => o.Ocena)
                 })
-                .Where(x => x.SredniaOcena >= minSredniaOcena)
-                .ToList();
+                .Where(x => x.SredniaOcena >= minSredniaOcena);
 
             var sortedQuery = SortujWyniki(wyniki, sortOrder);
 
