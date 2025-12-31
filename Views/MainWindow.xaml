@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:Medical.Views.Controls"
         xmlns:helper="clr-namespace:Medical.Helper"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+        xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF" xmlns:viewmodels="clr-namespace:Medical.ViewModels"
         Title="Medical - System Zarządzania Medycznego"  Height="768" Width="1366"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -322,6 +322,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -333,16 +334,26 @@
                                 Foreground="{DynamicResource AccentPurpleLight}"/>
 
                             <StackPanel Grid.Column="1"
-                                        Margin="12,0,0,0"
-                                        VerticalAlignment="Center">
-                                <TextBlock Text="Grzegorz Wolfinger"
-                                           FontSize="13"
-                                           FontWeight="Medium"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding CurrentUserDisplayName}"
+                                           FontSize="16"
+                                           FontWeight="Light"
                                            Foreground="{DynamicResource MaterialDesignBody}"/>
-                                <TextBlock Text="Wesa 2025"
+                                <!--<TextBlock Text="Wesa 2025"
                                            FontSize="11"
-                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>-->
+                                
                             </StackPanel>
+                            <Button Command="{Binding LogoutCommand}"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    Style="{DynamicResource MaterialDesignToolButton}"
+                                    ToolTip="Wyloguj się"
+                                    Width="36" Height="36"
+                                    Cursor="Hand">
+                                <materialIcons:MaterialIcon Kind="Logout"  Width="20" Height="20" Foreground="{DynamicResource MaterialDesignBody}"/>
+                            </Button>
                         </Grid>
                     </Border>
                 </Grid>

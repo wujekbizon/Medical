@@ -42,5 +42,6 @@ namespace Medical.Models
         public virtual DbSet<ZespolRatunkowy> ZespolRatunkowy { get; set; }
         public virtual DbSet<ZlecenieWyjazdu> ZlecenieWyjazdu { get; set; }
         public virtual DbSet<ZespolPracownik> ZespolPracownik { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

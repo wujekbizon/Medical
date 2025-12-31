@@ -392,6 +392,18 @@
           <Property Name="KtoWykasowal" Type="nvarchar" MaxLength="50" />
           <Property Name="WersjaDanych" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="ZespolPracownik">
           <Key>
             <PropertyRef Name="IdZespoluPracownika" />
@@ -824,6 +836,7 @@
           <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UdzielonaPomoc" EntityType="Self.UdzielonaPomoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZespolPracownik" EntityType="Self.ZespolPracownik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZespolRatunkowy" EntityType="Self.ZespolRatunkowy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ZlecenieWyjazdu" EntityType="Self.ZlecenieWyjazdu" Schema="dbo" store:Type="Tables" />
@@ -1887,6 +1900,7 @@
             <End Role="ZespolRatunkowy" EntitySet="ZespolRatunkowy" />
             <End Role="ZespolPracownik" EntitySet="ZespolPracownik" />
           </AssociationSet>
+          <EntitySet Name="User" EntityType="MedicalModel.User" />
         </EntityContainer>
         <EntityType Name="ZespolPracownik">
           <Key>
@@ -1935,6 +1949,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2423,6 +2449,19 @@
                 <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
                 <ScalarProperty Name="IdZespolu" ColumnName="IdZespolu" />
                 <ScalarProperty Name="IdZespoluPracownika" ColumnName="IdZespoluPracownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="MedicalModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

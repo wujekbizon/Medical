@@ -1,5 +1,6 @@
 ﻿using Material.Icons;
 using Medical.Helper;
+using Medical.Models.EntitiesForView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,9 +8,9 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Medical.ViewModels
 {
@@ -20,9 +21,49 @@ namespace Medical.ViewModels
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
         private bool _isLoading;
         private string _loadingMessage = "Ładowanie...";
+        private UserForAllView _CurrentUser;
         #endregion
 
+        #region Właściwości - Pola
+        public UserForAllView CurrentUser
+        {
+            get { return _CurrentUser; }
+            set
+            {
+                if (_CurrentUser != value)
+                {
+                    _CurrentUser = value;
+                    OnPropertyChanged(() => CurrentUser);
+                    OnPropertyChanged(() => CurrentUserDisplayName);
+                }
+            }
+        }
+
+        public string CurrentUserDisplayName
+        {
+            get
+            {
+                if (CurrentUser == null)
+                    return "Nieznany użytkownik";
+
+                return $"{CurrentUser.Name} {CurrentUser.LastName}".Trim();
+            }
+        }
+        #endregion
         #region Komendy
+
+        private BaseCommand _LogoutCommand;
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                if (_LogoutCommand == null)
+                {
+                    _LogoutCommand = new BaseCommand(ExecuteLogout);
+                }
+                return _LogoutCommand;
+            }
+        }
 
         public ReadOnlyCollection<CommandSection> Commands
         {
@@ -312,19 +353,11 @@ namespace Medical.ViewModels
             IsLoading = true;
         }
 
-        /// <summary>
-        /// Hides the loading overlay.
-        /// </summary>
         public void HideLoading()
         {
             IsLoading = false;
         }
 
-        /// <summary>
-        /// Executes an async operation while showing the loading overlay.
-        /// </summary>
-        /// <param name="action">The async action to execute.</param>
-        /// <param name="loadingMessage">The message to show during loading.</param>
         public async Task ExecuteWithLoadingAsync(Func<Task> action, string loadingMessage = "Ładowanie...")
         {
             try
@@ -341,6 +374,21 @@ namespace Medical.ViewModels
         #endregion
 
         #region Private Helpers
+
+        private void ExecuteLogout()
+        {
+            this.Workspaces.Clear();
+
+            var loginView = new Medical.Views.LoginView();
+            loginView.Show();
+
+            var currentWindow = System.Windows.Application.Current.Windows
+                .OfType<Medical.Views.MainWindow>()
+                .FirstOrDefault();
+
+            currentWindow?.Close();
+        }
+
 
         private void CreateView(WorkspaceViewModel workspace)
         {

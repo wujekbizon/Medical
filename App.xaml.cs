@@ -1,12 +1,6 @@
-﻿using Medical.ViewModels;
+﻿using System.Windows;
 using Medical.Views;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+using Medical.ViewModels;
 
 namespace Medical
 {
@@ -19,8 +13,8 @@ namespace Medical
             //var viewModel = new MainWindowViewModel();
             //window.DataContext = viewModel;
             //window.Show();
-            var loginWindow = new Medical.Views.LoginView();
-            var loginViewModel = new Medical.ViewModels.LoginViewModel();
+            var loginWindow = new LoginView();
+            var loginViewModel = new LoginViewModel();
             loginWindow.DataContext = loginViewModel;
             loginWindow.Show();
         }
