@@ -1,51 +1,43 @@
-﻿<Application x:Class="Medical.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Medical"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:helper="clr-namespace:Medical.Helper">
-            
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Dark"
-                                            PrimaryColor="DeepPurple"
-                                            SecondaryColor="Lime"
-                                            ColorAdjustment="{materialDesign:ColorAdjustment}"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                <ResourceDictionary Source="Themes/Generic.xaml"/>
-                <ResourceDictionary Source="Views/MainWindowResources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-
-            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <helper:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-            <helper:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter"/>
-            <helper:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
-            <helper:IntToEnumConverter x:Key="IntToEnumConverter"/>
-
-            <CubicEase x:Key="EaseOut" EasingMode="EaseOut"/>
-            <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut"/>
-
-            <Color x:Key="AccentPurpleColor">#7B68EE</Color>
-            <SolidColorBrush x:Key="AccentPurple" Color="#7B68EE"/>
-            <SolidColorBrush x:Key="PurpleBorder20" Color="#339D8FEF"/>
-            <SolidColorBrush x:Key="PurpleBorder40" Color="#669D8FEF"/>
-            <SolidColorBrush x:Key="PurpleBorder60" Color="#999D8FEF"/>
-            <SolidColorBrush x:Key="AccentPurpleUltraLight" Color="#E0DBFA"/>
-            <SolidColorBrush x:Key="AccentPurpleBorderSubtle" Color="#339D8FEF"/>
-            <SolidColorBrush x:Key="AccentPurpleLight" Color="#9D8FEF"/>
-            <SolidColorBrush x:Key="AccentPurpleDark" Color="#5A4FCF"/>
-            <SolidColorBrush x:Key="AccentBlue" Color="#569CD6"/>
-            <SolidColorBrush x:Key="IndustrialGunmetal" Color="#1E2124"/>
-            <SolidColorBrush x:Key="IndustrialSteel" Color="#2D3136"/>
-            <SolidColorBrush x:Key="IndustrialGlass" Color="#AA2D3136"/>
-            <SolidColorBrush x:Key="IndustrialHighlight" Color="#44FFFFFF"/>
-            <SolidColorBrush x:Key="MedicalSuccess" Color="#4CAF50"/>
-            <SolidColorBrush x:Key="MedicalWarning" Color="#FFC107"/>
-            <SolidColorBrush x:Key="MedicalAlert" Color="#FF5252"/>
-            <SolidColorBrush x:Key="MedicalInfo" Color="#569CD6"/>
-            <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
-            <SolidColorBrush x:Key="TextSecondary" Color="#B0BCC7"/>
+<Application x:Class="Medical.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Medical" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:helper="clr-namespace:Medical.Helper" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="DeepPurple" SecondaryColor="Lime" ColorAdjustment="{materialDesign:ColorAdjustment}" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml">
         </ResourceDictionary>
-    </Application.Resources>
+        <ResourceDictionary Source="Themes/Generic.xaml">
+        </ResourceDictionary>
+        <ResourceDictionary Source="Views/MainWindowResources.xaml">
+          <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:Medical.ViewModel" />
+        </ResourceDictionary>
+      </ResourceDictionary.MergedDictionaries>
+      <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+      <helper:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+      <helper:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
+      <helper:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+      <helper:IntToEnumConverter x:Key="IntToEnumConverter" />
+      <CubicEase x:Key="EaseOut" EasingMode="EaseOut" />
+      <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut" />
+      <Color x:Key="AccentPurpleColor">#7B68EE</Color>
+      <SolidColorBrush x:Key="AccentPurple" Color="#7B68EE" />
+      <SolidColorBrush x:Key="PurpleBorder20" Color="#339D8FEF" />
+      <SolidColorBrush x:Key="PurpleBorder40" Color="#669D8FEF" />
+      <SolidColorBrush x:Key="PurpleBorder60" Color="#999D8FEF" />
+      <SolidColorBrush x:Key="AccentPurpleUltraLight" Color="#E0DBFA" />
+      <SolidColorBrush x:Key="AccentPurpleBorderSubtle" Color="#339D8FEF" />
+      <SolidColorBrush x:Key="AccentPurpleLight" Color="#9D8FEF" />
+      <SolidColorBrush x:Key="AccentPurpleDark" Color="#5A4FCF" />
+      <SolidColorBrush x:Key="AccentBlue" Color="#569CD6" />
+      <SolidColorBrush x:Key="IndustrialGunmetal" Color="#1E2124" />
+      <SolidColorBrush x:Key="IndustrialSteel" Color="#2D3136" />
+      <SolidColorBrush x:Key="IndustrialGlass" Color="#AA2D3136" />
+      <SolidColorBrush x:Key="IndustrialHighlight" Color="#44FFFFFF" />
+      <SolidColorBrush x:Key="MedicalSuccess" Color="#4CAF50" />
+      <SolidColorBrush x:Key="MedicalWarning" Color="#FFC107" />
+      <SolidColorBrush x:Key="MedicalAlert" Color="#FF5252" />
+      <SolidColorBrush x:Key="MedicalInfo" Color="#569CD6" />
+      <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="TextSecondary" Color="#B0BCC7" />
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>

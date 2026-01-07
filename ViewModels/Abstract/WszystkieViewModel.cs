@@ -1,11 +1,8 @@
-﻿using Medical.Helper;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Medical.Helper;
 using Medical.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Medical.ViewModels.Abstract
@@ -32,17 +29,20 @@ namespace Medical.ViewModels.Abstract
             }
         }
 
-        //private BaseCommand _AddCommand;
-        //public ICommand AddCommand
-        //{
-        //    get
-        //    {
-        //        if (_AddCommand == null) _AddCommand = new BaseCommand(Add);
-        //        return _AddCommand;
-        //    }
-        //}
+        private BaseCommand _AddCommand;
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (_AddCommand == null) _AddCommand = new BaseCommand(Add);
+                return _AddCommand;
+            }
+        }
 
-        //protected abstract void Add();
+        protected void Add()
+        {
+            Messenger.Default.Send(DisplayName + "Add");
+        }
         #endregion
         #region Lista
         //tu beda przechowywane wszystkie towary
@@ -76,6 +76,53 @@ namespace Medical.ViewModels.Abstract
             // tworzenie obiektu z db
             medicalEntities = new MedicalEntities();
         }
+        #endregion
+
+        #region Sortowanie i Wyszukiwanie
+        private BaseCommand _SortCommand;
+        public ICommand SortCommand
+        {
+            get
+            {
+                if (_SortCommand == null) _SortCommand = new BaseCommand(Sort);
+                return _SortCommand;
+            }
+        }
+        public string SortField { get; set; }
+
+        public List<string> SortComboBoxItems
+        {
+            get
+            {
+                return getComboBoxSortList();
+            }
+        }
+
+        private BaseCommand _FindCommand;
+        public ICommand FindCommand
+        {
+            get
+            {
+                if (_FindCommand == null) _FindCommand = new BaseCommand(Find);
+                return _FindCommand;
+            }
+        }
+        public string FindField { get; set; }
+        public string FindTextBox { get; set; }
+
+        public List<string> FindComboBoxItems
+        {
+            get
+            {
+                return getComboBoxFindList();
+            }
+        }
+
+        public abstract void Sort();
+        public abstract void Find();
+
+        public abstract List<string> getComboBoxSortList();
+        public abstract List<string> getComboBoxFindList();
         #endregion
     }
 }

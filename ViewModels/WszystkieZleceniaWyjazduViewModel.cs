@@ -50,5 +50,140 @@ namespace Medical.ViewModels
             base.DisplayName = "Wyjazdy";
         }
         #endregion
+        #region Sortowanie i Filtrowanie
+        public override List<string> getComboBoxSortList()
+        {
+            return new List<string>
+    {
+        "dataCzasZgloszenia",
+        "priorytet",
+        "statusZlecenia",
+        "typZdarzenia",
+        "czasWyjazdu",
+        "czasPrzyjazduNaMiejsce",
+        "czasPowrotuDoBazy",
+        "czasReakcjiSekundy",
+        "dystans",
+        "liczbaPacjentow",
+        "nazwaZespolu",
+        "numerRejestracyjnyKaretki",
+        "dyspozytor"
+    };
+        }
+
+        public override List<string> getComboBoxFindList()
+        {
+            return new List<string>
+    {
+        "adresZdarzenia",
+        "typZdarzenia",
+        "priorytet",
+        "statusZlecenia",
+        "nazwaZespolu",
+        "numerRejestracyjnyKaretki",
+        "dyspozytor",
+        "telefonDzwoniacego",
+        "opisZdarzenia",
+        "warunkiPogodowe"
+    };
+        }
+
+        public override void Sort()
+        {
+            switch (SortField)
+            {
+                case "dataCzasZgloszenia":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.DataCzasZgloszenia));
+                    break;
+                case "priorytet":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.Priorytet));
+                    break;
+                case "statusZlecenia":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.StatusZlecenia));
+                    break;
+                case "typZdarzenia":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.TypZdarzenia));
+                    break;
+                case "czasWyjazdu":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.CzasWyjazdu));
+                    break;
+                case "czasPrzyjazduNaMiejsce":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.CzasPrzyjazduNaMiejsce));
+                    break;
+                case "czasPowrotuDoBazy":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.CzasPowrotuDoBazy));
+                    break;
+                case "czasReakcjiSekundy":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.CzasReakcjiSekundy));
+                    break;
+                case "dystans":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.Dystans));
+                    break;
+                case "liczbaPacjentow":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.LiczbaPacjentow));
+                    break;
+                case "nazwaZespolu":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.NazwaZespolu));
+                    break;
+                case "numerRejestracyjnyKaretki":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.NumerRejestracyjnyKaretki));
+                    break;
+                case "dyspozytor":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.OrderBy(item => item.Dyspozytor));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public override void Find()
+        {
+            switch (FindField)
+            {
+                case "adresZdarzenia":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.AdresZdarzenia != null && item.AdresZdarzenia.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "typZdarzenia":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.TypZdarzenia != null && item.TypZdarzenia.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "priorytet":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.Priorytet != null && item.Priorytet.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "statusZlecenia":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.StatusZlecenia != null && item.StatusZlecenia.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "nazwaZespolu":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.NazwaZespolu != null && item.NazwaZespolu.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "numerRejestracyjnyKaretki":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.NumerRejestracyjnyKaretki != null && item.NumerRejestracyjnyKaretki.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "dyspozytor":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.Dyspozytor != null && item.Dyspozytor.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "telefonDzwoniacego":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.TelefonDzwoniacego != null && item.TelefonDzwoniacego.Contains(FindTextBox)));
+                    break;
+                case "opisZdarzenia":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.OpisZdarzenia != null && item.OpisZdarzenia.Contains(FindTextBox)));
+                    break;
+                case "warunkiPogodowe":
+                    List = new ObservableCollection<ZleceniaWyjazduForAllView>(List.Where(item =>
+                        item.WarunkiPogodowe != null && item.WarunkiPogodowe.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
     }
 }

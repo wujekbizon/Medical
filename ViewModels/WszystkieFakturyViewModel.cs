@@ -44,5 +44,114 @@ namespace Medical.ViewModels
             base.DisplayName = "Faktury";
         }
         #endregion
+
+        #region Sortowanie i Filtrowanie
+        public override List<string> getComboBoxSortList()
+        {
+            return new List<string>
+    {
+        "numer",
+        "dataWystawienia",
+        "terminPlatnosci",
+        "statusPlatnosci",
+        "nazwaFirmy",
+        "kategoriaKosztu",
+        "okresKsiegowy",
+        "czyZatwierdzona",
+        "waluta",
+        "nazwaSposobuPlatnosci"
+    };
+        }
+
+        public override List<string> getComboBoxFindList()
+        {
+            return new List<string>
+    {
+        "numer",
+        "nazwaFirmy",
+        "statusPlatnosci",
+        "kategoriaKosztu",
+        "okresKsiegowy",
+        "czyZatwierdzona",
+        "opis"
+    };
+        }
+
+        public override void Sort()
+        {
+            switch (SortField)
+            {
+                case "numer":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.Numer));
+                    break;
+                case "dataWystawienia":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.DataWystawienia));
+                    break;
+                case "terminPlatnosci":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.TerminPlatnosci));
+                    break;
+                case "statusPlatnosci":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.StatusPlatnosci));
+                    break;
+                case "nazwaFirmy":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.NazwaFirmy));
+                    break;
+                case "kategoriaKosztu":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.KategoriaKosztu));
+                    break;
+                case "okresKsiegowy":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.OkresKsiegowy));
+                    break;
+                case "czyZatwierdzona":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.CzyZatwierdzona));
+                    break;
+                case "waluta":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.Waluta));
+                    break;
+                case "nazwaSposobuPlatnosci":
+                    List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.NazwaSposobuPlatnosci));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public override void Find()
+        {
+            switch (FindField)
+            {
+                case "numer":
+                    List = new ObservableCollection<FakturaForAllView>(List.Where(item =>
+                        item.Numer != null && item.Numer.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "nazwaFirmy":
+                    List = new ObservableCollection<FakturaForAllView>(List.Where(item =>
+                        item.NazwaFirmy != null && item.NazwaFirmy.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "statusPlatnosci":
+                    List = new ObservableCollection<FakturaForAllView>(List.Where(item =>
+                        item.StatusPlatnosci != null && item.StatusPlatnosci.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "kategoriaKosztu":
+                    List = new ObservableCollection<FakturaForAllView>(List.Where(item =>
+                        item.KategoriaKosztu != null && item.KategoriaKosztu.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "okresKsiegowy":
+                    List = new ObservableCollection<FakturaForAllView>(List.Where(item =>
+                        item.OkresKsiegowy != null && item.OkresKsiegowy.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "czyZatwierdzona":
+                    List = new ObservableCollection<FakturaForAllView>(List.Where(item =>
+                        item.CzyZatwierdzona != null && item.CzyZatwierdzona.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "opis":
+                    List = new ObservableCollection<FakturaForAllView>(List.Where(item =>
+                        item.Opis != null && item.Opis.Contains(FindTextBox)));
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
     }
 }

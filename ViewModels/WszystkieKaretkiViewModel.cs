@@ -35,6 +35,74 @@ namespace Medical.ViewModels
             base.DisplayName = "Karetki";
         }
         #endregion
+        #region Sortowanie i Filtrowanie
+        public override List<string> getComboBoxSortList()
+        {
+            return new List<string>
+    {
+        "numerRejestracyjny",
+        "typKaretki",
+        "status",
+        "placowkaZarzadzajaca"
+    };
+        }
 
+        public override List<string> getComboBoxFindList()
+        {
+            return new List<string>
+    {
+        "numerRejestracyjny",
+        "typKaretki",
+        "status",
+        "placowkaZarzadzajaca"
+    };
+        }
+
+        public override void Sort()
+        {
+            switch (SortField)
+            {
+                case "numerRejestracyjny":
+                    List = new ObservableCollection<KaretkaForAllView>(List.OrderBy(item => item.NumerRejestracyjny));
+                    break;
+                case "typKaretki":
+                    List = new ObservableCollection<KaretkaForAllView>(List.OrderBy(item => item.TypKaretki));
+                    break;
+                case "status":
+                    List = new ObservableCollection<KaretkaForAllView>(List.OrderBy(item => item.Status));
+                    break;
+                case "placowkaZarzadzajaca":
+                    List = new ObservableCollection<KaretkaForAllView>(List.OrderBy(item => item.PlacowkaZarzadzajaca));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public override void Find()
+        {
+            switch (FindField)
+            {
+                case "numerRejestracyjny":
+                    List = new ObservableCollection<KaretkaForAllView>(List.Where(item =>
+                        item.NumerRejestracyjny != null && item.NumerRejestracyjny.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "typKaretki":
+                    List = new ObservableCollection<KaretkaForAllView>(List.Where(item =>
+                        item.TypKaretki != null && item.TypKaretki.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "status":
+                    List = new ObservableCollection<KaretkaForAllView>(List.Where(item =>
+                        item.Status != null && item.Status.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "placowkaZarzadzajaca":
+                    List = new ObservableCollection<KaretkaForAllView>(List.Where(item =>
+                        item.PlacowkaZarzadzajaca != null && item.PlacowkaZarzadzajaca.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
     }
 }

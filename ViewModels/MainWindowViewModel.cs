@@ -1,6 +1,9 @@
-﻿using Material.Icons;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Material.Icons;
 using Medical.Helper;
 using Medical.Models.EntitiesForView;
+using Medical.ViewModels.RAG;
+using Medical.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -80,7 +83,22 @@ namespace Medical.ViewModels
 
         private List<CommandSection> CreateCommands()
         {
+            Messenger.Default.Register<string>(this, open);
+
             var sections = new List<CommandSection>();
+
+            var aiAssistantSection = new CommandSection
+            {
+                SectionName = "ASYSTENT AI",
+                ShowSectionHeader = true
+            };
+
+            aiAssistantSection.Commands.Add(new CommandViewModel(
+                "RAG",
+                new BaseCommand(() => this.CreateView(new RAGMainViewModel())),
+                MaterialIconKind.Brain 
+            ));
+            sections.Add(aiAssistantSection);
 
             var businessLogic = new CommandSection
             {
@@ -417,6 +435,62 @@ namespace Medical.ViewModels
                 collectionView.MoveCurrentTo(workspace);
         }
 
+        private void open(string name)
+        {
+            switch (name)
+            {
+                case "FakturyAdd":
+                    CreateView(new NowaFakturaViewModel());
+                    break;
+                case "KontrahenciAdd":
+                    CreateView(new NowyKontrahentViewModel());
+                    break;
+                case "PacjenciAdd":
+                    CreateView(new NowyPacjentViewModel());
+                    break;
+                case "PracownicyAdd":
+                    CreateView(new NowyPracownikViewModel());
+                    break;
+                case "Historie NaprawAdd":
+                    CreateView(new NowaHistoriaNaprawViewModel());
+                    break;
+                case "KaretkiAdd":
+                    CreateView(new NowaKaretkaViewModel());
+                    break;
+                case "Koszty UtrzymaniaAdd":
+                    CreateView(new NoweKosztyUtrzymaniaViewModel());
+                    break;
+                case "Oceny ZespolowAdd":
+                    CreateView(new NowaOceanZespoluViewModel());
+                    break;
+                case "PlacowkiAdd":
+                    CreateView(new NowaPlacowkaViewModel());
+                    break;
+                case "Pozycje FakturAdd":
+                    CreateView(new NowaPozycjaFakturyViewModel());
+                    break;
+                case "RoleAdd":
+                    CreateView(new NowaRolaPracownikaViewModel());
+                    break;
+                case "SposobyPlatnosciAdd":
+                    CreateView(new NowySposobPlatnosciViewModel());
+                    break;
+                case "Udzielone PomoceAdd":
+                    CreateView(new NowaUdzielonaPomocViewModel());
+                    break;
+                case "Skład ZespołówAdd":
+                    CreateView(new NowyZespolPracownikViewModel());
+                    break;
+                case "Zespoly RatunkoweAdd":
+                    CreateView(new NowyZespolRatunkowyViewModel());
+                    break;
+                case "WyjazdyAdd":
+                    CreateView(new NoweZlecenieWyjazduViewModel());
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
     }
 }

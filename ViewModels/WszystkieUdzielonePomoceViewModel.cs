@@ -52,5 +52,146 @@ namespace Medical.ViewModels
             base.DisplayName = "Udzielone Pomoce";
         }
         #endregion
+        #region Sortowanie i Filtrowanie
+        public override List<string> getComboBoxSortList()
+        {
+            return new List<string>
+    {
+        "dataPomocy",
+        "czasRozpoczecia",
+        "czasZakonczenia",
+        "czasTrwaniaMinuty",
+        "priorytetInterwencji",
+        "wynikInterwencji",
+        "pacjent",
+        "nazwaZespolu",
+        "karetka",
+        "lokalizacjaInterwencji",
+        "kodDiagnozyICD10",
+        "szpitalTransportu"
+    };
+        }
+
+        public override List<string> getComboBoxFindList()
+        {
+            return new List<string>
+    {
+        "pacjent",
+        "nazwaZespolu",
+        "karetka",
+        "lokalizacjaInterwencji",
+        "adresZdarzenia",
+        "kodDiagnozyICD10",
+        "szpitalTransportu",
+        "priorytetInterwencji",
+        "wynikInterwencji",
+        "autorRaportu",
+        "opisPomocy",
+        "proceduryMedyczne"
+    };
+        }
+
+        public override void Sort()
+        {
+            switch (SortField)
+            {
+                case "dataPomocy":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.DataPomocy));
+                    break;
+                case "czasRozpoczecia":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.CzasRozpoczecia));
+                    break;
+                case "czasZakonczenia":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.CzasZakonczenia));
+                    break;
+                case "czasTrwaniaMinuty":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.CzasTrwaniaMinuty));
+                    break;
+                case "priorytetInterwencji":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.PriorytetInterwencji));
+                    break;
+                case "wynikInterwencji":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.WynikInterwencji));
+                    break;
+                case "pacjent":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.Pacjent));
+                    break;
+                case "nazwaZespolu":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.NazwaZespolu));
+                    break;
+                case "karetka":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.Karetka));
+                    break;
+                case "lokalizacjaInterwencji":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.LokalizacjaInterwencji));
+                    break;
+                case "kodDiagnozyICD10":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.KodDiagnozyICD10));
+                    break;
+                case "szpitalTransportu":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.OrderBy(item => item.SzpitalTransportu));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public override void Find()
+        {
+            switch (FindField)
+            {
+                case "pacjent":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.Pacjent != null && item.Pacjent.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "nazwaZespolu":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.NazwaZespolu != null && item.NazwaZespolu.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "karetka":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.Karetka != null && item.Karetka.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "lokalizacjaInterwencji":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.LokalizacjaInterwencji != null && item.LokalizacjaInterwencji.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "adresZdarzenia":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.AdresZdarzenia != null && item.AdresZdarzenia.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "kodDiagnozyICD10":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.KodDiagnozyICD10 != null && item.KodDiagnozyICD10.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "szpitalTransportu":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.SzpitalTransportu != null && item.SzpitalTransportu.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "priorytetInterwencji":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.PriorytetInterwencji != null && item.PriorytetInterwencji.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "wynikInterwencji":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.WynikInterwencji != null && item.WynikInterwencji.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "autorRaportu":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.AutorRaportu != null && item.AutorRaportu.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "opisPomocy":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.OpisPomocy != null && item.OpisPomocy.Contains(FindTextBox)));
+                    break;
+                case "proceduryMedyczne":
+                    List = new ObservableCollection<UdzielonaPomocForAllView>(List.Where(item =>
+                        item.ProceduryMedyczne != null && item.ProceduryMedyczne.Contains(FindTextBox)));
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
     }
 }
