@@ -5,16 +5,14 @@
         <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="DeepPurple" SecondaryColor="Lime" ColorAdjustment="{materialDesign:ColorAdjustment}" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml">
         </ResourceDictionary>
-        <ResourceDictionary Source="Themes/Generic.xaml">
-        </ResourceDictionary>
-        <ResourceDictionary Source="Views/MainWindowResources.xaml">
-          <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:Medical.ViewModel" />
-        </ResourceDictionary>
-      </ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Generic.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
       <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
       <helper:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
       <helper:InverseBoolToVisibilityConverter x:Key="InverseBoolToVisibilityConverter" />
       <helper:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+      <helper:BoolToStringConverter x:Key="BoolToStringConverter"/>
       <helper:IntToEnumConverter x:Key="IntToEnumConverter" />
       <CubicEase x:Key="EaseOut" EasingMode="EaseOut" />
       <CubicEase x:Key="EaseInOut" EasingMode="EaseInOut" />

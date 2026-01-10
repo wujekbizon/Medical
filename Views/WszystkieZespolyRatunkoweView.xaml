@@ -11,7 +11,7 @@
             <RowDefinition Height="0*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}" SelectedItem="{Binding WybranyZespol, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa Zespołu" Binding="{Binding NazwaZespolu}" />
                 <DataGridTextColumn Header="Liczba Członków" Binding="{Binding LiczbaCzlonkow}" />

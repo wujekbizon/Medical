@@ -8,6 +8,7 @@ namespace Medical.Models.EntitiesForView
 {
     public class HistoriaNaprawForAllView
     {
+        public int IdNaprawy { get; set; }
         public string RodzajNaprawy { get; set; }
         public string OpisNaprawy { get; set; }
         public DateTime DataRozpoczecia { get; set; }

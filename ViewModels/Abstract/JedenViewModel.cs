@@ -19,29 +19,42 @@ namespace Medical.ViewModels.Abstract
         #region Konstruktor 
         public JedenViewModel()
         {
-            // tworzenie obiektu z db
             medicalEntities = new MedicalEntities();
         }
         #endregion
 
         #region Komendy
-        //to jest komenda ktora zostanie podpieta pod przycisk ZapisziZamknij
         private BaseCommand _SaveAndCloseCommand;
         public ICommand SaveAndCloseCommand
         {
             get
             {
-                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndCLose);// ta komenda wywola metode saveAndClose ktora jest zdefiniowana nizej
+                if (_SaveAndCloseCommand == null) _SaveAndCloseCommand = new BaseCommand(saveAndCLose);
                 return _SaveAndCloseCommand;
             }
         }
+
+        private BaseCommand _CancelCommand;
+        public ICommand CancelCommand
+        {
+            get
+            {
+                if (_CancelCommand == null) _CancelCommand = new BaseCommand(close);
+                return _CancelCommand;
+            }
+        }
+
         public abstract void Save();
 
         private void saveAndCLose()
         {
             Save();
-            //zamykamy zakladke przez metode z WorkspaceViewModel
-            OnRequestClose(); // koniecznie zmien w WorkspaceViewModel dostep do tej metody na protected
+            OnRequestClose(); 
+        }
+
+        private void close()
+        {
+            OnRequestClose();
         }
         #endregion
     }

@@ -154,7 +154,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.FileDocument));
             ksiegoweSection.Commands.Add(new CommandViewModel(
                 "Nowa Faktura",
-                new BaseCommand(() => this.CreateView(new NowaFakturaViewModel())),
+                new BaseCommand(() => this.CreateView(new NowaFakturaViewModel(CurrentUser))),
                 MaterialIconKind.FileDocumentPlus));
             ksiegoweSection.Commands.Add(new CommandViewModel(
                 "Pozycje Faktur",
@@ -190,7 +190,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.Ambulance));
             flotaSection.Commands.Add(new CommandViewModel(
                 "Nowa Karetka",
-                new BaseCommand(() => this.CreateView(new NowaKaretkaViewModel())),
+                new BaseCommand(() => this.CreateView(new NowaKaretkaViewModel(CurrentUser))),
                 MaterialIconKind.Car2Plus));
             flotaSection.Commands.Add(new CommandViewModel(
                 "Historia Napraw",
@@ -198,7 +198,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.Tools));
             flotaSection.Commands.Add(new CommandViewModel(
                 "Nowa Naprawa",
-                new BaseCommand(() => this.CreateView(new NowaHistoriaNaprawViewModel())),
+                new BaseCommand(() => this.CreateView(new NowaHistoriaNaprawViewModel(CurrentUser))),
                 MaterialIconKind.Wrench));
             flotaSection.Commands.Add(new CommandViewModel(
                 "Koszty Utrzymania",
@@ -264,7 +264,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.StarCircle));
             medyczneSection.Commands.Add(new CommandViewModel(
                 "Nowa Ocena",
-                new BaseCommand(() => this.CreateView(new NowaOceanZespoluViewModel())),
+                new BaseCommand(() => this.CreateView(new NowaOceanZespoluViewModel(CurrentUser))),
                 MaterialIconKind.StarPlus));
             medyczneSection.Commands.Add(new CommandViewModel(
                 "Zlecenia Wyjazdu",
@@ -440,7 +440,7 @@ namespace Medical.ViewModels
             switch (name)
             {
                 case "FakturyAdd":
-                    CreateView(new NowaFakturaViewModel());
+                    CreateView(new NowaFakturaViewModel(CurrentUser));
                     break;
                 case "KontrahenciAdd":
                     CreateView(new NowyKontrahentViewModel());
@@ -452,16 +452,16 @@ namespace Medical.ViewModels
                     CreateView(new NowyPracownikViewModel());
                     break;
                 case "Historie NaprawAdd":
-                    CreateView(new NowaHistoriaNaprawViewModel());
+                    CreateView(new NowaHistoriaNaprawViewModel(CurrentUser));
                     break;
                 case "KaretkiAdd":
-                    CreateView(new NowaKaretkaViewModel());
+                    CreateView(new NowaKaretkaViewModel(CurrentUser));
                     break;
                 case "Koszty UtrzymaniaAdd":
                     CreateView(new NoweKosztyUtrzymaniaViewModel());
                     break;
                 case "Oceny ZespolowAdd":
-                    CreateView(new NowaOceanZespoluViewModel());
+                    CreateView(new NowaOceanZespoluViewModel(CurrentUser));
                     break;
                 case "PlacowkiAdd":
                     CreateView(new NowaPlacowkaViewModel());
@@ -486,6 +486,27 @@ namespace Medical.ViewModels
                     break;
                 case "WyjazdyAdd":
                     CreateView(new NoweZlecenieWyjazduViewModel());
+                    break;
+                case "KontrahenciShow":
+                    ShowAllView<WszyscyKontrahenciViewModel>();
+                    break;
+                case "KaretkiShow":
+                    ShowAllView<WszystkieKaretkiViewModel>();
+                    break;
+                case "FakturyShow":
+                    ShowAllView<WszystkieFakturyViewModel>();
+                    break;
+                case "PlacowkiShow":
+                    ShowAllView<WszystkiePlacowkiViewModel>();
+                    break;
+                case "ZespolyRatunkoweShow":
+                    ShowAllView<WszystkieZespolyRatunkoweViewModel>();
+                    break;
+                case "PracownicyShow":
+                    ShowAllView<WszyscyPracownicyViewModel>();
+                    break;
+                case "ZleceniaWyjazduShow":
+                    ShowAllView<WszystkieZleceniaWyjazduViewModel>();
                     break;
                 default:
                     break;

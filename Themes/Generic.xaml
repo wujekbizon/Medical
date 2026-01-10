@@ -196,7 +196,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:JedenViewBase}">
-                    <Grid Background="{DynamicResource MaterialDesignPaper}">
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#2D3136" Offset="0"/>
+                                <GradientStop Color="#1E2124" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>

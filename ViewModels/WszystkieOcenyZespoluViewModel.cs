@@ -84,7 +84,7 @@ namespace Medical.ViewModels
             switch (SortField)
             {
                 case "dataOceny":
-                    List = new ObservableCollection<OcenaZespoluForAllView>(List.OrderBy(item => item.DataOceny));
+                    List = new ObservableCollection<OcenaZespoluForAllView>(List.OrderByDescending(item => item.DataOceny));
                     break;
                 case "ocena":
                     List = new ObservableCollection<OcenaZespoluForAllView>(List.OrderBy(item => item.Ocena));

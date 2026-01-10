@@ -8,6 +8,7 @@ namespace Medical.Models.EntitiesForView
 {
     public class OcenaZespoluForAllView
     {
+        public int IdOceny { get; set; }
         public int Ocena { get; set; }
         public DateTime DataOceny { get; set; }
         public string Komentarz { get; set; }

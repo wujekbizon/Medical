@@ -1,4 +1,5 @@
-﻿using Medical.Models.EntitiesForView;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Medical.Models.EntitiesForView;
 using Medical.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Medical.ViewModels
                    .Where(faktura => faktura.CzyAktywny == true)
                    .Select(faktura => new FakturaForAllView
                    {
+                       IdFaktury = faktura.IdFaktury,
                        Numer = faktura.Numer,
                        DataWystawienia = faktura.DataWystawienia,
                        TerminPlatnosci = faktura.TerminPlatnosci,
@@ -42,6 +44,26 @@ namespace Medical.ViewModels
             : base()
         {
             base.DisplayName = "Faktury";
+        }
+        #endregion
+
+        #region Właściwosci
+        private FakturaForAllView _WybranaFaktura;
+        public FakturaForAllView WybranaFaktura
+        {
+            get
+            {
+                return _WybranaFaktura;
+            }
+            set
+            {
+                if (_WybranaFaktura != value)
+                {
+                    _WybranaFaktura = value;
+                    Messenger.Default.Send(_WybranaFaktura);
+                    OnRequestClose();
+                }
+            }
         }
         #endregion
 

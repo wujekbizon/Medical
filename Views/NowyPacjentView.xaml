@@ -63,13 +63,12 @@
                     <ComboBox Grid.Row="2"
                               Grid.Column="0"
                               Margin="0,0,0,16"
-                              materialDesign:HintAssist.Hint="Płeć"
-                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              ItemsSource="{Binding PlecItems}"
                               SelectedValue="{Binding Plec, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedValuePath="Content">
-                        <ComboBoxItem Content="M"/>
-                        <ComboBoxItem Content="K"/>
-                    </ComboBox>
+                              SelectedValuePath="Value"
+                              DisplayMemberPath="Value"
+                              materialDesign:HintAssist.Hint="Płeć"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
 
                     <TextBox Grid.Row="2"
                              Grid.Column="2"
@@ -82,19 +81,12 @@
                     <ComboBox Grid.Row="3"
                               Grid.Column="0"
                               Margin="0,0,0,16"
+                              ItemsSource="{Binding GrupaKrwiItems}"
+                              SelectedValue="{Binding GrupaKrwi, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="Value"
+                              DisplayMemberPath="Value"
                               materialDesign:HintAssist.Hint="Grupa krwi"
-                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
-                              Text="{Binding GrupaKrwi, UpdateSourceTrigger=PropertyChanged}"
-                              IsEditable="True">
-                        <ComboBoxItem Content="0+"/>
-                        <ComboBoxItem Content="0-"/>
-                        <ComboBoxItem Content="A+"/>
-                        <ComboBoxItem Content="A-"/>
-                        <ComboBoxItem Content="B+"/>
-                        <ComboBoxItem Content="B-"/>
-                        <ComboBoxItem Content="AB+"/>
-                        <ComboBoxItem Content="AB-"/>
-                    </ComboBox>
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
 
                     <TextBox Grid.Row="3"
                              Grid.Column="2"

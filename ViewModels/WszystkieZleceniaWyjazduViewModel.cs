@@ -1,4 +1,5 @@
-﻿using Medical.Models.EntitiesForView;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Medical.Models.EntitiesForView;
 using Medical.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Medical.ViewModels
                    .Where(zlecenie => zlecenie.CzyAktywny == true)
                    .Select(zlecenie => new ZleceniaWyjazduForAllView
                    {
+                       IdWyjazdu = zlecenie.IdWyjazdu,
                        DataCzasZgloszenia = zlecenie.DataCzasZgloszenia,
                        AdresZdarzenia = zlecenie.AdresZdarzenia,
                        TypZdarzenia = zlecenie.TypZdarzenia,
@@ -41,6 +43,23 @@ namespace Medical.ViewModels
                    })
                    .ToList()
                 );
+        }
+        #endregion
+
+        #region Właściwosci
+        private ZleceniaWyjazduForAllView _WybranyWyjazd;
+        public ZleceniaWyjazduForAllView WybranyWyjazd
+        {
+            get { return _WybranyWyjazd; }
+            set
+            {
+                if (_WybranyWyjazd != value)
+                {
+                    _WybranyWyjazd = value;
+                    Messenger.Default.Send(_WybranyWyjazd);
+                    OnRequestClose();
+                }
+            }
         }
         #endregion
 

@@ -8,6 +8,7 @@ namespace Medical.Models.EntitiesForView
 {
     public class FakturaForAllView
     {
+        public int IdFaktury { get; set; }
         public string Numer { get; set; }
         public DateTime DataWystawienia { get; set; }
         public DateTime? TerminPlatnosci { get; set; }

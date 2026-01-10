@@ -1,4 +1,5 @@
-﻿using Medical.Models.EntitiesForView;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Medical.Models.EntitiesForView;
 using Medical.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Medical.ViewModels
                    where karetka.CzyAktywny == true
                    select new KaretkaForAllView
                    {
+                       IdKaretki = karetka.IdKaretki,
                        NumerRejestracyjny = karetka.NumerRejestracyjny,
                        TypKaretki = karetka.TypKaretki,
                        Status = karetka.Status,
@@ -35,6 +37,27 @@ namespace Medical.ViewModels
             base.DisplayName = "Karetki";
         }
         #endregion
+
+        #region Właściwosci
+        private KaretkaForAllView _WybranaKaretka;
+        public KaretkaForAllView WybranaKaretka
+        {
+            get
+            {
+                return _WybranaKaretka;
+            }
+            set
+            {
+                if (_WybranaKaretka != value)
+                {
+                    _WybranaKaretka = value;
+                    Messenger.Default.Send(_WybranaKaretka);
+                    OnRequestClose();
+                }
+            }
+        }
+        #endregion
+
         #region Sortowanie i Filtrowanie
         public override List<string> getComboBoxSortList()
         {

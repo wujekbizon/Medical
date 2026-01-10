@@ -186,8 +186,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\Converters.cs" />
+    <Compile Include="Helper\CounterPersistence.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\FakturaNumerGenerator.cs" />
     <Compile Include="Helper\MenuCommands.cs" />
+    <Compile Include="Helper\OkresKsiegowyHelper.cs" />
     <Compile Include="Helper\ThemeHelper.cs" />
     <Compile Include="Models\BusinessLogic\AkredytacjaPlacowekB.cs" />
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
@@ -201,9 +204,11 @@
     <Compile Include="Models\EntitiesForView\HistoriaNaprawForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KaretkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
+    <Compile Include="Models\EntitiesForView\KontrahentForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KosztyKaretkiForView.cs" />
     <Compile Include="Models\EntitiesForView\KosztyUtrzymaniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\OcenaZespoluForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PlacowkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PozycjaFakturyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PracownikForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RankingZespolowForAllView.cs" />
@@ -212,9 +217,18 @@
     <Compile Include="Models\EntitiesForView\ZespolPracownikForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ZespolRatunkowyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ZleceniaWyjazduForAllView.cs" />
+    <Compile Include="Models\Enums\GrupaKrwiEnum.cs" />
+    <Compile Include="Models\Enums\NazwaDzialuEnum.cs" />
+    <Compile Include="Models\Enums\PlecEnum.cs" />
+    <Compile Include="Models\Enums\RodzajTransakcjiEnum.cs" />
     <Compile Include="Models\Enums\SortCostEnum.cs" />
     <Compile Include="Models\Enums\SortOrderEnum.cs" />
     <Compile Include="Models\Enums\SortPointsEnum.cs" />
+    <Compile Include="Models\Enums\StatusKaretkiEnum.cs" />
+    <Compile Include="Models\Enums\StatusPlatnosciEnum.cs" />
+    <Compile Include="Models\Enums\TypKaretkiEnum.cs" />
+    <Compile Include="Models\Enums\TypPaliwaEnum.cs" />
+    <Compile Include="Models\Enums\WalutaEnum.cs" />
     <Compile Include="Models\Faktura.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>
@@ -340,8 +354,6 @@
     <Compile Include="ViewModels\WszystkieZespolPracownikViewModel.cs" />
     <Compile Include="ViewModels\WszystkieZespolyRatunkoweViewModel.cs" />
     <Compile Include="ViewModels\WszystkieZleceniaWyjazduViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\AkredytacjaPlacowekView.xaml.cs">
       <DependentUpon>AkredytacjaPlacowekView.xaml</DependentUpon>
     </Compile>

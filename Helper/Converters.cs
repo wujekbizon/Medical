@@ -117,4 +117,39 @@ namespace Medical.Helper
             return value;
         }
     }
+
+    public class BoolToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool boolValue)
+            {
+                if (parameter is string paramString && paramString.Contains("|"))
+                {
+                    var values = paramString.Split('|');
+                    return boolValue ? values[0] : values[1];
+                }
+
+                return boolValue ? "TAK" : "NIE";
+            }
+
+            return "NIE";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is string stringValue)
+            {
+                if (parameter is string paramString && paramString.Contains("|"))
+                {
+                    var values = paramString.Split('|');
+                    return stringValue == values[0];
+                }
+
+                return stringValue == "TAK";
+            }
+
+            return false;
+        }
+    }
 }

@@ -1,4 +1,7 @@
-﻿using Medical.Models;
+﻿using Medical.Helper;
+using Medical.Models;
+using Medical.Models.EntitiesForView;
+using Medical.Models.Enums;
 using Medical.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
@@ -273,6 +276,14 @@ namespace Medical.ViewModels
                     item.CzyAktywny = value;
                     OnPropertyChanged(() => CzyAktywny);
                 }
+            }
+        }
+
+        public IEnumerable<KeyAndValue> NazwaDzialuItems
+        {
+            get
+            {
+                return EnumHelper.GetEnumKeyAndValues<NazwaDzialuEnum>();
             }
         }
         #endregion

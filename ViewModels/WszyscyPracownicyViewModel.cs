@@ -1,4 +1,5 @@
-﻿using Medical.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Medical.Models;
 using Medical.Models.EntitiesForView;
 using Medical.ViewModels.Abstract;
 using System;
@@ -21,6 +22,7 @@ namespace Medical.ViewModels
                    .Where(pracownik => pracownik.CzyAktywny == true)
                    .Select(pracownik => new PracownikForAllView
                    {
+                       IdPracownika = pracownik.IdPracownika,
                        Imie = pracownik.Imie,
                        Nazwisko = pracownik.Nazwisko,
                        Pesel = pracownik.Pesel,
@@ -56,6 +58,23 @@ namespace Medical.ViewModels
         }
         #endregion
 
+        #region Właściwosci
+        private PracownikForAllView _WybranyPracownik;
+        public PracownikForAllView WybranyPracownik
+        {
+            get { return _WybranyPracownik; }
+            set
+            {
+                if (_WybranyPracownik != value)
+                {
+                    _WybranyPracownik = value;
+                    Messenger.Default.Send(_WybranyPracownik);
+                    OnRequestClose();
+                }
+            }
+        }
+        #endregion
+
         #region Sortowanie i Filtrowanie
         public override List<string> getComboBoxSortList()
         {
@@ -63,6 +82,7 @@ namespace Medical.ViewModels
     {
         "nazwisko",
         "imie",
+        "nazwaRoli",
         "dataZatrudnienia",
         "statusZatrudnienia",
         "stawkaGodzinowa",
@@ -83,6 +103,7 @@ namespace Medical.ViewModels
         "pesel",
         "numerPrawaWykonywaniaZawodu",
         "statusZatrudnienia",
+        "nazwaRoli",
         "miasto",
         "telefonSluzbowy",
         "adresEmailSluzbowy",
@@ -99,6 +120,9 @@ namespace Medical.ViewModels
                     break;
                 case "imie":
                     List = new ObservableCollection<PracownikForAllView>(List.OrderBy(item => item.Imie));
+                    break;
+                case "nazwaRoli":
+                    List = new ObservableCollection<PracownikForAllView>(List.OrderBy(item => item.NazwaRoli));
                     break;
                 case "dataZatrudnienia":
                     List = new ObservableCollection<PracownikForAllView>(List.OrderBy(item => item.DataZatrudnienia));
@@ -152,6 +176,10 @@ namespace Medical.ViewModels
                 case "statusZatrudnienia":
                     List = new ObservableCollection<PracownikForAllView>(List.Where(item =>
                         item.StatusZatrudnienia != null && item.StatusZatrudnienia.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
+                    break;
+                case "nazwaRoli":
+                    List = new ObservableCollection<PracownikForAllView>(List.Where(item =>
+                        item.NazwaRoli != null && item.NazwaRoli.StartsWith(FindTextBox, StringComparison.OrdinalIgnoreCase)));
                     break;
                 case "miasto":
                     List = new ObservableCollection<PracownikForAllView>(List.Where(item =>

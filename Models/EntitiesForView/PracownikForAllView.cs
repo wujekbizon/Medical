@@ -8,6 +8,7 @@ namespace Medical.Models.EntitiesForView
 {
     public class PracownikForAllView
     {
+        public int IdPracownika { get; set; }
         public string Imie { get; set; }
         public string Nazwisko { get; set; }
         public string Pesel { get; set; }

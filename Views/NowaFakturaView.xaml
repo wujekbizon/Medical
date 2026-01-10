@@ -4,9 +4,238 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Medical.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+             xmlns:viewmodels="clr-namespace:Medical.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:NowaFakturaViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="#252526">
-        <Label Content="Tu bedzie dodawanie faktury" Grid.ColumnSpan="2"></Label>
+             d:DesignHeight="800" d:DesignWidth="900">
+
+    <local:JedenViewBase.Resources>
+        <Style x:Key="CardStyle" TargetType="materialDesign:Card">
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="UniformCornerRadius" Value="12"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2D3136" Offset="0"/>
+                        <GradientStop Color="#1E2124" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#44FFFFFF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </local:JedenViewBase.Resources>
+    
+    <Grid Background="{DynamicResource IndustrialGunmetal}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.Row="0"
+                            UniformCornerRadius="12"
+                            Padding="24"
+                            Style="{StaticResource CardStyle}"
+                            Margin="16">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                    <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                    <TextBlock Text="Podstawowe Informacje" 
+                               FontSize="15" 
+                               FontWeight="Light"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Row="0" Grid.Column="0"
+                             Text="{Binding Numer,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Numer Faktury"
+                             IsReadOnly="True"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <DatePicker Grid.Row="0" Grid.Column="2"
+                                SelectedDate="{Binding DataWystawienia, UpdateSourceTrigger=PropertyChanged}"
+                                materialDesign:HintAssist.Hint="Data Wystawienia"
+                                BorderBrush="#44FFFFFF"
+                                Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                Margin="0,0,0,16"/>
+
+                    <DatePicker Grid.Row="1" Grid.Column="0"
+                                SelectedDate="{Binding TerminPlatnosci, UpdateSourceTrigger=PropertyChanged}"
+                                materialDesign:HintAssist.Hint="Termin Płatności"
+                                BorderBrush="#44FFFFFF"
+                                Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                Margin="0,0,0,16"/>
+
+                    <ComboBox Grid.Row="1" Grid.Column="2"
+                              ItemsSource="{Binding SposobyPlatnosciItems}"
+                              DisplayMemberPath="Nazwa"
+                              SelectedValuePath="IdSposobuPlatnosci"
+                              SelectedValue="{Binding IdSposobuPlatnosci, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Sposób Płatności"
+                              BorderBrush="#44FFFFFF"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              Margin="0,0,0,16"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="1"
+                             UniformCornerRadius="12"
+                             Padding="24"
+                             Style="{StaticResource CardStyle}"
+                             Margin="16">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                    <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                    <TextBlock Text="Dane Kontrahenta" 
+                               FontSize="15" 
+                               FontWeight="Light"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding KontrahentNazwa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 materialDesign:HintAssist.Hint="Nazwa Kontrahenta"
+                                 BorderBrush="#44FFFFFF"
+                                 IsEnabled="False"
+                                 Style="{DynamicResource MaterialDesignOutlinedTextBox}"/>
+
+                        <Button Grid.Column="2"
+                                Command="{Binding ShowKontrahenci}"
+                                Style="{DynamicResource MaterialDesignRaisedButton}"
+                                Background="#1E2124"
+                                Height="50"
+                                Padding="16,0"
+                                ToolTip="Wybierz kontrahenta">
+                            <materialIcons:MaterialIcon Kind="AccountSearch" Width="24" Height="24" Foreground="White"/>
+                        </Button>
+                    </Grid>
+
+                    <TextBox Grid.Row="1"
+                             Text="{Binding KontrahentNIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="NIP Kontrahenta"
+                             BorderBrush="#44FFFFFF"
+                             IsEnabled="False"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="2"
+                             Text="{Binding KontrahentAdres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Adres Kontrahenta"
+                             BorderBrush="#44FFFFFF"
+                             IsEnabled="False"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Row="2"
+                             UniformCornerRadius="12"
+                             Padding="24"
+                             Style="{StaticResource CardStyle}"
+                             Margin="16">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                    <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                    <TextBlock Text="Szczegóły Finansowe" 
+                               FontSize="15" 
+                               FontWeight="Light"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Row="0" Grid.Column="0"
+                              ItemsSource="{Binding WalutaItems}"
+                              SelectedValue="{Binding Waluta}"
+                              SelectedValuePath="Value"
+                              DisplayMemberPath="Value"
+                              materialDesign:HintAssist.Hint="Waluta"
+                              BorderBrush="#44FFFFFF"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              Margin="0,0,0,16"/>
+
+                    <ComboBox Grid.Row="0" Grid.Column="2"
+                              ItemsSource="{Binding StatusPlatnosciItems}"
+                              SelectedValue="{Binding StatusPlatnosci}"
+                              SelectedValuePath="Value"
+                              DisplayMemberPath="Value"
+                              materialDesign:HintAssist.Hint="Status Płatności"
+                              BorderBrush="#44FFFFFF"
+                              Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                              Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="0"
+                             Text="{Binding KategoriaKosztu, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Kategoria Kosztu"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="2"
+                             Text="{Binding OkresKsiegowy, Mode=OneWay}"
+                             materialDesign:HintAssist.Hint="Okres Księgowy"
+                             IsReadOnly="True"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                             Text="{Binding Opis, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Opis"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="80"
+                             VerticalScrollBarVisibility="Auto"
+                             Margin="0,0,0,0"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </local:JedenViewBase>

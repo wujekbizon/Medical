@@ -4,9 +4,341 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Medical.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+             xmlns:viewmodels="clr-namespace:Medical.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid >
-        <Label Content="Tu bedzie dodawanie faktury"></Label>
+             d:DesignHeight="1594.75" d:DesignWidth="907">
+
+    <local:JedenViewBase.Resources>
+        <Style x:Key="CardStyle" TargetType="materialDesign:Card">
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="UniformCornerRadius" Value="12"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2D3136" Offset="0"/>
+                        <GradientStop Color="#1E2124" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#44FFFFFF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </local:JedenViewBase.Resources>
+
+    <Grid Background="{DynamicResource IndustrialGunmetal}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.Row="0"
+                            UniformCornerRadius="12"
+                            Padding="24"
+                            Style="{StaticResource CardStyle}"
+                            Margin="16">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                    <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                    <TextBlock Text="Podstawowe Informacje" 
+                               FontSize="15" 
+                               FontWeight="Light"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Row="0" Grid.Column="0"
+                             Text="{Binding Ocena, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Ocena (1-10)"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <DatePicker Grid.Row="0" Grid.Column="2"
+                                SelectedDate="{Binding DataOceny, UpdateSourceTrigger=PropertyChanged}"
+                                materialDesign:HintAssist.Hint="Data Oceny"
+                                BorderBrush="#44FFFFFF"
+                                Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="0"
+                             Text="{Binding KryteriumOceny, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Kryterium Oceny"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="2"
+                             Text="{Binding WagaOceny, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Waga Oceny"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                             Text="{Binding Komentarz, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Komentarz"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             MinHeight="80"
+                             VerticalScrollBarVisibility="Auto"
+                             Margin="0,0,0,0"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="1"
+                             UniformCornerRadius="12"
+                             Padding="24"
+                             Style="{StaticResource CardStyle}"
+                             Margin="16">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                    <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                    <TextBlock Text="Szczegółowe Oceny" 
+                               FontSize="15" 
+                               FontWeight="Light"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Row="0" Grid.Column="0"
+                             Text="{Binding OcenaCzasuReakcji, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Ocena Czasu Reakcji (1-10)"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="0" Grid.Column="2"
+                             Text="{Binding OcenaProfesjonalizmu, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Ocena Profesjonalizmu (1-10)"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="0"
+                             Text="{Binding OcenaSkutecznosci, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Ocena Skuteczności (1-10)"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="2"
+                             Text="{Binding OcenaStosowaniaStandardow, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Ocena Stosowania Standardów (1-10)"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <CheckBox Grid.Row="2" Grid.Column="0"
+                              IsChecked="{Binding CzyOtrzymanoFeedbackOdPacjenta, UpdateSourceTrigger=PropertyChanged}"
+                              Content="Otrzymano Feedback od Pacjenta"
+                              Foreground="White"
+                              FontSize="14"
+                              Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="2" Grid.Column="2"
+                             Text="{Binding SugerowaneUlepszenia, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Sugerowane Ulepszenia"
+                             BorderBrush="#44FFFFFF"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="2"
+                             UniformCornerRadius="12"
+                             Padding="24"
+                             Style="{StaticResource CardStyle}"
+                             Margin="16">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                    <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                    <TextBlock Text="Oceniany Zespół i Wyjazd" 
+                               FontSize="15" 
+                               FontWeight="Light"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding ZespolNazwa, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 materialDesign:HintAssist.Hint="Nazwa Zespołu"
+                                 BorderBrush="#44FFFFFF"
+                                 
+                                 IsReadOnly="True"
+                                 Style="{DynamicResource MaterialDesignOutlinedTextBox}"/>
+
+                        <Button Grid.Column="2"
+                                Command="{Binding ShowZespoly}"
+                                Style="{DynamicResource MaterialDesignRaisedButton}"
+                                Background="#1E2124"
+                                Height="50"
+                                Padding="16,0"
+                                ToolTip="Wybierz zespół">
+                            <materialIcons:MaterialIcon Kind="AccountGroup" Width="24" Height="24" Foreground="White"/>
+                        </Button>
+                    </Grid>
+
+                    <TextBox Grid.Row="1"
+                             Text="{Binding ZespolSpecjalizacja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Specjalizacja Zespołu"
+                             BorderBrush="#44FFFFFF"
+                             IsEnabled="False"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <Grid Grid.Row="2" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding WyjazdAdres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 materialDesign:HintAssist.Hint="Adres Wyjazdu"
+                                 BorderBrush="#44FFFFFF"
+                                 IsEnabled="False"
+                                 Style="{DynamicResource MaterialDesignOutlinedTextBox}"/>
+
+                        <Button Grid.Column="2"
+                                Command="{Binding ShowWyjazdy}"
+                                Style="{DynamicResource MaterialDesignRaisedButton}"
+                                Background="#1E2124"
+                                Height="50"
+                                Padding="16,0"
+                                ToolTip="Wybierz wyjazd">
+                            <materialIcons:MaterialIcon Kind="Ambulance" Width="24" Height="24" Foreground="White"/>
+                        </Button>
+                    </Grid>
+
+                    <TextBox Grid.Row="3"
+                             Text="{Binding WyjazdTypZdarzenia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Typ Zdarzenia"
+                             BorderBrush="#44FFFFFF"
+                             IsEnabled="False"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <DatePicker Grid.Row="4"
+                                SelectedDate="{Binding WyjazdDataZgloszenia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                materialDesign:HintAssist.Hint="Data Zgłoszenia Wyjazdu"
+                                BorderBrush="#44FFFFFF"
+                                IsEnabled="False"
+                                Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                Margin="0,0,0,16"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="3"
+                             UniformCornerRadius="12"
+                             Padding="24"
+                             Style="{StaticResource CardStyle}"
+                             Margin="16">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                    <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                    <TextBlock Text="Osoba Oceniająca" 
+                               FontSize="15" 
+                               FontWeight="Light"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding OceniajacyImie, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 materialDesign:HintAssist.Hint="Imię Oceniającego"
+                                 BorderBrush="#44FFFFFF"
+                                 IsEnabled="False"
+                                 Style="{DynamicResource MaterialDesignOutlinedTextBox}"/>
+
+                        <Button Grid.Column="2"
+                                Command="{Binding ShowPracownicy}"
+                                Style="{DynamicResource MaterialDesignRaisedButton}"
+                                Background="#1E2124"
+                                Height="50"
+                                Padding="16,0"
+                                ToolTip="Wybierz pracownika">
+                            <materialIcons:MaterialIcon Kind="AccountSearch" Width="24" Height="24" Foreground="White"/>
+                        </Button>
+                    </Grid>
+
+                    <TextBox Grid.Row="1"
+                             Text="{Binding OceniajacyNazwisko, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Nazwisko Oceniającego"
+                             BorderBrush="#44FFFFFF"
+                             IsEnabled="False"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="2"
+                             Text="{Binding OceniajacyRola, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Rola Oceniającego"
+                             BorderBrush="#44FFFFFF"
+                             IsEnabled="False"
+                             Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                             Margin="0,0,0,16"/>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </local:JedenViewBase>

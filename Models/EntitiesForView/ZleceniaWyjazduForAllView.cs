@@ -8,6 +8,7 @@ namespace Medical.Models.EntitiesForView
 {
     public class ZleceniaWyjazduForAllView
     {
+        public int IdWyjazdu { get; set; }
         public DateTime DataCzasZgloszenia { get; set; }
         public string AdresZdarzenia { get; set; }
         public string TypZdarzenia { get; set; }

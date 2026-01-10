@@ -1,4 +1,5 @@
-﻿using Medical.Models.EntitiesForView;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Medical.Models.EntitiesForView;
 using Medical.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Medical.ViewModels
                    .Where(zespol => zespol.CzyAktywny == true)
                    .Select(zespol => new ZespolRatunkowyForAllView
                    {
+                       IdZespolu = zespol.IdZespolu,
                        NazwaZespolu = zespol.NazwaZespolu,
                        LiczbaCzlonkow = zespol.LiczbaCzlonkow,
                        Specjalizacja = zespol.Specjalizacja,
@@ -44,6 +46,22 @@ namespace Medical.ViewModels
         public WszystkieZespolyRatunkoweViewModel()
         {
             base.DisplayName = "Zespoly Ratunkowe";
+        }
+        #endregion
+        #region Właściwosci
+        private ZespolRatunkowyForAllView _WybranyZespol;
+        public ZespolRatunkowyForAllView WybranyZespol
+        {
+            get { return _WybranyZespol; }
+            set
+            {
+                if (_WybranyZespol != value)
+                {
+                    _WybranyZespol = value;
+                    Messenger.Default.Send(_WybranyZespol);
+                    OnRequestClose();
+                }
+            }
         }
         #endregion
         #region Sortowanie i Filtrowanie

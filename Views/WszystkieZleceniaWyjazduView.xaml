@@ -11,7 +11,7 @@
             <RowDefinition Height="0*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}">
+        <DataGrid AutoGenerateColumns="False" Margin="0,-2,0,0" Grid.RowSpan="2" ItemsSource="{Binding List}" SelectedItem="{Binding WybranyWyjazd, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Data i Czas Zgłoszenia" Binding="{Binding DataCzasZgloszenia, StringFormat={}{0:dd.MM.yyyy HH:mm:ss}}" />
                 <DataGridTextColumn Header="Adres Zdarzenia" Binding="{Binding AdresZdarzenia}" />
