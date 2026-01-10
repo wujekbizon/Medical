@@ -318,12 +318,12 @@
                             Background="{DynamicResource MaterialDesignToolBarBackground}"
                             BorderBrush="{DynamicResource MaterialDesignDivider}"
                             BorderThickness="0,1,0,0"
-                            Padding="12,8">
+                            Padding="4,8">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
                             </Grid.ColumnDefinitions>
 
                             <materialIcons:MaterialIcon
@@ -340,17 +340,13 @@
                                            FontSize="16"
                                            FontWeight="Light"
                                            Foreground="{DynamicResource MaterialDesignBody}"/>
-                                <!--<TextBlock Text="Wesa 2025"
-                                           FontSize="11"
-                                           Foreground="{DynamicResource MaterialDesignBodyLight}"/>-->
-                                
+                           
                             </StackPanel>
                             <Button Command="{Binding LogoutCommand}"
                                     Grid.Column="2"
                                     HorizontalAlignment="Right"
                                     Style="{DynamicResource MaterialDesignToolButton}"
                                     ToolTip="Wyloguj się"
-                                    Width="36" Height="36"
                                     Cursor="Hand">
                                 <materialIcons:MaterialIcon Kind="Logout"  Width="20" Height="20" Foreground="{DynamicResource MaterialDesignBody}"/>
                             </Button>

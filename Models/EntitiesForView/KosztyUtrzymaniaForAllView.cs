@@ -4,6 +4,7 @@ namespace Medical.Models.EntitiesForView
 {
     public class KosztyUtrzymaniaForAllView
     {
+        public string IdKosztu { get; set; }
         public string RodzajKosztu { get; set; }
         public decimal Kwota { get; set; }
         public DateTime DataKosztu { get; set; }

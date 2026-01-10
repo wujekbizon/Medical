@@ -208,10 +208,12 @@
     <Compile Include="Models\EntitiesForView\KosztyKaretkiForView.cs" />
     <Compile Include="Models\EntitiesForView\KosztyUtrzymaniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\OcenaZespoluForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\PacjentForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PlacowkaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PozycjaFakturyForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PracownikForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RankingZespolowForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\SposobPlatnosciForAllView.cs" />
     <Compile Include="Models\EntitiesForView\UdzielonaPomocForAllView.cs" />
     <Compile Include="Models\EntitiesForView\UserForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ZespolPracownikForAllView.cs" />

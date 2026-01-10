@@ -14,8 +14,10 @@ namespace Medical.ViewModels
 {
     public class NowaOceanZespoluViewModel : JedenViewModel<OcenaZespolu>
     {
-        #region Konstruktor
+        #region Pola
         private readonly UserForAllView _currentUser;
+        #endregion
+        #region Konstruktor
 
         public NowaOceanZespoluViewModel(UserForAllView currentUser)
             : base()

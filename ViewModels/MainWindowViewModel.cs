@@ -139,7 +139,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.AccountGroup));
             aktywneSection.Commands.Add(new CommandViewModel(
                 "Zlecenie Wyjazdu",
-                new BaseCommand(() => this.CreateView(new NoweZlecenieWyjazduViewModel())),
+                new BaseCommand(() => this.CreateView(new NoweZlecenieWyjazduViewModel(CurrentUser))),
                 MaterialIconKind.ClipboardText));
             sections.Add(aktywneSection);
 
@@ -160,6 +160,10 @@ namespace Medical.ViewModels
                 "Pozycje Faktur",
                 new BaseCommand(() => this.ShowAllView<WszystkiePozycjeFakturyViewModel>()),
                 MaterialIconKind.FormatListBulleted));
+            ksiegoweSection.Commands.Add(new CommandViewModel(
+                "Nowa Pozycja",
+                new BaseCommand(() => this.CreateView(new NowaPozycjaFakturyViewModel(CurrentUser))),
+                MaterialIconKind.FormatListGroupAdd));
             ksiegoweSection.Commands.Add(new CommandViewModel(
                 "Kontrahenci",
                 new BaseCommand(() => this.ShowAllView<WszyscyKontrahenciViewModel>()),
@@ -206,7 +210,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.CurrencyUsd));
             flotaSection.Commands.Add(new CommandViewModel(
                 "Nowy Koszt",
-                new BaseCommand(() => this.CreateView(new NoweKosztyUtrzymaniaViewModel())),
+                new BaseCommand(() => this.CreateView(new NoweKosztyUtrzymaniaViewModel(CurrentUser))),
                 MaterialIconKind.CashPlus));
             sections.Add(flotaSection);
 
@@ -256,7 +260,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.MedicalBag));
             medyczneSection.Commands.Add(new CommandViewModel(
                 "Nowa Pomoc",
-                new BaseCommand(() => this.CreateView(new NowaUdzielonaPomocViewModel())),
+                new BaseCommand(() => this.CreateView(new NowaUdzielonaPomocViewModel(CurrentUser))),
                 MaterialIconKind.PlusBox));
             medyczneSection.Commands.Add(new CommandViewModel(
                 "Oceny Zespołów",
@@ -458,7 +462,7 @@ namespace Medical.ViewModels
                     CreateView(new NowaKaretkaViewModel(CurrentUser));
                     break;
                 case "Koszty UtrzymaniaAdd":
-                    CreateView(new NoweKosztyUtrzymaniaViewModel());
+                    CreateView(new NoweKosztyUtrzymaniaViewModel(CurrentUser));
                     break;
                 case "Oceny ZespolowAdd":
                     CreateView(new NowaOceanZespoluViewModel(CurrentUser));
@@ -467,7 +471,7 @@ namespace Medical.ViewModels
                     CreateView(new NowaPlacowkaViewModel());
                     break;
                 case "Pozycje FakturAdd":
-                    CreateView(new NowaPozycjaFakturyViewModel());
+                    CreateView(new NowaPozycjaFakturyViewModel(CurrentUser));
                     break;
                 case "RoleAdd":
                     CreateView(new NowaRolaPracownikaViewModel());
@@ -476,7 +480,7 @@ namespace Medical.ViewModels
                     CreateView(new NowySposobPlatnosciViewModel());
                     break;
                 case "Udzielone PomoceAdd":
-                    CreateView(new NowaUdzielonaPomocViewModel());
+                    CreateView(new NowaUdzielonaPomocViewModel(CurrentUser));
                     break;
                 case "Skład ZespołówAdd":
                     CreateView(new NowyZespolPracownikViewModel());
@@ -485,7 +489,7 @@ namespace Medical.ViewModels
                     CreateView(new NowyZespolRatunkowyViewModel());
                     break;
                 case "WyjazdyAdd":
-                    CreateView(new NoweZlecenieWyjazduViewModel());
+                    CreateView(new NoweZlecenieWyjazduViewModel(CurrentUser));
                     break;
                 case "KontrahenciShow":
                     ShowAllView<WszyscyKontrahenciViewModel>();
@@ -507,6 +511,12 @@ namespace Medical.ViewModels
                     break;
                 case "ZleceniaWyjazduShow":
                     ShowAllView<WszystkieZleceniaWyjazduViewModel>();
+                    break;
+                case "PacjenciShow":
+                    ShowAllView<WszyscyPacjenciViewModel>();
+                    break;
+                case "SposobyPlatnosciShow":
+                    ShowAllView<WszystkieSposobyPlatnosciViewModel>();
                     break;
                 default:
                     break;

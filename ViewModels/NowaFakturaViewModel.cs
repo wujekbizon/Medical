@@ -14,7 +14,9 @@ namespace Medical.ViewModels
 {
     public class NowaFakturaViewModel : JedenViewModel<Faktura>
     {
+        #region Pola
         private readonly UserForAllView _currentUser;
+        #endregion
         #region Konstruktor
         public NowaFakturaViewModel(UserForAllView currentUser)
         {

@@ -8,6 +8,7 @@ namespace Medical.Models.EntitiesForView
 {
     public class UdzielonaPomocForAllView
     {
+        public int IdPomocy { get; set; }
         public DateTime DataPomocy { get; set; }
         public TimeSpan? CzasRozpoczecia { get; set; }
         public TimeSpan? CzasZakonczenia { get; set; }
