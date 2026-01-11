@@ -8,7 +8,10 @@ namespace Medical.Models.EntitiesForView
 {
     public class ZespolPracownikForAllView
     {
+        public int IdZespoluPracownika { get; set; }
         public string NazwaZespolu { get; set; }
+        public string ImiePracownika { get; set; }
+        public string NazwiskoPracownika { get; set; }
         public string Pracownik { get; set; }
         public string RolaWZespole { get; set; }
         public DateTime DataDolaczenia { get; set; }

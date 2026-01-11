@@ -20,6 +20,7 @@ namespace Medical.ViewModels
                 where placowka.CzyAktywny == true
                 select new PlacowkaForAllView
                 { 
+                        IdPlacowki = placowka.IdPlacowki,
                         NazwaPlacowki = placowka.NazwaPlacowki,
                         Adres = placowka.Adres,
                         Miasto = placowka.Miasto,

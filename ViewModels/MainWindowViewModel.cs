@@ -225,7 +225,7 @@ namespace Medical.ViewModels
                 MaterialIconKind.PeopleGroup));
             zespolySection.Commands.Add(new CommandViewModel(
                 "Nowy Pracownik",
-                new BaseCommand(() => this.CreateView(new NowyPracownikViewModel())),
+                new BaseCommand(() => this.CreateView(new NowyPracownikViewModel(CurrentUser))),
                 MaterialIconKind.AccountPlus));
             zespolySection.Commands.Add(new CommandViewModel(
                 "Skład Zespołów",
@@ -233,11 +233,11 @@ namespace Medical.ViewModels
                 MaterialIconKind.AccountMultiple));
             zespolySection.Commands.Add(new CommandViewModel(
                 "Nowy Członek Zespołu",
-                new BaseCommand(() => this.CreateView(new NowyZespolPracownikViewModel())),
+                new BaseCommand(() => this.CreateView(new NowyZespolPracownikViewModel(CurrentUser))),
                 MaterialIconKind.AccountPlusOutline));
             zespolySection.Commands.Add(new CommandViewModel(
                 "Nowy Zespół Ratunkowy",
-                new BaseCommand(() => this.CreateView(new NowyZespolRatunkowyViewModel())),
+                new BaseCommand(() => this.CreateView(new NowyZespolRatunkowyViewModel(CurrentUser))),
                 MaterialIconKind.AccountGroupOutline));
             zespolySection.Commands.Add(new CommandViewModel(
                 "Role Pracowników",
@@ -453,7 +453,7 @@ namespace Medical.ViewModels
                     CreateView(new NowyPacjentViewModel());
                     break;
                 case "PracownicyAdd":
-                    CreateView(new NowyPracownikViewModel());
+                    CreateView(new NowyPracownikViewModel(CurrentUser));
                     break;
                 case "Historie NaprawAdd":
                     CreateView(new NowaHistoriaNaprawViewModel(CurrentUser));
@@ -483,10 +483,10 @@ namespace Medical.ViewModels
                     CreateView(new NowaUdzielonaPomocViewModel(CurrentUser));
                     break;
                 case "Skład ZespołówAdd":
-                    CreateView(new NowyZespolPracownikViewModel());
+                    CreateView(new NowyZespolPracownikViewModel(CurrentUser));
                     break;
                 case "Zespoly RatunkoweAdd":
-                    CreateView(new NowyZespolRatunkowyViewModel());
+                    CreateView(new NowyZespolRatunkowyViewModel(CurrentUser));
                     break;
                 case "WyjazdyAdd":
                     CreateView(new NoweZlecenieWyjazduViewModel(CurrentUser));
@@ -517,6 +517,9 @@ namespace Medical.ViewModels
                     break;
                 case "SposobyPlatnosciShow":
                     ShowAllView<WszystkieSposobyPlatnosciViewModel>();
+                    break;
+                case "RoleShow":
+                    ShowAllView<WszystkieRolePracownikaViewModel>();
                     break;
                 default:
                     break;
