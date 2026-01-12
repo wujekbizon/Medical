@@ -484,6 +484,10 @@
     <Compile Include="Views\WszystkieZleceniaWyjazduView.xaml.cs">
       <DependentUpon>WszystkieZleceniaWyjazduView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\IndustrialStylesScrollBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

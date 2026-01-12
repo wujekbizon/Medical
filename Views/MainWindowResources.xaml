@@ -120,66 +120,22 @@
         <ragvw:QueryView />
     </DataTemplate>
 
-    <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
-        <Setter Property="HeaderTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Border
-                        Background="{DynamicResource MaterialDesignPaper}"
-                        BorderBrush="{DynamicResource MaterialDesignDivider}"
-                        BorderThickness="0,0,0,2"
-                        CornerRadius="0"
-                        Margin="0"
-                        Padding="16,12"
-                        SnapsToDevicePixels="True">
-                        <TextBlock
-                            FontSize="16"
-                            FontWeight="Medium"
-                            Foreground="{DynamicResource MaterialDesignBody}"
-                            Text="{TemplateBinding Content}"
-                            VerticalAlignment="Center"/>
-                    </Border>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
-                    <DockPanel>
-                        <ContentPresenter
-                            DockPanel.Dock="Top"
-                            ContentSource="Header"
-                            ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                        <ContentPresenter
-                            ContentSource="Content"
-                            ContentTemplate="{TemplateBinding ContentTemplate}" />
-                    </DockPanel>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="MainBorderStyle" TargetType="{x:Type Border}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignCardBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignDivider}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="4" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-    </Style>
+    <LinearGradientBrush x:Key="IndustrialGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#2D3136" Offset="0"/>
+        <GradientStop Color="#1E2124" Offset="1"/>
+    </LinearGradientBrush>
 
     <DataTemplate x:Key="CommandsTemplate">
         <ItemsControl ItemsSource="{Binding}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <Border Background="{DynamicResource MaterialDesignToolBarBackground}"
-                            BorderBrush="{DynamicResource AccentPurpleLight}"
-                            BorderThickness="0,0,0,2"
-                            Padding="12,8"
-                            Margin="0,12,0,8"
-                            CornerRadius="4,4,0,0"
-                            Visibility="{Binding ShowSectionHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Margin="8">
+                        <Border Background="Transparent"
+                                BorderBrush="{DynamicResource AccentPurpleLight}"
+                                BorderThickness="0,0,0,0.2"
+                                Padding="0,4"
+                                Margin="0,0,0,8"
+                                Visibility="{Binding ShowSectionHeader, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <TextBlock Text="{Binding SectionName}"
                                    FontSize="11"
                                    FontWeight="Bold"
@@ -189,20 +145,21 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <materialDesign:Card 
-                                        Margin="4,2"
+                                        Margin="0,5"
                                         UniformCornerRadius="6"
                                         materialDesign:ElevationAssist.Elevation="Dp0">
 
                                         <Border 
                                             x:Name="CommandBorder"
-                                            Background="Transparent"
-                                            BorderBrush="{DynamicResource MaterialDesignDivider}"
-                                            BorderThickness="1"
-                                            CornerRadius="6"
+                                            Background="{StaticResource IndustrialGradient}"
+                                            BorderBrush="{DynamicResource PurpleBorder20}"
+                                            BorderThickness="1.5"
+                                            CornerRadius="5"
                                             Cursor="Hand">
+
                                             <materialDesign:Ripple
-                                                Feedback="{DynamicResource MaterialDesignBody}"
-                                                Padding="12,10"
+                                                Feedback="#33FFFFFF"
+                                                Padding="8,8"
                                                 HorizontalContentAlignment="Stretch">
                                                 <materialDesign:Ripple.InputBindings>
                                                     <MouseBinding MouseAction="LeftClick" Command="{Binding Command}"/>
@@ -214,44 +171,56 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <materialIcons:MaterialIcon 
-                                                        x:Name="CommandIcon"
-                                                        Kind="{Binding IconKind}"
-                                                        Width="20"
-                                                        Height="20"
-                                                        Grid.Column="0"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0,0,12,0"
-                                                        Foreground="{DynamicResource AccentPurple}">
-                                                        <materialIcons:MaterialIcon.RenderTransform>
-                                                            <ScaleTransform ScaleX="1" ScaleY="1" CenterX="10" CenterY="10"/>
-                                                        </materialIcons:MaterialIcon.RenderTransform>
-                                                    </materialIcons:MaterialIcon>
+                                                    <Border x:Name="IconBorder"
+                                                            Background="{DynamicResource AccentPurpleLight}"
+                                                            Width="32"
+                                                            Height="32"
+                                                            CornerRadius="6"
+                                                            Grid.Column="0"
+                                                            Margin="0,0,14,0">
+                                                        <materialIcons:MaterialIcon 
+                                                            x:Name="CommandIcon"
+                                                            Kind="{Binding IconKind}"
+                                                            Width="22"
+                                                            Height="22"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            Foreground="White">
+                                                            <materialIcons:MaterialIcon.RenderTransform>
+                                                                <ScaleTransform ScaleX="1" ScaleY="1" CenterX="9" CenterY="9"/>
+                                                            </materialIcons:MaterialIcon.RenderTransform>
+                                                        </materialIcons:MaterialIcon>
+                                                    </Border>
 
                                                     <TextBlock 
                                                         x:Name="CommandText"
                                                         Grid.Column="1"
                                                         Text="{Binding DisplayName}"
-                                                        Foreground="{DynamicResource MaterialDesignBody}"
-                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        FontSize="16"
+                                                        FontWeight="Light"
                                                         VerticalAlignment="Center"
-                                                        TextWrapping="NoWrap"/>
+                                                        TextWrapping="NoWrap">
+                                                        <TextBlock.RenderTransform>
+                                                            <TranslateTransform X="0"/>
+                                                        </TextBlock.RenderTransform>
+                                                    </TextBlock>
                                                 </Grid>
                                             </materialDesign:Ripple>
                                             <Border.Style>
                                                 <Style TargetType="Border">
-                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="Background" Value="{DynamicResource IndustrialSteel}"/>
                                                     <Style.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="{DynamicResource MaterialDesignFlatButtonClick}"/>
+                                                            <Setter Property="Background" Value="#2D3136"/>
                                                             <Setter Property="BorderBrush" Value="{DynamicResource AccentPurple}"/>
                                                             <Setter Property="Effect">
                                                                 <Setter.Value>
                                                                     <DropShadowEffect 
-                                                                        Color="#7B68EE" 
-                                                                        BlurRadius="10" 
+                                                                        Color="#9D8FEF" 
+                                                                        BlurRadius="12" 
                                                                         ShadowDepth="0" 
-                                                                        Opacity="0.5"/>
+                                                                        Opacity="0.4"/>
                                                                 </Setter.Value>
                                                             </Setter>
                                                         </Trigger>
@@ -269,13 +238,35 @@
                                                         <DoubleAnimation 
                                                             Storyboard.TargetName="CommandIcon"
                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                            To="1.2"
-                                                            Duration="0:0:0.15"/>
+                                                            To="1.15"
+                                                            Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CubicEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
                                                         <DoubleAnimation 
                                                             Storyboard.TargetName="CommandIcon"
                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                                            To="1.2"
-                                                            Duration="0:0:0.15"/>
+                                                            To="1.15"
+                                                            Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CubicEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation 
+                                                            Storyboard.TargetName="CommandText"
+                                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                            To="4"
+                                                            Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CubicEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <ColorAnimation
+                                                            Storyboard.TargetName="IconBorder"
+                                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                            To="#B8AEFF"
+                                                            Duration="0:0:0.2"/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </Trigger.EnterActions>
@@ -286,12 +277,34 @@
                                                             Storyboard.TargetName="CommandIcon"
                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
                                                             To="1.0"
-                                                            Duration="0:0:0.15"/>
+                                                            Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CubicEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
                                                         <DoubleAnimation 
                                                             Storyboard.TargetName="CommandIcon"
                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
                                                             To="1.0"
-                                                            Duration="0:0:0.15"/>
+                                                            Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CubicEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation 
+                                                            Storyboard.TargetName="CommandText"
+                                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                                            To="0"
+                                                            Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CubicEase EasingMode="EaseOut"/>
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <ColorAnimation
+                                                            Storyboard.TargetName="IconBorder"
+                                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                            To="#9D8FEF"
+                                                            Duration="0:0:0.2"/>
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </Trigger.ExitActions>
@@ -307,29 +320,42 @@
     </DataTemplate>
 
     <DataTemplate x:Key="ClosableTabItemTemplate">
-        <DockPanel MinWidth="120" Background="Transparent">
+        <DockPanel MinWidth="140" Background="Transparent">
             <Button
                 Command="{Binding Path=CloseCommand}"
                 DockPanel.Dock="Right"
-                Margin="8,0,0,0"
+                Margin="10,0,0,0"
                 Padding="0"
-                Width="20"
-                Height="20"
+                Width="22"
+                Height="22"
                 Style="{DynamicResource MaterialDesignToolButton}"
                 ToolTip="Zamknij zakładkę">
-                <materialIcons:MaterialIcon
-                    Kind="Close"
-                    Width="16"
-                    Height="16"
-                    Foreground="{DynamicResource MaterialDesignBody}"/>
+                <Border Background="#33FFFFFF" 
+                        CornerRadius="11"
+                        Width="22"
+                        Height="22">
+                    <materialIcons:MaterialIcon
+                        Kind="Close"
+                        Width="14"
+                        Height="14"
+                        Foreground="White"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                </Border>
             </Button>
-            <TextBlock
-                Text="{Binding Path=DisplayName}"
-                VerticalAlignment="Center"
-                Margin="8,0,0,0"
-                FontSize="13"
-                FontWeight="Normal"
-                Foreground="{DynamicResource MaterialDesignBody}"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Border Background="{StaticResource AccentPurple}" 
+                        Width="3" 
+                        Height="16" 
+                        CornerRadius="2" 
+                        Margin="0,0,10,0"/>
+                <TextBlock
+                    Text="{Binding Path=DisplayName}"
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    FontWeight="Light"
+                    Foreground="White"/>
+            </StackPanel>
         </DockPanel>
     </DataTemplate>
 
@@ -339,8 +365,23 @@
             ItemsSource="{Binding}"
             ItemTemplate="{StaticResource ClosableTabItemTemplate}"
             Margin="0"
-            Background="{DynamicResource MaterialDesignPaper}"
+            Background="{DynamicResource IndustrialGunmetal}"
+            BorderBrush="{DynamicResource IndustrialBorder}"
             Style="{DynamicResource MaterialDesignTabControl}">
+            <TabControl.Resources>
+                <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#2D3136"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#252830"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Resources>
         </TabControl>
     </DataTemplate>
 
