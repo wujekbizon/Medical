@@ -11,14 +11,10 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        MouseDown="Window_MouseDown"
+        MouseDown="WindowMouseDown"
         Background="Transparent"
         AllowsTransparency="True"
         >
-    <Window.DataContext>
-        <viewmodels:LoginViewModel/>
-    </Window.DataContext>
-
     <Window.Visibility>
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibilityConverter}"/>
     </Window.Visibility>

@@ -5,8 +5,11 @@
         <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="DeepPurple" SecondaryColor="Lime" ColorAdjustment="{materialDesign:ColorAdjustment}" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml">
         </ResourceDictionary>
-                <ResourceDictionary Source="Themes/Generic.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="/Resources/IndustrialStylesScrollBar.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Themes/Generic.xaml"/>
+                <ResourceDictionary Source="/Resources/IndustrialStylesScrollBar.xaml"/>
+                <ResourceDictionary Source="/Resources/MenuStyles.xaml"/>
+                <ResourceDictionary Source="/Resources/CardStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/IndustrialDataGridStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
               <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
               <helper:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />

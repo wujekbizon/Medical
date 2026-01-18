@@ -21,16 +21,11 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <materialDesign:Card Grid.Row="0"
-                                             UniformCornerRadius="0"
-                                             BorderThickness="0,0,0,0"
-                                             Padding="32,24">
-                            <materialDesign:Card.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#CC1A1C1E" Offset="0"/>
-                                    <GradientStop Color="#AA2D2F31" Offset="1"/>
-                                </LinearGradientBrush>
-                            </materialDesign:Card.Background>
+                        <Border Grid.Row="0"
+                                Background="{DynamicResource IndustrialGunmetal}"
+                                BorderBrush="{DynamicResource PurpleBorder20}"
+                                BorderThickness="0,0,0,1.5"
+                                Padding="20,16">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -39,94 +34,86 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border Grid.Column="0" 
-                                        Width="4" 
-                                        Background="#9D8FEF" 
-                                        CornerRadius="2" 
-                                        Margin="0,4,18,4">
+                                    Width="4" 
+                                    Background="#9D8FEF" 
+                                    CornerRadius="2" 
+                                    Margin="0,0,16,0"
+                                    VerticalAlignment="Stretch">
                                     <Border.Effect>
                                         <DropShadowEffect BlurRadius="8" ShadowDepth="1" Color="#9D8FEF" Opacity="0.3"/>
                                     </Border.Effect>
                                 </Border>
 
-                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding DisplayName}"
-                                               FontSize="24"
-                                               FontWeight="ExtraBold"
-                                               Foreground="White"/>
-                                </StackPanel>
+                                <TextBlock Grid.Column="1"
+                                       Text="{Binding DisplayName}"
+                                       FontSize="18"
+                                       FontWeight="Light"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource MaterialDesignBody}"/>
                               
                                 <StackPanel Grid.Column="2"
                                             Orientation="Horizontal">
                                     <Button Command="{Binding LoadCommand}"
-                                            Style="{DynamicResource MaterialDesignRaisedButton}"
-                                            ToolTip="Odśwież listę"
-                                            Height="40"
-                                            Padding="20,0"
-                                            Margin="0,0,12,0"
-                                            Background="{DynamicResource IndustrialGlass}">
+                                        Style="{DynamicResource MaterialDesignFlatButton}"
+                                        ToolTip="Odśwież listę"
+                                        Height="36"
+                                        Padding="16,8"
+                                        Margin="0,0,8,0">
                                         <StackPanel Orientation="Horizontal">
                                             <materialIcons:MaterialIcon Kind="Refresh"
-                                                                        Width="20"
-                                                                        Height="20"
-                                                                        Margin="0,0,8,0"
-                                                                        Foreground="{DynamicResource TextSecondary}"/>
+                                                                    Width="18"
+                                                                    Height="18"
+                                                                    Margin="0,0,8,0"
+                                                                    Foreground="{DynamicResource MaterialDesignBody}"/>
                                             <TextBlock Text="Odśwież"
-                                                       VerticalAlignment="Center"
-                                                       FontWeight="Bold"
-                                                       Foreground="White"/>
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource MaterialDesignBody}"/>
                                         </StackPanel>
                                     </Button>
-                                    <StackPanel Grid.Column="2"
-                                            Orientation="Horizontal">
-                                        <Button Command="{Binding AddCommand}"
-                                            Style="{DynamicResource MaterialDesignRaisedButton}"
-                                            ToolTip="Dodaj nowy"
-                                            Height="40"
-                                            Padding="20,0"
-                                            Margin="0,0,12,0"
-                                            Background="{DynamicResource IndustrialGunmetal}">
+                                    <Button Command="{Binding AddCommand}"
+                                        Style="{DynamicResource MaterialDesignRaisedButton}"
+                                        ToolTip="Dodaj nowy"
+                                        Height="36"
+                                        Padding="16,8"
+                                        Background="{DynamicResource AccentPurple}">
                                         <StackPanel Orientation="Horizontal">
                                             <materialIcons:MaterialIcon Kind="Plus"
-                                                                        Width="20"
-                                                                        Height="20"
-                                                                        Margin="0,0,8,0"
-                                                                        Foreground="White"/>
+                                                                    Width="18"
+                                                                    Height="18"
+                                                                    Margin="0,0,8,0"
+                                                                    Foreground="White"/>
                                             <TextBlock Text="Dodaj"
-                                                       VerticalAlignment="Center"
-                                                       FontWeight="Bold"
-                                                       Foreground="White"/>
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White"/>
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
-                                </StackPanel>
                             </Grid>
-                        </materialDesign:Card>
+                        </Border>
 
                         <materialDesign:Card Grid.Row="1"
-                                             UniformCornerRadius="8"
-                                             Padding="2"
-                                             Margin="6,8">
-                            <materialDesign:Card.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#CC1A1C1E" Offset="0"/>
-                                    <GradientStop Color="#1E2124" Offset="1"/>
-                                </LinearGradientBrush>
-                            </materialDesign:Card.Background>
+                                             UniformCornerRadius="0"
+                                             Padding="0"
+                                             Margin="0"
+                                             Background="{DynamicResource IndustrialGunmetal}"
+                                             BorderBrush="{DynamicResource PurpleBorder20}"
+                                             BorderThickness="0,0,0,1.5">
+
                             <Expander Header="Sortowanie i Filtrowanie"
-                                      IsExpanded="False"
-                                      Foreground="White"
-                                      FontWeight="Bold"
-                                      FontSize="24"
-                                      Padding="18,18,18,18"
-                                      Background="{DynamicResource IndustrialGunmetal}">
-                                <Grid>
+                                              IsExpanded="False"
+                                              Foreground="{DynamicResource MaterialDesignBody}"
+                                              FontWeight="Normal"
+                                              FontSize="14"
+                                              Padding="20,12"
+                                              Background="Transparent">
+                                <Grid >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition Width="16"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
@@ -134,40 +121,40 @@
                                         <ComboBox ItemsSource="{Binding SortComboBoxItems}"
                                                   SelectedValue="{Binding SortField, Mode=TwoWay}"
                                                   materialDesign:HintAssist.Hint="Sortowanie"
-                                                  BorderBrush="#44FFFFFF"
-                                                  FontSize="11"
+                                                  BorderBrush="{DynamicResource PurpleBorder20}"
+                                                  FontSize="13"
                                                   Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                                     </StackPanel>
                                     <Button Grid.Row="1" Grid.Column="0"
-                                            Content="Sortuj"
-                                            FontSize="14"
-                                            Command="{Binding SortCommand}"
-                                            Style="{DynamicResource MaterialDesignRaisedButton}"
-                                            Background="{DynamicResource AccentPurpleLight}"
-                                            VerticalAlignment="Bottom"
-                                            HorizontalAlignment="Stretch" />
+                                        Content="Sortuj"
+                                        FontSize="13"
+                                        Command="{Binding SortCommand}"
+                                        Style="{DynamicResource MaterialDesignRaisedButton}"
+                                        Background="{DynamicResource AccentPurpleLight}"
+                                        Height="36"
+                                        HorizontalAlignment="Stretch"/>
 
                                     <StackPanel Grid.Row="0" Grid.Column="2">
                                        
                                         <ComboBox ItemsSource="{Binding FindComboBoxItems}"
                                                   SelectedValue="{Binding FindField, Mode=TwoWay}"
                                                   materialDesign:HintAssist.Hint="Filtrowanie"
-                                                  BorderBrush="#44FFFFFF"
-                                                  FontSize="11"
+                                                  BorderBrush="{DynamicResource PurpleBorder20}"
+                                                  FontSize="13"
                                                   Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                                     </StackPanel>
                                     <Grid Grid.Row="1" Grid.Column="2">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="12"/>
-                                            <ColumnDefinition Width="140"/>
+                                            <ColumnDefinition Width="120"/>
                                         </Grid.ColumnDefinitions>
 
                                         <TextBox Grid.Column="0"
                                                  Text="{Binding FindTextBox, UpdateSourceTrigger=PropertyChanged}"
                                                  materialDesign:HintAssist.Hint="Wpisz frazę..."
-                                                 BorderBrush="#44FFFFFF"
-                                                 FontSize="11"
+                                                 BorderBrush="{DynamicResource PurpleBorder20}"
+                                                 FontSize="13"
                                                  Style="{DynamicResource MaterialDesignOutlinedTextBox}">
                                             <TextBox.InputBindings>
                                                 <KeyBinding Key="Enter" Command="{Binding FindCommand}"/>
@@ -175,17 +162,21 @@
                                         </TextBox>
 
                                         <Button Grid.Column="2"
-                                                VerticalAlignment="Bottom"
                                                 Content="Szukaj"
                                                 Command="{Binding FindCommand}"
                                                 Style="{DynamicResource MaterialDesignRaisedButton}"
-                                                Background="{DynamicResource AccentPurpleLight}"/>
+                                                Background="{DynamicResource AccentPurpleLight}"
+                                                Height="36"/>
                                     </Grid>
                                 </Grid>
                             </Expander>
                         </materialDesign:Card>
-                        <ContentPresenter Grid.Row="2"
-                                          Margin="8"/>
+                        <ScrollViewer Grid.Row="2"
+                                      VerticalScrollBarVisibility="Auto"
+                                      Focusable="True"
+                                      Style="{DynamicResource IndustrialScrollViewer}">
+                            <ContentPresenter/>
+                        </ScrollViewer>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -210,42 +201,28 @@
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0"
-                                Background="{DynamicResource MaterialDesignToolBarBackground}"
-                                BorderBrush="{DynamicResource MaterialDesignDivider}"
-                                BorderThickness="0,0,0,1"
-                                Padding="16,12">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <materialIcons:MaterialIcon Kind="FileDocumentEdit"
-                                                            Width="24"
-                                                            Height="24"
-                                                            Grid.Column="0"
-                                                            VerticalAlignment="Center"
-                                                            Margin="0,0,12,0"
-                                                            Foreground="{DynamicResource AccentPurple}"/>
-
-                                <TextBlock Grid.Column="1"
+                                Background="{DynamicResource IndustrialGunmetal}"
+                                BorderBrush="{DynamicResource PurpleBorder20}"
+                                BorderThickness="0,0,0,1.5"
+                                Padding="20,16">
+                            <TextBlock
                                            Text="{Binding DisplayName}"
                                            FontSize="18"
-                                           FontWeight="Medium"
+                                           FontWeight="Light"
                                            VerticalAlignment="Center"
                                            Foreground="{DynamicResource MaterialDesignBody}"/>
-                            </Grid>
+                            
                         </Border>
                         <ScrollViewer Grid.Row="1"
                                       VerticalScrollBarVisibility="Auto"
-                                      Padding="24,16">
+                                      Style="{DynamicResource IndustrialScrollViewer}">
                             <ContentPresenter/>
                         </ScrollViewer>
                         <Border Grid.Row="2"
-                                Background="{DynamicResource MaterialDesignToolBarBackground}"
-                                BorderBrush="{DynamicResource MaterialDesignDivider}"
-                                BorderThickness="0,1,0,0"
-                                Padding="16,12">
+                                Background="{DynamicResource IndustrialGunmetal}"
+                                BorderBrush="{DynamicResource PurpleBorder20}"
+                                BorderThickness="0,1.5,0,0"
+                                Padding="20,12">
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Right">
                                 <Button Command="{Binding CancelCommand}"

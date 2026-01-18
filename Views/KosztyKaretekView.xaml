@@ -9,51 +9,45 @@
              xmlns:viewmodels="clr-namespace:Medical.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:KosztyKaretekViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
-    <UserControl.Resources>
-        <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-            <Setter Property="Margin" Value="0,0,0,12"/>
-        </Style>
-        <Style x:Key="LabelStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        </Style>
-        <Style x:Key="ResultCardStyle" TargetType="materialDesign:Card">
-            <Setter Property="Padding" Value="16"/>
-            <Setter Property="Margin" Value="0,8,0,0"/>
-            <Setter Property="UniformCornerRadius" Value="8"/>
-        </Style>
-    </UserControl.Resources>
 
-    <Grid Background="{DynamicResource MaterialDesignPaper}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="24">
-            <StackPanel Margin="24">
-                <materialDesign:Card UniformCornerRadius="8" Padding="20" Margin="0,0,0,20">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Border BorderThickness="2" BorderBrush="#9D8FEF"/>
-                            <TextBlock Text="Koszty Utrzymania Karetek wg Placówek" 
-                                       FontSize="28" 
-                                       FontWeight="SemiBold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"
-                                       Padding="0,4,0,4"/>
-                        </StackPanel>
-                    </Grid>
+    <Grid Background="{DynamicResource IndustrialGunmetal}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Style="{StaticResource IndustrialScrollViewer}"
+                      Padding="24">
+            <StackPanel>
+                <materialDesign:Card Style="{StaticResource CardStyle}" 
+                                     Margin="0,0,0,16">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Border Background="{DynamicResource AccentPurple}" 
+                                Width="4" 
+                                Height="32" 
+                                CornerRadius="2" 
+                                Margin="0,0,16,0"
+                                VerticalAlignment="Center"/>
+                        <TextBlock Text="Koszty Utrzymania Karetek wg Placówek" 
+                                   FontSize="24" 
+                                   FontWeight="Light"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
                 </materialDesign:Card>
-                <materialDesign:Card UniformCornerRadius="8" Padding="20" Margin="0,0,0,20">
+
+                <materialDesign:Card Style="{StaticResource CardStyle}" 
+                                     Margin="0,0,0,16">
                     <StackPanel>
-                        <TextBlock Margin="0,0,0,20" 
-                                   FontSize="16" 
-                                   FontWeight="SemiBold" 
-                                   Text="Filtry i Kryteria" 
-                                   Foreground="{DynamicResource AccentPurple}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <Border Background="{DynamicResource AccentPurple}" 
+                                    Width="4" 
+                                    Height="16" 
+                                    CornerRadius="2" 
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="Filtry i Kryteria" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
                         <Grid>
                             <Grid.RowDefinitions>
@@ -66,16 +60,19 @@
                                 <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+
                             <DatePicker Grid.Row="0" Grid.Column="0" 
                                         Margin="0,0,0,16"
                                         SelectedDate="{Binding DataOd, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Data od"
+                                        BorderBrush="#44FFFFFF"
                                         Style="{DynamicResource MaterialDesignOutlinedDatePicker}"/>
 
                             <DatePicker Grid.Row="0" Grid.Column="2" 
                                         Margin="0,0,0,16"
                                         SelectedDate="{Binding DataDo, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Data do"
+                                        BorderBrush="#44FFFFFF"
                                         Style="{DynamicResource MaterialDesignOutlinedDatePicker}"/>
 
                             <ComboBox Grid.Row="1" Grid.Column="0" 
@@ -85,6 +82,7 @@
                                       SelectedValuePath="Key"
                                       SelectedValue="{Binding IdPlacowki, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       materialDesign:HintAssist.Hint="Wybierz placówkę"
+                                      BorderBrush="#44FFFFFF"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
 
                             <ComboBox Grid.Row="1" Grid.Column="2"
@@ -94,10 +92,11 @@
                                       SelectedValuePath="Key"
                                       SelectedValue="{Binding SortCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToEnumConverter}}"
                                       materialDesign:HintAssist.Hint="Sortowanie"
+                                      BorderBrush="#44FFFFFF"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                         </Grid>
 
-                        <Separator Background="{DynamicResource MaterialDesignDivider}"
+                        <Separator Background="#44FFFFFF"
                                    Margin="0,8,0,24"/>
 
                         <Grid>
@@ -110,54 +109,74 @@
                             <Button Grid.Column="1"
                                     Command="{Binding GenerujRaportCommand}"
                                     Style="{StaticResource MaterialDesignRaisedButton}"
+                                    Background="{DynamicResource AccentPurple}"
                                     Height="40"
                                     Padding="24,0"
                                     Margin="0,0,12,0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialIcons:MaterialIcon Kind="PlayCircle" 
                                                                Width="20" Height="20" 
-                                                               Margin="0,0,8,0"/>
-                                    <TextBlock Text="Generuj Raport" VerticalAlignment="Center"/>
+                                                               Margin="0,0,8,0"
+                                                               Foreground="White"/>
+                                    <TextBlock Text="Generuj Raport" 
+                                               VerticalAlignment="Center"
+                                               Foreground="White"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Grid.Column="2"
                                     Command="{Binding ResetujCommand}"
                                     Style="{StaticResource MaterialDesignOutlinedButton}"
+                                    BorderBrush="#44FFFFFF"
+                                    Foreground="White"
                                     Height="40"
                                     Padding="24,0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialIcons:MaterialIcon Kind="Refresh" 
                                                                Width="20" Height="20" 
-                                                               Margin="0,0,8,0"/>
-                                    <TextBlock Text="Resetuj" VerticalAlignment="Center"/>
+                                                               Margin="0,0,8,0"
+                                                               Foreground="White"/>
+                                    <TextBlock Text="Resetuj" 
+                                               VerticalAlignment="Center"
+                                               Foreground="White"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
                     </StackPanel>
                 </materialDesign:Card>
 
-                <materialDesign:Card UniformCornerRadius="8" 
-                                     Padding="20" 
-                                     Margin="0,0,0,20"
+                <materialDesign:Card Style="{StaticResource CardStyle}" 
+                                     Margin="0,0,0,16"
                                      Visibility="{Binding PokazWykres, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <StackPanel>
-                        <TextBlock Text="Wykres Kosztów" 
-                                   Style="{StaticResource SectionHeaderStyle}"
-                                   Margin="0,0,0,16"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Border Background="{DynamicResource AccentPurple}" 
+                                    Width="4" 
+                                    Height="16" 
+                                    CornerRadius="2" 
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="Wykres Kosztów" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
                         <lvc:CartesianChart Height="350" 
                                            Series="{Binding ChartSeries}"
                                            LegendLocation="Right"
-                                           Margin="0,0,0,16">
+                                           Margin="0,0,0,16"
+                                           Background="Transparent"
+                                           Foreground="White">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Placówki" 
                                          Labels="{Binding ChartLabels}"
                                          LabelsRotation="45"
                                          FontSize="11"
-                                         Foreground="{DynamicResource MaterialDesignBody}">
+                                         Foreground="White">
                                     <lvc:Axis.Separator>
-                                        <lvc:Separator Step="1"/>
+                                        <lvc:Separator Step="1" Stroke="#44FFFFFF"/>
                                     </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisX>
@@ -165,18 +184,23 @@
                                 <lvc:Axis Title="Koszty (PLN)" 
                                          LabelFormatter="{Binding ChartFormatter}"
                                          FontSize="11"
-                                         Foreground="{DynamicResource MaterialDesignBody}"/>
+                                         Foreground="White">
+                                    <lvc:Axis.Separator>
+                                        <lvc:Separator Stroke="#44FFFFFF"/>
+                                    </lvc:Axis.Separator>
+                                </lvc:Axis>
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
 
                         <TextBlock HorizontalAlignment="Center" 
                                   FontSize="11"
-                                  Foreground="{DynamicResource MaterialDesignBodyLight}">
+                                  Foreground="#88FFFFFF">
                             <Run Text="Wykres przedstawia TOP 10 placówek według łącznych kosztów"/>
                         </TextBlock>
                     </StackPanel>
                 </materialDesign:Card>
-                <materialDesign:Card UniformCornerRadius="8" Padding="20">
+
+                <materialDesign:Card Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <Grid Margin="0,0,0,16">
                             <Grid.ColumnDefinitions>
@@ -184,23 +208,36 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Wyniki Raportu" 
-                                       Style="{StaticResource SectionHeaderStyle}"
-                                       Margin="0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="{DynamicResource AccentPurple}" 
+                                        Width="4" 
+                                        Height="16" 
+                                        CornerRadius="2" 
+                                        Margin="0,0,12,0"
+                                        VerticalAlignment="Center"/>
+                                <TextBlock Text="Wyniki Raportu" 
+                                           FontSize="15" 
+                                           FontWeight="Light"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
 
                             <Button Grid.Column="1"
                                     Style="{StaticResource MaterialDesignFlatButton}"
                                     Command="{Binding EksportujCommand}"
                                     ToolTip="Eksportuj do Excel"
+                                    Foreground="White"
                                     Visibility="{Binding PokazWykres, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <StackPanel Orientation="Horizontal">
                                     <materialIcons:MaterialIcon Kind="FileExcel" 
                                                                Width="16" Height="16" 
-                                                               Margin="0,0,8,0"/>
+                                                               Margin="0,0,8,0"
+                                                               Foreground="{DynamicResource AccentPurple}"/>
                                     <TextBlock Text="Eksportuj" FontSize="13"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
+
                         <DataGrid ItemsSource="{Binding KosztyPlacowek}"
                                   AutoGenerateColumns="False"
                                   CanUserAddRows="False"
@@ -209,10 +246,22 @@
                                   SelectionMode="Single"
                                   HeadersVisibility="All"
                                   GridLinesVisibility="Horizontal"
+                                  Background="Transparent"
+                                  RowBackground="#2D3136"
+                                  AlternatingRowBackground="#252830"
+                                  BorderBrush="#44FFFFFF"
+                                  Foreground="White"
                                   materialDesign:DataGridAssist.CellPadding="12,8"
                                   materialDesign:DataGridAssist.ColumnHeaderPadding="12,10"
                                   Visibility="{Binding PokazWykres, Converter={StaticResource BooleanToVisibilityConverter}}">
-
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                    <Setter Property="Background" Value="{DynamicResource AccentPurple}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" 
                                                     Binding="{Binding Pozycja}" 
@@ -220,7 +269,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource AccentPurpleLight}"/>
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
@@ -232,7 +281,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Medium"/>
-                                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -242,6 +291,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -251,6 +301,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -262,7 +313,7 @@
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
                                             <Setter Property="HorizontalAlignment" Value="Right"/>
-                                            <Setter Property="Foreground" Value="#2E7D32"/>
+                                            <Setter Property="Foreground" Value="#4CAF50"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -273,6 +324,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="HorizontalAlignment" Value="Right"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -287,58 +339,53 @@
                                                     <Style TargetType="Border">
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding KolorKategorii}" Value="Green">
-                                                                <Setter Property="Background" Value="#E8F5E9"/>
+                                                                <Setter Property="Background" Value="#1B5E20"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding KolorKategorii}" Value="Orange">
-                                                                <Setter Property="Background" Value="#FFF3E0"/>
+                                                                <Setter Property="Background" Value="#E65100"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding KolorKategorii}" Value="Red">
-                                                                <Setter Property="Background" Value="#FFEBEE"/>
+                                                                <Setter Property="Background" Value="#B71C1C"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
                                                 <TextBlock Text="{Binding KategoriaKosztow}" 
                                                           FontSize="11" 
-                                                          FontWeight="SemiBold">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock">
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding KolorKategorii}" Value="Green">
-                                                                    <Setter Property="Foreground" Value="#2E7D32"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding KolorKategorii}" Value="Orange">
-                                                                    <Setter Property="Foreground" Value="#EF6C00"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding KolorKategorii}" Value="Red">
-                                                                    <Setter Property="Foreground" Value="#C62828"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
+                                                          FontWeight="SemiBold"
+                                                          Foreground="White"/>
                                             </Border>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
+
                         <StackPanel Visibility="{Binding BrakDanych, Converter={StaticResource BooleanToVisibilityConverter}}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="0,40">
-                            <materialIcons:MaterialIcon Kind="ChartBoxOutline" 
-                                                       Width="64" Height="64"
-                                                       Foreground="{DynamicResource MaterialDesignBodyLight}"
-                                                       HorizontalAlignment="Center"/>
+                            <Border Background="{DynamicResource AccentPurple}"
+                                    Width="80"
+                                    Height="80"
+                                    CornerRadius="40"
+                                    HorizontalAlignment="Center"
+                                    Opacity="0.3">
+                                <materialIcons:MaterialIcon Kind="ChartBoxOutline" 
+                                                           Width="48" Height="48"
+                                                           Foreground="White"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                            </Border>
                             <TextBlock Text="Brak danych do wyświetlenia" 
                                       FontSize="16"
-                                      Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                      FontWeight="Light"
+                                      Foreground="White"
                                       HorizontalAlignment="Center"
                                       Margin="0,16,0,8"/>
                             <TextBlock Text="Wygeneruj raport, aby zobaczyć wyniki" 
                                       FontSize="13"
-                                      Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                      Foreground="#88FFFFFF"
                                       HorizontalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>

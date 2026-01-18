@@ -8,7 +8,7 @@
         xmlns:helper="clr-namespace:Medical.Helper"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF" xmlns:viewmodels="clr-namespace:Medical.ViewModels"
-        Title="Medical - System Zarządzania Medycznego"  Height="768" Width="1366"
+        Title="Medical - System Zarządzania Medycznego"  Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
@@ -17,35 +17,6 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto">
-
-    <Window.InputBindings>
-        <KeyBinding Key="P" Modifiers="Control" Command="{x:Static helper:MenuCommands.OpenFileMenu}"/>
-        <KeyBinding Key="A" Modifiers="Control" Command="{x:Static helper:MenuCommands.OpenPatientsMenu}"/>
-        <KeyBinding Key="Z" Modifiers="Control" Command="{x:Static helper:MenuCommands.OpenTeamsMenu}"/>
-        <KeyBinding Key="H" Modifiers="Control" Command="{x:Static helper:MenuCommands.OpenHelpMenu}"/>
-        <KeyBinding Key="N" Modifiers="Control" Command="{x:Static helper:MenuCommands.NewRecord}"/>
-        <KeyBinding Key="O" Modifiers="Control" Command="{x:Static helper:MenuCommands.OpenFile}"/>
-        <KeyBinding Key="Q" Modifiers="Control" Command="{x:Static helper:MenuCommands.Exit}"/>
-        <KeyBinding Key="F5" Command="{x:Static helper:MenuCommands.Refresh}"/>
-        <KeyBinding Key="F" Modifiers="Control" Command="{x:Static helper:MenuCommands.Search}"/>
-        <KeyBinding Key="F1" Command="{x:Static helper:MenuCommands.ShowDocumentation}"/>
-        <KeyBinding Key="A" Modifiers="Control+Shift" Command="{x:Static helper:MenuCommands.AllPatients}"/>
-        <KeyBinding Key="P" Modifiers="Control+Shift" Command="{x:Static helper:MenuCommands.NewPatient}"/>
-        <KeyBinding Key="T" Modifiers="Control+Shift" Command="{x:Static helper:MenuCommands.EmergencyTeams}"/>
-        <KeyBinding Key="E" Modifiers="Control+Shift" Command="{x:Static helper:MenuCommands.Employees}"/>
-        <KeyBinding Key="D" Modifiers="Control+Shift" Command="{x:Static helper:MenuCommands.NewDispatch}"/>
-    </Window.InputBindings>
-
-    <Window.CommandBindings>
-        <CommandBinding Command="{x:Static helper:MenuCommands.OpenFileMenu}" Executed="OpenFileMenu_Executed"/>
-        <CommandBinding Command="{x:Static helper:MenuCommands.OpenPatientsMenu}" Executed="OpenPatientsMenu_Executed"/>
-        <CommandBinding Command="{x:Static helper:MenuCommands.OpenTeamsMenu}" Executed="OpenTeamsMenu_Executed"/>
-        <CommandBinding Command="{x:Static helper:MenuCommands.OpenHelpMenu}" Executed="OpenHelpMenu_Executed"/>
-        <CommandBinding Command="{x:Static helper:MenuCommands.Exit}" Executed="Exit_Executed"/>
-        <CommandBinding Command="{x:Static helper:MenuCommands.Refresh}" Executed="Refresh_Executed"/>
-        <CommandBinding Command="{x:Static helper:MenuCommands.Search}" Executed="Search_Executed"/>
-        <CommandBinding Command="{x:Static helper:MenuCommands.ShowDocumentation}" Executed="ShowDocumentation_Executed"/>
-    </Window.CommandBindings>
 
     <Window.Resources>
         <ResourceDictionary>
@@ -96,109 +67,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="36"/>
+                <!--<RowDefinition Height="40"/>-->
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Menu x:Name="MainMenu"
-                  Grid.Column="0" 
-                  Grid.Row="0" 
-                  Grid.ColumnSpan="2" 
-                  Background="{DynamicResource MaterialDesignToolBarBackground}"
-                  Foreground="{DynamicResource MaterialDesignBody}"
-                  Height="Auto">
-
-                <MenuItem x:Name="MenuPlik" Style="{StaticResource AccentMenuItemStyle}">
-                    <MenuItem.Header>
-                        <TextBlock>
-                            <Run TextDecorations="Underline" Text="P" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="lik" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        </TextBlock>
-                    </MenuItem.Header>
-                    <MenuItem Header="Nowy" InputGestureText="Ctrl+N">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="FilePlus" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Otwórz" InputGestureText="Ctrl+O">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="FolderOpen" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator/>
-                    <MenuItem Header="Ustawienia" InputGestureText="Ctrl+,">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="Cog" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator/>
-                    <MenuItem Header="Wyjście" InputGestureText="Ctrl+Q" Command="{x:Static helper:MenuCommands.Exit}">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="ExitToApp" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </MenuItem>
-
-                <MenuItem x:Name="MenuPacjenci" Style="{StaticResource AccentMenuItemStyle}">
-                    <MenuItem.Header>
-                        <TextBlock>
-                            <Run Text="P" Foreground="{DynamicResource MaterialDesignBody}"/><Run TextDecorations="Underline" Text="a" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="cjenci" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        </TextBlock>
-                    </MenuItem.Header>
-                    <MenuItem Header="Wszyscy Pacjenci" InputGestureText="Ctrl+Shift+A">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="AccountMultiple" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Nowy Pacjent" InputGestureText="Ctrl+Shift+P">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="AccountPlus" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </MenuItem>
-
-                <MenuItem x:Name="MenuZespoly" Style="{StaticResource AccentMenuItemStyle}">
-                    <MenuItem.Header>
-                        <TextBlock>
-                            <Run TextDecorations="Underline" Text="Z" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="espoły" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        </TextBlock>
-                    </MenuItem.Header>
-                    <MenuItem Header="Zespoły Ratunkowe" InputGestureText="Ctrl+Shift+T">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="Ambulance" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Pracownicy" InputGestureText="Ctrl+Shift+E">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="PeopleGroup" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator/>
-                    <MenuItem Header="Nowe Zlecenie Wyjazdu" InputGestureText="Ctrl+Shift+D">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="ClipboardText" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </MenuItem>
-
-                <MenuItem x:Name="MenuPomoc" Style="{StaticResource AccentMenuItemStyle}">
-                    <MenuItem.Header>
-                        <TextBlock>
-                            <Run TextDecorations="Underline" Text="H" Foreground="{DynamicResource AccentPurpleLight}" FontWeight="SemiBold"/><Run Text="elp" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        </TextBlock>
-                    </MenuItem.Header>
-                    <MenuItem Header="Dokumentacja" InputGestureText="F1">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="BookOpen" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="O programie" InputGestureText="Shift+F1">
-                        <MenuItem.Icon>
-                            <materialIcons:MaterialIcon Kind="Information" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </MenuItem>
-            </Menu>
+            <!--<controls:MainMenu Grid.Column="0" 
+                   Grid.Row="0" 
+                   Grid.ColumnSpan="2"/>-->
 
             <Border Grid.Column="0"
                     Grid.Row="2"
@@ -378,20 +254,20 @@
                                                     <BeginStoryboard>
                                                         <Storyboard>
                                                             <ColorAnimation
-                                                    Storyboard.TargetName="LogoutBorder"
-                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                    To="Transparent"
-                                                    Duration="0:0:0.2"/>
+                                                                    Storyboard.TargetName="LogoutBorder"
+                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                    To="Transparent"
+                                                                    Duration="0:0:0.2"/>
                                                             <ColorAnimation
-                                                    Storyboard.TargetName="LogoutBorder"
-                                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                    To="#44FFFFFF"
-                                                    Duration="0:0:0.2"/>
+                                                                    Storyboard.TargetName="LogoutBorder"
+                                                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+                                                                    To="#44FFFFFF"
+                                                                    Duration="0:0:0.2"/>
                                                             <DoubleAnimation
-                                                    Storyboard.TargetName="LogoutIcon"
-                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                                                    To="0"
-                                                    Duration="0:0:0.2">
+                                                                    Storyboard.TargetName="LogoutIcon"
+                                                                    Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                                                    To="0"
+                                                                    Duration="0:0:0.2">
                                                                 <DoubleAnimation.EasingFunction>
                                                                     <CubicEase EasingMode="EaseOut"/>
                                                                 </DoubleAnimation.EasingFunction>
@@ -411,7 +287,7 @@
 
             <Grid Grid.Column="1"
                   Grid.Row="2"
-                  Background="{DynamicResource MaterialDesignPaper}">
+                  Background="{DynamicResource IndustrialGunmetal}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
@@ -419,30 +295,38 @@
 
                 <Border Grid.Row="0"
                         Margin="8"
-                        Background="{DynamicResource MaterialDesignCardBackground}"
-                        BorderBrush="{DynamicResource MaterialDesignDivider}"
-                        BorderThickness="1"
-                        CornerRadius="4">
+                        BorderBrush="{DynamicResource PurpleBorder20}"
+                        BorderThickness="2"
+                        CornerRadius="5">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#2D3136" Offset="0"/>
+                            <GradientStop Color="#1E2124" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
                     <Grid>
                         <controls:WelcomeMapView x:Name="WelcomeView"
-                                                  Visibility="{Binding HasNoWorkspaces, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}"/>
-
+                                      Visibility="{Binding HasNoWorkspaces, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Visible}"/>
                         <ContentControl
                             Content="{Binding Path=Workspaces}"
                             ContentTemplate="{StaticResource WorkspacesTemplate}"
                             Margin="0"/>
-
                         <controls:LoadingOverlay x:Name="LoadingOverlay"
-                                                  Visibility="Collapsed"
-                                                  IsLoading="{Binding IsLoading, FallbackValue=False}"/>
+                                      Visibility="Collapsed"
+                                      IsLoading="{Binding IsLoading, FallbackValue=False}"/>
                     </Grid>
                 </Border>
 
                 <Border Grid.Row="1"
-                        Background="{DynamicResource MaterialDesignCardBackground}"
-                        BorderBrush="{DynamicResource MaterialDesignDivider}"
+                        BorderBrush="{DynamicResource IndustrialBorder}"
                         BorderThickness="0,1,0,0"
-                        Padding="16,6">
+                        Padding="16,8">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#1E2124" Offset="0"/>
+                            <GradientStop Color="#16181A" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -451,23 +335,33 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <materialIcons:MaterialIcon
-                                Kind="CheckCircle"
-                                Width="16" Height="16"
-                                Margin="0,0,8,0"
-                                VerticalAlignment="Center"
-                                Foreground="#4CAF50"/>
+                            <Border Background="{DynamicResource AccentPurple}"
+                                    Width="16"
+                                    Height="16"
+                                    CornerRadius="8"
+                                    Margin="0,0,8,0"
+                                    VerticalAlignment="Center">
+                                <materialIcons:MaterialIcon
+                                    Kind="CheckCircle"
+                                    Width="12" Height="12"
+                                    Foreground="White"/>
+                            </Border>
                             <TextBlock Text="Gotowy"
                                        FontSize="12"
+                                       FontWeight="Light"
                                        VerticalAlignment="Center"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                       Foreground="White"/>
                         </StackPanel>
 
-                        <TextBlock Grid.Column="2"
-                                   Text="{Binding Path=Workspaces.Count, StringFormat='Otwartych zakładek: {0}'}"
-                                   FontSize="12"
-                                   VerticalAlignment="Center"
-                                   Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                      
+                                <TextBlock Text="{Binding Path=Workspaces.Count, StringFormat='Otwartych zakładek: {0}'}"
+                                           FontSize="11"
+                                           FontWeight="Medium"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource AccentPurpleLight}"/>
+                           
+                        </StackPanel>
                     </Grid>
                 </Border>
             </Grid>

@@ -40,7 +40,7 @@ namespace Medical.ViewModels
                     KontaktAwaryjnyImieNazwisko = pacjent.KontaktAwaryjnyImieNazwisko,
                     KontaktAwaryjnyTelefon = pacjent.KontaktAwaryjnyTelefon,
                     ChorobyPrzewlekle = pacjent.ChorobyPrzewlekle,
-                    RodzajNiepelnosprawnosci = pacjent.RodzajNiepełnosprawności
+                    RodzajNiepełnosprawności = pacjent.RodzajNiepełnosprawności
                 }
                 );
         }

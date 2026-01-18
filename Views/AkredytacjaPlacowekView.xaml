@@ -10,107 +10,59 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:AkredytacjaPlacowekViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="900">
-
     <UserControl.Resources>
-        <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-            <Setter Property="Margin" Value="0,0,0,12"/>
-        </Style>
-        <Style x:Key="ResultCardStyle" TargetType="materialDesign:Card">
-            <Setter Property="Padding" Value="24"/>
-            <Setter Property="UniformCornerRadius" Value="12"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#CC1A1C1E" Offset="0"/>
-                        <GradientStop Color="#AA2D2F31" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="BorderBrush" Value="#44FFFFFF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Margin" Value="0,8,4,0"/>
-        </Style>
-        <Style x:Key="PremiumHeaderStyle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Light"/>
-            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-            <Setter Property="Opacity" Value="1"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/CardStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        <Style x:Key="PremiumValueStyle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="0,12"/>
-            <Setter Property="FontSize" Value="54"/>
-            <Setter Property="FontWeight" Value="Regular"/>
-            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        </Style>
-
-        <Style x:Key="PremiumSubStyle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="8"/>
-            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-            <Setter Property="Opacity" Value="0.3"/>
-        </Style>
+            <Style x:Key="StatCardStyle" TargetType="materialDesign:Card" BasedOn="{StaticResource CardStyle}">
+                <Setter Property="Padding" Value="16"/>
+                <Setter Property="Margin" Value="0,8,0,0"/>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
-
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,0">
-                <GradientStop Color="#2D3136" Offset="0"/>
-                <GradientStop Color="#1E2124" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="24">
-            <StackPanel Margin="24">
-                <materialDesign:Card Style="{StaticResource ResultCardStyle}" 
-                     Padding="32,24" 
-                     Margin="0,0,0,20">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Border Grid.Column="0" 
+    <Grid Background="{DynamicResource IndustrialGunmetal}">
+      
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                      Padding="24"
+                      Style="{StaticResource IndustrialScrollViewer}">
+            <StackPanel >
+                <materialDesign:Card Style="{StaticResource CardStyle}" Margin="0,0,0,16">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="{DynamicResource AccentPurple}" 
                                 Width="4" 
-                                Background="#9D8FEF" 
+                                Height="48" 
                                 CornerRadius="2" 
-                                Margin="0,4,24,4">
+                                Margin="0,0,16,0"
+                                VerticalAlignment="Center">
                             <Border.Effect>
-                                <DropShadowEffect BlurRadius="8" ShadowDepth="1" Color="#9D8FEF" Opacity="0.3"/>
+                                <DropShadowEffect BlurRadius="8" ShadowDepth="0" Color="#9D8FEF" Opacity="0.4"/>
                             </Border.Effect>
                         </Border>
 
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <StackPanel VerticalAlignment="Center">
                             <TextBlock Text="SYSTEM AKREDYTACJI PLACÓWEK MEDYCZNYCH" 
-                                       FontSize="24" 
-                                       FontWeight="ExtraBold"
-                                       Foreground="{DynamicResource MaterialDesignBody}">
-                            </TextBlock>
-
-                            <TextBlock Text="Ocena kompleksowa na podstawie wydajności zespołów, interwencji i zasobów" 
-                                       FontSize="13" 
-                                       FontWeight="Medium"
-                                       Foreground="{DynamicResource MaterialDesignBody}"
-                                       Opacity="0.5"
-                                       Margin="0,4,0,0"/>
+                                       FontSize="20" 
+                                       FontWeight="SemiBold"
+                                       Foreground="White"/>
                         </StackPanel>
-                    </Grid>
+                    </StackPanel>
                 </materialDesign:Card>
-                
-                <materialDesign:Card Style="{StaticResource ResultCardStyle}" Padding="24" Margin="0,0,0,20">
+
+                <materialDesign:Card Style="{StaticResource CardStyle}" Margin="0,0,0,16">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
-                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <Border Background="{DynamicResource AccentPurple}" 
+                                    Width="4" 
+                                    Height="16" 
+                                    CornerRadius="2" 
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Center"/>
                             <TextBlock Text="Parametry Oceny" 
-                                       FontSize="14" 
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"
-                                       Opacity="0.8"
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
 
@@ -126,25 +78,29 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <DatePicker Grid.Row="0" Grid.Column="0" Margin="0,0,0,16"
+                            <DatePicker Grid.Row="0" Grid.Column="0" 
+                                        Margin="0,0,0,16"
                                         SelectedDate="{Binding DataOd, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Data od"
                                         BorderBrush="#44FFFFFF" 
                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
 
-                            <DatePicker Grid.Row="0" Grid.Column="2" Margin="0,0,0,16"
+                            <DatePicker Grid.Row="0" Grid.Column="2" 
+                                        Margin="0,0,0,16"
                                         SelectedDate="{Binding DataDo, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Data do"
                                         BorderBrush="#44FFFFFF"
                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
 
-                            <TextBox Grid.Row="1" Grid.Column="0" Margin="0,0,0,16"
+                            <TextBox Grid.Row="1" Grid.Column="0" 
+                                     Margin="0,0,0,16"
                                      Text="{Binding MinimalnaLiczbaOcen, UpdateSourceTrigger=PropertyChanged}"
                                      materialDesign:HintAssist.Hint="Minimalna liczba ocen (np. 10)"
                                      BorderBrush="#44FFFFFF"
                                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
-                            <ComboBox Grid.Row="1" Grid.Column="2" Margin="0,0,0,16"
+                            <ComboBox Grid.Row="1" Grid.Column="2" 
+                                      Margin="0,0,0,16"
                                       ItemsSource="{Binding PlacowkiComboBoxItems}" 
                                       DisplayMemberPath="Value"
                                       SelectedValuePath="Key"
@@ -153,7 +109,9 @@
                                       BorderBrush="#44FFFFFF"
                                       Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
 
-                            <ComboBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,16"
+                            <ComboBox Grid.Row="2" Grid.Column="0" 
+                                      Grid.ColumnSpan="3" 
+                                      Margin="0,0,0,16"
                                       ItemsSource="{Binding SortPointsItems}"
                                       DisplayMemberPath="Value"
                                       SelectedValuePath="Key"
@@ -163,7 +121,7 @@
                                       Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
                         </Grid>
 
-                        <Separator Background="{DynamicResource MaterialDesignDivider}" Margin="0,8,0,24"/>
+                        <Separator Background="#44FFFFFF" Margin="0,8,0,24"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -175,26 +133,43 @@
                             <Button Grid.Column="1"
                                     Command="{Binding OcenAkredytacjeCommand}"
                                     Style="{StaticResource MaterialDesignRaisedButton}"
-                                    Height="40" Padding="24,0" Margin="0,0,12,0">
+                                    Background="{DynamicResource AccentPurple}"
+                                    Height="40" 
+                                    Padding="24,0" 
+                                    Margin="0,0,12,0">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialIcons:MaterialIcon Kind="CheckDecagram" Width="20" Height="20" Margin="0,0,8,0"/>
-                                    <TextBlock Text="Oceń Akredytację" VerticalAlignment="Center"/>
+                                    <materialIcons:MaterialIcon Kind="CheckDecagram" 
+                                                               Width="20" Height="20" 
+                                                               Margin="0,0,8,0"
+                                                               Foreground="White"/>
+                                    <TextBlock Text="Oceń Akredytację" 
+                                               VerticalAlignment="Center"
+                                               Foreground="White"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Grid.Column="2"
                                     Command="{Binding ResetujCommand}"
                                     Style="{StaticResource MaterialDesignOutlinedButton}"
-                                    Height="40" Padding="24,0">
+                                    BorderBrush="#44FFFFFF"
+                                    Foreground="White"
+                                    Height="40" 
+                                    Padding="24,0">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialIcons:MaterialIcon Kind="Refresh" Width="20" Height="20" Margin="0,0,8,0"/>
-                                    <TextBlock Text="Resetuj" VerticalAlignment="Center"/>
+                                    <materialIcons:MaterialIcon Kind="Refresh" 
+                                                               Width="20" Height="20" 
+                                                               Margin="0,0,8,0"
+                                                               Foreground="White"/>
+                                    <TextBlock Text="Resetuj" 
+                                               VerticalAlignment="Center"
+                                               Foreground="White"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
                     </StackPanel>
                 </materialDesign:Card>
-                <Grid Margin="0,0,0,20">
+
+                <Grid Margin="0,0,0,16">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -202,50 +177,116 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <materialDesign:Card Grid.Column="0" Style="{StaticResource ResultCardStyle}" Margin="0,0,4,0">
+                    <materialDesign:Card Grid.Column="0" Style="{StaticResource StatCardStyle}" Margin="0,0,4,0">
                         <StackPanel>
-                            <Border Background="#9D8FEF" Height="2" Width="40" HorizontalAlignment="Center" Margin="0,0,0,8" CornerRadius="1"/>
-                            <TextBlock Text="Liczba Placówek" Style="{StaticResource PremiumHeaderStyle}"/>
-                            <TextBlock Text="{Binding LiczbaPlacowek}" Style="{StaticResource PremiumValueStyle}"/>
-                            <TextBlock Text="AKTUALNE DANE" Style="{StaticResource PremiumSubStyle}"/>
-                        </StackPanel>
-                    </materialDesign:Card>
-
-                    <materialDesign:Card Grid.Column="1" Style="{StaticResource ResultCardStyle}" Margin="4,0,4,0">
-                        <StackPanel>
-                            <Border Background="#2E7D32" Height="2" Width="40" HorizontalAlignment="Center" Margin="0,0,0,8" CornerRadius="1"/>
-                            <TextBlock Text="Akredytowanych" Style="{StaticResource PremiumHeaderStyle}"/>
-                            <TextBlock Text="{Binding LiczbaAkredytowanych}" Style="{StaticResource PremiumValueStyle}"/>
-                            <TextBlock Text="WERYFIKACJA OK" Style="{StaticResource PremiumSubStyle}"/>
-                        </StackPanel>
-                    </materialDesign:Card>
-
-                    <materialDesign:Card Grid.Column="2" 
-                     Style="{StaticResource ResultCardStyle}" 
-                     Margin="4,0,4,0">
-                        <StackPanel>
-                            <Border Background="#FFB300" 
-                                    Height="2" Width="40" 
+                            <Border Background="{DynamicResource AccentPurple}" 
+                                    Height="2" 
+                                    Width="40" 
                                     HorizontalAlignment="Center" 
                                     Margin="0,0,0,8" 
                                     CornerRadius="1"/>
-                            <TextBlock Text="Procent Akredytacji" Style="{StaticResource PremiumHeaderStyle}"/>
-                            <TextBlock Text="{Binding ProcentAkredytowanych, StringFormat={}{0:N1}%}" Style="{StaticResource PremiumValueStyle}"/>
-                            <TextBlock Text="SKUTECZNOŚĆ" Style="{StaticResource PremiumSubStyle}"/>
+                            <TextBlock Text="Liczba Placówek" 
+                                       FontSize="13" 
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding LiczbaPlacowek}" 
+                                       FontSize="36" 
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource AccentPurpleLight}"
+                                       HorizontalAlignment="Center"
+                                       Padding="0,12"/>
+                            <TextBlock Text="AKTUALNE DANE" 
+                                       FontSize="9" 
+                                       FontWeight="Medium"
+                                       Foreground="#44FFFFFF"
+                                       HorizontalAlignment="Center"/>
                         </StackPanel>
                     </materialDesign:Card>
 
-                    <materialDesign:Card Grid.Column="3" Style="{StaticResource ResultCardStyle}" Margin="4,0,0,0">
+                    <materialDesign:Card Grid.Column="1" Style="{StaticResource StatCardStyle}" Margin="4,0,4,0">
                         <StackPanel>
-                            <Border Background="#2196F3" Height="2" Width="40" HorizontalAlignment="Center" Margin="0,0,0,8" CornerRadius="1"/>
-                            <TextBlock Text="Średnia Punktów" Style="{StaticResource PremiumHeaderStyle}"/>
-                            <TextBlock Text="{Binding SredniaPunktow, StringFormat=N1}" Style="{StaticResource PremiumValueStyle}"/>
-                            <TextBlock Text="RANKING ŚREDNI" Style="{StaticResource PremiumSubStyle}"/>
+                            <Border Background="#4CAF50" 
+                                    Height="2" 
+                                    Width="40" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,0,8" 
+                                    CornerRadius="1"/>
+                            <TextBlock Text="Akredytowanych" 
+                                       FontSize="13" 
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding LiczbaAkredytowanych}" 
+                                       FontSize="36" 
+                                       FontWeight="Bold"
+                                       Foreground="#4CAF50"
+                                       HorizontalAlignment="Center"
+                                       Padding="0,12"/>
+                            <TextBlock Text="WERYFIKACJA OK" 
+                                       FontSize="9" 
+                                       FontWeight="Medium"
+                                       Foreground="#44FFFFFF"
+                                       HorizontalAlignment="Center"/>
                         </StackPanel>
                     </materialDesign:Card>
 
+                    <materialDesign:Card Grid.Column="2" Style="{StaticResource StatCardStyle}" Margin="4,0,4,0">
+                        <StackPanel>
+                            <Border Background="#FFC107" 
+                                    Height="2" 
+                                    Width="40" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,0,8" 
+                                    CornerRadius="1"/>
+                            <TextBlock Text="Procent Akredytacji" 
+                                       FontSize="13" 
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding ProcentAkredytowanych, StringFormat={}{0:N1}%}" 
+                                       FontSize="36" 
+                                       FontWeight="Bold"
+                                       Foreground="#FFC107"
+                                       HorizontalAlignment="Center"
+                                       Padding="0,12"/>
+                            <TextBlock Text="SKUTECZNOŚĆ" 
+                                       FontSize="9" 
+                                       FontWeight="Medium"
+                                       Foreground="#44FFFFFF"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </materialDesign:Card>
+
+                    <materialDesign:Card Grid.Column="3" Style="{StaticResource StatCardStyle}" Margin="4,0,0,0">
+                        <StackPanel>
+                            <Border Background="#2196F3" 
+                                    Height="2" 
+                                    Width="40" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,0,8" 
+                                    CornerRadius="1"/>
+                            <TextBlock Text="Średnia Punktów" 
+                                       FontSize="13" 
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding SredniaPunktow, StringFormat=N1}" 
+                                       FontSize="36" 
+                                       FontWeight="Bold"
+                                       Foreground="#2196F3"
+                                       HorizontalAlignment="Center"
+                                       Padding="0,12"/>
+                            <TextBlock Text="RANKING ŚREDNI" 
+                                       FontSize="9" 
+                                       FontWeight="Medium"
+                                       Foreground="#44FFFFFF"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </materialDesign:Card>
                 </Grid>
-                <materialDesign:Card Style="{StaticResource ResultCardStyle}" Margin="0,0,0,20">
+
+                <materialDesign:Card Style="{StaticResource CardStyle}" Margin="0,0,0,16">
                     <StackPanel>
                         <Grid Margin="0,0,0,16">
                             <Grid.ColumnDefinitions>
@@ -254,20 +295,32 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Orientation="Horizontal">
-                                <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                                <Border Background="{DynamicResource AccentPurple}" 
+                                        Width="4" 
+                                        Height="16" 
+                                        CornerRadius="2" 
+                                        Margin="0,0,12,0"
+                                        VerticalAlignment="Center"/>
                                 <TextBlock Text="WYNIKI AKREDYTACJI" 
-                           FontSize="14" FontWeight="Bold"
-                           Foreground="{DynamicResource MaterialDesignBody}" Opacity="0.8"/>
+                                           FontSize="15" 
+                                           FontWeight="Light"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <Button Grid.Column="1"
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    Command="{Binding EksportujCommand}"
-                    Foreground="#81C784"
-                    ToolTip="Eksportuj do Excel">
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    Command="{Binding EksportujCommand}"
+                                    Foreground="White"
+                                    ToolTip="Eksportuj do Excel">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialIcons:MaterialIcon Kind="FileExcel" Width="18" Height="18" Margin="0,0,8,0"/>
-                                    <TextBlock Text="EKSPORTUJ" FontWeight="Bold" FontSize="13"/>
+                                    <materialIcons:MaterialIcon Kind="FileExcel" 
+                                                               Width="16" Height="16" 
+                                                               Margin="0,0,8,0"
+                                                               Foreground="{DynamicResource AccentPurple}"/>
+                                    <TextBlock Text="EKSPORTUJ" 
+                                               FontWeight="SemiBold" 
+                                               FontSize="13"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
@@ -277,30 +330,31 @@
                                   CanUserAddRows="False"
                                   IsReadOnly="True"
                                   Background="Transparent"
-                                  BorderThickness="0"
+                                  RowBackground="#2D3136"
+                                  AlternatingRowBackground="#252830"
+                                  BorderBrush="#44FFFFFF"
+                                  BorderThickness="1"
+                                  Foreground="White"
                                   GridLinesVisibility="Horizontal"
-                                  HorizontalGridLinesBrush="#11FFFFFF"
-                                  RowBackground="Transparent"
+                                  HorizontalGridLinesBrush="#22FFFFFF"
                                   materialDesign:DataGridAssist.CellPadding="12,12"
                                   materialDesign:DataGridAssist.ColumnHeaderPadding="12,15">
-
-                            <DataGrid.Resources>
-                                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                    <Setter Property="Background" Value="#15FFFFFF"/>
-                                    <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-                                    <Setter Property="FontWeight" Value="ExtraBold"/>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                    <Setter Property="Background" Value="{DynamicResource AccentPurple}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="FontSize" Value="11"/>
-                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                                    <Setter Property="BorderBrush" Value="#33FFFFFF"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
-                            </DataGrid.Resources>
+                            </DataGrid.ColumnHeaderStyle>
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" Binding="{Binding Pozycja}" Width="50">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                            <Setter Property="Foreground" Value="#9D8FEF"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource AccentPurpleLight}"/>
                                             <Setter Property="VerticalAlignment" Value="Center"/>
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
                                         </Style>
@@ -321,12 +375,15 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="0,4">
-                                                <TextBlock>
-                                    <Run Text="Średnia: " FontSize="11" Foreground="{DynamicResource MaterialDesignBody}"/>
-                                    <Run Text="{Binding SredniaOcenaZespolow, StringFormat=N2}" Foreground="White"/>
+                                                <TextBlock Foreground="White">
+                                                    <Run Text="Średnia: " FontSize="11" Foreground="#88FFFFFF"/>
+                                                    <Run Text="{Binding SredniaOcenaZespolow, StringFormat=N2}" FontWeight="SemiBold"/>
                                                 </TextBlock>
                                                 <TextBlock Text="{Binding PunktyZaOceny, StringFormat='PUNKTY: {0}/40'}" 
-                                           FontSize="11" FontWeight="Black" Foreground="#64B5F6" Margin="0,4,0,0"/>
+                                                           FontSize="11" 
+                                                           FontWeight="Bold" 
+                                                           Foreground="#64B5F6" 
+                                                           Margin="0,4,0,0"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -336,9 +393,13 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding LiczbaInterwencji, StringFormat='Ilość: {0}'}" FontSize="11" Opacity="0.7"/>
+                                                <TextBlock Text="{Binding LiczbaInterwencji, StringFormat='Ilość: {0}'}" 
+                                                           FontSize="11" 
+                                                           Foreground="#88FFFFFF"/>
                                                 <TextBlock Text="{Binding PunktyZaInterwencje, StringFormat='PUNKTY: {0}/40'}" 
-                                           FontSize="11" FontWeight="Black" Foreground="#81C784"/>
+                                                           FontSize="11" 
+                                                           FontWeight="Bold" 
+                                                           Foreground="#81C784"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -347,7 +408,7 @@
                                 <DataGridTextColumn Header="SUMA" Binding="{Binding LacznePunkty, StringFormat='{}{0}/100'}" Width="100">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="FontWeight" Value="Black"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
                                             <Setter Property="FontSize" Value="15"/>
                                             <Setter Property="Foreground" Value="White"/>
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -359,60 +420,77 @@
                                 <DataGridTemplateColumn Header="STATUS" Width="150">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Border CornerRadius="4" Padding="8,4" HorizontalAlignment="Left" BorderThickness="1">
+                                            <Border CornerRadius="4" 
+                                                    Padding="8,4" 
+                                                    HorizontalAlignment="Left" 
+                                                    BorderThickness="1">
                                                 <Border.Style>
                                                     <Style TargetType="Border">
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding KolorStatusu}" Value="Green">
-                                                                <Setter Property="Background" Value="#112E7D32"/>
-                                                                <Setter Property="BorderBrush" Value="#4481C784"/>
+                                                                <Setter Property="Background" Value="#1B5E20"/>
+                                                                <Setter Property="BorderBrush" Value="#4CAF50"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding KolorStatusu}" Value="Red">
-                                                                <Setter Property="Background" Value="#11C62828"/>
-                                                                <Setter Property="BorderBrush" Value="#44FF8A80"/>
+                                                                <Setter Property="Background" Value="#B71C1C"/>
+                                                                <Setter Property="BorderBrush" Value="#FF5252"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding StatusAkredytacji}" FontSize="10" FontWeight="Bold">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="TextBlock">
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding KolorStatusu}" Value="Green">
-                                                                        <Setter Property="Foreground" Value="#81C784"/>
-                                                                    </DataTrigger>
-                                                                    <DataTrigger Binding="{Binding KolorStatusu}" Value="Red">
-                                                                        <Setter Property="Foreground" Value="#FF8A80"/>
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                </StackPanel>
+                                                <TextBlock HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center" 
+                                                          Text="{Binding StatusAkredytacji}" 
+                                                          FontSize="10" 
+                                                          FontWeight="Bold"
+                                                          Foreground="White"/>
                                             </Border>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-
                         <StackPanel Visibility="{Binding BrakDanych, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    Margin="0,60">
-                            <materialIcons:MaterialIcon Kind="DatabaseSearch" Width="48" Height="48" Opacity="0.2" Foreground="White" HorizontalAlignment="Center"/>
-                            <TextBlock Text="BRAK DANYCH SYSTEMOWYCH" FontSize="14" FontWeight="Bold" Opacity="0.3" HorizontalAlignment="Center" Margin="0,12"/>
+                                    Margin="0,60">
+                            <Border Background="{DynamicResource AccentPurple}"
+                                    Width="80"
+                                    Height="80"
+                                    CornerRadius="40"
+                                    HorizontalAlignment="Center"
+                                    Opacity="0.3">
+                                <materialIcons:MaterialIcon Kind="DatabaseSearch" 
+                                                           Width="48" Height="48" 
+                                                           Foreground="White" 
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="BRAK DANYCH SYSTEMOWYCH" 
+                                       FontSize="16" 
+                                       FontWeight="Light" 
+                                       Foreground="White" 
+                                       HorizontalAlignment="Center" 
+                                       Margin="0,16,0,8"/>
+                            <TextBlock Text="Oceń akredytację, aby zobaczyć wyniki" 
+                                       FontSize="13"
+                                       Foreground="#88FFFFFF"
+                                       HorizontalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
                 </materialDesign:Card>
-                <materialDesign:Card Style="{StaticResource ResultCardStyle}" Padding="24">
+
+                <materialDesign:Card Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
-                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <Border Background="{DynamicResource AccentPurple}" 
+                                    Width="4" 
+                                    Height="16" 
+                                    CornerRadius="2" 
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Center"/>
                             <TextBlock Text="System Punktacji" 
-                                       FontSize="14" 
-                                       FontWeight="Bold" 
-                                       Foreground="{DynamicResource MaterialDesignBody}"
-                                       Opacity="0.8"
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
 
@@ -424,36 +502,83 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <Border Grid.Row="0" BorderBrush="#1976D2" BorderThickness="1,0,0,0" Padding="16,4,16,12" Margin="0,0,0,12">
+                            <Border Grid.Row="0" 
+                                    BorderBrush="#2196F3" 
+                                    BorderThickness="2,0,0,0" 
+                                    Padding="16,8" 
+                                    Margin="0,0,0,12">
                                 <StackPanel>
-                                    <TextBlock Text="Oceny Zespołów (max 40 pkt)" FontWeight="Bold" FontSize="13" Foreground="#64B5F6"/>
-                                    <TextBlock Text="Średnia ocena zespołów (0-25 pkt)" FontSize="12" Margin="8,4,0,0" Foreground="{DynamicResource MaterialDesignBody}" Opacity="0.7"/>
-                                    <TextBlock Text="Liczba zebranych ocen (0-15 pkt)" FontSize="12" Margin="8,2,0,0" Foreground="{DynamicResource MaterialDesignBody}" Opacity="0.7"/>
+                                    <TextBlock Text="Oceny Zespołów (max 40 pkt)" 
+                                               FontWeight="SemiBold" 
+                                               FontSize="13" 
+                                               Foreground="#64B5F6"/>
+                                    <TextBlock Text="Średnia ocena zespołów (0-25 pkt)" 
+                                               FontSize="12" 
+                                               Margin="8,4,0,0" 
+                                               Foreground="#88FFFFFF"/>
+                                    <TextBlock Text="Liczba zebranych ocen (0-15 pkt)" 
+                                               FontSize="12" 
+                                               Margin="8,2,0,0" 
+                                               Foreground="#88FFFFFF"/>
                                 </StackPanel>
                             </Border>
 
-                            <Border Grid.Row="1" BorderBrush="#388E3C" BorderThickness="1,0,0,0" Padding="16,4,16,12" Margin="0,0,0,12">
+                            <Border Grid.Row="1" 
+                                    BorderBrush="#4CAF50" 
+                                    BorderThickness="2,0,0,0" 
+                                    Padding="16,8" 
+                                    Margin="0,0,0,12">
                                 <StackPanel>
-                                    <TextBlock Text="Interwencje Medyczne (max 40 pkt)" FontWeight="Bold" FontSize="13" Foreground="#81C784"/>
-                                    <TextBlock Text="Liczba udzielonych pomocy w okresie (0-40 pkt)" FontSize="12" Margin="8,4,0,0" Foreground="{DynamicResource MaterialDesignBody}" Opacity="0.7"/>
+                                    <TextBlock Text="Interwencje Medyczne (max 40 pkt)" 
+                                               FontWeight="SemiBold" 
+                                               FontSize="13" 
+                                               Foreground="#81C784"/>
+                                    <TextBlock Text="Liczba udzielonych pomocy w okresie (0-40 pkt)" 
+                                               FontSize="12" 
+                                               Margin="8,4,0,0" 
+                                               Foreground="#88FFFFFF"/>
                                 </StackPanel>
                             </Border>
 
-                            <Border Grid.Row="2" BorderBrush="#F57C00" BorderThickness="1,0,0,0" Padding="16,4,16,12" Margin="0,0,0,12">
+                            <Border Grid.Row="2" 
+                                    BorderBrush="#FFC107" 
+                                    BorderThickness="2,0,0,0" 
+                                    Padding="16,8" 
+                                    Margin="0,0,0,12">
                                 <StackPanel>
-                                    <TextBlock Text="Zasoby Operacyjne (max 20 pkt)" FontWeight="Bold" FontSize="13" Foreground="#FFB74D"/>
-                                    <TextBlock Text="Liczba aktywnych zespołów (0-10 pkt)" FontSize="12" Margin="8,4,0,0" Foreground="{DynamicResource MaterialDesignBody}" Opacity="0.7"/>
-                                    <TextBlock Text="Liczba sprawnych karetek (0-10 pkt)" FontSize="12" Margin="8,2,0,0" Foreground="{DynamicResource MaterialDesignBody}" Opacity="0.7"/>
+                                    <TextBlock Text="Zasoby Operacyjne (max 20 pkt)" 
+                                               FontWeight="SemiBold" 
+                                               FontSize="13" 
+                                               Foreground="#FFB74D"/>
+                                    <TextBlock Text="Liczba aktywnych zespołów (0-10 pkt)" 
+                                               FontSize="12" 
+                                               Margin="8,4,0,0" 
+                                               Foreground="#88FFFFFF"/>
+                                    <TextBlock Text="Liczba sprawnych karetek (0-10 pkt)" 
+                                               FontSize="12" 
+                                               Margin="8,2,0,0" 
+                                               Foreground="#88FFFFFF"/>
                                 </StackPanel>
                             </Border>
 
-                            <Border Grid.Row="3" Background="#15FFFFFF" Padding="16" CornerRadius="8" BorderBrush="#33FFFFFF" BorderThickness="1">
+                            <Border Grid.Row="3" 
+                                    Background="#222628" 
+                                    Padding="16" 
+                                    CornerRadius="8" 
+                                    BorderBrush="{DynamicResource AccentPurple}" 
+                                    BorderThickness="1">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <materialIcons:MaterialIcon Kind="ShieldCheck" Foreground="#81C784" Width="20" Height="20" Margin="0,0,12,0" VerticalAlignment="Center"/>
-                                    <TextBlock FontSize="14" VerticalAlignment="Center" Foreground="{DynamicResource MaterialDesignBody}">
-                                        <Run Text="PRÓG AKREDYTACJI:" FontWeight="Black"/>
+                                    <materialIcons:MaterialIcon Kind="ShieldCheck" 
+                                                               Foreground="#81C784" 
+                                                               Width="20" Height="20" 
+                                                               Margin="0,0,12,0" 
+                                                               VerticalAlignment="Center"/>
+                                    <TextBlock FontSize="14" 
+                                              VerticalAlignment="Center" 
+                                              Foreground="White">
+                                        <Run Text="PRÓG AKREDYTACJI:" FontWeight="Bold"/>
                                         <Run Text=" 35 PUNKTÓW" FontWeight="Bold" Foreground="#81C784"/>
-                                        <Run Text=" / 100 MOŻLIWYCH" FontSize="11" />
+                                        <Run Text=" / 100 MOŻLIWYCH" FontSize="11" Foreground="#88FFFFFF"/>
                                     </TextBlock>
                                 </StackPanel>
                             </Border>

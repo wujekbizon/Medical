@@ -10,23 +10,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="900">
 
-    <local:JedenViewBase.Resources>
-        <Style x:Key="CardStyle" TargetType="materialDesign:Card">
-            <Setter Property="Padding" Value="24"/>
-            <Setter Property="UniformCornerRadius" Value="12"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#2D3136" Offset="0"/>
-                        <GradientStop Color="#1E2124" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="BorderBrush" Value="#44FFFFFF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style>
-    </local:JedenViewBase.Resources>
-
     <Grid Background="{DynamicResource IndustrialGunmetal}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -35,7 +18,6 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <materialDesign:Card Grid.Row="0"
-                            UniformCornerRadius="12"
                             Padding="24"
                             Style="{StaticResource CardStyle}"
                             Margin="16">
@@ -103,7 +85,6 @@
             </StackPanel>
         </materialDesign:Card>
         <materialDesign:Card Grid.Row="1"
-                             UniformCornerRadius="12"
                              Padding="24"
                              Style="{StaticResource CardStyle}"
                              Margin="16">
@@ -196,7 +177,6 @@
             </StackPanel>
         </materialDesign:Card>
         <materialDesign:Card Grid.Row="2"
-                             UniformCornerRadius="12"
                              Padding="24"
                              Style="{StaticResource CardStyle}"
                              Margin="16">
@@ -244,7 +224,6 @@
             </StackPanel>
         </materialDesign:Card>
         <materialDesign:Card Grid.Row="3"
-                             UniformCornerRadius="12"
                              Padding="24"
                              Style="{StaticResource CardStyle}"
                              Margin="16">

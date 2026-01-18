@@ -11,52 +11,54 @@
              d:DesignHeight="700" d:DesignWidth="900">
 
     <UserControl.Resources>
-        <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
-            <Setter Property="Margin" Value="0,0,0,12"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/CardStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        <Style x:Key="LabelStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        </Style>
-
-        <Style x:Key="ResultCardStyle" TargetType="materialDesign:Card">
-            <Setter Property="Padding" Value="16"/>
-            <Setter Property="Margin" Value="0,8,0,0"/>
-            <Setter Property="UniformCornerRadius" Value="8"/>
-        </Style>
+            <Style x:Key="StatCardStyle" TargetType="materialDesign:Card" BasedOn="{StaticResource CardStyle}">
+                <Setter Property="Padding" Value="16"/>
+                <Setter Property="Margin" Value="0,8,0,0"/>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Background="{DynamicResource MaterialDesignPaper}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="24">
-            <StackPanel Margin="24" >
-                <materialDesign:Card UniformCornerRadius="8" Padding="20" Margin="0,0,0,20">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Border BorderThickness="2"
-                                    BorderBrush="#9D8FEF"
-                            />
-                            <TextBlock Text="Ranking Efektywności Zespołów Ratunkowych" 
-                                       FontSize="28" 
-                                       FontWeight="SemiBold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"
-                                       Padding="0,4,0,4"
-                                       />
-                        </StackPanel>
-                    </Grid>
+    <Grid Background="{DynamicResource IndustrialGunmetal}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                      Padding="24"
+                      Style="{StaticResource IndustrialScrollViewer}">
+            <StackPanel>
+                <materialDesign:Card Style="{StaticResource CardStyle}" Margin="0,0,0,16">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Border Background="{DynamicResource AccentPurple}" 
+                                Width="4" 
+                                Height="32" 
+                                CornerRadius="2" 
+                                Margin="0,0,16,0"
+                                VerticalAlignment="Center"/>
+                        <TextBlock Text="Ranking Efektywności Zespołów Ratunkowych" 
+                                   FontSize="24" 
+                                   FontWeight="Light"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
                 </materialDesign:Card>
 
-                <materialDesign:Card UniformCornerRadius="8" Padding="20" Margin="0,0,0,20">
+                <materialDesign:Card Style="{StaticResource CardStyle}" Margin="0,0,0,16">
                     <StackPanel>
-                        <TextBlock Margin="0,0,0,20" FontSize="16" FontWeight="SemiBold" Text="Filtry i Kryteria" Foreground="{DynamicResource AccentPurple}"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <Border Background="{DynamicResource AccentPurple}" 
+                                    Width="4" 
+                                    Height="16" 
+                                    CornerRadius="2" 
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="Filtry i Kryteria" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
                         <Grid>
                             <Grid.RowDefinitions>
@@ -69,23 +71,26 @@
                                 <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <DatePicker Grid.Row="0" Grid.Column="0" 
                                         Margin="0,0,0,16"
                                         SelectedDate="{Binding DataOd, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Data od"
+                                        BorderBrush="#44FFFFFF"
                                         Style="{DynamicResource MaterialDesignOutlinedDatePicker}"/>
 
                             <DatePicker Grid.Row="0" Grid.Column="2" 
                                         Margin="0,0,0,16"
                                         SelectedDate="{Binding DataDo, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Data do"
+                                        BorderBrush="#44FFFFFF"
                                         Style="{DynamicResource MaterialDesignOutlinedDatePicker}"/>
 
                             <TextBox Grid.Row="1" Grid.Column="0" 
                                      Margin="0,0,0,16"
                                      Text="{Binding MinSredniaOcena, StringFormat=N1, UpdateSourceTrigger=PropertyChanged}"
                                      materialDesign:HintAssist.Hint="Min. średnia ocena (np. 7.0)"
+                                     BorderBrush="#44FFFFFF"
                                      Style="{DynamicResource MaterialDesignOutlinedTextBox}"/>
 
                             <ComboBox Grid.Row="1" Grid.Column="2" 
@@ -95,6 +100,7 @@
                                       SelectedValuePath="Key"
                                       SelectedValue="{Binding IdZespolu, UpdateSourceTrigger=PropertyChanged}"
                                       materialDesign:HintAssist.Hint="Filtruj zespół"
+                                      BorderBrush="#44FFFFFF"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
 
                             <ComboBox Grid.Row="2" Grid.Column="0"
@@ -105,11 +111,13 @@
                                       SelectedValuePath="Key"
                                       SelectedValue="{Binding SortOrder, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToEnumConverter}}"
                                       materialDesign:HintAssist.Hint="Sortowanie"
+                                      BorderBrush="#44FFFFFF"
                                       Style="{DynamicResource MaterialDesignOutlinedComboBox}"/>
                         </Grid>
 
-                        <Separator Background="{DynamicResource MaterialDesignDivider}"
+                        <Separator Background="#44FFFFFF"
                                    Margin="0,8,0,24"/>
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -120,33 +128,43 @@
                             <Button Grid.Column="1"
                                     Command="{Binding GenerujRankingCommand}"
                                     Style="{StaticResource MaterialDesignRaisedButton}"
+                                    Background="{DynamicResource AccentPurple}"
                                     Height="40"
                                     Padding="24,0"
                                     Margin="0,0,12,0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialIcons:MaterialIcon Kind="PlayCircle" 
                                                                Width="20" Height="20" 
-                                                               Margin="0,0,8,0"/>
-                                    <TextBlock Text="Generuj Ranking" VerticalAlignment="Center"/>
+                                                               Margin="0,0,8,0"
+                                                               Foreground="White"/>
+                                    <TextBlock Text="Generuj Ranking" 
+                                               VerticalAlignment="Center"
+                                               Foreground="White"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Grid.Column="2"
                                     Command="{Binding ResetujCommand}"
                                     Style="{StaticResource MaterialDesignOutlinedButton}"
+                                    BorderBrush="#44FFFFFF"
+                                    Foreground="White"
                                     Height="40"
                                     Padding="24,0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialIcons:MaterialIcon Kind="Refresh" 
                                                                Width="20" Height="20" 
-                                                               Margin="0,0,8,0"/>
-                                    <TextBlock Text="Resetuj" VerticalAlignment="Center"/>
+                                                               Margin="0,0,8,0"
+                                                               Foreground="White"/>
+                                    <TextBlock Text="Resetuj" 
+                                               VerticalAlignment="Center"
+                                               Foreground="White"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
                     </StackPanel>
                 </materialDesign:Card>
-                <Grid Margin="0,0,0,20">
+
+                <Grid Margin="0,0,0,16">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -155,81 +173,86 @@
                     </Grid.ColumnDefinitions>
 
                     <materialDesign:Card Grid.Column="0" 
-                                         Style="{StaticResource ResultCardStyle}"
+                                         Style="{StaticResource StatCardStyle}"
                                          Margin="0,0,4,0">
                         <StackPanel>
                             <TextBlock Text="Zespołów w rankingu" 
                                        VerticalAlignment="Top" 
                                        HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                       FontSize="13"
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"/>
                             <TextBlock Text="{Binding LiczbaZespolow}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
+                                       Padding="0,20"
+                                       FontSize="36" 
                                        FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                                       Foreground="{DynamicResource AccentPurpleLight}"/>
                         </StackPanel>
                     </materialDesign:Card>
+
                     <materialDesign:Card Grid.Column="1" 
-                                         Style="{StaticResource ResultCardStyle}"
+                                         Style="{StaticResource StatCardStyle}"
                                          Margin="4,0,4,0">
                         <StackPanel>
                             <TextBlock Text="Średnia ocena" 
                                        VerticalAlignment="Top" 
                                        HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                       FontSize="13"
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"/>
                             <TextBlock Text="{Binding OgolnaSredniaOcena, StringFormat=N2}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
+                                       Padding="0,20"
+                                       FontSize="36" 
                                        FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                                       Foreground="{DynamicResource AccentPurpleLight}"/>
                         </StackPanel>
                     </materialDesign:Card>
 
                     <materialDesign:Card Grid.Column="2" 
-                                         Style="{StaticResource ResultCardStyle}"
+                                         Style="{StaticResource StatCardStyle}"
                                          Margin="4,0,4,0">
                         <StackPanel>
                             <TextBlock Text="Łączna liczba ocen" 
                                        VerticalAlignment="Top" 
                                        HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                       FontSize="13"
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"/>
                             <TextBlock Text="{Binding LacznaLiczbaOcen}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
+                                       Padding="0,20"
+                                       FontSize="36" 
                                        FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
-                        
+                                       Foreground="{DynamicResource AccentPurpleLight}"/>
                         </StackPanel>
                     </materialDesign:Card>
+
                     <materialDesign:Card Grid.Column="3" 
-                                         Style="{StaticResource ResultCardStyle}"
+                                         Style="{StaticResource StatCardStyle}"
                                          Margin="4,0,0,0">
                         <StackPanel>
                             <TextBlock Text="Najwyższa średnia"
                                        VerticalAlignment="Top" 
                                        HorizontalAlignment="Center"
-                                       FontSize="14"
-                                       Foreground="{DynamicResource MaterialDesignBodyLight}"/>
+                                       FontSize="13"
+                                       FontWeight="Light"
+                                       Foreground="#88FFFFFF"/>
                             <TextBlock Text="{Binding NajlepszyWynik, StringFormat=N2}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center"
-                                       Padding="0,24"
-                                       FontSize="38" 
+                                       Padding="0,20"
+                                       FontSize="36" 
                                        FontWeight="Bold"
-                                       Foreground="{DynamicResource MaterialDesignBody}"/>
+                                       Foreground="{DynamicResource AccentPurpleLight}"/>
                         </StackPanel>
                     </materialDesign:Card>
                 </Grid>
-                <materialDesign:Card UniformCornerRadius="8" Padding="20">
+                <materialDesign:Card Style="{StaticResource CardStyle}">
                     <StackPanel>
                         <Grid Margin="0,0,0,16">
                             <Grid.ColumnDefinitions>
@@ -237,19 +260,31 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Wyniki Rankingu" 
-                                       Style="{StaticResource SectionHeaderStyle}"
-                                       Margin="0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Background="{DynamicResource AccentPurple}" 
+                                        Width="4" 
+                                        Height="16" 
+                                        CornerRadius="2" 
+                                        Margin="0,0,12,0"
+                                        VerticalAlignment="Center"/>
+                                <TextBlock Text="Wyniki Rankingu" 
+                                           FontSize="15" 
+                                           FontWeight="Light"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
 
                             <Button Grid.Column="1"
                                     Style="{StaticResource MaterialDesignFlatButton}"
                                     Command="{Binding EksportujCommand}"
-                                    ToolTip="Eksportuj do Excel">
+                                    ToolTip="Eksportuj do Excel"
+                                    Foreground="White">
                                 <StackPanel Orientation="Horizontal">
                                     <materialIcons:MaterialIcon Kind="FileExcel" 
                                                                Width="16" Height="16" 
-                                                               Margin="0,0,8,0"/>
-                                    <TextBlock Text="Eksportuj" FontSize="17"/>
+                                                               Margin="0,0,8,0"
+                                                               Foreground="{DynamicResource AccentPurple}"/>
+                                    <TextBlock Text="Eksportuj" FontSize="13"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
@@ -262,8 +297,21 @@
                                   SelectionMode="Single"
                                   HeadersVisibility="All"
                                   GridLinesVisibility="Horizontal"
+                                  Background="Transparent"
+                                  RowBackground="#2D3136"
+                                  AlternatingRowBackground="#252830"
+                                  BorderBrush="#44FFFFFF"
+                                  Foreground="White"
                                   materialDesign:DataGridAssist.CellPadding="12,8"
                                   materialDesign:DataGridAssist.ColumnHeaderPadding="12,10">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                                    <Setter Property="Background" Value="{DynamicResource AccentPurple}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" 
@@ -272,7 +320,8 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                            <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource AccentPurpleLight}"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -283,6 +332,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Medium"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -294,6 +344,7 @@
                                         <Style TargetType="TextBlock">
                                             <Setter Property="FontWeight" Value="Bold"/>
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -304,6 +355,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -314,6 +366,7 @@
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -328,64 +381,56 @@
                                                     <Style TargetType="Border">
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding StatusKolor}" Value="Gold">
-                                                                <Setter Property="Background" Value="#AE8625"/>
+                                                                <Setter Property="Background" Value="#F9A825"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding StatusKolor}" Value="Green">
-                                                                <Setter Property="Background" Value="#E8F5E9"/>
+                                                                <Setter Property="Background" Value="#1B5E20"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding StatusKolor}" Value="Orange">
-                                                                <Setter Property="Background" Value="#FFF3E0"/>
+                                                                <Setter Property="Background" Value="#E65100"/>
                                                             </DataTrigger>
                                                             <DataTrigger Binding="{Binding StatusKolor}" Value="Red">
-                                                                <Setter Property="Background" Value="#FFEBEE"/>
+                                                                <Setter Property="Background" Value="#B71C1C"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
                                                 </Border.Style>
                                                 <TextBlock Text="{Binding Status}" 
                                                           FontSize="11" 
-                                                          FontWeight="SemiBold">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock">
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Gold">
-                                                                    <Setter Property="Foreground" Value="#F7EF8A"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Green">
-                                                                    <Setter Property="Foreground" Value="#2E7D32"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Orange">
-                                                                    <Setter Property="Foreground" Value="#EF6C00"/>
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding StatusKolor}" Value="Red">
-                                                                    <Setter Property="Foreground" Value="#C62828"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
+                                                          FontWeight="SemiBold"
+                                                          Foreground="White"/>
                                             </Border>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
+
                         <StackPanel Visibility="{Binding BrakDanych, Converter={StaticResource BooleanToVisibilityConverter}}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Margin="0,40">
-                            <materialIcons:MaterialIcon Kind="ChartBoxOutline" 
-                                                       Width="64" Height="64"
-                                                       Foreground="{DynamicResource MaterialDesignBodyLight}"
-                                                       HorizontalAlignment="Center"/>
+                            <Border Background="{DynamicResource AccentPurple}"
+                                    Width="80"
+                                    Height="80"
+                                    CornerRadius="40"
+                                    HorizontalAlignment="Center"
+                                    Opacity="0.3">
+                                <materialIcons:MaterialIcon Kind="ChartBoxOutline" 
+                                                           Width="48" Height="48"
+                                                           Foreground="White"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                            </Border>
                             <TextBlock Text="Brak danych do wyświetlenia" 
                                       FontSize="16"
-                                      Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                      FontWeight="Light"
+                                      Foreground="White"
                                       HorizontalAlignment="Center"
                                       Margin="0,16,0,8"/>
                             <TextBlock Text="Wygeneruj ranking, aby zobaczyć wyniki" 
                                       FontSize="13"
-                                      Foreground="{DynamicResource MaterialDesignBodyLight}"
+                                      Foreground="#88FFFFFF"
                                       HorizontalAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>

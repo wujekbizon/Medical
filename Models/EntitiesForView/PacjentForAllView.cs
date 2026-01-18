@@ -23,7 +23,7 @@ namespace Medical.Models.EntitiesForView
         public string KontaktAwaryjnyImieNazwisko { get; set; }
         public string KontaktAwaryjnyTelefon { get; set; }
         public string ChorobyPrzewlekle { get; set; }
-        public string RodzajNiepelnosprawnosci { get; set; }
+        public string RodzajNiepełnosprawności { get; set; }
 
         public PacjentForAllView()
         {

@@ -21,8 +21,9 @@ namespace Medical.Models.BusinessLogic
                 return false;
 
             var user = medicalEntities.User
-                .FirstOrDefault(u => u.Username == credential.UserName);
-
+                .FirstOrDefault(u => u.Username == credential.UserName); // nie sprawdzam czy username jest z malej czy wielkiej litery
+                                                                         // a moge
+                                                                         // .FirstOrDefault(u => u.Username.Equals(credential.UserName, StringComparison.Ordinal));
             if (user == null)
                 return false;
 

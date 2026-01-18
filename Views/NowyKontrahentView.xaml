@@ -7,240 +7,287 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel MaxWidth="800">
-            <TextBlock Text="Podstawowe informacje"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+    <Grid Background="{DynamicResource IndustrialGunmetal}">
+        <StackPanel Margin="16">
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Podstawowe informacje" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-                <TextBox Grid.Row="0"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Nazwa kontrahenta *"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                <ComboBox Grid.Row="0"
-                          Grid.Column="2"
-                          Margin="0,0,0,16"
-                          materialDesign:HintAssist.Hint="Typ kontrahenta"
-                          Style="{DynamicResource MaterialDesignOutlinedComboBox}"
-                          Text="{Binding Typ, UpdateSourceTrigger=PropertyChanged}"
-                          IsEditable="True">
-                    <ComboBoxItem Content="DOSTAWCA"/>
-                    <ComboBoxItem Content="ODBIORCA"/>
-                    <ComboBoxItem Content="SZPITAL"/>
-                </ComboBox>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Nazwa kontrahenta *"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="NIP"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         MaxLength="10"
-                         Text="{Binding NIP, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Grid.Row="0"
+                                      Grid.Column="2"
+                                      Margin="0,0,0,16"
+                                      materialDesign:HintAssist.Hint="Typ kontrahenta"
+                                      BorderBrush="#44FFFFFF"
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                                      Text="{Binding Typ, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="True">
+                                <ComboBoxItem Content="DOSTAWCA"/>
+                                <ComboBoxItem Content="ODBIORCA"/>
+                                <ComboBoxItem Content="SZPITAL"/>
+                            </ComboBox>
 
-                <ComboBox Grid.Row="1"
-                          Grid.Column="2"
-                          Margin="0,0,0,16"
-                          materialDesign:HintAssist.Hint="Kategoria biznesowa"
-                          Style="{DynamicResource MaterialDesignOutlinedComboBox}"
-                          Text="{Binding KategoriaBiznesowa, UpdateSourceTrigger=PropertyChanged}"
-                          IsEditable="True">
-                    <ComboBoxItem Content="Sprzęt medyczny"/>
-                    <ComboBoxItem Content="Dostawca paliw"/>
-                    <ComboBoxItem Content="Ubezpieczenia"/>
-                    <ComboBoxItem Content="Szpital"/>
-                    <ComboBoxItem Content="Czesci samochodowe"/>
-                    <ComboBoxItem Content="Platnik publiczny"/>
-                </ComboBox>
-                <ComboBox Grid.Row="2"
-                          Grid.Column="0"
-                          Margin="0,0,0,16"
-                          materialDesign:HintAssist.Hint="Status współpracy"
-                          Style="{DynamicResource MaterialDesignOutlinedComboBox}"
-                          Text="{Binding StatusWspolpracy, UpdateSourceTrigger=PropertyChanged}"
-                          IsEditable="True">
-                    <ComboBoxItem Content="AKTYWNA"/>
-                    <ComboBoxItem Content="NIEAKTYWNA"/>
-                    <ComboBoxItem Content="ZAKONCZONA"/>
-                </ComboBox>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="NIP"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     MaxLength="10"
+                                     Text="{Binding NIP, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <StackPanel Grid.Row="2"
-                            Grid.Column="2"
-                            Orientation="Horizontal"
-                            Margin="0,0,0,16">
-                    <CheckBox Content="Preferowany"
-                              IsChecked="{Binding CzyPreferowany}"
-                              Margin="0,0,24,0"
-                              Style="{DynamicResource MaterialDesignCheckBox}"/>
-                    <!--<CheckBox Content="Aktywny"
-                              IsChecked="{Binding CzyAktywny}"
-                              Style="{DynamicResource MaterialDesignCheckBox}"/>-->
-                </StackPanel>
-            </Grid>
-            <Separator Background="{DynamicResource BorderDark}"
-                       Margin="0,16,0,24"/>
-            <TextBlock Text="Dane kontaktowe"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+                            <ComboBox Grid.Row="1"
+                                      Grid.Column="2"
+                                      Margin="0,0,0,16"
+                                      materialDesign:HintAssist.Hint="Kategoria biznesowa"
+                                      BorderBrush="#44FFFFFF"
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                                      Text="{Binding KategoriaBiznesowa, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="True">
+                                <ComboBoxItem Content="Sprzęt medyczny"/>
+                                <ComboBoxItem Content="Dostawca paliw"/>
+                                <ComboBoxItem Content="Ubezpieczenia"/>
+                                <ComboBoxItem Content="Szpital"/>
+                                <ComboBoxItem Content="Czesci samochodowe"/>
+                                <ComboBoxItem Content="Platnik publiczny"/>
+                            </ComboBox>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBox Grid.Row="0"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Osoba kontaktowa"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding OsobaKontaktowa, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Grid.Row="2"
+                                      Grid.Column="0"
+                                      Margin="0,0,0,16"
+                                      materialDesign:HintAssist.Hint="Status współpracy"
+                                      BorderBrush="#44FFFFFF"
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                                      Text="{Binding StatusWspolpracy, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="True">
+                                <ComboBoxItem Content="AKTYWNA"/>
+                                <ComboBoxItem Content="NIEAKTYWNA"/>
+                                <ComboBoxItem Content="ZAKONCZONA"/>
+                            </ComboBox>
 
-                <TextBox Grid.Row="0"
-                         Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Telefon kontaktowy"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding TelefonKontaktowy, UpdateSourceTrigger=PropertyChanged}"/>
+                            <StackPanel Grid.Row="2"
+                                        Grid.Column="2"
+                                        Orientation="Horizontal"
+                                        Margin="0,0,0,16">
+                                <CheckBox Content="Preferowany"
+                                          IsChecked="{Binding CzyPreferowany}"
+                                          Margin="0,0,24,0"
+                                          Foreground="White"
+                                          Style="{DynamicResource MaterialDesignCheckBox}"/>
+                                <!--<CheckBox Content="Aktywny"
+                                          IsChecked="{Binding CzyAktywny}"
+                                          Foreground="White"
+                                          Style="{DynamicResource MaterialDesignCheckBox}"/>-->
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="3"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Adres e-mail"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding AdresEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Dane kontaktowe" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-                <TextBox Grid.Row="2"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="3"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Adres siedziby"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding AdresSiedziby, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Miasto"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding Miasto, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Osoba kontaktowa"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding OsobaKontaktowa, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Kod pocztowy"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         MaxLength="6"
-                         Text="{Binding KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
-         
-            <Separator Background="{DynamicResource BorderDark}"
-                       Margin="0,16,0,24"/>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Telefon kontaktowy"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding TelefonKontaktowy, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Text="Dane finansowe"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Adres e-mail"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding AdresEmail, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                            <TextBox Grid.Row="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Adres siedziby"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding AdresSiedziby, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="0"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="3"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Numer konta bankowego (IBAN)"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         MaxLength="30"
-                         Text="{Binding NumerKontaBankowego, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="3"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Miasto"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding Miasto, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Warunki płatności"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding WarunkiPlatnosci, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="3"
+                                     Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Kod pocztowy"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     MaxLength="6"
+                                     Text="{Binding KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Łączna wartość transakcji (PLN)"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding LacznaWartoscTransakcji, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Dane finansowe" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-            <Separator Background="{DynamicResource BorderDark}"
-                       Margin="0,16,0,24"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-            <TextBlock Text="Daty współpracy"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Numer konta bankowego (IBAN)"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     MaxLength="30"
+                                     Text="{Binding NumerKontaBankowego, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Warunki płatności"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding WarunkiPlatnosci, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <DatePicker Grid.Column="0"
-                            Margin="0,0,0,16"
-                            materialDesign:HintAssist.Hint="Data rozpoczęcia współpracy"
-                            Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
-                            SelectedDate="{Binding DataRozpoczeciaWspolpracy, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Łączna wartość transakcji (PLN)"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding LacznaWartoscTransakcji, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
 
-                <DatePicker Grid.Column="2"
-                            Margin="0,0,0,16"
-                            materialDesign:HintAssist.Hint="Data zakończenia umowy"
-                            Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
-                            SelectedDate="{Binding DataZakonczeniaUmowy, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Daty współpracy" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-            <TextBlock Text="* Pola wymagane"
-                       FontSize="11"
-                       FontStyle="Italic"
-                       Foreground="{DynamicResource TextSecondary}"
-                       Margin="0,8,0,0"/>
-        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <DatePicker Grid.Column="0"
+                                        Margin="0,0,0,16"
+                                        materialDesign:HintAssist.Hint="Data rozpoczęcia współpracy"
+                                        BorderBrush="#44FFFFFF"
+                                        Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                        SelectedDate="{Binding DataRozpoczeciaWspolpracy, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <DatePicker Grid.Column="2"
+                                        Margin="0,0,0,16"
+                                        materialDesign:HintAssist.Hint="Data zakończenia umowy"
+                                        BorderBrush="#44FFFFFF"
+                                        Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                        SelectedDate="{Binding DataZakonczeniaUmowy, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+
+                        <TextBlock Text="* Pola wymagane"
+                                   FontSize="11"
+                                   FontStyle="Italic"
+                                   Foreground="#88FFFFFF"
+                                   Margin="0,8,0,0"/>
+                    </StackPanel>
+                </materialDesign:Card>
+
+            </StackPanel>
     </Grid>
 </local:JedenViewBase>

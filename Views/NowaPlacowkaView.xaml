@@ -7,244 +7,301 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:Medical.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:NowaPlacowkaViewModel}"
                      mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel MaxWidth="800">
-            <TextBlock Text="Podstawowe informacje"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Nazwa placówki *"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding NazwaPlacowki, UpdateSourceTrigger=PropertyChanged}"/>
+    <Grid Background="{DynamicResource IndustrialGunmetal}">
+        <StackPanel Margin="16">
+            <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Podstawowe informacje" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-                <ComboBox Grid.Row="0"
-                          Grid.Column="2"
-                          Margin="0,0,0,16"
-                          materialDesign:HintAssist.Hint="Typ placówki"
-                          Style="{DynamicResource MaterialDesignOutlinedComboBox}"
-                          Text="{Binding TypPlacowki, UpdateSourceTrigger=PropertyChanged}"
-                          IsEditable="True">
-                    <ComboBoxItem Content="Stacja Pogotowia Ratunkowego"/>
-                    <ComboBoxItem Content="Szpital z SOR"/>
-                    <ComboBoxItem Content="Stacja Sanitarna"/>
-                    <ComboBoxItem Content="Punkt Dyspozytorski"/>
-                </ComboBox>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                <ComboBox Grid.Row="1"
-                          Grid.Column="0"
-                          Margin="0,0,0,16"
-                          materialDesign:HintAssist.Hint="Region"
-                          Style="{DynamicResource MaterialDesignOutlinedComboBox}"
-                          Text="{Binding Region, UpdateSourceTrigger=PropertyChanged}"
-                          IsEditable="True">
-                    <ComboBoxItem Content="Mazowieckie"/>
-                    <ComboBoxItem Content="Śląskie"/>
-                    <ComboBoxItem Content="Wielkopolskie"/>
-                    <ComboBoxItem Content="Małopolskie"/>
-                    <ComboBoxItem Content="Dolnośląskie"/>
-                    <ComboBoxItem Content="Łódzkie"/>
-                    <ComboBoxItem Content="Pomorskie"/>
-                    <ComboBoxItem Content="Zachodniopomorskie"/>
-                </ComboBox>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Nazwa placówki *"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding NazwaPlacowki, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Obszar zasięgu ratunkowego"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding ObszarZasieguRatunkowego, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Grid.Row="0"
+                                      Grid.Column="2"
+                                      Margin="0,0,0,16"
+                                      materialDesign:HintAssist.Hint="Typ placówki"
+                                      BorderBrush="#44FFFFFF"
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                                      Text="{Binding TypPlacowki, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="True">
+                                <ComboBoxItem Content="Stacja Pogotowia Ratunkowego"/>
+                                <ComboBoxItem Content="Szpital z SOR"/>
+                                <ComboBoxItem Content="Stacja Sanitarna"/>
+                                <ComboBoxItem Content="Punkt Dyspozytorski"/>
+                            </ComboBox>
 
-                <TextBox Grid.Row="2"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Godziny pracy"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding GodzinyPracy, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox Grid.Row="1"
+                                      Grid.Column="0"
+                                      Margin="0,0,0,16"
+                                      materialDesign:HintAssist.Hint="Region"
+                                      BorderBrush="#44FFFFFF"
+                                      Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                                      Text="{Binding Region, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEditable="True">
+                                <ComboBoxItem Content="Mazowieckie"/>
+                                <ComboBoxItem Content="Śląskie"/>
+                                <ComboBoxItem Content="Wielkopolskie"/>
+                                <ComboBoxItem Content="Małopolskie"/>
+                                <ComboBoxItem Content="Dolnośląskie"/>
+                                <ComboBoxItem Content="Łódzkie"/>
+                                <ComboBoxItem Content="Pomorskie"/>
+                                <ComboBoxItem Content="Zachodniopomorskie"/>
+                            </ComboBox>
 
-                <StackPanel Grid.Row="2"
-                            Grid.Column="2"
-                            Orientation="Horizontal"
-                            Margin="0,0,0,16">
-                    <CheckBox Content="Ma akredytacje"
-                              IsChecked="{Binding CzyMaAkredytacje}"
-                              Margin="0,0,24,0"
-                              Style="{DynamicResource MaterialDesignCheckBox}"/>
-                </StackPanel>
-            </Grid>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Obszar zasięgu ratunkowego"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding ObszarZasieguRatunkowego, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Separator Background="{DynamicResource BorderDark}"
-                       Margin="0,16,0,24"/>
+                            <TextBox Grid.Row="2"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Godziny pracy"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding GodzinyPracy, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Text="Adres placówki"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+                            <StackPanel Grid.Row="2"
+                                        Grid.Column="2"
+                                        Orientation="Horizontal"
+                                        Margin="0,0,0,16">
+                                <CheckBox Content="Ma akredytacje"
+                                          IsChecked="{Binding CzyMaAkredytacje}"
+                                          Margin="0,0,24,0"
+                                          Foreground="White"
+                                          Style="{DynamicResource MaterialDesignCheckBox}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                <!-- Adres placówki -->
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Adres placówki" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-                <TextBox Grid.Row="0"
-                         Grid.Column="0"
-                         Grid.ColumnSpan="3"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Adres"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding Adres, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Miasto"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding Miasto, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="3"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Adres"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding Adres, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Kod pocztowy"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         MaxLength="6"
-                         Text="{Binding KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Miasto"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding Miasto, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Separator Background="{DynamicResource BorderDark}"
-                       Margin="0,16,0,24"/>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Kod pocztowy"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     MaxLength="6"
+                                     Text="{Binding KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
 
-            <TextBlock Text="Dane kontaktowe"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+                <!-- Dane kontaktowe -->
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Dane kontaktowe" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Telefon"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding Telefon, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Telefon"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding Telefon, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Adres e-mail"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding AdresEmail, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
+                            <TextBox Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Adres e-mail"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding AdresEmail, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
 
-            <Separator Background="{DynamicResource BorderDark}"
-                       Margin="0,16,0,24"/>
+                <!-- Zasoby i infrastruktura -->
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Zasoby i infrastruktura" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-            <TextBlock Text="Zasoby i infrastruktura"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Liczba karetek"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding LiczbaKaretek, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="0"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Liczba karetek"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding LiczbaKaretek, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="0"
+                                     Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Liczba zespołów"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding LiczbaZespolow, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="0"
-                         Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Liczba zespołów"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding LiczbaZespolow, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="0"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Pojemność garażu"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding PojemnoscGarazu, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="0"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Pojemność garażu"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding PojemnoscGarazu, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Row="1"
+                                     Grid.Column="2"
+                                     Margin="0,0,0,16"
+                                     materialDesign:HintAssist.Hint="Budżet (PLN)"
+                                     BorderBrush="#44FFFFFF"
+                                     Style="{DynamicResource MaterialDesignOutlinedTextBox}"
+                                     Text="{Binding Budzet, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
 
-                <TextBox Grid.Row="1"
-                         Grid.Column="2"
-                         Margin="0,0,0,16"
-                         materialDesign:HintAssist.Hint="Budżet (PLN)"
-                         Style="{DynamicResource MaterialDesignOutlinedTextBox}"
-                         Text="{Binding Budzet, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
+                <!-- Daty -->
+                <materialDesign:Card Padding="24"
+                                    Style="{StaticResource CardStyle}"
+                                    Margin="0,0,0,16">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                            <Border Background="#9D8FEF" Width="4" Height="16" CornerRadius="2" Margin="0,0,12,0"/>
+                            <TextBlock Text="Daty" 
+                                       FontSize="15" 
+                                       FontWeight="Light"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
 
-            <Separator Background="{DynamicResource BorderDark}"
-                       Margin="0,16,0,24"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Daty"
-                       FontSize="16"
-                       FontWeight="Bold"
-                       Foreground="{DynamicResource AccentPurple}"
-                       Margin="0,0,0,16"/>
+                            <DatePicker Grid.Column="0"
+                                        Margin="0,0,0,16"
+                                        materialDesign:HintAssist.Hint="Data otwarcia"
+                                        BorderBrush="#44FFFFFF"
+                                        Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                        SelectedDate="{Binding DataOtwarcia, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="16"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                            <DatePicker Grid.Column="2"
+                                        Margin="0,0,0,16"
+                                        materialDesign:HintAssist.Hint="Data ostatniej inspekcji"
+                                        BorderBrush="#44FFFFFF"
+                                        Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
+                                        SelectedDate="{Binding DataOstatniejInspekcji, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
 
-                <DatePicker Grid.Column="0"
-                            Margin="0,0,0,16"
-                            materialDesign:HintAssist.Hint="Data otwarcia"
-                            Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
-                            SelectedDate="{Binding DataOtwarcia, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="* Pola wymagane"
+                                   FontSize="11"
+                                   FontStyle="Italic"
+                                   Foreground="#88FFFFFF"
+                                   Margin="0,8,0,0"/>
+                    </StackPanel>
+                </materialDesign:Card>
 
-                <DatePicker Grid.Column="2"
-                            Margin="0,0,0,16"
-                            materialDesign:HintAssist.Hint="Data ostatniej inspekcji"
-                            Style="{DynamicResource MaterialDesignOutlinedDatePicker}"
-                            SelectedDate="{Binding DataOstatniejInspekcji, UpdateSourceTrigger=PropertyChanged}"/>
-            </Grid>
-
-            <TextBlock Text="* Pola wymagane"
-                       FontSize="11"
-                       FontStyle="Italic"
-                       Foreground="{DynamicResource TextSecondary}"
-                       Margin="0,8,0,0"/>
-        </StackPanel>
+            </StackPanel>
     </Grid>
 </local:JedenViewBase>

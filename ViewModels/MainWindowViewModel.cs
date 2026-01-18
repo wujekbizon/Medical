@@ -401,7 +401,9 @@ namespace Medical.ViewModels
         {
             this.Workspaces.Clear();
 
+            var loginViewModel = new LoginViewModel();
             var loginView = new Medical.Views.LoginView();
+            loginView.DataContext = loginViewModel;
             loginView.Show();
 
             var currentWindow = System.Windows.Application.Current.Windows

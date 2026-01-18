@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Medical.Helper
@@ -34,6 +30,7 @@ namespace Medical.Helper
 
         public event EventHandler CanExecuteChanged
         {
+            // CommandManager statyczna klasa zarzadzajaca komendami i eventami w WPF
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
