@@ -39,6 +39,17 @@
               <SolidColorBrush x:Key="MedicalInfo" Color="#569CD6" />
               <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF" />
               <SolidColorBrush x:Key="TextSecondary" Color="#B0BCC7" />
-    </ResourceDictionary>
+
+            <Style TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static
+                            RelativeSource.Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
   </Application.Resources>
 </Application>

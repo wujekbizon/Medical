@@ -2,13 +2,16 @@
 using Medical.Models;
 using Medical.Models.EntitiesForView;
 using Medical.Models.Enums;
+using Medical.Models.Validatory;
 using Medical.ViewModels.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Medical.ViewModels
 {
-    public class NowyPacjentViewModel : JedenViewModel<Pacjent>
+    public class NowyPacjentViewModel : JedenViewModel<Pacjent>, IDataErrorInfo
     {
         #region Konstruktor
         public NowyPacjentViewModel()
@@ -338,6 +341,40 @@ namespace Medical.ViewModels
                     OnPropertyChanged(() => CzyAktywny);
                 }
             }
+        }
+
+        #region Validation
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Pesel")
+                {
+                    komunikat =
+                    StringValidator.SprawdzPesel(this.Pesel);
+                }
+                if (name == "NumerKartyPacjenta")
+                {
+                    komunikat = BiznesValidator.SprawdzNumerKartyPacjenta(this.NumerKartyPacjenta);
+                }
+                return komunikat;
+            }
+        }
+        #endregion
+
+        public override bool IsValid()
+        {
+            if (this["Nazwa"] == null && this["StawkaVatSprzedazy"] == null)
+                return true;
+            return false;
         }
 
         public IEnumerable<KeyAndValue> GrupaKrwiItems

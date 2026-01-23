@@ -1,5 +1,6 @@
 ﻿using Medical.Helper;
 using Medical.Models;
+using System;
 using System.Windows.Input;
 
 namespace Medical.ViewModels.Abstract
@@ -43,13 +44,36 @@ namespace Medical.ViewModels.Abstract
 
         private void saveAndCLose()
         {
-            Save();
-            OnRequestClose(); 
+            if (IsValid())
+            {
+                Save();
+                ShowMessageBoxInformation("Dokument został zapisany do bazy");
+                OnRequestClose(); 
+            }
+            else 
+                ShowMessageBoxError("Popraw błędy");
+        }
+
+        private void ShowMessageBoxError(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowMessageBoxInformation(string v)
+        {
+            throw new NotImplementedException();
         }
 
         private void close()
         {
             OnRequestClose();
+        }
+        #endregion
+
+        #region Validation
+        public virtual bool IsValid()
+        {
+            return true;
         }
         #endregion
     }

@@ -11,33 +11,46 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Window.Resources>
 
-    <Border Background="{DynamicResource MaterialDesignPaper}"
-            BorderBrush="{DynamicResource PrimaryHueMidBrush}"
-            BorderThickness="1"
-            CornerRadius="8">
-        <Grid Margin="20">
+    
+
+        <materialDesign:Card Style="{StaticResource CardStyle}">
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0" 
-                       Text="{Binding Title}" 
-                       FontSize="18"
-                       FontWeight="SemiBold"
-                       Margin="0,0,0,20"/>
+            <StackPanel Grid.Row="0" 
+                        Orientation="Horizontal" 
+                        Margin="0,0,0,20">
+                <Border Background="{DynamicResource AccentPurple}" 
+                        Width="4" 
+                        Height="20" 
+                        CornerRadius="2" 
+                        Margin="0,0,12,0"
+                        VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Title}" 
+                           FontSize="18"
+                           FontWeight="Light"
+                           Foreground="White"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
 
             <TextBlock Grid.Row="1" 
                        Text="{Binding Prompt}" 
-                       FontSize="14"
-                       Margin="0,0,0,15"
+                       FontSize="13"
+                       FontWeight="Light"
+                       Foreground="#CCFFFFFF"
+                       Margin="0,0,0,16"
                        TextWrapping="Wrap"/>
 
             <TextBox Grid.Row="2" 
                      Text="{Binding ResponseText, UpdateSourceTrigger=PropertyChanged}"
                      materialDesign:HintAssist.Hint="Wpisz tekst..."
+                     BorderBrush="#44FFFFFF"
+                     Foreground="White"
+                     FontSize="15"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Top"
                      Margin="0,0,0,20"/>
@@ -47,15 +60,31 @@
                         HorizontalAlignment="Right">
                 <Button Content="Anuluj" 
                         Width="100"
-                        Margin="0,0,10,0"
+                        Height="36"
+                        Margin="0,0,12,0"
                         Command="{Binding CancelCommand}"
-                        Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                        Style="{StaticResource MaterialDesignOutlinedButton}"
+                        BorderBrush="#44FFFFFF"
+                        Foreground="White"/>
                 <Button Content="OK" 
                         Width="100"
+                        Height="36"
                         Command="{Binding OkCommand}"
                         IsEnabled="{Binding CzyMoznaZatwierdzic}"
-                        Style="{StaticResource MaterialDesignRaisedButton}"/>
+                        Background="{DynamicResource AccentPurple}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                            <Setter Property="Background" Value="{DynamicResource AccentPurple}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.4"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
         </Grid>
-    </Border>
+    </materialDesign:Card>
 </Window>

@@ -10,7 +10,7 @@ namespace Medical.Models.RAG
     {
         public string QueryText { get; set; }
         public string StoreId { get; set; }
-        public string MetadataFilter { get; set; } // Optional
+        public string MetadataFilter { get; set; }
         public int MaxResults { get; set; }
 
         #region Konstruktor

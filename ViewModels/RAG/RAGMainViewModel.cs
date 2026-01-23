@@ -271,7 +271,7 @@ namespace Medical.ViewModels.RAG
         {
             var storeName = await _dialogService.ShowInputDialogAsync(
                 "Utwórz File Search Store",
-                "Podaj nazwę store:");
+                "Podaj nazwę:");
 
             if (!string.IsNullOrWhiteSpace(storeName))
             {

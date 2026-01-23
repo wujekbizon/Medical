@@ -296,6 +296,9 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validatory\BiznesValidator.cs" />
+    <Compile Include="Models\Validatory\StringValidator.cs" />
+    <Compile Include="Models\Validatory\Validator.cs" />
     <Compile Include="Models\ZespolPracownik.cs">
       <DependentUpon>ModelMedical.tt</DependentUpon>
     </Compile>
